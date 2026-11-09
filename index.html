@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Modelos de landing pages | Catálogo de demonstrações</title>
-  <meta name="description" content="Catálogo de landing pages demonstrativas para pequenos negócios: estética facial, confeitaria e estúdio de unhas, cílios e sobrancelhas. Veja cada modelo funcionando.">
+  <meta name="description" content="Catálogo de landing pages demonstrativas para pequenos negócios, com prévias em computador e celular. Veja cada modelo funcionando.">
   <meta name="theme-color" content="#F3F4F6">
 
   <meta property="og:type" content="website">
@@ -19,10 +19,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="catalogo/catalogo.css">
 
-  <!-- A primeira prévia aparece logo na abertura: o navegador começa a baixá-la antes do CSS terminar. -->
-  <link rel="preload" as="image" type="image/webp"
-        imagesrcset="catalogo/previas/naria-desktop-800.webp 800w, catalogo/previas/naria-desktop-1600.webp 1600w"
-        imagesizes="(min-width: 960px) 60vw, 92vw">
+  <!-- Cadastro dos modelos (único arquivo a editar) e montagem da página -->
+  <script src="catalogo/modelos.js" defer></script>
+  <script src="catalogo/catalogo.js" defer></script>
+
 </head>
 <body>
   <a class="pular" href="#modelos">Pular para os modelos</a>
@@ -39,10 +39,12 @@
 
       <nav class="indice" aria-labelledby="indice-titulo">
         <h2 class="indice__titulo" id="indice-titulo">Modelos disponíveis</h2>
-        <ol class="indice__lista">
-          <li><a href="#modelo-naria"><span class="indice__nome">NÁRIA</span><span class="indice__segmento">Estética facial</span></a></li>
-          <li><a href="#modelo-forma-doce"><span class="indice__nome">FORMA DOCE</span><span class="indice__segmento">Confeitaria de celebrações</span></a></li>
-          <li><a href="#modelo-traco"><span class="indice__nome">TRAÇO Studio</span><span class="indice__segmento">Unhas, cílios e sobrancelhas</span></a></li>
+        <!-- Lista de reserva: aparece se o JavaScript falhar e leva direto às demonstrações.
+             Com o JavaScript funcionando, é substituída pelo índice gerado do cadastro. -->
+        <ol class="indice__lista" id="indice-lista">
+          <li><a href="./Naria/"><span class="indice__nome">NÁRIA</span><span class="indice__segmento">Estética facial</span></a></li>
+          <li><a href="./Forma-Doce/"><span class="indice__nome">FORMA DOCE</span><span class="indice__segmento">Confeitaria de celebrações</span></a></li>
+          <li><a href="./Traco/"><span class="indice__nome">TRAÇO Studio</span><span class="indice__segmento">Unhas, cílios e sobrancelhas</span></a></li>
         </ol>
       </nav>
     </div>
@@ -51,124 +53,43 @@
   <main id="modelos" tabindex="-1">
     <h2 class="visualmente-oculto">Modelos</h2>
 
-    <!--
-      ===================================================================
-      COMO ADICIONAR UM MODELO
-      1. Publique a pasta do novo site na raiz do repositório (ex.: ./Nome-Da-Pasta/).
-      2. Salve três capturas em catalogo/previas/:
-         <id>-desktop-1600.webp e <id>-desktop-800.webp (tela 1440 × 900, proporção 16:10)
-         <id>-mobile-390.webp (tela 390 × 844)
-      3. Copie um bloco <article class="modelo"> abaixo, troque id, textos, caminhos e as
-         três cores do palco no atributo style (--palco, --tinta, --tinta-suave).
-      4. Acrescente o modelo ao índice da abertura (nav.indice).
-      ===================================================================
-    -->
-
-    <!-- Modelo 01 -->
-    <article class="modelo" id="modelo-naria" aria-labelledby="naria-nome"
-             style="--palco: #682F49; --tinta: #F6F0EB; --tinta-suave: #E8CBC4;">
-      <div class="modelo__grade">
-        <div class="modelo__info">
-          <p class="modelo__numero">Modelo 01</p>
-          <h3 class="modelo__nome" id="naria-nome">NÁRIA</h3>
-          <p class="modelo__segmento">Estética facial</p>
-          <p class="modelo__descricao">
-            Estúdio pequeno, atendimento individual e hora marcada. Linguagem editorial, de revista de beleza:
-            tipografia Bodoni, ameixa como cor principal e a fotografia da abertura como protagonista.
-          </p>
-          <ul class="modelo__recursos">
-            <li>Coleção de cuidados em abas, com foto e ficha de cada serviço</li>
-            <li>Pedido de agendamento com a mensagem pronta para o WhatsApp</li>
-            <li>Seções de ritual de atendimento, espaço e dúvidas frequentes</li>
-          </ul>
-          <a class="modelo__acao" href="./Naria/">Ver demonstração<span class="visualmente-oculto"> do modelo NÁRIA</span></a>
-        </div>
-
-        <a class="modelo__previa" href="./Naria/" tabindex="-1" aria-hidden="true">
-          <figure class="tela tela--desktop">
-            <span class="tela__barra">Naria/</span>
-            <img src="catalogo/previas/naria-desktop-800.webp"
-                 srcset="catalogo/previas/naria-desktop-800.webp 800w, catalogo/previas/naria-desktop-1600.webp 1600w"
-                 sizes="(min-width: 960px) 60vw, 92vw"
-                 width="1600" height="1000" alt="" fetchpriority="high" decoding="async">
-          </figure>
-          <figure class="tela tela--mobile">
-            <img src="catalogo/previas/naria-mobile-390.webp" width="390" height="844" alt="" loading="lazy" decoding="async">
-          </figure>
-        </a>
-      </div>
-    </article>
-
-    <!-- Modelo 02 -->
-    <article class="modelo" id="modelo-forma-doce" aria-labelledby="forma-doce-nome"
-             style="--palco: #30231F; --tinta: #FFF2D9; --tinta-suave: #F6B9C6;">
-      <div class="modelo__grade">
-        <div class="modelo__info">
-          <p class="modelo__numero">Modelo 02</p>
-          <h3 class="modelo__nome" id="forma-doce-nome">FORMA DOCE</h3>
-          <p class="modelo__segmento">Confeitaria de celebrações</p>
-          <p class="modelo__descricao">
-            Bolos personalizados, doces finos e caixas para presente sob encomenda. Visual pop artesanal,
-            com cara de embalagem: campos de cor chapados, letreiro retrô e formas recortadas como adesivos.
-          </p>
-          <ul class="modelo__recursos">
-            <li>Cardápio filtrado pela ocasião: aniversário, presente, festa</li>
-            <li>Formulário de pedido com prévia da mensagem em tempo real</li>
-            <li>Passo a passo da encomenda e dúvidas frequentes</li>
-          </ul>
-          <a class="modelo__acao" href="./Forma-Doce/">Ver demonstração<span class="visualmente-oculto"> do modelo FORMA DOCE</span></a>
-        </div>
-
-        <a class="modelo__previa" href="./Forma-Doce/" tabindex="-1" aria-hidden="true">
-          <figure class="tela tela--desktop">
-            <span class="tela__barra">Forma-Doce/</span>
-            <img src="catalogo/previas/forma-doce-desktop-800.webp"
-                 srcset="catalogo/previas/forma-doce-desktop-800.webp 800w, catalogo/previas/forma-doce-desktop-1600.webp 1600w"
-                 sizes="(min-width: 960px) 60vw, 92vw"
-                 width="1600" height="1000" alt="" loading="lazy" decoding="async">
-          </figure>
-          <figure class="tela tela--mobile">
-            <img src="catalogo/previas/forma-doce-mobile-390.webp" width="390" height="844" alt="" loading="lazy" decoding="async">
-          </figure>
-        </a>
-      </div>
-    </article>
-
-    <!-- Modelo 03 -->
-    <article class="modelo" id="modelo-traco" aria-labelledby="traco-nome"
-             style="--palco: #2443C2; --tinta: #FFFFFF; --tinta-suave: #DCE3FF;">
-      <div class="modelo__grade">
-        <div class="modelo__info">
-          <p class="modelo__numero">Modelo 03</p>
-          <h3 class="modelo__nome" id="traco-nome">TRAÇO Studio</h3>
-          <p class="modelo__segmento">Unhas, cílios e sobrancelhas</p>
-          <p class="modelo__descricao">
-            Nail design, extensão de cílios e design de sobrancelhas tratados como desenho técnico:
-            tipografia larga, cobalto sobre fundo claro e uma régua que acompanha a leitura.
-          </p>
-          <ul class="modelo__recursos">
-            <li>Lookbook com o botão “Quero esse visual”, que já marca os serviços</li>
-            <li>Ficha de agendamento que pergunta o formato da unha quando precisa</li>
-            <li>Serviços agrupados por unhas, cílios e sobrancelhas</li>
-          </ul>
-          <a class="modelo__acao" href="./Traco/">Ver demonstração<span class="visualmente-oculto"> do modelo TRAÇO Studio</span></a>
-        </div>
-
-        <a class="modelo__previa" href="./Traco/" tabindex="-1" aria-hidden="true">
-          <figure class="tela tela--desktop">
-            <span class="tela__barra">Traco/</span>
-            <img src="catalogo/previas/traco-desktop-800.webp"
-                 srcset="catalogo/previas/traco-desktop-800.webp 800w, catalogo/previas/traco-desktop-1600.webp 1600w"
-                 sizes="(min-width: 960px) 60vw, 92vw"
-                 width="1600" height="1000" alt="" loading="lazy" decoding="async">
-          </figure>
-          <figure class="tela tela--mobile">
-            <img src="catalogo/previas/traco-mobile-390.webp" width="390" height="844" alt="" loading="lazy" decoding="async">
-          </figure>
-        </a>
-      </div>
-    </article>
+    <!-- Os modelos são gerados a partir de catalogo/modelos.js (veja catalogo/README.md). -->
+    <p class="aviso-reserva" id="aviso-reserva">
+      Não foi possível carregar as prévias dos modelos. Use a lista acima para abrir cada demonstração.
+    </p>
   </main>
+
+  <!-- Estrutura de um modelo. O texto, as cores e as imagens vêm do cadastro. -->
+  <template id="tpl-modelo">
+    <article class="modelo">
+      <div class="modelo__grade">
+        <div class="modelo__info">
+          <p class="modelo__numero" data-campo="numero"></p>
+          <h3 class="modelo__nome" data-campo="marca"></h3>
+          <p class="modelo__segmento" data-campo="nicho"></p>
+          <p class="modelo__descricao" data-campo="descricao"></p>
+          <ul class="modelo__recursos" data-campo="caracteristicas"></ul>
+          <a class="modelo__acao" data-campo="acao">Ver demonstração<span class="visualmente-oculto" data-campo="acao-complemento"></span></a>
+        </div>
+
+        <a class="modelo__previa" data-campo="previa" tabindex="-1" aria-hidden="true">
+          <figure class="tela tela--desktop">
+            <span class="tela__barra" data-campo="caminho"></span>
+            <img data-campo="img-desktop" sizes="(min-width: 960px) 60vw, 92vw"
+                 width="1600" height="1000" alt="" loading="lazy" decoding="async">
+          </figure>
+          <figure class="tela tela--mobile">
+            <img data-campo="img-celular" width="390" height="844" alt="" loading="lazy" decoding="async">
+          </figure>
+        </a>
+      </div>
+    </article>
+  </template>
+
+  <!-- Estrutura de um item do índice da abertura -->
+  <template id="tpl-indice">
+    <li><a><span class="indice__nome" data-campo="marca"></span><span class="indice__segmento" data-campo="nicho"></span></a></li>
+  </template>
 
   <footer class="rodape">
     <div class="rodape__grade">

@@ -179,6 +179,14 @@ main:focus { outline: none; }
   }
 }
 
+/* Aviso exibido só quando os modelos não podem ser montados (catalogo.js) */
+.aviso-reserva {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.25rem var(--margem) clamp(3rem, 2rem + 3vw, 5rem);
+  color: var(--ardosia);
+}
+
 /* ---------- Modelos (palcos) ---------- */
 .modelo {
   background: var(--palco, var(--tinta-catalogo));
