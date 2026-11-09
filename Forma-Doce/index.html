@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Forma Doce — Bolos e doces por encomenda | Demonstração</title>
+  <meta name="description" content="Forma Doce é uma confeitaria artesanal de encomendas para comemorações: bolos personalizados, doces finos, caixas para presente e kits para pequenas celebrações. Site demonstrativo de marca fictícia.">
+  <meta name="theme-color" content="#C7303D">
+  <!-- Remova a linha abaixo ao publicar o site de um cliente real -->
+  <meta name="robots" content="noindex, nofollow">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="Forma Doce — Confeitaria de celebrações">
+  <meta property="og:description" content="Momentos especiais merecem um sabor à altura. Monte seu pedido e receba o orçamento pelo WhatsApp.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1569289522127-c0452f372d46?auto=format&fit=crop&w=1200&h=630&q=70">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preload" as="image"
+        href="https://images.unsplash.com/photo-1569289522127-c0452f372d46?auto=format&fit=crop&q=75&w=800"
+        imagesrcset="https://images.unsplash.com/photo-1569289522127-c0452f372d46?auto=format&fit=crop&q=75&w=480 480w, https://images.unsplash.com/photo-1569289522127-c0452f372d46?auto=format&fit=crop&q=75&w=800 800w, https://images.unsplash.com/photo-1569289522127-c0452f372d46?auto=format&fit=crop&q=75&w=1100 1100w"
+        imagesizes="(min-width: 1024px) 30vw, (min-width: 768px) 44vw, 84vw">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=Shrikhand&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <p class="demo-ribbon" role="note" data-demo-only>
+    <span data-config="demo.notice">Site demonstrativo: a Forma Doce é uma marca fictícia, as fotos são ilustrativas e os contatos não estão configurados.</span>
+  </p>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="wordmark" href="#topo" aria-label="Forma Doce, voltar ao início">
+        <span class="wordmark__name" data-config="brand.name">Forma Doce</span>
+      </a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">
+        <span class="menu-toggle__icon" aria-hidden="true"><span></span></span>
+        <span class="menu-toggle__label">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="menu-principal" aria-label="Principal">
+        <ul class="site-nav__list">
+          <li><a href="#ocasioes">Ocasiões</a></li>
+          <li><a href="#cardapio">Cardápio</a></li>
+          <li><a href="#processo">Como funciona</a></li>
+          <li><a href="#duvidas">Dúvidas</a></li>
+        </ul>
+        <a class="btn btn--glace btn--small" href="#pedido">Montar pedido</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- A. ABERTURA ======================================================== -->
+    <section class="hero" id="topo" aria-labelledby="hero-titulo">
+      <div class="hero__stage">
+        <!-- EDITÁVEL: título principal -->
+        <h1 class="hero__title" id="hero-titulo">
+          <span class="hero__line hero__line--a">Tem festa?</span>
+          <span class="hero__line hero__line--b">A gente faz o bolo.</span>
+        </h1>
+
+        <figure class="hero__arch">
+          <img class="hero__img"
+               src="https://images.unsplash.com/photo-1569289522127-c0452f372d46?auto=format&fit=crop&q=75&w=800"
+               srcset="https://images.unsplash.com/photo-1569289522127-c0452f372d46?auto=format&fit=crop&q=75&w=480 480w,
+                       https://images.unsplash.com/photo-1569289522127-c0452f372d46?auto=format&fit=crop&q=75&w=800 800w,
+                       https://images.unsplash.com/photo-1569289522127-c0452f372d46?auto=format&fit=crop&q=75&w=1100 1100w"
+               sizes="(min-width: 1024px) 30vw, (min-width: 768px) 44vw, 84vw"
+               width="800" height="1200"
+               alt="Bolo alto de cobertura rosa com granulado colorido, decorado com cerejas em calda e rosetas de chantili, sobre um prato de pé branco."
+               fetchpriority="high">
+          <figcaption class="photo-tag">Foto ilustrativa</figcaption>
+        </figure>
+
+        <div class="hero__seal" aria-hidden="true">
+          <svg viewBox="0 0 200 200" class="seal">
+            <defs>
+              <path id="seal-circle" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/>
+            </defs>
+            <circle cx="100" cy="100" r="98" class="seal__bg"/>
+            <g class="seal__spin">
+              <text class="seal__text"><textPath href="#seal-circle" textLength="462">Momentos especiais merecem um sabor à altura ✦</textPath></text>
+            </g>
+            <g class="seal__cherry" transform="translate(100 104)">
+              <path d="M-2 -38 C 4 -20, 14 -10, 22 2" class="seal__stem"/>
+              <path d="M-2 -38 C -10 -22, -18 -12, -20 0" class="seal__stem"/>
+              <path d="M-2 -38 c 10 -6 22 -4 26 4 c -10 2 -20 2 -26 -4z" class="seal__leaf"/>
+              <circle cx="-20" cy="12" r="15" class="seal__fruit"/>
+              <circle cx="22" cy="14" r="15" class="seal__fruit"/>
+              <circle cx="-25" cy="7" r="4" class="seal__shine"/>
+              <circle cx="17" cy="9" r="4" class="seal__shine"/>
+            </g>
+          </svg>
+        </div>
+        <p class="visually-hidden" data-config="brand.tagline">Momentos especiais merecem um sabor à altura.</p>
+
+        <div class="hero__copy">
+          <!-- EDITÁVEL -->
+          <p class="hero__lead">Bolos personalizados, doces finos e caixas para presente, feitos sob encomenda no tamanho da sua comemoração. Você conta a ideia; a gente responde com sabores e orçamento.</p>
+          <div class="hero__actions">
+            <a class="btn btn--glace" href="#pedido">Montar meu pedido</a>
+            <a class="btn btn--line" href="#cardapio">Ver o cardápio</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B. OCASIÕES ======================================================== -->
+    <section class="occasions" id="ocasioes" aria-labelledby="ocasioes-titulo">
+      <div class="occasions__head">
+        <h2 class="display-2" id="ocasioes-titulo">Qual é a ocasião?</h2>
+        <p class="occasions__intro">Toque em uma ocasião e o cardápio destaca o que costuma combinar com ela. A escolha também já entra no seu pedido.</p>
+      </div>
+
+      <ul class="stickers" role="list">
+        <li>
+          <button class="sticker sticker--circle" type="button" data-occasion="aniversario" aria-pressed="false" aria-controls="cardapio">
+            <span class="sticker__shape"><span class="sticker__name">Aniversário</span></span>
+            <span class="sticker__hint">Bolo com tema, nome e idade, do primeiro ano aos 80.</span>
+          </button>
+        </li>
+        <li>
+          <button class="sticker sticker--tag" type="button" data-occasion="presente" aria-pressed="false" aria-controls="cardapio">
+            <span class="sticker__shape"><span class="sticker__name">Presente</span></span>
+            <span class="sticker__hint">Caixas de doces para entregar em mãos, com bilhete.</span>
+          </button>
+        </li>
+        <li>
+          <button class="sticker sticker--scallop" type="button" data-occasion="festa" aria-pressed="false" aria-controls="cardapio">
+            <span class="sticker__shape"><span class="sticker__name">Festa</span></span>
+            <span class="sticker__hint">Bolo principal e doces finos para a mesa do evento.</span>
+          </button>
+        </li>
+        <li>
+          <button class="sticker sticker--ticket" type="button" data-occasion="pequena" aria-pressed="false" aria-controls="cardapio">
+            <span class="sticker__shape"><span class="sticker__name">Pequena celebração</span></span>
+            <span class="sticker__hint">Mini bolo, docinhos e vela para poucas pessoas.</span>
+          </button>
+        </li>
+      </ul>
+
+      <p class="occasions__status" aria-live="polite">
+        <span data-occasion-status>Nenhuma ocasião escolhida: o cardápio mostra tudo.</span>
+        <a href="#cardapio" data-occasion-jump hidden>Ver o que combina no cardápio</a>
+        <button class="link-btn" type="button" data-occasion-clear hidden>Mostrar o cardápio inteiro</button>
+      </p>
+    </section>
+
+    <!-- C. CARDÁPIO ======================================================== -->
+    <section class="menu" id="cardapio" aria-labelledby="cardapio-titulo">
+      <div class="menu__head">
+        <h2 class="display-2" id="cardapio-titulo">Cardápio de encomendas</h2>
+        <p class="menu__intro">Quatro linhas de produtos, todas feitas sob encomenda. Sabores, tamanhos e valores são combinados no orçamento, de acordo com a data e o que você imaginou.</p>
+      </div>
+
+      <!-- Bolos personalizados -->
+      <article class="dish dish--cake" data-product-card="bolo" data-occasions="aniversario festa pequena" aria-labelledby="p-bolo">
+        <div class="dish__media">
+          <figure class="dish__photo">
+            <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&q=75&w=900"
+                 srcset="https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&q=75&w=600 600w,
+                         https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&q=75&w=900 900w,
+                         https://images.unsplash.com/photo-1621303837174-89787a7d4729?auto=format&fit=crop&q=75&w=1300 1300w"
+                 sizes="(min-width: 1024px) 52vw, 100vw"
+                 width="900" height="1200" loading="lazy" decoding="async"
+                 alt="Bolo rosa com calda escorrida, granulado colorido e uma casquinha de sorvete no topo, ao lado de uma fatia com massa salpicada de confeitos.">
+            <figcaption class="photo-tag">Foto ilustrativa</figcaption>
+          </figure>
+          <figure class="dish__inset">
+            <img src="https://images.unsplash.com/photo-1615735487485-e52b9af610c1?auto=format&fit=crop&q=75&w=500"
+                 srcset="https://images.unsplash.com/photo-1615735487485-e52b9af610c1?auto=format&fit=crop&q=75&w=360 360w,
+                         https://images.unsplash.com/photo-1615735487485-e52b9af610c1?auto=format&fit=crop&q=75&w=600 600w"
+                 sizes="(min-width: 1024px) 18vw, 40vw"
+                 width="500" height="750" loading="lazy" decoding="async"
+                 alt="Fatia de bolo vista de lado, com camadas de massa amarela, recheio claro e cobertura de geleia de frutas vermelhas.">
+            <figcaption>Por dentro: massa, recheio e cobertura escolhidos com você.</figcaption>
+          </figure>
+        </div>
+
+        <div class="dish__body">
+          <p class="dish__fits" data-fits>Combina com aniversário, festa e pequenas celebrações</p>
+          <h3 class="dish__title" id="p-bolo">Bolos personalizados</h3>
+          <!-- EDITÁVEL -->
+          <p>O bolo costuma ser o centro da mesa, então tudo começa pela conversa: tema, cores, nome, idade e quantas pessoas vão comer. A decoração é feita à mão, com acabamento pensado para a foto e, principalmente, para o corte.</p>
+          <dl class="dish__specs">
+            <div><dt>Você escolhe</dt><dd>Massa, recheio, cobertura, cores e decoração.</dd></div>
+            <div><dt>Exemplos de sabores</dt><dd>Massa de baunilha, chocolate ou red velvet; recheios de brigadeiro, ninho com morango, doce de leite ou frutas vermelhas.</dd></div>
+            <div><dt>Tamanho</dt><dd>Definido pelo número de convidados.</dd></div>
+          </dl>
+          <a class="btn btn--cherry" href="#pedido" data-product="bolo">Pedir orçamento de bolo</a>
+        </div>
+      </article>
+
+      <!-- Doces finos -->
+      <article class="dish dish--sweets" data-product-card="doces" data-occasions="festa aniversario" aria-labelledby="p-doces">
+        <div class="dish__body">
+          <p class="dish__fits" data-fits>Combina com festas e aniversários</p>
+          <h3 class="dish__title" id="p-doces">Doces finos</h3>
+          <!-- EDITÁVEL -->
+          <p>Brigadeiros de colher na forminha, enrolados à mão, com granulados, castanhas ou rosetas de ganache. São pensados para a mesa: tamanho de uma mordida, forminhas na cor da festa e sabores que conversam com o bolo.</p>
+          <dl class="dish__specs">
+            <div><dt>Exemplos</dt><dd>Brigadeiro tradicional, meio amargo, de ninho, de pistache, bicho de pé e beijinho.</dd></div>
+            <div><dt>Apresentação</dt><dd>Forminhas e cores combinadas com a decoração do evento.</dd></div>
+          </dl>
+          <a class="btn btn--glace" href="#pedido" data-product="doces">Pedir orçamento de doces</a>
+        </div>
+        <figure class="dish__photo dish__photo--bleed">
+          <img src="https://images.unsplash.com/photo-1630953900113-ab915924aab2?auto=format&fit=crop&q=75&w=1100"
+               srcset="https://images.unsplash.com/photo-1630953900113-ab915924aab2?auto=format&fit=crop&q=75&w=700 700w,
+                       https://images.unsplash.com/photo-1630953900113-ab915924aab2?auto=format&fit=crop&q=75&w=1100 1100w,
+                       https://images.unsplash.com/photo-1630953900113-ab915924aab2?auto=format&fit=crop&q=75&w=1600 1600w"
+               sizes="(min-width: 1024px) 55vw, 100vw"
+               width="1100" height="1467" loading="lazy" decoding="async"
+               alt="Brigadeiros em forminhas brancas, alguns cobertos de chocolate granulado em lascas e outros com rosetas de ganache, vistos bem de perto.">
+          <figcaption class="photo-tag">Foto ilustrativa</figcaption>
+        </figure>
+      </article>
+
+      <!-- Caixas e kits -->
+      <div class="menu__pair">
+        <article class="dish dish--gift" data-product-card="caixa" data-occasions="presente pequena" aria-labelledby="p-caixa">
+          <figure class="dish__photo">
+            <img src="https://images.unsplash.com/photo-1732806685362-934910b7e1b6?auto=format&fit=crop&q=75&w=900"
+                 srcset="https://images.unsplash.com/photo-1732806685362-934910b7e1b6?auto=format&fit=crop&q=75&w=600 600w,
+                         https://images.unsplash.com/photo-1732806685362-934910b7e1b6?auto=format&fit=crop&q=75&w=900 900w,
+                         https://images.unsplash.com/photo-1732806685362-934910b7e1b6?auto=format&fit=crop&q=75&w=1300 1300w"
+                 sizes="(min-width: 1024px) 46vw, 100vw"
+                 width="900" height="600" loading="lazy" decoding="async"
+                 alt="Mãos segurando uma pequena caixa branca com tampa transparente, cheia de doces decorados.">
+            <figcaption class="photo-tag">Foto ilustrativa</figcaption>
+          </figure>
+          <div class="dish__body">
+            <p class="dish__fits" data-fits>Combina com presentes e pequenas celebrações</p>
+            <h3 class="dish__title" id="p-caixa">Caixas para presente</h3>
+            <!-- EDITÁVEL -->
+            <p>Uma seleção de doces montada na caixa, com fita e bilhete escrito à mão. Funciona como agradecimento, mimo de aniversário ou lembrança para equipe e clientes.</p>
+            <dl class="dish__specs">
+              <div><dt>Monte junto</dt><dd>Quantidade de doces, sabores, cor da fita e texto do bilhete.</dd></div>
+            </dl>
+            <a class="btn btn--plum" href="#pedido" data-product="caixa">Pedir orçamento de caixa</a>
+          </div>
+        </article>
+
+        <article class="dish dish--kit" data-product-card="kit" data-occasions="pequena aniversario presente" aria-labelledby="p-kit">
+          <figure class="dish__photo">
+            <img src="https://images.unsplash.com/photo-1659679120544-1a968f3003f6?auto=format&fit=crop&q=75&w=800"
+                 srcset="https://images.unsplash.com/photo-1659679120544-1a968f3003f6?auto=format&fit=crop&q=75&w=500 500w,
+                         https://images.unsplash.com/photo-1659679120544-1a968f3003f6?auto=format&fit=crop&q=75&w=800 800w,
+                         https://images.unsplash.com/photo-1659679120544-1a968f3003f6?auto=format&fit=crop&q=75&w=1100 1100w"
+                 sizes="(min-width: 1024px) 34vw, 100vw"
+                 width="800" height="1067" loading="lazy" decoding="async"
+                 alt="Mini bolo de cobertura clara com a frase happy birthday escrita à mão e uma vela acesa, dentro de uma embalagem aberta.">
+            <figcaption class="photo-tag">Foto ilustrativa</figcaption>
+          </figure>
+          <div class="dish__body">
+            <p class="dish__fits" data-fits>Combina com pequenas celebrações, aniversários e presentes</p>
+            <h3 class="dish__title" id="p-kit">Kits para pequenas comemorações</h3>
+            <!-- EDITÁVEL -->
+            <p>Para o aniversário no escritório, a surpresa a dois ou o parabéns em casa: um mini bolo com mensagem, alguns docinhos e a vela, prontos para levar.</p>
+            <dl class="dish__specs">
+              <div><dt>No kit</dt><dd>Mini bolo com frase curta, docinhos e vela. Composição combinada no pedido.</dd></div>
+            </dl>
+            <a class="btn btn--choco" href="#pedido" data-product="kit">Pedir orçamento de kit</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- D. PEDIDO ========================================================== -->
+    <section class="order" id="pedido" aria-labelledby="pedido-titulo">
+      <div class="order__head">
+        <h2 class="display-2" id="pedido-titulo">Monte seu pedido</h2>
+        <p class="order__intro">Preencha o básico e a gente organiza a mensagem para você enviar pelo WhatsApp. Enviar a mensagem não confirma a encomenda: disponibilidade, valor e detalhes são combinados na conversa.</p>
+      </div>
+
+      <div class="ticket">
+        <form class="ticket__form" id="order-form" novalidate>
+          <fieldset class="field field--choices" aria-describedby="err-produto">
+            <legend class="field__label">O que você quer encomendar? <span class="req">obrigatório</span></legend>
+            <div class="choices" data-render="product-choices">
+              <!-- Preenchido a partir de config.products. Fallback sem JS: -->
+              <label class="choice"><input type="radio" name="produto" value="bolo" required><span>Bolo personalizado</span></label>
+              <label class="choice"><input type="radio" name="produto" value="doces"><span>Doces finos</span></label>
+              <label class="choice"><input type="radio" name="produto" value="caixa"><span>Caixa de doces para presente</span></label>
+              <label class="choice"><input type="radio" name="produto" value="kit"><span>Kit para pequena comemoração</span></label>
+            </div>
+            <p class="field__error" id="err-produto" data-error-for="produto"></p>
+          </fieldset>
+
+          <div class="ticket__row">
+            <div class="field">
+              <label class="field__label" for="f-ocasiao">Ocasião</label>
+              <select id="f-ocasiao" name="ocasiao" data-render="occasion-options">
+                <option value="">Prefiro não dizer</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="f-data">Data desejada <span class="req">obrigatório</span></label>
+              <input id="f-data" name="data" type="date" required aria-describedby="hint-data err-data">
+              <p class="field__hint" id="hint-data">É uma preferência: a data é confirmada na conversa.</p>
+              <p class="field__error" id="err-data" data-error-for="data"></p>
+            </div>
+          </div>
+
+          <div class="ticket__row">
+            <div class="field">
+              <label class="field__label" for="f-qtd"><span data-qty-label>Quantidade aproximada</span> <span class="req">obrigatório</span></label>
+              <input id="f-qtd" name="quantidade" type="number" inputmode="numeric" min="1" step="1" required aria-describedby="hint-qtd err-qtd">
+              <p class="field__hint" id="hint-qtd" data-qty-hint>Escolha um produto para ver a unidade.</p>
+              <p class="field__error" id="err-qtd" data-error-for="quantidade"></p>
+            </div>
+
+            <div class="field">
+              <label class="field__label" for="f-nome">Seu nome <span class="req">obrigatório</span></label>
+              <input id="f-nome" name="nome" type="text" autocomplete="given-name" maxlength="60" required aria-describedby="err-nome">
+              <p class="field__error" id="err-nome" data-error-for="nome"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field__label" for="f-obs">Sabores, tema e preferências</label>
+            <textarea id="f-obs" name="observacoes" rows="4" maxlength="600" aria-describedby="hint-obs"></textarea>
+            <p class="field__hint" id="hint-obs">Por exemplo: tema, cores, sabores preferidos, restrições alimentares, retirada ou entrega.</p>
+          </div>
+
+          <p class="form-summary" role="alert" data-form-summary hidden></p>
+
+          <button class="btn btn--cherry btn--wide" type="submit">Gerar mensagem para o WhatsApp</button>
+        </form>
+
+        <aside class="ticket__stub" aria-labelledby="stub-titulo">
+          <div class="stub__inner">
+            <h3 class="stub__title" id="stub-titulo">Sua mensagem</h3>
+            <p class="stub__note">Atualiza enquanto você preenche.</p>
+            <pre class="stub__preview" data-preview aria-live="off"></pre>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- E. PROCESSO ======================================================== -->
+    <section class="process" id="processo" aria-labelledby="processo-titulo">
+      <figure class="process__photo">
+        <img src="https://images.unsplash.com/photo-1649773289945-93a96051fd18?auto=format&fit=crop&q=75&w=1400"
+             srcset="https://images.unsplash.com/photo-1649773289945-93a96051fd18?auto=format&fit=crop&q=75&w=800 800w,
+                     https://images.unsplash.com/photo-1649773289945-93a96051fd18?auto=format&fit=crop&q=75&w=1400 1400w,
+                     https://images.unsplash.com/photo-1649773289945-93a96051fd18?auto=format&fit=crop&q=75&w=2000 2000w"
+             sizes="100vw"
+             width="1400" height="933" loading="lazy" decoding="async"
+             alt="Mãos de confeiteira aplicando cobertura rosa com saco de confeitar em um bolo alto de camadas, sobre um prato giratório.">
+        <figcaption class="photo-tag">Foto ilustrativa</figcaption>
+      </figure>
+
+      <div class="process__inner">
+        <div class="process__story">
+          <h2 class="display-2" id="processo-titulo">Do pedido à mesa</h2>
+          <!-- EDITÁVEL -->
+          <p>Cada encomenda é feita para uma data e uma mesa específicas. Por isso a gente pergunta antes de prometer: quantas pessoas, quais sabores agradam, se alguém tem restrição, como o bolo vai ser transportado.</p>
+          <p>O preparo fica para perto da data, e a decoração é feita à mão, peça por peça. Se algo que você imaginou não funcionar bem no bolo, a gente avisa e sugere outro caminho.</p>
+        </div>
+
+        <ol class="steps">
+          <li class="step">
+            <h3 class="step__title">Você conta a ideia</h3>
+            <p>Pelo formulário desta página ou direto no WhatsApp, com fotos de referência se tiver.</p>
+          </li>
+          <li class="step">
+            <h3 class="step__title">Respondemos com o orçamento</h3>
+            <p>Com perguntas, sugestões de sabor e valores para a data escolhida.</p>
+          </li>
+          <li class="step">
+            <h3 class="step__title">Pedido combinado</h3>
+            <p>A encomenda só fica confirmada depois que detalhes, valor e pagamento estão acertados.</p>
+          </li>
+          <li class="step">
+            <h3 class="step__title">Preparo e decoração</h3>
+            <p>Perto da data, para chegar fresco.</p>
+          </li>
+          <li class="step">
+            <h3 class="step__title">Retirada ou entrega</h3>
+            <p>Conforme o combinado na conversa.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- F. DÚVIDAS E CONTATO =============================================== -->
+    <section class="faq" id="duvidas" aria-labelledby="duvidas-titulo">
+      <div class="faq__main">
+        <h2 class="display-2" id="duvidas-titulo">Dúvidas de quem vai encomendar</h2>
+
+        <div class="faq__list">
+          <details class="qa">
+            <summary>Com quanta antecedência preciso pedir?</summary>
+            <p>Depende do produto, da decoração e da agenda da semana. Quanto antes você chamar, mais opções de data e de decoração existem. O prazo é sempre confirmado na conversa, antes de fechar o pedido.</p>
+          </details>
+          <details class="qa">
+            <summary>Dá para personalizar com tema, nome e idade?</summary>
+            <p>Sim. Cores, nome, idade, frase e elementos do tema fazem parte da personalização. Mande fotos de referência pelo WhatsApp; se algum detalhe não ficar bom no bolo, sugerimos uma alternativa.</p>
+          </details>
+          <details class="qa">
+            <summary>Vocês atendem restrições alimentares?</summary>
+            <p>Conte no pedido quais são as restrições. A gente responde com franqueza o que consegue ou não preparar com segurança para aquele caso.</p>
+          </details>
+          <details class="qa">
+            <summary>Como funcionam valores e pagamento?</summary>
+            <p>Os valores dependem do produto, do tamanho e da decoração, e são informados no orçamento. A forma de pagamento e a confirmação do pedido são combinadas na mesma conversa.</p>
+          </details>
+          <details class="qa">
+            <summary>Tem entrega ou é só retirada?</summary>
+            <p>As duas opções podem ser combinadas, conforme o endereço, a data e o tipo de produto. Bolos maiores pedem mais cuidado no transporte, e isso entra na conversa.</p>
+          </details>
+          <details class="qa">
+            <summary>Posso mudar algo depois de pedir?</summary>
+            <p>Avise o quanto antes. Se a mudança ainda for possível sem prejudicar o preparo, a gente ajusta e confirma com você.</p>
+          </details>
+        </div>
+      </div>
+
+      <aside class="contact-card" aria-labelledby="contato-titulo">
+        <h2 class="contact-card__title" id="contato-titulo">Fale com a Forma Doce</h2>
+        <dl class="contact-card__list">
+          <div>
+            <dt>WhatsApp</dt>
+            <dd data-contact="whatsapp">Número ainda não configurado neste site demonstrativo.</dd>
+          </div>
+          <div data-contact-row="instagram" hidden>
+            <dt>Instagram</dt>
+            <dd data-contact="instagram"></dd>
+          </div>
+          <div>
+            <dt>Atendimento</dt>
+            <dd data-config="contact.hours">Atendimento de pedidos pelo WhatsApp, em horário comercial.</dd>
+          </div>
+          <div>
+            <dt>Retirada e entrega</dt>
+            <dd data-config="contact.serviceArea">Retirada e entrega combinadas conforme endereço e data.</dd>
+          </div>
+        </dl>
+        <a class="btn btn--cherry" href="#pedido">Montar meu pedido</a>
+      </aside>
+    </section>
+
+    <!-- ENCERRAMENTO ======================================================= -->
+    <section class="finale" aria-labelledby="final-titulo">
+      <figure class="finale__photo">
+        <img src="https://images.unsplash.com/photo-1740597453344-e64222472284?auto=format&fit=crop&q=75&w=1600"
+             srcset="https://images.unsplash.com/photo-1740597453344-e64222472284?auto=format&fit=crop&q=75&w=800 800w,
+                     https://images.unsplash.com/photo-1740597453344-e64222472284?auto=format&fit=crop&q=75&w=1600 1600w,
+                     https://images.unsplash.com/photo-1740597453344-e64222472284?auto=format&fit=crop&q=75&w=2200 2200w"
+             sizes="100vw"
+             width="1600" height="1067" loading="lazy" decoding="async"
+             alt="Mesa de festa com vários bolos pequenos decorados em vermelho e branco, com bordas de chantili e corações, entre pratos e enfeites.">
+        <figcaption class="photo-tag">Foto ilustrativa</figcaption>
+      </figure>
+      <div class="finale__card">
+        <h2 class="finale__title" id="final-titulo">Já tem data? Comece o pedido agora.</h2>
+        <p>Leva poucos minutos e você sai com a mensagem pronta para enviar.</p>
+        <a class="btn btn--cherry" href="#pedido">Montar meu pedido</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <p class="wordmark wordmark--footer"><span class="wordmark__name" data-config="brand.name">Forma Doce</span></p>
+        <p class="site-footer__tagline" data-config="brand.tagline">Momentos especiais merecem um sabor à altura.</p>
+      </div>
+      <div class="site-footer__info">
+        <p data-demo-only>Este é um site demonstrativo de uma marca fictícia, criado para apresentar um modelo de landing page. Os produtos descritos são exemplos; não há preços, prazos ou disponibilidade reais.</p>
+        <p class="credits"><span>Fotografias ilustrativas da Unsplash (Licença Unsplash), por</span> <span data-render="credits">Deva Williamson, Katie Rosario, Aneta Voborilova, Ediglecio Lêla, Ciocan Ciprian, Rehina Sultanova, Mick Haupt e Createasea</span>.</p>
+        <p><a href="#topo">Voltar ao início</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <dialog class="modal" id="order-dialog" aria-labelledby="modal-titulo">
+    <div class="modal__inner">
+      <h2 class="modal__title" id="modal-titulo">Mensagem pronta</h2>
+      <p class="modal__text" data-modal-text></p>
+      <pre class="modal__message" data-modal-message></pre>
+      <p class="modal__feedback" aria-live="polite" data-copy-feedback></p>
+      <div class="modal__actions">
+        <button class="btn btn--cherry" type="button" data-copy>Copiar mensagem</button>
+        <button class="btn btn--line-dark" type="button" data-close>Voltar ao formulário</button>
+      </div>
+    </div>
+  </dialog>
+</body>
+</html>

@@ -1,0 +1,40 @@
+/* ==========================================================================
+   NÁRIA — Fontes locais (opcional)
+   --------------------------------------------------------------------------
+   Substitui o Google Fonts por arquivos hospedados no próprio site.
+   1. Rode tools/baixar-recursos.ps1 (baixa os .woff2 para assets/fonts).
+   2. No <head> do index.html, troque os três <link> do Google Fonts por:
+      <link rel="stylesheet" href="css/fontes-locais.css">
+   Os nomes das famílias são os mesmos usados em styles.css, então nada
+   mais precisa mudar. Licença das fontes: SIL Open Font License 1.1.
+   Subconjunto "latin": cobre o português (acentos, ç, travessões, aspas).
+   ========================================================================== */
+
+/* Bodoni Moda — fonte variável (peso 400–700, tamanho óptico 6–96) */
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/bodoni-moda-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: italic;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../assets/fonts/bodoni-moda-italic-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Hanken Grotesk — fonte variável (um arquivo atende 400, 500 e 600) */
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("../assets/fonts/hanken-grotesk-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
