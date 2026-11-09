@@ -1,0 +1,16 @@
+{
+  "marca": "NÁRIA",
+  "segmento": "Estética facial",
+  "ordem": 10,
+  "descricao": "Estúdio pequeno, atendimento individual e hora marcada. Linguagem editorial, de revista de beleza: tipografia Bodoni, ameixa como cor principal e a fotografia da abertura como protagonista.",
+  "caracteristicas": [
+    "Coleção de cuidados em abas, com foto e ficha de cada serviço",
+    "Pedido de agendamento com a mensagem pronta para o WhatsApp",
+    "Seções de ritual de atendimento, espaço e dúvidas frequentes"
+  ],
+  "cores": {
+    "fundo": "#682F49",
+    "texto": "#F6F0EB",
+    "textoSecundario": "#E8CBC4"
+  }
+}

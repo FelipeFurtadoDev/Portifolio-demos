@@ -1,103 +1,60 @@
-# Catálogo de modelos
+# Catálogo — como funciona
 
-A página inicial do repositório (`index.html`) é montada a partir de um cadastro único: **`catalogo/modelos.js`**.
-Para incluir, alterar ou reordenar um modelo, edite só esse arquivo. Os blocos dos modelos e o índice da abertura são gerados sozinhos.
+**Para adicionar um modelo, leia [COMO-ADICIONAR-MODELOS.md](COMO-ADICIONAR-MODELOS.md).** Este arquivo descreve a estrutura por dentro.
+
+## Visão geral
+
+```
+push na main
+   │
+   ▼
+GitHub Actions (.github/workflows/publicar-catalogo.yml)
+   1. copia o repositório para uma pasta de publicação
+   2. capturar-previas.mjs  → fotografa os modelos alterados (Playwright, WebP)
+   3. gerar-catalogo.mjs    → escreve os blocos dos modelos e o índice no index.html
+   4. publica a pasta no GitHub Pages (artefato; nada volta para o repositório)
+```
+
+O catálogo publicado é **HTML estático**: não depende de JavaScript nem de nenhuma API para aparecer.
 
 ## Arquivos
 
-```
-index.html               estrutura da página e moldes (templates) de um modelo e de um item do índice
-catalogo/
-├── modelos.js           CADASTRO: o único arquivo a editar no dia a dia
-├── catalogo.js          monta a página a partir do cadastro (não precisa ser editado)
-├── catalogo.css         estilos do catálogo
-├── previas/             capturas de tela dos modelos
-└── README.md
-```
+| Arquivo | Papel |
+|---|---|
+| `../index.html` | Abertura, rodapé e dois pares de marcadores (`<!-- catalogo:indice -->` e `<!-- catalogo:modelos -->`). O conteúdo entre os marcadores é gerado; o resto é editado à mão normalmente |
+| `catalogo.css` | Visual do catálogo |
+| `previas/` | Capturas commitadas. Servem de reserva: são usadas quando a captura automática falha |
+| `build/descobrir.mjs` | Descoberta das pastas e validação do `modelo.json` |
+| `build/gerar-catalogo.mjs` | Gera o HTML. Sem dependências |
+| `build/capturar-previas.mjs` | Capturas com Playwright, com cache por modelo |
+| `build/package.json` | Versão fixa do Playwright (só usado no build) |
+| `<Modelo>/modelo.json` | Textos, cores e ordem de cada modelo no catálogo. Não afeta o site do modelo |
 
-## Como cadastrar um novo modelo
+## Regras da descoberta
 
-1. **Publique o site** em uma pasta na raiz do repositório, por exemplo `./Studio-Lume/`.
-   O nome da pasta diferencia maiúsculas de minúsculas no GitHub Pages: `./Studio-Lume/` e `./studio-lume/` são endereços diferentes.
+Uma pasta da raiz é um modelo quando:
 
-2. **Gere as três capturas** da página inicial e salve em `catalogo/previas/`, usando o `id` do modelo no nome:
+1. não começa com `.` nem `_`;
+2. não é uma pasta técnica (`catalogo`, `assets`, `css`, `js`, `scripts`, `node_modules`, `img`, `fonts`, `docs`, `build`, `tools` e similares; a lista completa está em `build/descobrir.mjs`);
+3. tem um `index.html` diretamente dentro dela;
+4. não tem `"publicar": false` no `modelo.json`.
 
-   | Arquivo | Tela capturada | Tamanho final |
-   |---|---|---|
-   | `<id>-desktop-1600.webp` | computador, 1440 × 900 | 1600 × 1000 px |
-   | `<id>-desktop-800.webp` | a mesma captura, reduzida | 800 × 500 px |
-   | `<id>-mobile-390.webp` | celular, 390 × 844 | 390 × 844 px |
+O identificador de cada modelo vem do nome da pasta, sem acentos e em minúsculas (`Forma-Doce` vira `forma-doce`). É ele que dá nome às prévias (`previas/forma-doce-desktop-1600.webp`) e ao endereço `#modelo-forma-doce`.
 
-   Mantenha as proporções (16:10 no computador, 390:844 no celular); a moldura do catálogo depende delas.
+## Capturas
 
-3. **Acrescente o modelo** ao final da lista em `catalogo/modelos.js`, depois do último `}` e antes do `];`.
-   Não esqueça a vírgula entre um modelo e outro.
+- **Telas:** computador em 1440 × 900, salvo em 1600 × 1000 e 800 × 500; celular em 390 × 844, salvo em 780 × 1688. Tudo em WebP.
+- **Antes de fotografar,** o script espera o carregamento, as fontes e as imagens visíveis, depois congela as animações.
+- **A captura é recusada quando:**
+  - a página responde com erro;
+  - uma imagem visível, uma fonte ou uma folha de estilo não carrega;
+  - a tela sai em branco.
+- **Cache:** no GitHub Actions, cada modelo guarda uma impressão digital dos seus arquivos. Só é fotografado de novo quando algum arquivo muda; mudar apenas o `modelo.json` não gera nova captura.
+- **Ordem de reserva** quando a captura falha:
+  1. a última captura válida do cache;
+  2. a prévia commitada em `previas/`;
+  3. a moldura "Prévia em preparação".
 
-4. **Abra o `index.html`** no Live Server e confira o novo bloco e o item do índice.
+## Publicação
 
-5. **Opcional, recomendado:** inclua o modelo na lista de reserva do `index.html` (`<ol id="indice-lista">`).
-   Essa lista só aparece quando o JavaScript não carrega e leva direto às demonstrações.
-   Sem essa linha, o modelo novo só fica de fora nesse modo de reserva; o catálogo normal continua completo.
-
-## Exemplo
-
-Um quarto modelo, do mesmo nicho da NÁRIA:
-
-```js
-  {
-    id: "studio-lume",
-    ordem: 15,
-    marca: "STUDIO LUME",
-    nicho: "Estética facial",
-    descricao:
-      "Clínica de estética com foco em tratamentos de pele. Visual claro e técnico, " +
-      "com fotografia de produto e tabela de protocolos.",
-    caracteristicas: [
-      "Tabela de protocolos com duração e indicação",
-      "Agendamento com escolha de profissional",
-      "Perguntas frequentes sobre cada tratamento"
-    ],
-    demo: "./Studio-Lume/",
-    cores: { palco: "#1F4D46", tinta: "#F4F1EA", tintaSuave: "#BFD8D2" },
-    imagens: {
-      desktop: "catalogo/previas/studio-lume-desktop-1600.webp",
-      desktopLeve: "catalogo/previas/studio-lume-desktop-800.webp",
-      celular: "catalogo/previas/studio-lume-mobile-390.webp"
-    }
-  }
-```
-
-Com `ordem: 15`, ele aparece entre a NÁRIA (10) e a FORMA DOCE (20).
-Os modelos atuais usam ordens de 10 em 10 justamente para deixar espaço para inserções.
-Com ordens iguais, vale a ordem alfabética da marca.
-
-O número exibido ("Modelo 01", "Modelo 02"…) acompanha a posição na página e se ajusta sozinho.
-
-## Campos
-
-| Campo | Obrigatório | O que é |
-|---|---|---|
-| `id` | sim | Identificador único: letras minúsculas, números e hífens (`studio-lume`). Vira o endereço `#modelo-studio-lume`. |
-| `ordem` | sim | Número que define a posição. Menor aparece antes. |
-| `marca` | sim | Nome da marca, como deve aparecer. |
-| `nicho` | sim | Segmento do negócio. Vários modelos podem ter o mesmo nicho. |
-| `descricao` | sim | Um parágrafo curto, de 2 a 3 linhas. |
-| `caracteristicas` | sim | Lista de 2 a 4 recursos da página. |
-| `demo` | sim | Caminho relativo da pasta, com `./` no início e `/` no fim. |
-| `cores.palco` | sim | Fundo da faixa do modelo: normalmente a cor principal da marca. |
-| `cores.tinta` | sim | Texto e botão sobre a faixa. |
-| `cores.tintaSuave` | sim | Textos secundários (número e nicho). |
-| `imagens.desktop` | sim | Captura de computador, 1600 px. |
-| `imagens.desktopLeve` | sim | A mesma captura, 800 px (usada em telas menores). |
-| `imagens.celular` | sim | Captura de celular, 390 px. |
-
-**Contraste das cores:** `tinta` e `tintaSuave` precisam de contraste de pelo menos 4,5:1 com `palco`.
-Confira em um verificador de contraste antes de publicar.
-
-## Se algo der errado
-
-- **Um modelo não aparece:** abra o console do navegador (F12). O catálogo ignora modelos com dados incompletos e explica o motivo, como `Modelo 4 ignorado: nicho ausente.`. Os demais continuam na página.
-- **Nenhum modelo aparece e surge o aviso "Não foi possível carregar as prévias":** quase sempre é um erro de digitação em `modelos.js`, como uma vírgula ou chave faltando. O console aponta a linha. Enquanto isso, a lista de reserva mantém os links para as demonstrações.
-- **A captura não aparece:** confira o nome do arquivo em `previas/`, incluindo maiúsculas e minúsculas.
-
-O cadastro é um arquivo `.js`, e não `.json`, para funcionar também ao abrir o `index.html` direto do computador, sem servidor.
+O GitHub Pages precisa estar com **Settings → Pages → Source = GitHub Actions**. Enquanto estiver em "Deploy from a branch", quem publica é a publicação automática da branch: o site é servido como está no repositório, sem as capturas e o catálogo gerados no build. O passo "Publicar" do workflow pode falhar ou concorrer com ela.

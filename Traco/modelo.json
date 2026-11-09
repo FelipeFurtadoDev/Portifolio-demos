@@ -1,0 +1,16 @@
+{
+  "marca": "TRAÇO Studio",
+  "segmento": "Unhas, cílios e sobrancelhas",
+  "ordem": 30,
+  "descricao": "Nail design, extensão de cílios e design de sobrancelhas tratados como desenho técnico: tipografia larga, cobalto sobre fundo claro e uma régua que acompanha a leitura.",
+  "caracteristicas": [
+    "Lookbook com o botão “Quero esse visual”, que já marca os serviços",
+    "Ficha de agendamento que pergunta o formato da unha quando precisa",
+    "Serviços agrupados por unhas, cílios e sobrancelhas"
+  ],
+  "cores": {
+    "fundo": "#2443C2",
+    "texto": "#FFFFFF",
+    "textoSecundario": "#DCE3FF"
+  }
+}

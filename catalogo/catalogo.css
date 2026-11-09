@@ -179,14 +179,6 @@ main:focus { outline: none; }
   }
 }
 
-/* Aviso exibido só quando os modelos não podem ser montados (catalogo.js) */
-.aviso-reserva {
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 1.25rem var(--margem) clamp(3rem, 2rem + 3vw, 5rem);
-  color: var(--ardosia);
-}
-
 /* ---------- Modelos (palcos) ---------- */
 .modelo {
   background: var(--palco, var(--tinta-catalogo));
@@ -281,6 +273,7 @@ main:focus { outline: none; }
 .modelo__previa {
   position: relative;
   display: block;
+  text-decoration: none;       /* o caminho na barra da tela não é sublinhado */
   /* espaço à direita e embaixo para o celular escapar da tela grande */
   padding: 0 clamp(2.5rem, 7vw, 5.5rem) clamp(2.5rem, 6vw, 5rem) 0;
 }
@@ -307,6 +300,19 @@ main:focus { outline: none; }
 }
 
 .tela--desktop img { width: 100%; aspect-ratio: 16 / 10; }
+
+/* Modelo ainda sem captura: moldura neutra no lugar da imagem */
+.tela__vazia {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  background: var(--nevoa);
+  color: var(--ardosia);
+  font-size: var(--t-pequeno);
+}
+
+/* Sem captura de celular: a tela grande ocupa o espaço reservado ao celular */
+.modelo__previa--sem-celular { padding: 0; }
 
 .tela--mobile {
   position: absolute;

@@ -1,0 +1,16 @@
+{
+  "marca": "VÉRTICE Detail Lab",
+  "segmento": "Estética automotiva",
+  "ordem": 40,
+  "descricao": "Polimento técnico, proteção de pintura, higienização interna e detalhamento completo. Visual de oficina técnica: título em fundo claro, foto colorida do carro e laranja vivo nos momentos de ação.",
+  "caracteristicas": [
+    "Quatro serviços em grade, com foto, área e itens curtos",
+    "Galeria “Detalhes do trabalho” com luz de inspeção",
+    "Pedido de orçamento com prévia da mensagem para o WhatsApp"
+  ],
+  "cores": {
+    "fundo": "#FF5A1F",
+    "texto": "#121416",
+    "textoSecundario": "#3A1608"
+  }
+}

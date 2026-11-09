@@ -1,0 +1,17 @@
+{
+  "name": "portifolio-demos-catalogo-build",
+  "private": true,
+  "description": "Ferramentas de build do catálogo: descoberta dos modelos, capturas e geração do index.html.",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "capturas": "node capturar-previas.mjs",
+    "catalogo": "node gerar-catalogo.mjs",
+    "tudo": "node capturar-previas.mjs && node gerar-catalogo.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

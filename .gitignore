@@ -1,0 +1,4 @@
+# Ferramentas de build do catálogo (instaladas localmente ou no GitHub Actions)
+catalogo/build/node_modules/
+catalogo/build/package-lock.json
+.previas-cache/

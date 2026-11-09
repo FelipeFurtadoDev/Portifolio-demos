@@ -1,0 +1,16 @@
+{
+  "marca": "FORMA DOCE",
+  "segmento": "Confeitaria de celebrações",
+  "ordem": 20,
+  "descricao": "Bolos personalizados, doces finos e caixas para presente sob encomenda. Visual pop artesanal, com cara de embalagem: campos de cor chapados, letreiro retrô e formas recortadas como adesivos.",
+  "caracteristicas": [
+    "Cardápio filtrado pela ocasião: aniversário, presente, festa",
+    "Formulário de pedido com prévia da mensagem em tempo real",
+    "Passo a passo da encomenda e dúvidas frequentes"
+  ],
+  "cores": {
+    "fundo": "#30231F",
+    "texto": "#FFF2D9",
+    "textoSecundario": "#F6B9C6"
+  }
+}

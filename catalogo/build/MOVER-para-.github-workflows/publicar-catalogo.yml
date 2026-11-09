@@ -1,0 +1,110 @@
+# =====================================================================
+# Publica o catálogo e todas as demonstrações no GitHub Pages.
+#
+# A cada push na main:
+#   1. copia o repositório para uma pasta de publicação temporária;
+#   2. gera as capturas (Playwright) só dos modelos que mudaram;
+#   3. gera o index.html do catálogo a partir das pastas de modelos;
+#   4. publica a pasta como artefato do GitHub Pages.
+# Nada é commitado de volta no repositório: sem loops, sem conflitos.
+#
+# Requisito único (uma vez): Settings → Pages → Source = "GitHub Actions".
+# Guia: catalogo/COMO-ADICIONAR-MODELOS.md
+# =====================================================================
+name: Publicar catálogo
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: # botão "Run workflow" na aba Actions
+
+# Por padrão, nenhum job pode escrever no repositório.
+permissions:
+  contents: read
+
+# Uma publicação por vez; a que já começou termina antes da próxima.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Gerar catálogo
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Preparar Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: 22
+
+      - name: Montar a pasta de publicação
+        run: |
+          SITE="$RUNNER_TEMP/site"
+          mkdir -p "$SITE"
+          tar --exclude=./.git --exclude=./.github --exclude=./.gitignore \
+              --exclude=./catalogo/build --exclude=./.previas-cache --exclude=./node_modules \
+              -cf - . | tar -xf - -C "$SITE"
+          echo "SITE=$SITE" >> "$GITHUB_ENV"
+
+      # Capturas anteriores: só os modelos alterados são fotografados de novo.
+      - name: Restaurar capturas anteriores
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .previas-cache
+          key: previas-v1-${{ github.run_id }}
+          restore-keys: previas-v1-
+
+      # Se a instalação falhar, a publicação segue com as últimas prévias válidas.
+      - name: Instalar Playwright (Chromium)
+        id: playwright
+        continue-on-error: true
+        working-directory: catalogo/build
+        run: |
+          npm install --no-audit --no-fund --no-package-lock
+          npx playwright install --with-deps --only-shell chromium
+
+      - name: Gerar capturas dos modelos
+        id: capturas
+        if: steps.playwright.outcome == 'success'
+        continue-on-error: true
+        run: node catalogo/build/capturar-previas.mjs --raiz "$SITE" --cache "$GITHUB_WORKSPACE/.previas-cache"
+
+      - name: Guardar capturas para a próxima publicação
+        if: always() && steps.capturas.outcome != 'skipped'
+        continue-on-error: true
+        uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .previas-cache
+          key: previas-v1-${{ github.run_id }}-${{ github.run_attempt }}
+
+      # Falha aqui (ex.: nenhum modelo encontrado) interrompe a publicação:
+      # o site que já está no ar continua como estava.
+      - name: Gerar o catálogo (index.html)
+        run: node catalogo/build/gerar-catalogo.mjs --raiz "$SITE"
+
+      - name: Enviar o site para o GitHub Pages
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ${{ runner.temp }}/site
+
+  deploy:
+    name: Publicar
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      pages: write    # publicar no GitHub Pages
+      id-token: write # comprovar que a publicação vem deste workflow
+    environment:
+      name: github-pages
+      url: ${{ steps.publicacao.outputs.page_url }}
+    steps:
+      - name: Publicar no GitHub Pages
+        id: publicacao
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
