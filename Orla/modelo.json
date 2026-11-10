@@ -1,0 +1,16 @@
+{
+  "marca": "ORLA Pedra & Projeto",
+  "segmento": "Marmoraria",
+  "ordem": 60,
+  "descricao": "Bancadas, ilhas, banheiros, escadas e soleiras em pedra natural. Linguagem de desenho técnico: recorte de chapa na capa, juntas entre as fotos, cotas finas e o verde profundo do amostruário.",
+  "caracteristicas": [
+    "Aplicações por ambiente, com atalho que já preenche o orçamento",
+    "Amostruário de pedras com textura e ambiente lado a lado, mais perfis de borda",
+    "Orçamento em prancha técnica com prévia da mensagem para o WhatsApp"
+  ],
+  "cores": {
+    "fundo": "#4F5A4F",
+    "texto": "#F2EEE7",
+    "textoSecundario": "#E4DDD2"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "marca": "Bolha & Bento",
+  "segmento": "Estética pet: banho e tosa",
+  "ordem": 50,
+  "descricao": "Banho e tosa para cães e gatos, com hora marcada. Linguagem de revista de bichos: logotipo de largura total como cabeçalho, fotos com cantos de sabonete e menta com coral nos momentos de ação.",
+  "caracteristicas": [
+    "Quatro cuidados com tratamentos visuais diferentes, sem preços inventados",
+    "Mosaico “Um dia de banho” com legendas em plaquinha de coleira",
+    "Agendamento com prévia da mensagem para o WhatsApp"
+  ],
+  "cores": {
+    "fundo": "#A7DED1",
+    "texto": "#1C2F2B",
+    "textoSecundario": "#2F4A45"
+  }
+}

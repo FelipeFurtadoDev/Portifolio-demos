@@ -1,0 +1,26 @@
+/* Fontes locais (subconjunto latin, cobre o português).
+   Gere os arquivos com tools/baixar-recursos.ps1 e, no index.html, troque o
+   <link> do Google Fonts (e os dois preconnect de fonts.googleapis/gstatic) por:
+   <link rel="stylesheet" href="css/fontes-locais.css">
+   Fraunces e Figtree: SIL Open Font License 1.1. */
+@font-face {
+  font-family: 'Fraunces';
+  font-style: normal;
+  font-weight: 500 900;
+  font-display: swap;
+  src: url('../assets/fonts/fraunces-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Fraunces';
+  font-style: italic;
+  font-weight: 500 900;
+  font-display: swap;
+  src: url('../assets/fonts/fraunces-italic-latin.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Figtree';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('../assets/fonts/figtree-latin.woff2') format('woff2');
+}

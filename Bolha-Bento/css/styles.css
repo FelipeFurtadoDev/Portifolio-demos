@@ -1,0 +1,808 @@
+/* ==========================================================================
+   BOLHA & BENTO — estilos
+   Editorial divertido: capa de revista, moldura-sabonete e plaquinha de coleira.
+   ========================================================================== */
+
+:root {
+  /* Paleta */
+  --menta: #A7DED1;
+  --menta-clara: #DDF2EC;
+  --verde: #2F4A45;
+  --tinta: #1C2F2B;        /* criado: texto principal (14:1 no papel) */
+  --coral: #FF6B55;        /* ação: sempre com texto tinta (5:1) */
+  --coral-forte: #C2412B;  /* criado: erros e destaques em texto sobre fundos claros (5:1) */
+  --rosa: #F6A9B6;
+  --baunilha: #FFF0C7;
+  --papel: #FAFDFB;
+
+  /* Tipografia */
+  --f-display: 'Fraunces', 'Georgia', 'Times New Roman', serif;
+  --f-texto: 'Figtree', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Medidas */
+  --margem: clamp(1rem, 4vw, 3rem);
+  --largura: 1240px;
+  --topo-h: 4rem;
+  --raio-sabonete: 38% 34% 36% 40% / 26% 28% 30% 28%;
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: calc(var(--topo-h) + 1rem); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+body {
+  margin: 0;
+  font-family: var(--f-texto);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: var(--tinta);
+  background: var(--papel);
+  text-rendering: optimizeLegibility;
+}
+
+img { display: block; max-width: 100%; height: auto; }
+h1, h2, h3, p, ul, dl, dd, figure { margin: 0; }
+ul { padding: 0; }
+a { color: inherit; }
+button, input, textarea { font: inherit; color: inherit; }
+
+.envelope {
+  width: 100%;
+  max-width: calc(var(--largura) + 2 * var(--margem));
+  margin-inline: auto;
+  padding-inline: var(--margem);
+}
+
+:focus-visible { outline: 3px solid var(--tinta); outline-offset: 3px; border-radius: 4px; }
+
+.pular {
+  position: absolute; left: 1rem; top: -4rem; z-index: 100;
+  background: var(--tinta); color: var(--baunilha);
+  padding: .7rem 1rem; border-radius: .6rem; font-weight: 600;
+}
+.pular:focus { top: 1rem; }
+
+.titulo-secao {
+  font-family: var(--f-display);
+  font-variation-settings: "SOFT" 100;
+  font-weight: 800;
+  font-size: clamp(2.25rem, 1.3rem + 3.4vw, 4rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* ---------- Botões ---------- */
+.botao {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 3rem;
+  padding: .75rem 1.4rem;
+  border: 2px solid var(--tinta);
+  border-radius: 999px;
+  font-family: var(--f-texto);
+  font-weight: 650;
+  font-size: 1rem;
+  line-height: 1.2;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  background: transparent;
+  color: var(--tinta);
+  transition: background-color .2s, color .2s, transform .2s;
+}
+.botao:hover { transform: translateY(-2px); }
+.botao:active { transform: translateY(0); }
+.botao--coral { background: var(--coral); }
+.botao--coral:hover { background: #FF8672; }
+.botao--linha:hover { background: rgba(255, 255, 255, .55); }
+.botao--tinta { background: var(--tinta); color: var(--baunilha); }
+.botao--tinta:hover { background: var(--verde); }
+.botao--pequeno { min-height: 2.6rem; padding: .5rem 1.05rem; font-size: .95rem; }
+
+/* ---------- Plaquinha de coleira (etiqueta gráfica) ---------- */
+.plaquinha {
+  --furo: var(--menta);
+  position: relative;
+  display: inline-flex; align-items: center;
+  padding: .3rem .85rem .3rem 1.7rem;
+  background: var(--baunilha);
+  color: var(--tinta);
+  border: 2px solid var(--tinta);
+  border-radius: .55rem 999px 999px .55rem;
+  font-size: .82rem;
+  font-weight: 650;
+  line-height: 1.25;
+}
+.plaquinha::before {
+  content: "";
+  position: absolute; left: .55rem; top: 50%;
+  width: .55rem; height: .55rem;
+  margin-top: -.275rem;
+  border: 2px solid var(--tinta);
+  border-radius: 50%;
+  background: var(--furo);
+}
+
+/* ---------- Faixa de demonstração ---------- */
+.aviso-demo {
+  margin: 0;
+  padding: .45rem var(--margem);
+  background: var(--tinta);
+  color: var(--baunilha);
+  font-size: .82rem;
+  line-height: 1.35;
+  text-align: center;
+}
+
+/* ---------- Topo ---------- */
+.topo {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--menta);
+  transition: box-shadow .25s;
+}
+.topo--rolado { box-shadow: 0 2px 0 var(--tinta); }
+
+.topo__barra {
+  display: flex; align-items: center; gap: .75rem;
+  max-width: calc(1360px + 2 * var(--margem));
+  min-height: var(--topo-h);
+  margin-inline: auto;
+  padding: .55rem var(--margem);
+}
+
+.topo__marca {
+  margin-right: auto;
+  font-family: var(--f-display);
+  font-variation-settings: "SOFT" 100;
+  font-weight: 850;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: opacity .25s, visibility .25s;
+}
+.topo__marca i { font-weight: 600; }
+/* No alto da página o logotipo da capa já faz esse papel */
+.topo:not(.topo--rolado) .topo__marca { opacity: 0; visibility: hidden; }
+
+.topo__nav ul { list-style: none; }
+.topo__nav a { text-decoration: none; font-weight: 600; }
+
+.topo__menu {
+  display: inline-flex; align-items: center; gap: .5rem;
+  min-height: 2.6rem;
+  padding: .45rem .9rem;
+  border: 2px solid var(--tinta);
+  border-radius: 999px;
+  background: transparent;
+  font-weight: 650;
+  cursor: pointer;
+}
+.topo__menu-linhas,
+.topo__menu-linhas::before,
+.topo__menu-linhas::after {
+  display: block; width: 1.05rem; height: 2px; background: var(--tinta);
+  border-radius: 2px; transition: transform .2s, opacity .2s;
+}
+.topo__menu-linhas { position: relative; }
+.topo__menu-linhas::before, .topo__menu-linhas::after { content: ""; position: absolute; left: 0; }
+.topo__menu-linhas::before { top: -6px; }
+.topo__menu-linhas::after { top: 6px; }
+.topo__menu[aria-expanded="true"] .topo__menu-linhas { background: transparent; }
+.topo__menu[aria-expanded="true"] .topo__menu-linhas::before { transform: translateY(6px) rotate(45deg); }
+.topo__menu[aria-expanded="true"] .topo__menu-linhas::after { transform: translateY(-6px) rotate(-45deg); }
+
+@media (max-width: 899.98px) {
+  .topo__nav {
+    position: fixed; left: 0; right: 0; top: var(--nav-top, var(--topo-h));
+    background: var(--menta);
+    border-bottom: 2px solid var(--tinta);
+    padding: 1rem var(--margem) 1.75rem;
+    display: none;
+  }
+  .topo__nav.aberto { display: block; }
+  .topo__nav li + li { border-top: 1.5px solid rgba(28, 47, 43, .25); }
+  .topo__nav a {
+    display: block; padding: .8rem 0;
+    font-family: var(--f-display); font-variation-settings: "SOFT" 100;
+    font-weight: 700; font-size: 1.6rem;
+  }
+}
+@media (max-width: 379.98px) {
+  .topo__menu-texto { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+}
+@media (min-width: 900px) {
+  .topo__menu { display: none; }
+  .topo__nav ul { display: flex; gap: clamp(1rem, 2vw, 1.75rem); }
+  .topo__nav a { padding: .4rem 0; text-underline-offset: .3em; }
+  .topo__nav a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+  .topo__agendar { margin-left: .75rem; }
+}
+
+/* ==========================================================================
+   A — CAPA
+   ========================================================================== */
+.capa {
+  container-type: inline-size;
+  background: var(--menta);
+  padding-bottom: clamp(3rem, 7vw, 5.5rem);
+  overflow-x: clip; /* a forma rosa atrás da foto pode passar da borda em telas estreitas */
+}
+
+.capa__grade {
+  --larg: min(100cqi - 2 * var(--margem), 1360px);
+  --logo: calc(var(--larg) * .175);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "linha" "logo" "foto" "texto" "chamadas";
+  max-width: calc(1360px + 2 * var(--margem));
+  margin-inline: auto;
+  padding-inline: var(--margem);
+}
+
+.capa__linha {
+  grid-area: linha;
+  display: flex; flex-wrap: wrap; column-gap: 1.4rem; row-gap: .15rem;
+  padding-block: .5rem .7rem;
+  list-style: none;
+  font-size: .86rem;
+  font-weight: 600;
+}
+.capa__linha li { position: relative; }
+@media (max-width: 599.98px) { .capa__linha { column-gap: 1rem; } }
+@media (min-width: 600px) {
+.capa__linha li + li::before {
+  content: ""; position: absolute; left: -.85rem; top: 50%;
+  width: .32rem; height: .32rem; margin-top: -.16rem;
+  border-radius: 50%; background: var(--tinta);
+}
+}
+
+.capa__logotipo {
+  grid-area: logo;
+  position: relative; z-index: 1;
+  font-family: var(--f-display);
+  /* opsz fixo: mantém a mesma largura relativa em qualquer tamanho */
+  font-variation-settings: "SOFT" 100, "WONK" 0, "opsz" 144;
+  font-weight: 900;
+  font-size: var(--logo);
+  line-height: .86;
+  letter-spacing: -.045em;
+  white-space: nowrap;
+  color: var(--verde);
+  margin-left: -.03em;
+}
+.capa__logotipo i { font-weight: 560; letter-spacing: -.02em; }
+
+.capa__foto {
+  grid-area: foto;
+  position: relative; z-index: 2;
+  margin-top: calc(var(--logo) * -.07);
+  margin-inline: auto;
+  width: min(100%, 30rem);
+  align-self: start;
+}
+/* forma rosa atrás da foto: um segundo "sabonete" girado */
+.capa__foto::before {
+  content: "";
+  position: absolute; inset: 4% -5% -4% 6%;
+  background: var(--coral);
+  border-radius: 46% 40% 42% 38% / 34% 36% 30% 32%;
+  transform: rotate(5deg);
+  z-index: -1;
+}
+.sabonete {
+  border-radius: var(--raio-sabonete);
+  overflow: hidden;
+  background: var(--rosa);
+}
+.capa__foto .sabonete img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: 50% 42%;
+  /* aproxima o enquadramento do rosto: a foto original tem muito fundo */
+  transform: scale(1.32);
+  transform-origin: 50% 46%;
+}
+.plaquinha--pendurada {
+  position: absolute; right: 4%; bottom: 7%;
+  transform: rotate(-7deg);
+  transform-origin: 0 50%;
+}
+
+.capa__texto { grid-area: texto; padding-top: 1.6rem; }
+.capa__titulo {
+  font-family: var(--f-display);
+  font-variation-settings: "SOFT" 100;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 1.45rem + 3vw, 3.55rem);
+  line-height: 1.02;
+  letter-spacing: -.02em;
+}
+.capa__titulo span { display: block; }
+.capa__acoes { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.4rem; }
+.capa__apoio { margin-top: 1.3rem; max-width: 40ch; }
+
+.capa__chamadas {
+  grid-area: chamadas;
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.1rem 1.25rem;
+  margin-top: 2.2rem;
+  padding-top: 1.4rem;
+  border-top: 2px solid var(--tinta);
+}
+.capa__chamadas a { text-decoration: none; display: block; }
+.capa__chamadas strong {
+  display: block;
+  font-family: var(--f-display);
+  font-variation-settings: "SOFT" 100;
+  font-weight: 750;
+  font-size: 1.3rem;
+  line-height: 1.1;
+}
+.capa__chamadas span { display: block; margin-top: .2rem; font-size: .92rem; line-height: 1.35; }
+.capa__chamadas a:hover strong { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: .18em; }
+
+@media (min-width: 600px) and (max-width: 999.98px) {
+  .capa__grade {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(1.25rem, 3vw, 2rem);
+    grid-template-areas: "linha linha" "logo logo" "foto texto" "chamadas chamadas";
+  }
+  .capa__foto { width: 100%; margin-top: calc(var(--logo) * -.14); }
+  .capa__foto .sabonete img { aspect-ratio: 4 / 5; }
+  .capa__texto { padding-top: calc(var(--logo) * .12 + 1rem); }
+  .capa__titulo { font-size: min(3.2rem, var(--larg) * .064); }
+}
+@media (min-width: 760px) and (max-width: 999.98px) {
+  .capa__chamadas { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1000px) {
+  .capa__grade {
+    grid-template-columns: minmax(0, 4fr) minmax(0, 4.6fr) minmax(0, 2.4fr);
+    column-gap: clamp(1.5rem, 3vw, 3rem);
+    grid-template-areas: "linha linha linha" "logo logo logo" "texto foto chamadas";
+  }
+  .capa__foto { width: 100%; margin-top: calc(var(--logo) * -.16); }
+  .capa__foto .sabonete img { aspect-ratio: 5 / 6; object-position: 50% 38%; }
+  .capa__texto { padding-top: calc(var(--logo) * .1 + 1.2rem); }
+  .capa__titulo { font-size: min(3.55rem, var(--larg) * .043); }
+  .capa__chamadas {
+    grid-template-columns: minmax(0, 1fr);
+    align-self: end;
+    margin-top: 0; padding-top: 0; border-top: 0;
+    gap: 1.4rem;
+  }
+  .capa__chamadas a { padding-left: 1rem; border-left: 3px solid var(--tinta); }
+}
+
+/* Janela baixa no desktop: foto menor para o conjunto caber melhor */
+@media (min-width: 1000px) and (max-height: 760px) {
+  .capa__foto .sabonete img { aspect-ratio: 1 / 1; }
+}
+
+/* ==========================================================================
+   B — CUIDADOS
+   ========================================================================== */
+.cuidados { padding-block: clamp(4rem, 8vw, 6.5rem); }
+
+.cuidados__cabeca { display: grid; gap: 1rem; margin-bottom: clamp(2rem, 4vw, 3.25rem); }
+.cuidados__cabeca p { max-width: 44ch; }
+@media (min-width: 800px) {
+  .cuidados__cabeca { grid-template-columns: minmax(0, 1fr) minmax(0, 24rem); align-items: end; column-gap: 3rem; }
+}
+
+.cuidados__mesa { display: grid; gap: clamp(1.25rem, 2.5vw, 2rem); }
+
+.rotulo { position: relative; }
+.rotulo__para {
+  display: inline-block;
+  margin-bottom: .55rem;
+  padding: .2rem .7rem;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+  font-size: .82rem;
+  font-weight: 650;
+}
+.rotulo__nome {
+  font-family: var(--f-display);
+  font-variation-settings: "SOFT" 100;
+  font-weight: 750;
+  font-size: clamp(1.9rem, 1.4rem + 1.7vw, 2.7rem);
+  line-height: 1.02;
+  letter-spacing: -.015em;
+  margin-bottom: .75rem;
+}
+.rotulo p + p, .rotulo p + ul { margin-top: .8rem; }
+.rotulo__lista { padding-left: 1.15rem; }
+.rotulo__lista li { margin-top: .3rem; }
+.rotulo__lista li::marker { color: var(--coral-forte); }
+.rotulo .botao { margin-top: 1.4rem; }
+
+/* Banho: foto-sabonete alta + texto */
+.rotulo--banho { display: grid; gap: 1.5rem; align-items: center; }
+.sabonete--alto img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: 50% 30%; }
+@media (min-width: 600px) { .sabonete--alto img { aspect-ratio: 4 / 5; object-position: 50% 40%; } }
+
+/* Tosa higiênica: bloco rosa só de texto, com desenho de tesoura */
+.rotulo--higienica {
+  background: var(--rosa);
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  border-radius: 2rem 2rem 2rem .6rem;
+}
+.rotulo__desenho {
+  display: block;
+  width: 4.5rem; height: auto;
+  margin-bottom: 1rem;
+  fill: none; stroke: var(--tinta); stroke-width: 3.5; stroke-linecap: round;
+}
+
+/* Tosa completa: foto larga + texto */
+.rotulo--completa .rotulo__foto img {
+  width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 45%;
+  border-radius: 1.4rem 1.4rem 1.4rem 4.5rem;
+}
+.rotulo--completa .rotulo__corpo { padding-top: 1.3rem; }
+
+/* Complementares: campo baunilha com plaquinhas */
+.rotulo--extras {
+  background: var(--baunilha);
+  padding: clamp(1.5rem, 3vw, 2.4rem);
+  border-radius: .6rem 2rem 2rem 2rem;
+}
+.rotulo--extras .rotulo__nome { font-size: clamp(1.7rem, 1.3rem + 1.3vw, 2.3rem); }
+.plaquinhas { list-style: none; display: flex; flex-wrap: wrap; gap: .6rem; margin-top: 1.2rem; }
+.plaquinhas li {
+  --furo: var(--baunilha);
+  background: var(--papel);
+  padding: .4rem .95rem .4rem 1.75rem;
+  font-size: .93rem;
+}
+.plaquinhas small { font-weight: 500; margin-left: .3rem; }
+@media (max-width: 599.98px) {
+  .plaquinhas { gap: .5rem; }
+  .plaquinhas li { font-size: .88rem; padding: .35rem .8rem .35rem 1.65rem; }
+}
+.rotulo__nota { margin-top: 1.4rem !important; font-size: .92rem; }
+
+@media (min-width: 600px) {
+  .rotulo--banho { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 2rem; }
+}
+@media (min-width: 600px) and (max-width: 999.98px) {
+  .cuidados__mesa { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rotulo--banho, .rotulo--extras { grid-column: 1 / -1; }
+}
+@media (min-width: 1000px) {
+  .cuidados__mesa { grid-template-columns: repeat(12, minmax(0, 1fr)); align-items: start; }
+  .rotulo--banho { grid-column: 1 / 8; }
+  .rotulo--higienica { grid-column: 8 / 13; align-self: center; }
+  .rotulo--completa { grid-column: 1 / 7; }
+  .rotulo--extras { grid-column: 7 / 13; margin-top: clamp(2rem, 6vw, 5rem); }
+}
+
+/* ==========================================================================
+   C — UM DIA DE BANHO (mosaico de revista)
+   ========================================================================== */
+.diario {
+  background: var(--verde);
+  color: var(--baunilha);
+  padding-block: clamp(4rem, 8vw, 6.5rem);
+}
+.diario :focus-visible { outline-color: var(--baunilha); }
+
+.diario__mosaico {
+  display: grid;
+  gap: .65rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-areas:
+    "abre abre"
+    "banh banh"
+    "toal turb"
+    "toal gato"
+    "salo salo"
+    "ferr pelo";
+  grid-template-rows: auto 21rem 10.5rem 12.5rem 19rem 14rem;
+}
+.diario__abre { grid-area: abre; padding-bottom: 1.6rem; }
+.diario__abre p { margin-top: 1rem; max-width: 42ch; }
+.diario__abre .titulo-secao { color: var(--baunilha); }
+.diario__aviso { font-size: .9rem; color: var(--menta); }
+
+.quadro { position: relative; min-height: 0; }
+.quadro img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 1.1rem;
+}
+.quadro figcaption {
+  --furo: var(--verde);
+  position: absolute; left: .6rem; bottom: .6rem;
+  max-width: calc(100% - 1.2rem);
+  padding: .32rem .75rem .32rem 1.55rem;
+  border-radius: .45rem .9rem .9rem .45rem;
+  font-size: .8rem;
+}
+.quadro figcaption::before { left: .45rem; }
+
+.quadro--banheira { grid-area: banh; }
+.quadro--banheira img { border-radius: var(--raio-sabonete); object-position: 50% 62%; }
+.quadro--turbante { grid-area: turb; }
+.quadro--turbante img { object-position: 45% 40%; }
+.quadro--toalha { grid-area: toal; }
+.quadro--toalha img { object-position: 55% 40%; }
+.quadro--gato { grid-area: gato; }
+.quadro--gato img { object-position: 60% 30%; }
+.quadro--salao { grid-area: salo; }
+.quadro--salao img { object-position: 52% 40%; border-radius: 1.1rem 1.1rem 1.1rem 5rem; }
+.quadro--ferramentas { grid-area: ferr; }
+.quadro--ferramentas img { object-position: 50% 60%; }
+.quadro--pelo { grid-area: pelo; }
+.quadro--pelo img { object-position: 50% 30%; }
+
+@media (min-width: 600px) and (max-width: 999.98px) {
+  .diario__mosaico {
+    gap: .8rem;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-areas:
+      "abre abre abre abre"
+      "banh banh turb turb"
+      "banh banh toal gato"
+      "salo salo toal gato"
+      "salo salo pelo pelo"
+      "ferr ferr pelo pelo";
+    grid-template-rows: auto 13rem 11rem 11rem 11rem 10rem;
+  }
+}
+@media (min-width: 1000px) {
+  .diario__mosaico {
+    gap: .9rem;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-areas:
+      "abre abre banh banh turb turb"
+      "abre abre banh banh toal gato"
+      "salo salo pelo pelo toal gato"
+      "salo salo pelo pelo ferr ferr";
+    grid-template-rows: 14rem 10.5rem 10.5rem 12rem;
+  }
+  .diario__abre { padding: 0 1rem 0 0; align-self: start; }
+  .quadro figcaption { font-size: .84rem; }
+}
+
+/* ==========================================================================
+   D — AGENDAMENTO
+   ========================================================================== */
+.agendar { background: var(--baunilha); padding-block: clamp(4rem, 8vw, 6.5rem); }
+/* janela baixa: menos respiro no topo, para o formulário aparecer logo ao chegar pelo botão Agendar */
+@media (max-height: 700px) and (min-width: 900px) { .agendar { padding-top: 2.5rem; } }
+.agendar__grade { display: grid; gap: clamp(2.5rem, 5vw, 3.5rem); }
+.agendar__intro { margin-top: 1rem; max-width: 46ch; }
+
+.ficha {
+  container: ficha / inline-size;
+  margin-top: 2rem;
+  padding: clamp(1.25rem, 3vw, 2.2rem);
+  background: var(--papel);
+  border: 2px solid var(--tinta);
+  border-radius: 1.6rem;
+}
+.ficha__grupo { border: 0; margin: 0 0 1.4rem; padding: 0; min-width: 0; }
+.ficha__grupo legend, .campo label {
+  padding: 0;
+  margin-bottom: .6rem;
+  font-family: var(--f-display);
+  font-variation-settings: "SOFT" 100;
+  font-weight: 700;
+  font-size: 1.22rem;
+  line-height: 1.2;
+}
+.ficha__grupo legend span, .campo label span {
+  font-family: var(--f-texto); font-weight: 450; font-size: .9rem;
+}
+
+.opcoes { display: flex; flex-wrap: wrap; gap: .5rem; }
+.opcao { position: relative; }
+.opcao input {
+  position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0;
+}
+.opcao label {
+  display: inline-flex; align-items: baseline; gap: .4rem;
+  min-height: 2.75rem;
+  padding: .55rem 1.05rem;
+  border: 2px solid var(--tinta);
+  border-radius: 999px;
+  background: var(--papel);
+  font-weight: 600;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: background-color .15s, color .15s;
+}
+.opcao label small { font-weight: 450; font-size: .85rem; }
+.opcao label:hover { background: var(--menta-clara); }
+.opcao input:checked + label { background: var(--verde); color: var(--papel); border-color: var(--verde); }
+.opcao input:focus-visible + label { outline: 3px solid var(--tinta); outline-offset: 3px; }
+
+.opcoes--grandes label {
+  min-width: 7.5rem; justify-content: center;
+  font-family: var(--f-display); font-variation-settings: "SOFT" 100;
+  font-weight: 700; font-size: 1.25rem;
+}
+.opcao__gato { font-weight: 450; font-size: .82rem; opacity: .85; }
+.ficha__nota { margin-top: .7rem; font-size: .92rem; padding: .6rem .8rem; background: var(--menta-clara); border-radius: .7rem; }
+.ficha__erro { margin-top: .5rem; color: var(--coral-forte); font-weight: 650; font-size: .92rem; }
+.ficha__grupo--erro legend { color: var(--coral-forte); }
+.ficha__resumo {
+  margin-bottom: 1.4rem;
+  padding: .8rem 1rem;
+  border: 2px solid var(--coral-forte);
+  border-radius: .9rem;
+  font-weight: 600;
+}
+.ficha__resumo:focus { outline: none; }
+.ficha__resumo ul { margin-top: .3rem; padding-left: 1.1rem; font-weight: 450; }
+
+.ficha__campos { display: grid; gap: 1.1rem; }
+.campo label { display: block; }
+.campo input, .campo textarea {
+  display: block; width: 100%;
+  padding: .7rem .85rem;
+  border: 2px solid var(--verde);
+  border-radius: .8rem;
+  background: #fff;
+  line-height: 1.4;
+}
+.campo textarea { resize: vertical; min-height: 5.5rem; }
+.campo input:focus-visible, .campo textarea:focus-visible { outline: 3px solid var(--tinta); outline-offset: 2px; }
+.campo input[aria-invalid="true"] { border-color: var(--coral-forte); }
+.campo__dica { margin-top: .35rem; font-size: .88rem; color: var(--verde); }
+@media (min-width: 600px) {
+  .ficha__campos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .campo--largo { grid-column: 1 / -1; }
+}
+
+.ficha__envio { margin-top: 1.5rem; }
+/* Mensagem pronta: plaquinha compacta com argola */
+.pronta {
+  position: relative;
+  margin-top: 1.6rem;
+  padding: 2.1rem clamp(1rem, 3vw, 1.5rem) 1.2rem;
+  background: var(--menta);
+  border: 3px solid var(--tinta);
+  border-radius: 1.8rem 1.8rem 1.4rem 1.4rem;
+  transform-origin: 50% -1rem;
+}
+.pronta:focus { outline: none; }
+.pronta:focus-visible { outline: 3px solid var(--tinta); outline-offset: 4px; }
+.pronta__argola {
+  position: absolute; left: 1.6rem; top: .55rem;
+  width: 1rem; height: 1rem;
+  border: 3px solid var(--tinta); border-radius: 50%;
+  background: var(--papel);
+}
+.pronta__argola::after {
+  content: ""; position: absolute; left: 50%; bottom: 50%;
+  width: 2rem; height: 2rem; margin-left: -1rem; margin-bottom: -.15rem;
+  border: 3px solid var(--tinta); border-radius: 50%;
+}
+.pronta__titulo {
+  font-family: var(--f-display); font-variation-settings: "SOFT" 100;
+  font-weight: 750; font-size: 1.2rem; line-height: 1.2;
+}
+.pronta__aviso { margin-top: .35rem; font-size: .88rem; }
+.pronta__texto {
+  margin: .8rem 0 1rem;
+  padding: .8rem 1rem;
+  background: var(--papel);
+  border-radius: .9rem;
+  font-family: var(--f-texto);
+  font-size: .92rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.pronta__acoes { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; }
+.pronta__copiado { font-size: .9rem; font-weight: 600; }
+.pronta__copiado:empty { display: none; }
+/* Quando o formulário é largo: texto da mensagem ao lado, para a plaquinha ficar baixa */
+@container ficha (min-width: 34rem) {
+  .pronta {
+    display: grid;
+    grid-template-columns: minmax(0, 13rem) minmax(0, 1fr);
+    grid-template-areas: "titulo texto" "aviso texto" "acoes texto";
+    grid-template-rows: auto auto 1fr;
+    column-gap: 1.3rem;
+    align-items: start;
+  }
+  .pronta__titulo { grid-area: titulo; }
+  .pronta__aviso { grid-area: aviso; }
+  .pronta__acoes { grid-area: acoes; align-self: end; margin-top: .9rem; }
+  .pronta__texto { grid-area: texto; margin: 0; }
+}
+
+.onde { align-self: start; }
+.onde__titulo {
+  font-family: var(--f-display); font-variation-settings: "SOFT" 100;
+  font-weight: 750; font-size: 1.6rem; line-height: 1.1; margin-bottom: 1rem;
+}
+.onde__horas {
+  display: grid; grid-template-columns: auto 1fr; gap: .35rem 1.2rem;
+  margin-bottom: 1rem;
+}
+.onde__horas dt { font-weight: 650; }
+.onde p + p { margin-top: .6rem; }
+.onde__demo { font-size: .88rem; font-style: italic; }
+.onde__links:empty { display: none; }
+.onde__links a { font-weight: 650; text-underline-offset: .2em; }
+.onde__dica { font-size: .95rem; }
+
+@media (min-width: 900px) {
+  /* título e texto em cima; formulário e horários lado a lado, alinhados pelo topo */
+  .agendar__grade {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 4fr);
+    grid-template-areas: "titulo titulo" "intro intro" "ficha lado";
+    align-items: start;
+    column-gap: clamp(2.5rem, 5vw, 4.5rem);
+    row-gap: 0;
+  }
+  .agendar__form-area { display: contents; }
+  .agendar__form-area > .titulo-secao { grid-area: titulo; }
+  .agendar__intro { grid-area: intro; }
+  .ficha { grid-area: ficha; }
+  .agendar__lado { grid-area: lado; margin-top: 2rem; padding-top: 1.6rem; border-top: 3px solid var(--tinta); }
+}
+@media (min-width: 600px) and (max-width: 899.98px) {
+  .onde { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: 2rem; }
+  .onde__titulo { grid-column: 1 / -1; }
+  .onde__horas { grid-row: span 4; align-self: start; }
+}
+
+/* ---------- Rodapé ---------- */
+.rodape { background: var(--tinta); color: var(--baunilha); padding-block: 3rem; }
+.rodape__grade { display: grid; gap: .8rem; }
+.rodape__marca {
+  font-family: var(--f-display); font-variation-settings: "SOFT" 100;
+  font-weight: 900; font-size: clamp(2.2rem, 6vw, 3.2rem); line-height: 1; letter-spacing: -.03em;
+}
+.rodape__marca i { font-weight: 560; }
+.rodape__assinatura { font-family: var(--f-display); font-style: italic; font-weight: 600; font-size: 1.2rem; }
+.rodape__aviso, .rodape__creditos { font-size: .88rem; max-width: 72ch; color: var(--menta-clara); }
+.rodape__creditos a { color: inherit; }
+.rodape__topo { justify-self: start; margin-top: .6rem; font-weight: 650; text-underline-offset: .2em; }
+.rodape :focus-visible { outline-color: var(--baunilha); }
+
+/* ==========================================================================
+   Movimento: uma sequência na abertura + resposta às ações
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .capa__logotipo span, .capa__logotipo i {
+    display: inline-block;
+    animation: subir .8s cubic-bezier(.2, .8, .2, 1) both;
+  }
+  .capa__logotipo i { animation-delay: .08s; }
+  .capa__logotipo span:last-child { animation-delay: .16s; }
+  .capa__foto { animation: pousar .9s .15s cubic-bezier(.2, .8, .2, 1) both; }
+  .plaquinha--pendurada { animation: balancar 1.6s .9s ease-in-out both; }
+  .pronta.balanca { animation: balancar-placa .7s ease-in-out; }
+}
+@keyframes subir { from { transform: translateY(.35em); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes pousar { from { transform: translateY(1.5rem) scale(.97); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes balancar {
+  0% { transform: rotate(-7deg); }
+  25% { transform: rotate(4deg); }
+  50% { transform: rotate(-10deg); }
+  75% { transform: rotate(-5deg); }
+  100% { transform: rotate(-7deg); }
+}
+@keyframes balancar-placa {
+  0%, 100% { transform: none; }
+  30% { transform: rotate(1.6deg); }
+  65% { transform: rotate(-1.2deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}

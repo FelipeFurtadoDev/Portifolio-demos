@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Demonstração: não indexar. Remover ao publicar o site de um cliente real. -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>ORLA Pedra &amp; Projeto | Marmoraria — bancadas, ilhas, escadas e lavatórios</title>
+  <meta name="description" content="Marmoraria com peças sob medida em mármore, granito, quartzito e travertino: bancadas, ilhas, banheiros, áreas gourmet, escadas, nichos e soleiras. Peça seu orçamento.">
+  <meta name="theme-color" content="#F2EEE7">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="ORLA Pedra &amp; Projeto | Marmoraria">
+  <meta property="og:description" content="Pedra certa. Corte preciso. Acabamento que valoriza o ambiente.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1610276099118-c929abaaa80a?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=70">
+
+  <!-- Favicon embutido (evita arquivo extra e metadados injetados) -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%234F5A4F'/%3E%3Cpath d='M14 14h36v24L38 50H14z' fill='%23F2EEE7'/%3E%3Cpath d='M38 50V38h12' fill='none' stroke='%23B76A45' stroke-width='3'/%3E%3C/svg%3E">
+
+  <!-- Fontes: Google Fonts (padrão da demonstração).
+       Para usar fontes locais: rode tools/baixar-recursos.ps1 e troque as três
+       linhas abaixo por <link rel="stylesheet" href="css/fontes-locais.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght,CRSV,SHRP@300..800,0..1,0..100&amp;display=swap">
+
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preload" as="image" fetchpriority="high"
+        imagesrcset="https://images.unsplash.com/photo-1610276099118-c929abaaa80a?auto=format&amp;fit=max&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1610276099118-c929abaaa80a?auto=format&amp;fit=max&amp;q=70&amp;w=1600 1600w, https://images.unsplash.com/photo-1610276099118-c929abaaa80a?auto=format&amp;fit=max&amp;q=70&amp;w=2400 2400w"
+        imagesizes="100vw">
+
+  <link rel="stylesheet" href="css/styles.css?v=11">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <p class="aviso-demo" id="aviso-demo" data-demo-only>Demonstração: empresa fictícia, contatos de exemplo e imagens ilustrativas.</p>
+
+  <header class="topo" id="topo">
+    <div class="topo__barra">
+      <a class="marca" href="#inicio" aria-label="ORLA Pedra &amp; Projeto, início">
+        <svg class="marca__simbolo" viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <path d="M3 3h34v22L25 37H3z" fill="currentColor"/>
+          <path d="M25 37V25h12" fill="none" stroke="var(--terracota)" stroke-width="2.4"/>
+        </svg>
+        <span class="marca__nome">ORLA</span>
+        <span class="marca__sub">Pedra &amp; Projeto</span>
+      </a>
+
+      <a class="botao botao--escuro topo__cta" href="#orcamento">Orçamento</a>
+
+      <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu" data-menu-toggle>
+        <span class="menu-botao__linhas" aria-hidden="true"></span>
+        <span class="menu-botao__texto">Menu</span>
+      </button>
+
+      <nav class="menu" id="menu" aria-label="Principal">
+        <ul class="menu__lista">
+          <li><a href="#aplicacoes">Aplicações</a></li>
+          <li><a href="#materiais">Materiais</a></li>
+          <li><a href="#orcamento">Contato</a></li>
+        </ul>
+        <a class="botao botao--escuro menu__cta" href="#orcamento">Pedir orçamento</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- ============================================================
+         A · CAPA — foto do ambiente com um "recorte" para o texto
+         ============================================================ -->
+    <section class="capa" id="inicio" aria-labelledby="capa-titulo">
+      <figure class="capa__foto">
+        <img id="capa-img" data-img="hero"
+             src="https://images.unsplash.com/photo-1610276099118-c929abaaa80a?auto=format&amp;fit=max&amp;q=70&amp;w=1600"
+             srcset="https://images.unsplash.com/photo-1610276099118-c929abaaa80a?auto=format&amp;fit=max&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1610276099118-c929abaaa80a?auto=format&amp;fit=max&amp;q=70&amp;w=1600 1600w, https://images.unsplash.com/photo-1610276099118-c929abaaa80a?auto=format&amp;fit=max&amp;q=70&amp;w=2400 2400w"
+             sizes="100vw" width="2400" height="1600" fetchpriority="high"
+             alt="Cozinha clara com ilha em mármore branco de veios dourados, cuba redonda e galhos de flores amarelas">
+        <figcaption class="selo-foto">Imagem ilustrativa</figcaption>
+      </figure>
+
+      <div class="capa__recorte">
+        <!-- EDITÁVEL: textos da capa -->
+        <p class="capa__local">Marmoraria em São Paulo, Zona Oeste</p>
+        <h1 class="capa__titulo" id="capa-titulo">Pedra certa. Corte preciso.</h1>
+        <p class="capa__texto">Bancadas, ilhas, banheiros, escadas e soleiras em mármore, granito, quartzito e travertino, com acabamento que valoriza o ambiente.</p>
+        <div class="capa__acoes">
+          <a class="botao botao--escuro" href="#orcamento">Pedir orçamento</a>
+          <a class="botao botao--linha" href="#materiais">Ver materiais</a>
+        </div>
+        <p class="capa__horario" data-hours-today></p>
+
+        <!-- Cotas: linhas de medida do recorte (decorativas) -->
+        <svg class="cota cota--h" aria-hidden="true" focusable="false" preserveAspectRatio="none" viewBox="0 0 100 10">
+          <line x1="0" y1="5" x2="100" y2="5" pathLength="100"/>
+          <line x1="0.4" y1="0" x2="0.4" y2="10" pathLength="100"/>
+          <line x1="99.6" y1="0" x2="99.6" y2="10" pathLength="100"/>
+        </svg>
+        <span class="cota__rotulo cota__rotulo--h" aria-hidden="true">sob medida</span>
+        <svg class="cota cota--v" aria-hidden="true" focusable="false" preserveAspectRatio="none" viewBox="0 0 10 100">
+          <line x1="5" y1="0" x2="5" y2="100" pathLength="100"/>
+          <line x1="0" y1="0.4" x2="10" y2="0.4" pathLength="100"/>
+          <line x1="0" y1="99.6" x2="10" y2="99.6" pathLength="100"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         B · APLICAÇÕES — mosaico como paginação de revestimento
+         ============================================================ -->
+    <section class="aplicacoes" id="aplicacoes" aria-labelledby="aplicacoes-titulo">
+      <div class="moldura">
+        <div class="cabeca">
+          <h2 class="cabeca__titulo" id="aplicacoes-titulo">Onde a pedra entra na sua obra</h2>
+          <p class="cabeca__texto">Da ilha da cozinha à soleira da porta. Cada peça é cortada a partir das medidas do ambiente, com os recortes e o acabamento de borda combinados antes.</p>
+        </div>
+
+        <div class="paginacao" data-applications>
+          <!-- Gerado por js/main.js a partir de config.applications -->
+        </div>
+        <p class="nota-fotos">Fotos ilustrativas de ambientes com pedra aplicada. Não mostram obras da ORLA.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         C · MATERIAIS — amostruário de plaquetas + ficha com aplicação
+         ============================================================ -->
+    <section class="materiais" id="materiais" aria-labelledby="materiais-titulo">
+      <div class="expositor">
+        <div class="moldura expositor__interno">
+          <div class="cabeca cabeca--clara">
+            <h2 class="cabeca__titulo" id="materiais-titulo">Amostruário</h2>
+            <p class="cabeca__texto">Escolha uma pedra para ver a textura de perto, como ela fica aplicada e para que ela é mais indicada.</p>
+          </div>
+
+          <div class="plaquetas" role="group" aria-label="Materiais do amostruário" data-samples>
+            <!-- Gerado por js/main.js a partir de config.materials -->
+          </div>
+        </div>
+      </div>
+
+      <div class="moldura">
+        <article class="ficha" data-sheet aria-live="polite">
+          <div class="ficha__imagens">
+            <figure class="ficha__textura">
+              <img data-sheet-texture alt="" width="1200" height="1500" loading="lazy" decoding="async">
+              <figcaption>Textura</figcaption>
+            </figure>
+            <figure class="ficha__aplicacao">
+              <img data-sheet-application alt="" width="1200" height="1500" loading="lazy" decoding="async">
+              <figcaption>Aplicação ilustrativa</figcaption>
+            </figure>
+          </div>
+
+          <div class="ficha__texto">
+            <p class="ficha__familia" data-sheet-family></p>
+            <h3 class="ficha__nome" data-sheet-name></h3>
+            <p class="ficha__tom" data-sheet-tone></p>
+            <p class="ficha__descricao" data-sheet-text></p>
+            <dl class="ficha__dados">
+              <div>
+                <dt>Acabamentos</dt>
+                <dd data-sheet-finishes></dd>
+              </div>
+              <div>
+                <dt>Onde costuma ir</dt>
+                <dd data-sheet-uses></dd>
+              </div>
+            </dl>
+            <button class="botao botao--claro" type="button" data-use-material>Usar no orçamento</button>
+            <p class="ficha__nota">Cores e desenhos variam de chapa para chapa. A escolha final é feita com a chapa à vista.</p>
+          </div>
+        </article>
+      </div>
+
+      <!-- Perfis de borda: cortes técnicos desenhados em SVG -->
+      <div class="bordas-faixa">
+        <div class="moldura">
+        <section class="bordas" aria-labelledby="bordas-titulo">
+          <h3 class="bordas__titulo" id="bordas-titulo">Acabamento de borda</h3>
+          <p class="bordas__texto">A borda muda a leitura da peça. Você escolhe no orçamento; estes são os perfis mais pedidos.</p>
+          <svg width="0" height="0" class="visualmente-oculto" aria-hidden="true" focusable="false">
+            <defs>
+              <pattern id="hachura" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                <rect width="6" height="6" fill="#E9E1D6"/>
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#B9A38C" stroke-width="1.4"/>
+              </pattern>
+            </defs>
+          </svg>
+          <ul class="bordas__lista">
+            <li class="borda">
+              <svg viewBox="0 0 160 70" aria-hidden="true" focusable="false">
+                <rect class="borda__corte" x="10" y="24" width="120" height="22"/>
+                <path class="borda__linha" d="M10 24h120v22H10"/>
+                <path class="borda__medida" d="M142 24v22M138 24h8M138 46h8"/>
+              </svg>
+              <h4>Reto</h4>
+              <p>Aresta viva levemente suavizada. Limpo e atemporal.</p>
+            </li>
+            <li class="borda">
+              <svg viewBox="0 0 160 70" aria-hidden="true" focusable="false">
+                <path class="borda__corte" d="M10 14h120v22H10z"/>
+                <path class="borda__corte" d="M108 14h22v48h-22z"/>
+                <path class="borda__linha" d="M10 14h120v48h-22V36H10"/>
+                <path class="borda__junta" d="M108 36l22-22"/>
+                <path class="borda__medida" d="M142 14v48M138 14h8M138 62h8"/>
+              </svg>
+              <h4>Meia-esquadria</h4>
+              <p>Duas peças unidas a 45°. A borda parece um bloco maciço.</p>
+            </li>
+            <li class="borda">
+              <svg viewBox="0 0 160 70" aria-hidden="true" focusable="false">
+                <path class="borda__corte" d="M10 24h109a11 11 0 0 1 0 22H10z"/>
+                <path class="borda__linha" d="M10 24h109a11 11 0 0 1 0 22H10"/>
+                <path class="borda__medida" d="M142 24v22M138 24h8M138 46h8"/>
+              </svg>
+              <h4>Boleado</h4>
+              <p>Borda arredondada, mais macia ao toque e boa para quem tem crianças.</p>
+            </li>
+            <li class="borda">
+              <svg viewBox="0 0 160 70" aria-hidden="true" focusable="false">
+                <path class="borda__corte" d="M10 24h114l6 6v16H10z"/>
+                <path class="borda__linha" d="M10 24h114l6 6v16H10"/>
+                <path class="borda__medida" d="M142 24v22M138 24h8M138 46h8"/>
+              </svg>
+              <h4>Chanfrado</h4>
+              <p>Um corte inclinado na aresta superior. Discreto e resistente a lascas.</p>
+            </li>
+          </ul>
+        </section>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         D · ORÇAMENTO — prancha com formulário e carimbo de contato
+         ============================================================ -->
+    <section class="orcamento" id="orcamento" aria-labelledby="orcamento-titulo">
+      <div class="moldura">
+        <div class="prancha">
+          <span class="prancha__marca prancha__marca--a" aria-hidden="true"></span>
+          <span class="prancha__marca prancha__marca--b" aria-hidden="true"></span>
+          <span class="prancha__marca prancha__marca--c" aria-hidden="true"></span>
+          <span class="prancha__marca prancha__marca--d" aria-hidden="true"></span>
+
+          <div class="prancha__form">
+            <h2 class="prancha__titulo" id="orcamento-titulo">Peça seu orçamento</h2>
+            <p class="prancha__intro">Conte o ambiente e a pedra que você tem em mente. A mensagem vai pronta para o WhatsApp, e a equipe responde para combinar medidas e próximos passos.</p>
+
+            <form class="form" id="form-orcamento" novalidate>
+              <p class="form__resumo" id="form-resumo" role="alert" tabindex="-1" hidden></p>
+
+              <fieldset class="campo campo--grupo" id="campo-ambiente" aria-describedby="erro-ambiente">
+                <legend class="campo__rotulo">Ambiente</legend>
+                <div class="opcoes" data-ambient-options>
+                  <!-- Gerado por js/main.js -->
+                </div>
+                <p class="campo__erro" id="erro-ambiente" hidden></p>
+              </fieldset>
+
+              <div class="campo">
+                <label class="campo__rotulo" for="material">Material de interesse</label>
+                <select id="material" name="material" required aria-describedby="erro-material">
+                  <option value="">Escolha uma opção</option>
+                </select>
+                <p class="campo__erro" id="erro-material" hidden></p>
+              </div>
+
+              <div class="campo">
+                <label class="campo__rotulo" for="nome">Seu nome</label>
+                <input id="nome" name="nome" type="text" autocomplete="name" required minlength="2" maxlength="60" aria-describedby="erro-nome">
+                <p class="campo__erro" id="erro-nome" hidden></p>
+              </div>
+
+              <div class="campo">
+                <label class="campo__rotulo" for="obs">Observações <span class="campo__opcional">(opcional)</span></label>
+                <textarea id="obs" name="obs" rows="3" maxlength="500" aria-describedby="obs-dica"></textarea>
+                <p class="campo__dica" id="obs-dica">Ex.: medidas aproximadas, bairro, se já existe projeto ou se a peça tem cuba.</p>
+              </div>
+
+              <button class="botao botao--escuro botao--largo" type="submit" data-submit-label>Preparar mensagem</button>
+            </form>
+          </div>
+
+          <aside class="carimbo" aria-labelledby="carimbo-titulo">
+            <h3 class="visualmente-oculto" id="carimbo-titulo">Contato e atendimento</h3>
+            <div class="carimbo__celula carimbo__celula--marca">
+              <span class="carimbo__rotulo">Empresa</span>
+              <strong data-brand-name>ORLA Pedra &amp; Projeto</strong>
+              <span class="carimbo__demo" data-demo-only>Marca fictícia de demonstração</span>
+            </div>
+            <div class="carimbo__celula">
+              <span class="carimbo__rotulo">WhatsApp</span>
+              <span data-whatsapp-display></span>
+            </div>
+            <div class="carimbo__celula">
+              <span class="carimbo__rotulo">Telefone</span>
+              <span data-phone-display></span>
+            </div>
+            <div class="carimbo__celula carimbo__celula--larga">
+              <span class="carimbo__rotulo">Endereço</span>
+              <span data-address></span>
+            </div>
+            <div class="carimbo__celula carimbo__celula--larga">
+              <span class="carimbo__rotulo">Atendimento</span>
+              <ul class="carimbo__horarios" data-hours></ul>
+            </div>
+            <div class="carimbo__celula carimbo__celula--larga carimbo__celula--previa">
+              <span class="carimbo__rotulo" id="previa-rotulo">Prévia da mensagem</span>
+              <pre class="previa" id="previa" aria-labelledby="previa-rotulo" data-preview></pre>
+              <div class="aviso-envio" id="aviso-envio" role="status" tabindex="-1" hidden>
+                <p><strong>Mensagem pronta.</strong> Este é um site de demonstração, então nada foi enviado. Copie o texto para usá-lo onde quiser.</p>
+                <button class="botao botao--linha" type="button" data-copy>Copiar mensagem</button>
+                <span class="aviso-envio__ok" data-copy-status aria-live="polite"></span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <div class="moldura rodape__interno">
+      <p class="rodape__marca"><strong>ORLA</strong> Pedra &amp; Projeto</p>
+      <p class="rodape__assinatura" data-tagline>Pedra certa. Corte preciso. Acabamento que valoriza o ambiente.</p>
+      <p class="rodape__aviso" data-demo-only>Marca, endereço e contatos fictícios, criados para demonstrar um modelo de site. As fotografias são ilustrativas e não mostram trabalhos da empresa.</p>
+      <p class="rodape__creditos" data-credits></p>
+    </div>
+  </footer>
+
+  <script src="js/config.js?v=11"></script>
+  <script src="js/main.js?v=11"></script>
+</body>
+</html>

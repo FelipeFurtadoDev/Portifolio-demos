@@ -18,6 +18,34 @@ Enquanto o Source continuar em *Deploy from a branch*, o site é servido direto 
 
 ---
 
+## Atalho: modelo criado em `Portifolio-landing-pages`
+
+Os modelos nascem em `Portifolio-landing-pages` (pastas `05-estetica-pet`, `06-marmoraria`…). Para trazer um modelo para cá, ou atualizar um que já está aqui, rode no PowerShell, dentro da pasta `Portifolio-demos`:
+
+```
+powershell -ExecutionPolicy Bypass -File catalogo\build\copiar-modelo.ps1 -Origem 06-marmoraria -Destino Orla
+```
+
+- `-Origem` é o nome da pasta em `Portifolio-landing-pages`, e `-Destino` é o nome da pasta aqui, que vira o endereço do site.
+- O script espelha a pasta, então arquivos apagados na origem também saem daqui. Ele leva junto o `modelo.json` da origem.
+- Ele recusa nomes com acento, espaço, nome reservado ou grafia diferente de uma pasta existente (`orla` × `Orla`).
+- Ele não faz commit nem push. Depois, siga do passo 4.
+
+Por isso, **cada modelo novo já deve ter o seu `modelo.json` na pasta de origem** (passo 3). Assim o catálogo recebe textos e cores revisados junto com o site.
+
+Nomes usados até agora:
+
+| Origem (`Portifolio-landing-pages`) | Destino (catálogo) |
+|---|---|
+| `01-estetica-facial` | `Naria` |
+| `02-confeitaria` | `Forma-Doce` |
+| `03-nail-designer` | `Traco` |
+| `04-estetica-automotiva` | `Vertice` |
+| `05-estetica-pet` | `Bolha-Bento` |
+| `06-marmoraria` | `Orla` |
+
+Os modelos 01 a 04 têm o `modelo.json` só aqui no catálogo. Se forem atualizados pelo script, esse arquivo é mantido.
+
 ## 1. Copie a pasta para a raiz do repositório
 
 ```
@@ -84,7 +112,7 @@ Crie `Nova-Marca/modelo.json` com os textos e as cores que aparecem no catálogo
 | `ordem` | Posição: menor aparece antes | Vai para o fim, em ordem alfabética |
 | `publicar` | `false` esconde o modelo do catálogo, mas o site continua acessível pelo endereço | Aparece normalmente |
 
-Os modelos atuais usam `ordem` 10, 20, 30, 40. Use 50, 60… para os próximos, ou 15 para encaixar um modelo entre dois existentes.
+Os modelos atuais usam `ordem` 10, 20, 30, 40, 50 e 60. Use 70, 80… para os próximos, ou 15 para encaixar um modelo entre dois existentes.
 
 Sem `modelo.json`, o modelo aparece mesmo assim, com o nome da pasta e rótulos neutros. Nenhuma informação comercial é inventada.
 
