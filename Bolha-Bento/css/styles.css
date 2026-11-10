@@ -282,13 +282,15 @@ button, input, textarea { font: inherit; color: inherit; }
   position: relative; z-index: 2;
   margin-top: calc(var(--logo) * -.07);
   margin-inline: auto;
-  width: min(100%, 30rem);
+  /* largura menor = foto e forma coral menores por igual (a proporção vem do aspect-ratio da foto) */
+  width: min(90%, 27rem);
   align-self: start;
 }
 /* forma rosa atrás da foto: um segundo "sabonete" girado */
 .capa__foto::before {
   content: "";
-  position: absolute; inset: 4% -5% -4% 6%;
+  /* topo 9% abaixo da foto: girada, a forma não sobe sobre o logotipo */
+  position: absolute; inset: 9% -5% -4% 6%;
   background: var(--coral);
   border-radius: 46% 40% 42% 38% / 34% 36% 30% 32%;
   transform: rotate(5deg);
@@ -354,7 +356,8 @@ button, input, textarea { font: inherit; color: inherit; }
     column-gap: clamp(1.25rem, 3vw, 2rem);
     grid-template-areas: "linha linha" "logo logo" "foto texto" "chamadas chamadas";
   }
-  .capa__foto { width: 100%; margin-top: calc(var(--logo) * -.14); }
+  /* sobreposição leve: a foto toca só a base das letras */
+  .capa__foto { width: 90%; justify-self: center; margin-top: calc(var(--logo) * -.08); }
   .capa__foto .sabonete img { aspect-ratio: 4 / 5; }
   .capa__texto { padding-top: calc(var(--logo) * .12 + 1rem); }
   .capa__titulo { font-size: min(3.2rem, var(--larg) * .064); }
@@ -369,7 +372,8 @@ button, input, textarea { font: inherit; color: inherit; }
     column-gap: clamp(1.5rem, 3vw, 3rem);
     grid-template-areas: "linha linha linha" "logo logo logo" "texto foto chamadas";
   }
-  .capa__foto { width: 100%; margin-top: calc(var(--logo) * -.16); }
+  /* sobreposição leve e foto um pouco menor: mais respiro em volta do nome */
+  .capa__foto { width: 85%; justify-self: center; margin-top: calc(var(--logo) * -.09); }
   .capa__foto .sabonete img { aspect-ratio: 5 / 6; object-position: 50% 38%; }
   .capa__texto { padding-top: calc(var(--logo) * .1 + 1.2rem); }
   .capa__titulo { font-size: min(3.55rem, var(--larg) * .043); }
