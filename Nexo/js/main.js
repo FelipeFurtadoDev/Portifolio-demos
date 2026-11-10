@@ -2,7 +2,7 @@
    NEXO / Estúdio Facial — comportamento
    1. Textos e dados a partir do config
    2. Imagens (remotas ou locais)
-   3. Atlas de cuidados (disclosure em faixas)
+   3. Atlas de cuidados (índice + painel, padrão "tabs" da W3C)
    4. Contato pelo WhatsApp / modo demonstração
    5. Menu móvel
    ========================================================================== */
@@ -16,7 +16,7 @@
   }
 
   var root = document.documentElement;
-  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var desktop = window.matchMedia("(min-width: 900px)");
 
   /* ---------- utilidades ---------- */
   function get(path) {
@@ -31,6 +31,10 @@
     });
   }
 
+  function lowerFirst(s) {
+    return s.charAt(0).toLowerCase() + s.slice(1);
+  }
+
   /* ======================================================================
      1. TEXTOS
      ====================================================================== */
@@ -43,6 +47,13 @@
   if (bar) {
     if (C.demo && C.demo.enabled) bar.textContent = C.demo.bar;
     else bar.remove();
+  }
+
+  var approach = document.querySelector("[data-approach]");
+  if (approach && Array.isArray(C.approach) && C.approach.length) {
+    approach.innerHTML = C.approach.map(function (p) {
+      return '<p class="ponto"><strong class="ponto__lead">' + esc(p.lead) + "</strong> " + esc(p.text) + "</p>";
+    }).join("");
   }
 
   var hoursList = document.querySelector("[data-hours]");
@@ -111,7 +122,7 @@
     var remote = remoteSet(key, img);
     var wanted = C.useLocalImages && img.file ? localSet(img) : remote;
 
-    /* Não reatribui se já está igual: evita baixar a foto da capa duas vezes. */
+    /* Não reatribui se já está igual: evita baixar a mesma foto duas vezes. */
     if ((el.getAttribute("srcset") || "") !== wanted.srcset) el.setAttribute("srcset", wanted.srcset);
     if (el.getAttribute("src") !== wanted.src) el.setAttribute("src", wanted.src);
 
@@ -133,91 +144,143 @@
 
   /* ======================================================================
      3. ATLAS DE CUIDADOS
-     Padrão "disclosure" (W3C APG): cada faixa tem um <button> com
-     aria-expanded e aria-controls. Uma faixa aberta por vez.
-     Sem JS: tudo aberto (conteúdo estático do HTML).
-     ====================================================================== */
-  var list = document.getElementById("atlas-lista");
+     Índice (tablist) + painel (tabpanel), padrão "Tabs" da W3C APG,
+     com ativação automática e foco itinerante (roving tabindex).
 
-  function careMarkup(care, i) {
-    var img = (C.images && C.images[care.image]) || {};
-    var includes = (care.includes || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("");
-    var label = "Conversar sobre " + care.name.charAt(0).toLowerCase() + care.name.slice(1);
+     Estabilidade visual:
+     - Todos os painéis ocupam a MESMA célula da grade (CSS). A altura do
+       componente é sempre a do painel mais alto: trocar de cuidado não
+       muda o tamanho de nada nem empurra a página.
+     - Os inativos ficam com visibility:hidden (fora da leitura e do Tab).
+     - A troca é instantânea; o painel novo só faz um fade de opacidade
+       (CSS). Nenhuma escala, nenhuma View Transition, nada rasterizado.
+     - Cliques rápidos apenas trocam a classe: não há fila de animações.
+     Sem JS: o HTML estático mostra o índice como âncoras e todos os
+     cuidados em sequência.
+     ====================================================================== */
+  var corpo = document.getElementById("atlas-corpo");
+  var tabs = [];
+  var panels = [];
+  var current = -1;
+
+  function careTab(care, i) {
     return (
-      '<li class="faixa" id="faixa-' + esc(care.id) + '" style="--i:' + i + '">' +
-        '<div class="faixa__corpo">' +
-        '<h3 class="faixa__titulo">' +
-          '<button class="faixa__botao" type="button" aria-expanded="false" aria-controls="painel-' + esc(care.id) + '">' +
-            '<span class="faixa__codigo">' + esc(care.code) + "</span>" +
-            '<span class="faixa__nome">' + esc(care.name) + "</span>" +
-            '<span class="faixa__duracao">' + esc(care.duration) + "</span>" +
-            '<span class="faixa__sinal" aria-hidden="true"></span>' +
-          "</button>" +
-        "</h3>" +
-        '<figure class="faixa__foto"><img data-image="' + esc(care.image) + '" sizes="(min-width: 900px) 40vw, 100vw" loading="lazy" decoding="async" alt="' + esc(img.alt || "") + '"></figure>' +
-        '<p class="faixa__resumo">' + esc(care.summary) + "</p>" +
-        '<div class="faixa__painel" id="painel-' + esc(care.id) + '" hidden>' +
-          '<div class="faixa__colunas">' +
-            '<div class="faixa__inclui"><h4>O que inclui</h4><ul>' + includes + "</ul></div>" +
-            '<dl class="faixa__notas">' +
-              (care.forWhom ? "<div><dt>Para quem</dt><dd>" + esc(care.forWhom) + "</dd></div>" : "") +
-              (care.note ? "<div><dt>Bom saber</dt><dd>" + esc(care.note) + "</dd></div>" : "") +
-            "</dl>" +
-          "</div>" +
-          '<a class="botao botao--lima" href="#estudio" data-contact data-message="' + esc(care.message || "") + '">' + esc(label) + "</a>" +
-        "</div>" +
-        "</div>" +
-      "</li>"
+      '<button class="indice__item" type="button" role="tab" id="aba-' + esc(care.id) + '"' +
+        ' aria-selected="false" aria-controls="cuidado-' + esc(care.id) + '" tabindex="-1">' +
+        '<span class="indice__codigo">' + esc(care.code) + "</span>" +
+        '<span class="indice__nome">' + esc(care.name) + "</span>" +
+        '<span class="indice__duracao">' + esc(care.duration) + "</span>" +
+        '<span class="indice__frase">' + esc(care.tagline || "") + "</span>" +
+      "</button>"
     );
   }
 
-  var openId = null;
+  function carePanel(care) {
+    var img = (C.images && C.images[care.image]) || {};
+    var includes = (care.includes || []).map(function (t) { return "<li>" + esc(t) + "</li>"; }).join("");
+    return (
+      '<article class="cuidado" id="cuidado-' + esc(care.id) + '" role="tabpanel" aria-labelledby="aba-' + esc(care.id) + '" tabindex="0">' +
+        '<figure class="cuidado__foto"><img data-image="' + esc(care.image) + '" sizes="(min-width: 900px) 28vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" alt="' + esc(img.alt || "") + '"></figure>' +
+        '<div class="cuidado__texto">' +
+          '<p class="cuidado__meta"><span>' + esc(care.code) + "</span> <span>" + esc(care.duration) + "</span></p>" +
+          '<h3 class="cuidado__nome">' + esc(care.name) + "</h3>" +
+          '<p class="cuidado__resumo">' + esc(care.summary) + "</p>" +
+          '<h4 class="cuidado__rotulo">O que inclui</h4>' +
+          '<ul class="cuidado__lista">' + includes + "</ul>" +
+          (care.note ? '<p class="cuidado__nota"><strong>Bom saber.</strong> ' + esc(care.note) + "</p>" : "") +
+          '<a class="botao botao--coral" href="#estudio" data-contact data-message="' + esc(care.message || "") + '">Conversar sobre ' + esc(lowerFirst(care.name)) + "</a>" +
+        "</div>" +
+      "</article>"
+    );
+  }
 
-  function setOpen(id, opts) {
-    opts = opts || {};
-    var apply = function () {
-      openId = id;
-      list.classList.toggle("atlas__faixas--aberto", !!id);
-      list.querySelectorAll(".faixa").forEach(function (li) {
-        var isOpen = li.id === "faixa-" + id;
-        li.classList.toggle("is-open", isOpen);
-        var btn = li.querySelector(".faixa__botao");
-        var panel = li.querySelector(".faixa__painel");
-        btn.setAttribute("aria-expanded", String(isOpen));
-        panel.hidden = !isOpen;
-      });
-    };
+  function select(index, focus) {
+    if (index === current || index < 0 || index >= tabs.length) {
+      if (focus && tabs[index]) tabs[index].focus();
+      return;
+    }
+    if (current > -1) {
+      tabs[current].setAttribute("aria-selected", "false");
+      tabs[current].tabIndex = -1;
+      panels[current].classList.remove("is-active");
+    }
+    current = index;
+    tabs[index].setAttribute("aria-selected", "true");
+    tabs[index].tabIndex = 0;
+    panels[index].classList.add("is-active");
+    if (focus) tabs[index].focus();
 
-    /* View Transition só no desktop, onde as faixas mudam de largura.
-       Sem suporte (ou com movimento reduzido): troca instantânea. */
-    if (opts.animate && document.startViewTransition && !reduceMotion.matches &&
-        window.matchMedia("(min-width: 900px)").matches) {
-      document.startViewTransition(apply);
-    } else {
-      apply();
+    /* No celular, a faixa de abas rola sozinha para mostrar a aba ativa,
+       sem mover a página. */
+    if (!desktop.matches) {
+      var strip = tabs[index].parentNode;
+      var t = tabs[index];
+      var left = t.offsetLeft - (strip.clientWidth - t.offsetWidth) / 2;
+      strip.scrollTo({ left: Math.max(0, left), behavior: "auto" });
     }
   }
 
-  if (list && Array.isArray(C.cares) && C.cares.length) {
-    list.innerHTML = C.cares.map(careMarkup).join("");
-    list.classList.add("atlas__faixas--js");
-    root.classList.add("atlas-pronto");
+  if (corpo && Array.isArray(C.cares) && C.cares.length) {
+    corpo.innerHTML =
+      '<div class="atlas__indice indice" role="tablist" aria-label="Cuidados" aria-orientation="vertical">' +
+        C.cares.map(careTab).join("") +
+      "</div>" +
+      '<div class="atlas__paineis">' + C.cares.map(carePanel).join("") + "</div>";
+    corpo.classList.add("atlas__corpo--js");
 
-    list.addEventListener("click", function (ev) {
-      var btn = ev.target.closest(".faixa__botao");
-      if (!btn) return;
-      var id = btn.getAttribute("aria-controls").replace("painel-", "");
-      var next = openId === id ? null : id;
-      setOpen(next, { animate: true });
-      /* No celular a faixa anterior fecha acima: mantém o botão à vista. */
-      if (next && !window.matchMedia("(min-width: 900px)").matches) {
-        requestAnimationFrame(function () {
-          btn.scrollIntoView({ block: "nearest", behavior: reduceMotion.matches ? "auto" : "smooth" });
-        });
+    tabs = Array.prototype.slice.call(corpo.querySelectorAll('[role="tab"]'));
+    panels = Array.prototype.slice.call(corpo.querySelectorAll('[role="tabpanel"]'));
+
+    var tablist = corpo.querySelector('[role="tablist"]');
+    var syncOrientation = function () {
+      tablist.setAttribute("aria-orientation", desktop.matches ? "vertical" : "horizontal");
+    };
+    syncOrientation();
+    desktop.addEventListener("change", syncOrientation);
+
+    tablist.addEventListener("click", function (ev) {
+      var tab = ev.target.closest('[role="tab"]');
+      if (tab) select(tabs.indexOf(tab), false);
+    });
+
+    tablist.addEventListener("keydown", function (ev) {
+      var i = tabs.indexOf(document.activeElement);
+      if (i < 0) return;
+      var next = null;
+      switch (ev.key) {
+        case "ArrowDown":
+        case "ArrowRight": next = (i + 1) % tabs.length; break;
+        case "ArrowUp":
+        case "ArrowLeft": next = (i - 1 + tabs.length) % tabs.length; break;
+        case "Home": next = 0; break;
+        case "End": next = tabs.length - 1; break;
+      }
+      if (next !== null) {
+        ev.preventDefault();
+        select(next, true);
       }
     });
 
-    setOpen(null);
+    select(0, false);
+
+    /* As fotos dos painéis ocultos são "lazy". Quando o atlas se aproxima
+       da tela, todas passam a carregar: a primeira troca já encontra a foto
+       pronta, sem caixa vazia. */
+    var panelImgs = corpo.querySelectorAll(".cuidado img");
+    var loadAll = function () {
+      panelImgs.forEach(function (im) { im.loading = "eager"; });
+    };
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (entries.some(function (e) { return e.isIntersecting; })) {
+          loadAll();
+          io.disconnect();
+        }
+      }, { rootMargin: "600px 0px" });
+      io.observe(corpo);
+    } else {
+      loadAll();
+    }
   }
 
   applyAllImages();
@@ -265,14 +328,11 @@
     });
   }
 
-  function setupContactLinks(scope) {
-    (scope || document).querySelectorAll("[data-contact]").forEach(function (a) {
-      var message = a.getAttribute("data-message") || C.contact.message;
-      if (live) {
-        a.href = waLink(message);
-        a.target = "_blank";
-        a.rel = "noopener";
-      }
+  if (live) {
+    document.querySelectorAll("[data-contact]").forEach(function (a) {
+      a.href = waLink(a.getAttribute("data-message") || C.contact.message);
+      a.target = "_blank";
+      a.rel = "noopener";
     });
   }
 
@@ -283,8 +343,6 @@
     ev.preventDefault();
     showAviso(a.getAttribute("data-message") || C.contact.message);
   });
-
-  setupContactLinks();
 
   /* ======================================================================
      5. MENU MÓVEL
@@ -311,6 +369,6 @@
         menuBtn.focus();
       }
     });
-    window.matchMedia("(min-width: 700px)").addEventListener("change", closeMenu);
+    window.matchMedia("(min-width: 760px)").addEventListener("change", closeMenu);
   }
 })();

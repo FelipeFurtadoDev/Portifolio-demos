@@ -12,7 +12,7 @@
 #
 #  Depois:
 #    - fotos: em js/config.js, mude useLocalImages para true;
-#    - capa: no index.html, troque tambem o srcset das 5 <img> da capa e o
+#    - capa: no index.html, troque tambem o srcset da <img> da capa e o
 #      <link rel="preload"> pelos arquivos assets/img/capa-*.webp (o JS faz
 #      a troca, mas no HTML a foto principal carrega mais cedo);
 #    - fontes: troque o <link> do Google Fonts (e os preconnect de
@@ -34,12 +34,14 @@ New-Item -ItemType Directory -Force -Path $imgDir, $fontDir | Out-Null
 # nome do arquivo (igual ao "file" do js/config.js) e id da foto na Unsplash
 $images = @(
   @{ name = 'capa';       id = 'photo-1551184451-76b762941ad6'; widths = @(800, 1200, 1800) },
-  @{ name = 'limpeza';    id = 'photo-1791714390214-f6ff43e6262e' },
+  @{ name = 'abordagem';  id = 'photo-1731514771613-991a02407132' },
+  @{ name = 'produto';    id = 'photo-1747303969063-3b90bcb3942e' },
+  @{ name = 'limpeza';    id = 'photo-1731355771317-b2ab72c79124' },
   @{ name = 'hidratacao'; id = 'photo-1693004925174-d9e06209d0ee' },
   @{ name = 'argila';     id = 'photo-1794151882454-48112934c4bc' },
-  @{ name = 'massagem';   id = 'photo-1561228987-8e7379dde477' },
-  @{ name = 'renovacao';  id = 'photo-1659007747376-3811b34e458f' },
-  @{ name = 'estudio';    id = 'photo-1677441564461-1b3e5bff781c' }
+  @{ name = 'massagem';   id = 'photo-1790244331202-0ae18434cde2' },
+  @{ name = 'renovacao';  id = 'photo-1722350553295-ba84043b64cc' },
+  @{ name = 'estudio';    id = 'photo-1611920630418-f587fdc3bf94' }
 )
 
 $falhas = 0

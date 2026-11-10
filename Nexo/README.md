@@ -20,7 +20,7 @@ DESIGN_NOTES.md            decisões, testes e pendências
 ```
 
 ## Adaptar para um cliente
-1. Edite `js/config.js`: marca, textos (`texts`), cuidados (`cares`), endereço, horários e Instagram.
+1. Edite `js/config.js`: marca, textos (`texts`), abordagem (`approach`), cuidados (`cares`), endereço, horários e Instagram.
 2. Atualize também a cópia estática do HTML. Ela aparece para quem estiver sem JavaScript e para buscadores.
 3. Contato real: preencha `contact.whatsapp` (ex.: `5511912345678`) e mude `demo.enabled` para `false`.
 4. Troque as fotos (`images`). Use `src` com um caminho próprio ou rode o script e ative `useLocalImages`.

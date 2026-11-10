@@ -2,14 +2,13 @@
    NEXO / Estúdio Facial — CONFIGURAÇÃO CENTRAL
    --------------------------------------------------------------------------
    Para adaptar o modelo a um negócio real, edite este arquivo:
-   marca, textos, cuidados, imagens, endereço, horários e contato.
+   marca, textos, abordagem, cuidados, imagens, endereço, horários e contato.
 
    Como funciona:
    - Ao carregar, js/main.js aplica estes dados à página.
-   - O index.html traz uma cópia estática do mesmo conteúdo. Ela só aparece
-     para quem estiver sem JavaScript (e para buscadores). Ao entregar a um
-     cliente, atualize também o HTML, ou ao menos os blocos marcados como
-     "CÓPIA ESTÁTICA".
+   - O index.html traz uma cópia estática do mesmo conteúdo, usada por quem
+     está sem JavaScript e por buscadores. Ao entregar a um cliente, atualize
+     também o HTML (blocos marcados como "CÓPIA ESTÁTICA").
    ========================================================================== */
 
 window.NEXO_CONFIG = {
@@ -58,20 +57,42 @@ window.NEXO_CONFIG = {
   ],
   hoursShort: "Ter. a sáb., com hora marcada",
 
-  /* Textos de interface (os elementos com data-config="texts.xxx"). */
+  /* Textos de interface (elementos com data-config="texts.xxx"). */
   texts: {
     segment: "Estética facial não invasiva",
     lede: "Limpeza de pele, hidratação, argila e massagem facial em um estúdio pequeno, com hora marcada e uma pessoa por vez.",
     ctaPrimary: "Conversar sobre meu cuidado",
     ctaSecondary: "Ver os cuidados",
+
+    approachTitle: "Antes do produto, a conversa.",
+    approachIntro: "Cada pele chega de um jeito: depois de uma semana de sol, de pouco sono, de uma mudança de rotina. Por isso o atendimento começa ouvindo.",
+
     atlasTitle: "Atlas de cuidados",
-    atlasIntro: "Cinco cuidados de superfície, sem agulhas, sem aparelhos invasivos e sem promessa de resultado. Abra um para ver o que inclui.",
-    atlasHelpTitle: "Não sabe por onde começar?",
-    atlasHelpText: "Conte o que você sente na pele. A gente sugere o cuidado mais simples para isso.",
+    atlasIntro: "Cinco cuidados de superfície, sem agulhas e sem aparelhos invasivos. Escolha um para ver o que inclui.",
+    atlasHelp: "Não sabe qual escolher? Conte o que você sente na pele e sugerimos o cuidado mais simples.",
     atlasNote: "Cuidados estéticos não invasivos. Não fazemos diagnóstico nem tratamos doenças de pele. Durações aproximadas e demonstrativas.",
-    closingTitle: "Conversar sobre meu cuidado",
-    closingText: "O botão abre o WhatsApp com uma mensagem curta. Você conta o que procura e combinamos o horário. Não pedimos nenhum dado antes da conversa."
+
+    studioTitle: "Um estúdio pequeno, com hora marcada.",
+    studioText: "Uma sala silenciosa, luz baixa e um atendimento por vez. Você não divide o horário nem espera na recepção.",
+    studioCtaNote: "Abre o WhatsApp com uma mensagem curta. Nenhum dado é pedido antes da conversa."
   },
+
+  /* A EXPERIÊNCIA DO CUIDADO: três parágrafos curtos, sem numeração.
+     lead: frase em destaque; text: complemento. */
+  approach: [
+    {
+      lead: "Primeiro, ouvir.",
+      text: "Você conta como a pele está, o que incomoda e como é a sua rotina. Nenhum cuidado é escolhido antes disso."
+    },
+    {
+      lead: "Depois, escolher com calma.",
+      text: "Indicamos o cuidado mais simples para o que você descreveu e explicamos cada etapa. Se algo pedir avaliação médica, dizemos com clareza."
+    },
+    {
+      lead: "Um horário só seu.",
+      text: "Produtos separados para você, toalhas trocadas a cada atendimento e tempo para sair sem pressa."
+    }
+  ],
 
   /* IMAGENS LOCAIS
      false → fotos carregadas da Unsplash (padrão da demonstração).
@@ -82,12 +103,11 @@ window.NEXO_CONFIG = {
 
   /* --------------------------------------------------------------------
      IMAGENS
-     id:      identificador da foto na Unsplash (para fotos remotas).
-     src:     alternativa: caminho próprio (ex.: "assets/img/fachada.jpg").
-              Quando preenchido, substitui o id.
+     id:      identificador da foto na Unsplash (fotos remotas).
+     src:     alternativa: caminho próprio (ex.: "assets/img/sala.jpg").
      file:    nome-base dos arquivos locais (useLocalImages).
      widths:  larguras locais disponíveis.
-     focus:   ponto de recorte (object-position) usado pelo CSS.
+     focus:   ponto de recorte (object-position).
      credit:  exibido no rodapé.
      -------------------------------------------------------------------- */
   images: {
@@ -95,17 +115,33 @@ window.NEXO_CONFIG = {
       id: "photo-1551184451-76b762941ad6",
       file: "capa",
       widths: [800, 1200, 1800],
-      focus: "58% 30%",
+      focus: "60% 28%",
       alt: "Rosto de perto, com uma faixa de luz do sol atravessando o olho e a bochecha.",
       credit: { name: "Kamila Maciejewska", url: "https://unsplash.com/photos/b2bXKspL5MY" }
     },
+    abordagem: {
+      id: "photo-1731514771613-991a02407132",
+      file: "abordagem",
+      widths: [800, 1200],
+      focus: "50% 45%",
+      alt: "Esteticista com as mãos no rosto de uma cliente deitada, em uma sala com prateleiras de produtos.",
+      credit: { name: "kimia kazemi", url: "https://unsplash.com/photos/u93nTfWqR9w" }
+    },
+    produto: {
+      id: "photo-1747303969063-3b90bcb3942e",
+      file: "produto",
+      widths: [800, 1200],
+      focus: "60% 50%",
+      alt: "Mão segurando um conta-gotas sobre um frasco âmbar, com sombras de janela na parede.",
+      credit: { name: "Mona Jain", url: "https://unsplash.com/photos/j24HPh0Q84g" }
+    },
     limpeza: {
-      id: "photo-1791714390214-f6ff43e6262e",
+      id: "photo-1731355771317-b2ab72c79124",
       file: "limpeza",
       widths: [800, 1200],
-      focus: "50% 40%",
-      alt: "Testa e olhos fechados de uma pessoa com sardas, pele de perto.",
-      credit: { name: "@denmirov", url: "https://unsplash.com/photos/sUuOgnVyxjA" }
+      focus: "45% 50%",
+      alt: "Mãos com luvas limpando o rosto de uma cliente com um disco de algodão.",
+      credit: { name: "Studio Michael França", url: "https://unsplash.com/photos/aZliw_XDfUU" }
     },
     hidratacao: {
       id: "photo-1693004925174-d9e06209d0ee",
@@ -124,28 +160,28 @@ window.NEXO_CONFIG = {
       credit: { name: "@maxbvp", url: "https://unsplash.com/photos/0RxbUktnZug" }
     },
     massagem: {
-      id: "photo-1561228987-8e7379dde477",
+      id: "photo-1790244331202-0ae18434cde2",
       file: "massagem",
       widths: [800, 1200],
-      focus: "50% 35%",
-      alt: "Mão com anel dourado tocando o pescoço, em luz suave.",
-      credit: { name: "Angélica Echeverry", url: "https://unsplash.com/photos/5KY5LP_zc44" }
+      focus: "50% 55%",
+      alt: "Mãos massageando o rosto de uma pessoa deitada, iluminada pelo sol.",
+      credit: { name: "Rosalie Gdy", url: "https://unsplash.com/photos/B4Y17X3uY7I" }
     },
     renovacao: {
-      id: "photo-1659007747376-3811b34e458f",
+      id: "photo-1722350553295-ba84043b64cc",
       file: "renovacao",
       widths: [800, 1200],
       focus: "50% 50%",
-      alt: "Textura de creme branco espalhado, com dobras e brilho.",
-      credit: { name: "Pawel Czerwinski", url: "https://unsplash.com/photos/0c36Otpkk6k" }
+      alt: "Mãos espalhando um gel transparente no rosto de uma mulher deitada sobre uma toalha coral.",
+      credit: { name: "Abiwin Krisna", url: "https://unsplash.com/photos/LcX6tUGKPuI" }
     },
     estudio: {
-      id: "photo-1677441564461-1b3e5bff781c",
+      id: "photo-1611920630418-f587fdc3bf94",
       file: "estudio",
       widths: [800, 1200],
-      focus: "50% 62%",
-      alt: "Cadeira de palhinha junto a uma parede clara, com a luz da janela desenhando uma grade de sombras.",
-      credit: { name: "Yi Wei", url: "https://unsplash.com/photos/Obm20i8OEX4" }
+      focus: "50% 60%",
+      alt: "Sala de atendimento com maca coberta por manta azul, luz quente na parede e um quadro em preto e branco.",
+      credit: { name: "visualsofdana", url: "https://unsplash.com/photos/IfsRTQu6Djk" }
     }
   },
 
@@ -153,6 +189,7 @@ window.NEXO_CONFIG = {
      CUIDADOS DO ATLAS
      Verifique com a profissional responsável, antes de publicar:
      nomes, etapas, durações e se tudo cabe na atuação dela.
+     tagline: frase curta exibida no índice (sempre visível).
      message: mensagem inicial do botão daquele cuidado.
      -------------------------------------------------------------------- */
   cares: [
@@ -162,6 +199,7 @@ window.NEXO_CONFIG = {
       name: "Limpeza de pele",
       duration: "80 min",
       image: "limpeza",
+      tagline: "Para oleosidade e cravos.",
       summary: "Higienização, esfoliação leve, extração manual de cravos quando indicada e máscara calmante no final.",
       includes: [
         "Conversa rápida sobre a sua rotina",
@@ -169,7 +207,6 @@ window.NEXO_CONFIG = {
         "Extração manual de cravos, sem pressa",
         "Máscara calmante e protetor solar"
       ],
-      forWhom: "Para quem sente oleosidade acumulada ou cravos e quer uma sensação de pele limpa.",
       note: "Lesões inflamadas, feridas ou acne ativa não recebem extração. Nesses casos, orientamos procurar um dermatologista.",
       message: "Olá! Vim pelo site da NEXO e quero conversar sobre limpeza de pele."
     },
@@ -179,14 +216,14 @@ window.NEXO_CONFIG = {
       name: "Hidratação facial",
       duration: "50 min",
       image: "hidratacao",
+      tagline: "Para pele que repuxa ou está opaca.",
       summary: "Camadas de produtos hidratantes escolhidos para a sua pele naquele dia, aplicadas com toque lento.",
       includes: [
         "Higienização suave",
         "Esfoliação delicada, se a pele estiver pronta",
         "Máscara hidratante",
-        "Finalização com hidratante e protetor solar"
+        "Hidratante e protetor solar"
       ],
-      forWhom: "Para pele que repuxa, parece opaca ou ressecou com sol, frio ou ar-condicionado.",
       note: "Se você tem sensibilidade conhecida a algum ingrediente, conte na conversa: os produtos são adaptados.",
       message: "Olá! Vim pelo site da NEXO e quero conversar sobre hidratação facial."
     },
@@ -196,6 +233,7 @@ window.NEXO_CONFIG = {
       name: "Máscara de argila",
       duration: "45 min",
       image: "argila",
+      tagline: "Uma pausa curta, com sensação de frescor.",
       summary: "Argila em camada fina, escolhida pela sensação da pele no dia: mais oleosa, mais sensível ou mais opaca.",
       includes: [
         "Higienização",
@@ -203,7 +241,6 @@ window.NEXO_CONFIG = {
         "Tempo de pausa com a máscara",
         "Remoção morna e hidratação"
       ],
-      forWhom: "Para quem quer uma pausa curta e a pele com sensação de frescor.",
       note: "Pode ser feita sozinha ou ao final de outro cuidado do atlas.",
       message: "Olá! Vim pelo site da NEXO e quero conversar sobre máscara de argila."
     },
@@ -213,13 +250,13 @@ window.NEXO_CONFIG = {
       name: "Massagem facial",
       duration: "40 min",
       image: "massagem",
+      tagline: "Para o rosto tenso no fim do dia.",
       summary: "Movimentos manuais no rosto, no pescoço e no colo, com óleo ou creme, para relaxar e aquecer a pele.",
       includes: [
         "Movimentos lentos, sem aparelhos",
         "Rosto, pescoço e colo",
         "Pressão ajustada ao seu conforto"
       ],
-      forWhom: "Para quem passa o dia com o rosto tenso ou quer um tempo de silêncio.",
       note: "É um cuidado de relaxamento. Não substitui fisioterapia nem acompanhamento médico.",
       message: "Olá! Vim pelo site da NEXO e quero conversar sobre massagem facial."
     },
@@ -229,13 +266,13 @@ window.NEXO_CONFIG = {
       name: "Renovação suave",
       duration: "60 min",
       image: "renovacao",
+      tagline: "Manutenção para pele áspera ou sem viço.",
       summary: "Esfoliação enzimática ou física leve, sempre de superfície, seguida de hidratação. A pele fica mais macia ao toque.",
       includes: [
         "Observação da pele no dia",
         "Esfoliação enzimática ou física leve",
         "Hidratação e protetor solar"
       ],
-      forWhom: "Para manutenção entre outros cuidados, quando a pele parece áspera ou sem viço.",
       note: "Não fazemos peeling químico profundo, microagulhamento nem procedimentos com agulhas ou laser.",
       message: "Olá! Vim pelo site da NEXO e quero conversar sobre renovação suave."
     }

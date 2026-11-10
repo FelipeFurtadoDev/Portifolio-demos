@@ -4,27 +4,25 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>NEXO Estúdio Facial · estética facial não invasiva (demonstração)</title>
-  <meta name="description" content="Limpeza de pele, hidratação, máscara de argila, massagem facial e renovação suave, com hora marcada. Conheça os cuidados e converse pelo WhatsApp. Modelo demonstrativo.">
+  <meta name="description" content="Limpeza de pele, hidratação, máscara de argila, massagem facial e renovação suave, com hora marcada. Conheça a abordagem e os cuidados e converse pelo WhatsApp. Modelo demonstrativo.">
   <!-- Demonstração: não indexar. Remover ao publicar o site de um cliente real. -->
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#F4F5EE">
+  <meta name="theme-color" content="#F8F6F1">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:title" content="NEXO Estúdio Facial">
   <meta property="og:description" content="Sua pele. Seu tempo. Seu cuidado. Estética facial não invasiva, com hora marcada.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;q=72">
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2313282B'/%3E%3Cpath d='M17 47V17h8l14 18.5V17h8v30h-8L25 28.5V47z' fill='%23B8F05E'/%3E%3C/svg%3E">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1200&amp;h=630&amp;crop=faces&amp;q=72">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E9876D'/%3E%3Cpath d='M18 46V18h7l14 17.5V18h7v28h-7L25 28.5V46z' fill='%2322323C'/%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Foto principal (LCP). Mesmos srcset/sizes da <img> da capa. -->
-  <link rel="preload" as="image" fetchpriority="high"
-        imagesrcset="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=640&amp;q=72 640w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72 960w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1280&amp;q=72 1280w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1800&amp;q=72 1800w"
-        imagesizes="(min-width: 900px) 50vw, 100vw">
+  <link rel="preload" as="image" fetchpriority="high" imagesrcset="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=640&amp;q=72 640w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72 960w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1280&amp;q=72 1280w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1800&amp;q=72 1800w" imagesizes="(min-width: 900px) 40vw, 100vw">
   <!-- Fontes: Google Fonts. Para usar arquivos locais, ver css/fontes-locais.css -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Funnel+Display:wght@400..800&amp;family=Funnel+Sans:wght@300..800&amp;family=Geist+Mono:wght@400..600&amp;display=swap">
-  <link rel="stylesheet" href="css/styles.css?v=9">
+  <link rel="stylesheet" href="css/styles.css?v=28">
 </head>
 <body>
   <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -39,199 +37,207 @@
     <button class="topo__menu" type="button" aria-expanded="false" aria-controls="navegacao">Menu</button>
     <nav class="topo__nav" id="navegacao" aria-label="Principal">
       <ul>
+        <li><a href="#abordagem">Abordagem</a></li>
         <li><a href="#atlas">Cuidados</a></li>
         <li><a href="#estudio">Estúdio e contato</a></li>
       </ul>
     </nav>
-    <a class="botao botao--lima botao--topo" href="#estudio" data-contact>Conversar</a>
+    <a class="botao botao--coral botao--topo" href="#estudio" data-contact>Conversar</a>
   </header>
 
   <main id="conteudo">
     <!-- ============================================================
-         A. MANIFESTO
+         A. CAPA
          ============================================================ -->
-    <section class="manifesto" id="topo" aria-labelledby="manifesto-titulo">
-      <p class="manifesto__segmento" data-config="texts.segment">Estética facial não invasiva</p>
+    <section class="capa" id="topo" aria-labelledby="capa-titulo">
+      <p class="capa__segmento" data-config="texts.segment">Estética facial não invasiva</p>
 
-      <h1 class="manifesto__titulo" id="manifesto-titulo">
-        <span class="linha linha--1" data-config="brand.signatureLines.0">Sua pele.</span>
-        <span class="linha linha--2" data-config="brand.signatureLines.1">Seu tempo.</span>
-        <span class="linha linha--3" data-config="brand.signatureLines.2">Seu cuidado.</span>
+      <h1 class="capa__titulo" id="capa-titulo">
+        <span class="linha" data-config="brand.signatureLines.0">Sua pele.</span>
+        <span class="linha" data-config="brand.signatureLines.1">Seu tempo.</span>
+        <span class="linha" data-config="brand.signatureLines.2">Seu cuidado.</span>
       </h1>
 
-      <figure class="manifesto__foto">
-        <div class="fatias" data-hero>
-          <!-- A mesma foto em 5 faixas. O navegador baixa o arquivo uma vez só. -->
-          <span class="fatia" style="--i:0"><img data-image="hero" data-sizes="(min-width: 900px) 50vw, 100vw" src="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72" srcset="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=640&amp;q=72 640w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72 960w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1280&amp;q=72 1280w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1800&amp;q=72 1800w" sizes="(min-width: 900px) 50vw, 100vw" width="1200" height="1800" fetchpriority="high" alt="Rosto de perto, com uma faixa de luz do sol atravessando o olho e a bochecha."></span>
-          <span class="fatia" style="--i:1" aria-hidden="true"><img data-image="hero" data-sizes="(min-width: 900px) 50vw, 100vw" src="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72" srcset="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=640&amp;q=72 640w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72 960w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1280&amp;q=72 1280w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1800&amp;q=72 1800w" sizes="(min-width: 900px) 50vw, 100vw" width="1200" height="1800" alt=""></span>
-          <span class="fatia" style="--i:2" aria-hidden="true"><img data-image="hero" data-sizes="(min-width: 900px) 50vw, 100vw" src="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72" srcset="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=640&amp;q=72 640w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72 960w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1280&amp;q=72 1280w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1800&amp;q=72 1800w" sizes="(min-width: 900px) 50vw, 100vw" width="1200" height="1800" alt=""></span>
-          <span class="fatia" style="--i:3" aria-hidden="true"><img data-image="hero" data-sizes="(min-width: 900px) 50vw, 100vw" src="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72" srcset="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=640&amp;q=72 640w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72 960w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1280&amp;q=72 1280w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1800&amp;q=72 1800w" sizes="(min-width: 900px) 50vw, 100vw" width="1200" height="1800" alt=""></span>
-          <span class="fatia" style="--i:4" aria-hidden="true"><img data-image="hero" data-sizes="(min-width: 900px) 50vw, 100vw" src="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72" srcset="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=640&amp;q=72 640w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72 960w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1280&amp;q=72 1280w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1800&amp;q=72 1800w" sizes="(min-width: 900px) 50vw, 100vw" width="1200" height="1800" alt=""></span>
-        </div>
-        <figcaption class="legenda-vertical">Imagem ilustrativa. Foto: Kamila Maciejewska / Unsplash</figcaption>
-      </figure>
-
-      <div class="manifesto__base">
-        <p class="manifesto__lede" data-config="texts.lede">Limpeza de pele, hidratação, argila e massagem facial em um estúdio pequeno, com hora marcada e uma pessoa por vez.</p>
+      <div class="capa__texto">
+        <p class="capa__lede" data-config="texts.lede">Limpeza de pele, hidratação, argila e massagem facial em um estúdio pequeno, com hora marcada e uma pessoa por vez.</p>
         <div class="acoes">
-          <a class="botao botao--lima" href="#estudio" data-contact data-config="texts.ctaPrimary">Conversar sobre meu cuidado</a>
+          <a class="botao botao--coral" href="#estudio" data-contact data-config="texts.ctaPrimary">Conversar sobre meu cuidado</a>
           <a class="link-sublinhado" href="#atlas" data-config="texts.ctaSecondary">Ver os cuidados</a>
         </div>
       </div>
 
-      <dl class="manifesto__ficha">
-        <div><dt>Onde</dt><dd data-config="address.short">Bairro Exemplo, Sua Cidade</dd></div>
-        <div><dt>Quando</dt><dd data-config="hoursShort">Ter. a sáb., com hora marcada</dd></div>
-      </dl>
+      <div class="capa__visual">
+        <figure class="capa__foto">
+          <div class="moldura">
+            <img data-image="hero" src="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72" srcset="https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=640&amp;q=72 640w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=960&amp;q=72 960w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1280&amp;q=72 1280w, https://images.unsplash.com/photo-1551184451-76b762941ad6?auto=format&amp;fit=crop&amp;w=1800&amp;q=72 1800w" sizes="(min-width: 900px) 40vw, 100vw" width="1200" height="1800" fetchpriority="high" style="object-position:60% 28%" alt="Rosto de perto, com uma faixa de luz do sol atravessando o olho e a bochecha.">
+            <span class="marcas" aria-hidden="true"></span>
+          </div>
+          <figcaption class="credito">Imagem ilustrativa. Foto: Kamila Maciejewska / Unsplash</figcaption>
+        </figure>
+        <dl class="capa__ficha">
+          <div><dt>Onde</dt><dd data-config="address.short">Bairro Exemplo, Sua Cidade</dd></div>
+          <div><dt>Quando</dt><dd data-config="hoursShort">Ter. a sáb., com hora marcada</dd></div>
+        </dl>
+      </div>
     </section>
 
     <!-- ============================================================
-         B. ATLAS DE CUIDADOS
+         B. A EXPERIÊNCIA DO CUIDADO
+         ============================================================ -->
+    <section class="abordagem" id="abordagem" aria-labelledby="abordagem-titulo">
+      <div class="abordagem__texto">
+        <h2 class="abordagem__titulo" id="abordagem-titulo" data-config="texts.approachTitle">Antes do produto, a conversa.</h2>
+        <p class="abordagem__intro" data-config="texts.approachIntro">Cada pele chega de um jeito: depois de uma semana de sol, de pouco sono, de uma mudança de rotina. Por isso o atendimento começa ouvindo.</p>
+        <!-- CÓPIA ESTÁTICA de approach (js/config.js) -->
+        <div class="abordagem__pontos" data-approach>
+          <p class="ponto"><strong class="ponto__lead">Primeiro, ouvir.</strong> Você conta como a pele está, o que incomoda e como é a sua rotina. Nenhum cuidado é escolhido antes disso.</p>
+          <p class="ponto"><strong class="ponto__lead">Depois, escolher com calma.</strong> Indicamos o cuidado mais simples para o que você descreveu e explicamos cada etapa. Se algo pedir avaliação médica, dizemos com clareza.</p>
+          <p class="ponto"><strong class="ponto__lead">Um horário só seu.</strong> Produtos separados para você, toalhas trocadas a cada atendimento e tempo para sair sem pressa.</p>
+        </div>
+      </div>
+      <figure class="abordagem__foto"><img data-image="abordagem" src="https://images.unsplash.com/photo-1731514771613-991a02407132?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1731514771613-991a02407132?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1731514771613-991a02407132?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1731514771613-991a02407132?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 45vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" style="object-position:50% 45%" alt="Esteticista com as mãos no rosto de uma cliente deitada, em uma sala com prateleiras de produtos."></figure>
+      <figure class="abordagem__detalhe">
+        <img data-image="produto" src="https://images.unsplash.com/photo-1747303969063-3b90bcb3942e?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1747303969063-3b90bcb3942e?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1747303969063-3b90bcb3942e?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1747303969063-3b90bcb3942e?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 18vw, 45vw" width="1200" height="1500" loading="lazy" decoding="async" style="object-position:60% 50%" alt="Mão segurando um conta-gotas sobre um frasco âmbar, com sombras de janela na parede.">
+        <figcaption>Imagens ilustrativas.</figcaption>
+      </figure>
+    </section>
+
+    <!-- ============================================================
+         C. ATLAS DE CUIDADOS
          ============================================================ -->
     <section class="atlas" id="atlas" aria-labelledby="atlas-titulo">
       <div class="atlas__cabeca">
         <h2 class="atlas__titulo" id="atlas-titulo" data-config="texts.atlasTitle">Atlas de cuidados</h2>
-        <p class="atlas__intro" data-config="texts.atlasIntro">Cinco cuidados de superfície, sem agulhas, sem aparelhos invasivos e sem promessa de resultado. Abra um para ver o que inclui.</p>
+        <p class="atlas__intro" data-config="texts.atlasIntro">Cinco cuidados de superfície, sem agulhas e sem aparelhos invasivos. Escolha um para ver o que inclui.</p>
       </div>
 
-      <!-- CÓPIA ESTÁTICA: o js/main.js redesenha esta lista a partir de
-           js/config.js (cares). Sem JavaScript, todos os detalhes ficam abertos. -->
-      <ol class="atlas__faixas" id="atlas-lista">
-        <li class="faixa" id="faixa-limpeza" style="--i:0">
-          <div class="faixa__corpo">
-          <h3 class="faixa__titulo">
-            <button class="faixa__botao" type="button" aria-expanded="true" aria-controls="painel-limpeza">
-              <span class="faixa__codigo">N.01</span>
-              <span class="faixa__nome">Limpeza de pele</span>
-              <span class="faixa__duracao">80 min</span>
-              <span class="faixa__sinal" aria-hidden="true"></span>
-            </button>
-          </h3>
-          <figure class="faixa__foto"><img data-image="limpeza" data-sizes="(min-width: 900px) 40vw, 100vw" src="https://images.unsplash.com/photo-1791714390214-f6ff43e6262e?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1791714390214-f6ff43e6262e?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1791714390214-f6ff43e6262e?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1791714390214-f6ff43e6262e?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 40vw, 100vw" loading="lazy" decoding="async" alt="Testa e olhos fechados de uma pessoa com sardas, pele de perto."></figure>
-          <p class="faixa__resumo">Higienização, esfoliação leve, extração manual de cravos quando indicada e máscara calmante no final.</p>
-          <div class="faixa__painel" id="painel-limpeza">
-            <div class="faixa__colunas">
-              <div class="faixa__inclui"><h4>O que inclui</h4><ul><li>Conversa rápida sobre a sua rotina</li><li>Higienização e esfoliação leve</li><li>Extração manual de cravos, sem pressa</li><li>Máscara calmante e protetor solar</li></ul></div>
-              <dl class="faixa__notas"><div><dt>Para quem</dt><dd>Para quem sente oleosidade acumulada ou cravos e quer uma sensação de pele limpa.</dd></div><div><dt>Bom saber</dt><dd>Lesões inflamadas, feridas ou acne ativa não recebem extração. Nesses casos, orientamos procurar um dermatologista.</dd></div></dl>
+      <!-- CÓPIA ESTÁTICA: o js/main.js redesenha este bloco a partir de
+           js/config.js (cares) e o transforma em abas. Sem JavaScript, o
+           índice vira uma lista de âncoras e todos os cuidados ficam visíveis. -->
+      <div class="atlas__corpo" id="atlas-corpo">
+        <nav class="atlas__indice" aria-label="Índice de cuidados">
+          <ol class="indice">
+            <li><a class="indice__item" href="#cuidado-limpeza">
+              <span class="indice__codigo">N.01</span>
+              <span class="indice__nome">Limpeza de pele</span>
+              <span class="indice__duracao">80 min</span>
+              <span class="indice__frase">Para oleosidade e cravos.</span>
+            </a></li>
+            <li><a class="indice__item" href="#cuidado-hidratacao">
+              <span class="indice__codigo">N.02</span>
+              <span class="indice__nome">Hidratação facial</span>
+              <span class="indice__duracao">50 min</span>
+              <span class="indice__frase">Para pele que repuxa ou está opaca.</span>
+            </a></li>
+            <li><a class="indice__item" href="#cuidado-argila">
+              <span class="indice__codigo">N.03</span>
+              <span class="indice__nome">Máscara de argila</span>
+              <span class="indice__duracao">45 min</span>
+              <span class="indice__frase">Uma pausa curta, com sensação de frescor.</span>
+            </a></li>
+            <li><a class="indice__item" href="#cuidado-massagem">
+              <span class="indice__codigo">N.04</span>
+              <span class="indice__nome">Massagem facial</span>
+              <span class="indice__duracao">40 min</span>
+              <span class="indice__frase">Para o rosto tenso no fim do dia.</span>
+            </a></li>
+            <li><a class="indice__item" href="#cuidado-renovacao">
+              <span class="indice__codigo">N.05</span>
+              <span class="indice__nome">Renovação suave</span>
+              <span class="indice__duracao">60 min</span>
+              <span class="indice__frase">Manutenção para pele áspera ou sem viço.</span>
+            </a></li>
+          </ol>
+        </nav>
+        <div class="atlas__paineis">
+          <article class="cuidado" id="cuidado-limpeza" aria-labelledby="cuidado-limpeza-titulo">
+            <figure class="cuidado__foto"><img data-image="limpeza" src="https://images.unsplash.com/photo-1731355771317-b2ab72c79124?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1731355771317-b2ab72c79124?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1731355771317-b2ab72c79124?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1731355771317-b2ab72c79124?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 28vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" style="object-position:45% 50%" alt="Mãos com luvas limpando o rosto de uma cliente com um disco de algodão."></figure>
+            <div class="cuidado__texto">
+              <p class="cuidado__meta"><span>N.01</span> <span>80 min</span></p>
+              <h3 class="cuidado__nome" id="cuidado-limpeza-titulo">Limpeza de pele</h3>
+              <p class="cuidado__resumo">Higienização, esfoliação leve, extração manual de cravos quando indicada e máscara calmante no final.</p>
+              <h4 class="cuidado__rotulo">O que inclui</h4>
+              <ul class="cuidado__lista"><li>Conversa rápida sobre a sua rotina</li><li>Higienização e esfoliação leve</li><li>Extração manual de cravos, sem pressa</li><li>Máscara calmante e protetor solar</li></ul>
+              <p class="cuidado__nota"><strong>Bom saber.</strong> Lesões inflamadas, feridas ou acne ativa não recebem extração. Nesses casos, orientamos procurar um dermatologista.</p>
+              <a class="botao botao--coral" href="#estudio" data-contact data-message="Olá! Vim pelo site da NEXO e quero conversar sobre limpeza de pele.">Conversar sobre limpeza de pele</a>
             </div>
-            <a class="botao botao--lima" href="#estudio" data-contact data-message="Olá! Vim pelo site da NEXO e quero conversar sobre limpeza de pele.">Conversar sobre limpeza de pele</a>
-          </div>
-          </div>
-        </li>
-        <li class="faixa" id="faixa-hidratacao" style="--i:1">
-          <div class="faixa__corpo">
-          <h3 class="faixa__titulo">
-            <button class="faixa__botao" type="button" aria-expanded="true" aria-controls="painel-hidratacao">
-              <span class="faixa__codigo">N.02</span>
-              <span class="faixa__nome">Hidratação facial</span>
-              <span class="faixa__duracao">50 min</span>
-              <span class="faixa__sinal" aria-hidden="true"></span>
-            </button>
-          </h3>
-          <figure class="faixa__foto"><img data-image="hidratacao" data-sizes="(min-width: 900px) 40vw, 100vw" src="https://images.unsplash.com/photo-1693004925174-d9e06209d0ee?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1693004925174-d9e06209d0ee?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1693004925174-d9e06209d0ee?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1693004925174-d9e06209d0ee?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 40vw, 100vw" loading="lazy" decoding="async" alt="Mulher negra aplicando uma porção de creme branco na bochecha com a ponta dos dedos."></figure>
-          <p class="faixa__resumo">Camadas de produtos hidratantes escolhidos para a sua pele naquele dia, aplicadas com toque lento.</p>
-          <div class="faixa__painel" id="painel-hidratacao">
-            <div class="faixa__colunas">
-              <div class="faixa__inclui"><h4>O que inclui</h4><ul><li>Higienização suave</li><li>Esfoliação delicada, se a pele estiver pronta</li><li>Máscara hidratante</li><li>Finalização com hidratante e protetor solar</li></ul></div>
-              <dl class="faixa__notas"><div><dt>Para quem</dt><dd>Para pele que repuxa, parece opaca ou ressecou com sol, frio ou ar-condicionado.</dd></div><div><dt>Bom saber</dt><dd>Se você tem sensibilidade conhecida a algum ingrediente, conte na conversa: os produtos são adaptados.</dd></div></dl>
+          </article>
+          <article class="cuidado" id="cuidado-hidratacao" aria-labelledby="cuidado-hidratacao-titulo">
+            <figure class="cuidado__foto"><img data-image="hidratacao" src="https://images.unsplash.com/photo-1693004925174-d9e06209d0ee?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1693004925174-d9e06209d0ee?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1693004925174-d9e06209d0ee?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1693004925174-d9e06209d0ee?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 28vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" style="object-position:45% 40%" alt="Mulher negra aplicando uma porção de creme branco na bochecha com a ponta dos dedos."></figure>
+            <div class="cuidado__texto">
+              <p class="cuidado__meta"><span>N.02</span> <span>50 min</span></p>
+              <h3 class="cuidado__nome" id="cuidado-hidratacao-titulo">Hidratação facial</h3>
+              <p class="cuidado__resumo">Camadas de produtos hidratantes escolhidos para a sua pele naquele dia, aplicadas com toque lento.</p>
+              <h4 class="cuidado__rotulo">O que inclui</h4>
+              <ul class="cuidado__lista"><li>Higienização suave</li><li>Esfoliação delicada, se a pele estiver pronta</li><li>Máscara hidratante</li><li>Hidratante e protetor solar</li></ul>
+              <p class="cuidado__nota"><strong>Bom saber.</strong> Se você tem sensibilidade conhecida a algum ingrediente, conte na conversa: os produtos são adaptados.</p>
+              <a class="botao botao--coral" href="#estudio" data-contact data-message="Olá! Vim pelo site da NEXO e quero conversar sobre hidratação facial.">Conversar sobre hidratação facial</a>
             </div>
-            <a class="botao botao--lima" href="#estudio" data-contact data-message="Olá! Vim pelo site da NEXO e quero conversar sobre hidratação facial.">Conversar sobre hidratação facial</a>
-          </div>
-          </div>
-        </li>
-        <li class="faixa" id="faixa-argila" style="--i:2">
-          <div class="faixa__corpo">
-          <h3 class="faixa__titulo">
-            <button class="faixa__botao" type="button" aria-expanded="true" aria-controls="painel-argila">
-              <span class="faixa__codigo">N.03</span>
-              <span class="faixa__nome">Máscara de argila</span>
-              <span class="faixa__duracao">45 min</span>
-              <span class="faixa__sinal" aria-hidden="true"></span>
-            </button>
-          </h3>
-          <figure class="faixa__foto"><img data-image="argila" data-sizes="(min-width: 900px) 40vw, 100vw" src="https://images.unsplash.com/photo-1794151882454-48112934c4bc?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1794151882454-48112934c4bc?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1794151882454-48112934c4bc?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1794151882454-48112934c4bc?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 40vw, 100vw" loading="lazy" decoding="async" alt="Metade de um rosto coberto por máscara de argila verde, com o olho aberto."></figure>
-          <p class="faixa__resumo">Argila em camada fina, escolhida pela sensação da pele no dia: mais oleosa, mais sensível ou mais opaca.</p>
-          <div class="faixa__painel" id="painel-argila">
-            <div class="faixa__colunas">
-              <div class="faixa__inclui"><h4>O que inclui</h4><ul><li>Higienização</li><li>Argila escolhida na hora</li><li>Tempo de pausa com a máscara</li><li>Remoção morna e hidratação</li></ul></div>
-              <dl class="faixa__notas"><div><dt>Para quem</dt><dd>Para quem quer uma pausa curta e a pele com sensação de frescor.</dd></div><div><dt>Bom saber</dt><dd>Pode ser feita sozinha ou ao final de outro cuidado do atlas.</dd></div></dl>
+          </article>
+          <article class="cuidado" id="cuidado-argila" aria-labelledby="cuidado-argila-titulo">
+            <figure class="cuidado__foto"><img data-image="argila" src="https://images.unsplash.com/photo-1794151882454-48112934c4bc?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1794151882454-48112934c4bc?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1794151882454-48112934c4bc?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1794151882454-48112934c4bc?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 28vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" style="object-position:40% 45%" alt="Metade de um rosto coberto por máscara de argila verde, com o olho aberto."></figure>
+            <div class="cuidado__texto">
+              <p class="cuidado__meta"><span>N.03</span> <span>45 min</span></p>
+              <h3 class="cuidado__nome" id="cuidado-argila-titulo">Máscara de argila</h3>
+              <p class="cuidado__resumo">Argila em camada fina, escolhida pela sensação da pele no dia: mais oleosa, mais sensível ou mais opaca.</p>
+              <h4 class="cuidado__rotulo">O que inclui</h4>
+              <ul class="cuidado__lista"><li>Higienização</li><li>Argila escolhida na hora</li><li>Tempo de pausa com a máscara</li><li>Remoção morna e hidratação</li></ul>
+              <p class="cuidado__nota"><strong>Bom saber.</strong> Pode ser feita sozinha ou ao final de outro cuidado do atlas.</p>
+              <a class="botao botao--coral" href="#estudio" data-contact data-message="Olá! Vim pelo site da NEXO e quero conversar sobre máscara de argila.">Conversar sobre máscara de argila</a>
             </div>
-            <a class="botao botao--lima" href="#estudio" data-contact data-message="Olá! Vim pelo site da NEXO e quero conversar sobre máscara de argila.">Conversar sobre máscara de argila</a>
-          </div>
-          </div>
-        </li>
-        <li class="faixa" id="faixa-massagem" style="--i:3">
-          <div class="faixa__corpo">
-          <h3 class="faixa__titulo">
-            <button class="faixa__botao" type="button" aria-expanded="true" aria-controls="painel-massagem">
-              <span class="faixa__codigo">N.04</span>
-              <span class="faixa__nome">Massagem facial</span>
-              <span class="faixa__duracao">40 min</span>
-              <span class="faixa__sinal" aria-hidden="true"></span>
-            </button>
-          </h3>
-          <figure class="faixa__foto"><img data-image="massagem" data-sizes="(min-width: 900px) 40vw, 100vw" src="https://images.unsplash.com/photo-1561228987-8e7379dde477?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1561228987-8e7379dde477?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1561228987-8e7379dde477?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1561228987-8e7379dde477?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 40vw, 100vw" loading="lazy" decoding="async" alt="Mão com anel dourado tocando o pescoço, em luz suave."></figure>
-          <p class="faixa__resumo">Movimentos manuais no rosto, no pescoço e no colo, com óleo ou creme, para relaxar e aquecer a pele.</p>
-          <div class="faixa__painel" id="painel-massagem">
-            <div class="faixa__colunas">
-              <div class="faixa__inclui"><h4>O que inclui</h4><ul><li>Movimentos lentos, sem aparelhos</li><li>Rosto, pescoço e colo</li><li>Pressão ajustada ao seu conforto</li></ul></div>
-              <dl class="faixa__notas"><div><dt>Para quem</dt><dd>Para quem passa o dia com o rosto tenso ou quer um tempo de silêncio.</dd></div><div><dt>Bom saber</dt><dd>É um cuidado de relaxamento. Não substitui fisioterapia nem acompanhamento médico.</dd></div></dl>
+          </article>
+          <article class="cuidado" id="cuidado-massagem" aria-labelledby="cuidado-massagem-titulo">
+            <figure class="cuidado__foto"><img data-image="massagem" src="https://images.unsplash.com/photo-1790244331202-0ae18434cde2?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1790244331202-0ae18434cde2?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1790244331202-0ae18434cde2?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1790244331202-0ae18434cde2?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 28vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" style="object-position:50% 55%" alt="Mãos massageando o rosto de uma pessoa deitada, iluminada pelo sol."></figure>
+            <div class="cuidado__texto">
+              <p class="cuidado__meta"><span>N.04</span> <span>40 min</span></p>
+              <h3 class="cuidado__nome" id="cuidado-massagem-titulo">Massagem facial</h3>
+              <p class="cuidado__resumo">Movimentos manuais no rosto, no pescoço e no colo, com óleo ou creme, para relaxar e aquecer a pele.</p>
+              <h4 class="cuidado__rotulo">O que inclui</h4>
+              <ul class="cuidado__lista"><li>Movimentos lentos, sem aparelhos</li><li>Rosto, pescoço e colo</li><li>Pressão ajustada ao seu conforto</li></ul>
+              <p class="cuidado__nota"><strong>Bom saber.</strong> É um cuidado de relaxamento. Não substitui fisioterapia nem acompanhamento médico.</p>
+              <a class="botao botao--coral" href="#estudio" data-contact data-message="Olá! Vim pelo site da NEXO e quero conversar sobre massagem facial.">Conversar sobre massagem facial</a>
             </div>
-            <a class="botao botao--lima" href="#estudio" data-contact data-message="Olá! Vim pelo site da NEXO e quero conversar sobre massagem facial.">Conversar sobre massagem facial</a>
-          </div>
-          </div>
-        </li>
-        <li class="faixa" id="faixa-renovacao" style="--i:4">
-          <div class="faixa__corpo">
-          <h3 class="faixa__titulo">
-            <button class="faixa__botao" type="button" aria-expanded="true" aria-controls="painel-renovacao">
-              <span class="faixa__codigo">N.05</span>
-              <span class="faixa__nome">Renovação suave</span>
-              <span class="faixa__duracao">60 min</span>
-              <span class="faixa__sinal" aria-hidden="true"></span>
-            </button>
-          </h3>
-          <figure class="faixa__foto"><img data-image="renovacao" data-sizes="(min-width: 900px) 40vw, 100vw" src="https://images.unsplash.com/photo-1659007747376-3811b34e458f?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1659007747376-3811b34e458f?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1659007747376-3811b34e458f?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1659007747376-3811b34e458f?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 40vw, 100vw" loading="lazy" decoding="async" alt="Textura de creme branco espalhado, com dobras e brilho."></figure>
-          <p class="faixa__resumo">Esfoliação enzimática ou física leve, sempre de superfície, seguida de hidratação. A pele fica mais macia ao toque.</p>
-          <div class="faixa__painel" id="painel-renovacao">
-            <div class="faixa__colunas">
-              <div class="faixa__inclui"><h4>O que inclui</h4><ul><li>Observação da pele no dia</li><li>Esfoliação enzimática ou física leve</li><li>Hidratação e protetor solar</li></ul></div>
-              <dl class="faixa__notas"><div><dt>Para quem</dt><dd>Para manutenção entre outros cuidados, quando a pele parece áspera ou sem viço.</dd></div><div><dt>Bom saber</dt><dd>Não fazemos peeling químico profundo, microagulhamento nem procedimentos com agulhas ou laser.</dd></div></dl>
+          </article>
+          <article class="cuidado" id="cuidado-renovacao" aria-labelledby="cuidado-renovacao-titulo">
+            <figure class="cuidado__foto"><img data-image="renovacao" src="https://images.unsplash.com/photo-1722350553295-ba84043b64cc?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1722350553295-ba84043b64cc?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1722350553295-ba84043b64cc?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1722350553295-ba84043b64cc?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 28vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" style="object-position:50% 50%" alt="Mãos espalhando um gel transparente no rosto de uma mulher deitada sobre uma toalha coral."></figure>
+            <div class="cuidado__texto">
+              <p class="cuidado__meta"><span>N.05</span> <span>60 min</span></p>
+              <h3 class="cuidado__nome" id="cuidado-renovacao-titulo">Renovação suave</h3>
+              <p class="cuidado__resumo">Esfoliação enzimática ou física leve, sempre de superfície, seguida de hidratação. A pele fica mais macia ao toque.</p>
+              <h4 class="cuidado__rotulo">O que inclui</h4>
+              <ul class="cuidado__lista"><li>Observação da pele no dia</li><li>Esfoliação enzimática ou física leve</li><li>Hidratação e protetor solar</li></ul>
+              <p class="cuidado__nota"><strong>Bom saber.</strong> Não fazemos peeling químico profundo, microagulhamento nem procedimentos com agulhas ou laser.</p>
+              <a class="botao botao--coral" href="#estudio" data-contact data-message="Olá! Vim pelo site da NEXO e quero conversar sobre renovação suave.">Conversar sobre renovação suave</a>
             </div>
-            <a class="botao botao--lima" href="#estudio" data-contact data-message="Olá! Vim pelo site da NEXO e quero conversar sobre renovação suave.">Conversar sobre renovação suave</a>
-          </div>
-          </div>
-        </li>
-      </ol>
+          </article>
+        </div>
+      </div>
 
       <div class="atlas__rodape">
-        <div class="atlas__ajuda">
-          <p class="atlas__ajuda-titulo" data-config="texts.atlasHelpTitle">Não sabe por onde começar?</p>
-          <p data-config="texts.atlasHelpText">Conte o que você sente na pele. A gente sugere o cuidado mais simples para isso.</p>
-        </div>
-        <a class="botao botao--contorno" href="#estudio" data-contact data-config="texts.ctaPrimary">Conversar sobre meu cuidado</a>
+        <p class="atlas__ajuda"><span data-config="texts.atlasHelp">Não sabe qual escolher? Conte o que você sente na pele e sugerimos o cuidado mais simples.</span> <a class="link-sublinhado" href="#estudio" data-contact data-config="texts.ctaPrimary">Conversar sobre meu cuidado</a></p>
         <p class="atlas__nota" data-config="texts.atlasNote">Cuidados estéticos não invasivos. Não fazemos diagnóstico nem tratamos doenças de pele. Durações aproximadas e demonstrativas.</p>
       </div>
     </section>
 
     <!-- ============================================================
-         C. ESTÚDIO E CONTATO
+         D. ESTÚDIO E CONTATO
          ============================================================ -->
     <section class="estudio" id="estudio" aria-labelledby="estudio-titulo">
-      <div class="estudio__chamada">
-        <h2 class="estudio__titulo" id="estudio-titulo">
-          <a class="cta-gigante" href="#contato-dados" data-contact><span data-config="texts.closingTitle">Conversar sobre meu cuidado</span><span class="cta-gigante__marca" aria-hidden="true"></span></a>
-        </h2>
-        <p class="estudio__texto" data-config="texts.closingText">O botão abre o WhatsApp com uma mensagem curta. Você conta o que procura e combinamos o horário. Não pedimos nenhum dado antes da conversa.</p>
-      </div>
-
       <figure class="estudio__foto">
-        <img data-image="estudio" data-sizes="(min-width: 900px) 42vw, 100vw" src="https://images.unsplash.com/photo-1677441564461-1b3e5bff781c?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1677441564461-1b3e5bff781c?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1677441564461-1b3e5bff781c?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1677441564461-1b3e5bff781c?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 42vw, 100vw" loading="lazy" decoding="async" alt="Cadeira de palhinha junto a uma parede clara, com a luz da janela desenhando uma grade de sombras.">
-        <figcaption>Imagem ilustrativa, não retrata o estúdio.</figcaption>
+        <div class="moldura">
+          <img data-image="estudio" src="https://images.unsplash.com/photo-1611920630418-f587fdc3bf94?auto=format&amp;fit=crop&amp;w=800&amp;q=72" srcset="https://images.unsplash.com/photo-1611920630418-f587fdc3bf94?auto=format&amp;fit=crop&amp;w=480&amp;q=72 480w, https://images.unsplash.com/photo-1611920630418-f587fdc3bf94?auto=format&amp;fit=crop&amp;w=800&amp;q=72 800w, https://images.unsplash.com/photo-1611920630418-f587fdc3bf94?auto=format&amp;fit=crop&amp;w=1200&amp;q=72 1200w" sizes="(min-width: 900px) 46vw, 100vw" width="1200" height="1500" loading="lazy" decoding="async" style="object-position:50% 60%" alt="Sala de atendimento com maca coberta por manta azul, luz quente na parede e um quadro em preto e branco.">
+          <span class="marcas" aria-hidden="true"></span>
+        </div>
+        <figcaption class="credito">Imagem ilustrativa, não retrata o estúdio.</figcaption>
       </figure>
 
-      <div class="estudio__dados" id="contato-dados">
-        <dl>
+      <div class="estudio__texto">
+        <h2 class="estudio__titulo" id="estudio-titulo" data-config="texts.studioTitle">Um estúdio pequeno, com hora marcada.</h2>
+        <p class="estudio__lede" data-config="texts.studioText">Uma sala silenciosa, luz baixa e um atendimento por vez. Você não divide o horário nem espera na recepção.</p>
+        <a class="botao botao--coral botao--grande" href="#contato-dados" data-contact data-config="texts.ctaPrimary">Conversar sobre meu cuidado</a>
+        <p class="estudio__nota" data-config="texts.studioCtaNote">Abre o WhatsApp com uma mensagem curta. Nenhum dado é pedido antes da conversa.</p>
+
+        <dl class="estudio__dados" id="contato-dados">
           <div>
             <dt>Endereço</dt>
             <dd><span data-config="address.street">Rua Demonstrativa, 000</span><br><span data-config="address.district">Bairro Exemplo</span>, <span data-config="address.city">Sua Cidade, UF</span><br><small data-config="address.note">Endereço fictício.</small></dd>
@@ -262,13 +268,13 @@
   <footer class="rodape">
     <p class="rodape__marca"><span>NEXO</span> Estúdio Facial</p>
     <p class="rodape__demo">Marca fictícia criada para demonstração. Fotos ilustrativas, sem relação com o estúdio ou com resultados de atendimento.</p>
-    <p class="rodape__creditos">Fotos da Unsplash (Licença Unsplash): <span data-credits>Kamila Maciejewska, @denmirov, Leighann Blackwood, @maxbvp, Angélica Echeverry, Pawel Czerwinski e Yi Wei</span>. Fontes Funnel Display, Funnel Sans e Geist Mono (SIL Open Font License).</p>
+    <p class="rodape__creditos">Fotos da Unsplash (Licença Unsplash): <span data-credits>Kamila Maciejewska, kimia kazemi, Mona Jain, Studio Michael França, Leighann Blackwood, @maxbvp, Rosalie Gdy, Abiwin Krisna e visualsofdana</span>. Fontes Funnel Display, Funnel Sans e Geist Mono (SIL Open Font License).</p>
     <a class="rodape__topo" href="#topo">Voltar ao início</a>
   </footer>
 
   <div class="aviso" id="aviso-demo" role="status" aria-live="polite"></div>
 
-  <script src="js/config.js?v=9"></script>
-  <script src="js/main.js?v=9"></script>
+  <script src="js/config.js?v=28"></script>
+  <script src="js/main.js?v=28"></script>
 </body>
 </html>
