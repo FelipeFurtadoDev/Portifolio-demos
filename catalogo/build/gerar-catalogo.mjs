@@ -20,6 +20,12 @@ import { descobrirModelos, previasDe, CORES_PADRAO, SEGMENTO_PADRAO } from "./de
 
 const RAIZ_REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
+// Textos para os comandos do GitHub Actions (::warning) e para a tabela do resumo.
+// Sem escape, um nome de pasta com ":" ou "," ou uma mensagem com "|" quebraria a saída.
+const anotacao = (s) => String(s).replace(/%/g, "%25").replace(/\r/g, "%0D").replace(/\n/g, "%0A");
+const anotacaoTitulo = (s) => anotacao(s).replace(/:/g, "%3A").replace(/,/g, "%2C");
+const celula = (s) => String(s).replace(/\|/g, "\\|").replace(/\s*\n\s*/g, " ");
+
 function argumento(nome, padrao) {
   const i = process.argv.indexOf(nome);
   return i > -1 && process.argv[i + 1] ? process.argv[i + 1] : padrao;
@@ -147,13 +153,13 @@ function principal() {
     const md = [
       `### Catálogo: ${modelos.length} modelo(s)`, "",
       "| Pasta | Nome | Prévias | Avisos |", "|---|---|---|---|",
-      ...linhas.map((l) => `| \`${l.pasta}/\` | ${l.marca} | ${l.previas} | ${l.avisos.join("<br>") || "—"} |`),
-      "", ignoradas.length ? `Pastas ignoradas: ${ignoradas.map((p) => `\`${p}\``).join(", ")}` : "", "",
+      ...linhas.map((l) => `| \`${celula(l.pasta)}/\` | ${celula(l.marca)} | ${l.previas} | ${l.avisos.map(celula).join("<br>") || "—"} |`),
+      "", ignoradas.length ? `Pastas ignoradas: ${ignoradas.map((p) => `\`${celula(p)}\``).join(", ")}` : "", "",
     ].join("\n");
     fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, md);
   }
   for (const l of linhas) {
-    for (const a of l.avisos) if (process.env.GITHUB_ACTIONS) console.log(`::warning title=${l.pasta}::${a}`);
+    for (const a of l.avisos) if (process.env.GITHUB_ACTIONS) console.log(`::warning title=${anotacaoTitulo(l.pasta)}::${anotacao(a)}`);
   }
 }
 

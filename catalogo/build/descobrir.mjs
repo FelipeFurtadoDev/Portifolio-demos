@@ -97,9 +97,14 @@ export function validarMetadados(bruto, avisos) {
     const c = bruto.cores || {};
     if (["fundo", "texto", "textoSecundario"].every((k) => COR.test(c[k] || ""))) {
       m.cores = { fundo: c.fundo.toUpperCase(), texto: c.texto.toUpperCase(), textoSecundario: c.textoSecundario.toUpperCase() };
-      for (const k of ["texto", "textoSecundario"]) {
-        const r = contraste(m.cores.fundo, m.cores[k]);
-        if (r < 4.5) avisos.push(`cores.${k} tem contraste ${r.toFixed(2)}:1 com o fundo (mínimo recomendado 4,5:1)`);
+      // Texto ilegível não é publicado: abaixo de 4,5:1 a faixa usa as cores neutras.
+      const fracos = ["texto", "textoSecundario"]
+        .map((k) => [k, contraste(m.cores.fundo, m.cores[k])])
+        .filter(([, r]) => r < 4.5);
+      if (fracos.length) {
+        const detalhe = fracos.map(([k, r]) => `cores.${k} ${r.toFixed(2)}:1`).join(", ");
+        avisos.push(`contraste insuficiente com o fundo (${detalhe}; mínimo 4,5:1); usando cores neutras`);
+        delete m.cores;
       }
     } else {
       avisos.push('cores: informe fundo, texto e textoSecundario no formato "#RRGGBB"; usando cores neutras');
@@ -137,10 +142,14 @@ function ehModelo(raiz, nome) {
 // Retorna { modelos, ignoradas }. Cada modelo:
 // { pasta, slug, demo, meta, avisos, temMetadados }
 export function descobrirModelos(raiz) {
+  // Ordem estável para resolver identificadores repetidos (ex.: "Naria" e "naria",
+  // ou "Nova-Marca" e "Nova Marca"): fica com o identificador a pasta que tem
+  // modelo.json; empatando, a de nome menor em ordem de código ("N" antes de "n").
+  const temMeta = (p) => fs.existsSync(path.join(raiz, p, "modelo.json"));
   const entradas = fs.readdirSync(raiz, { withFileTypes: true })
     .filter((e) => e.isDirectory())
     .map((e) => e.name)
-    .sort((a, b) => a.localeCompare(b, "pt-BR"));
+    .sort((a, b) => (temMeta(b) - temMeta(a)) || (a < b ? -1 : a > b ? 1 : 0));
 
   const modelos = [];
   const ignoradas = [];

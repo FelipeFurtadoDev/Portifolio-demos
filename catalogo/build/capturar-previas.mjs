@@ -31,6 +31,12 @@ import { descobrirModelos, PREVIAS_DIR } from "./descobrir.mjs";
 
 const RAIZ_REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
+// Textos para os comandos do GitHub Actions (::warning) e para a tabela do resumo.
+// Sem escape, um nome de pasta com ":" ou "," ou uma mensagem com "|" quebraria a saída.
+const anotacao = (s) => String(s).replace(/%/g, "%25").replace(/\r/g, "%0D").replace(/\n/g, "%0A");
+const anotacaoTitulo = (s) => anotacao(s).replace(/:/g, "%3A").replace(/,/g, "%2C");
+const celula = (s) => String(s).replace(/\|/g, "\\|").replace(/\s*\n\s*/g, " ");
+
 // Mude este texto quando mudar o jeito de capturar: invalida o cache inteiro.
 const VERSAO_CAPTURA = "v1|desktop 1440x900@1600|celular 390x844@2x|webp q75";
 
@@ -272,7 +278,7 @@ async function principal() {
         else if (temPreviasNoDestino(m)) plano = "mantida a prévia que já está no repositório";
         else plano = "sem prévia: o catálogo mostrará “Prévia em preparação”";
         relatorio.push([m.pasta, `FALHOU: ${erro.message} → ${plano}`]);
-        if (process.env.GITHUB_ACTIONS) console.log(`::warning title=Captura de ${m.pasta}::${erro.message.replace(/\n/g, " ")} → ${plano}`);
+        if (process.env.GITHUB_ACTIONS) console.log(`::warning title=${anotacaoTitulo(`Captura de ${m.pasta}`)}::${anotacao(`${erro.message} → ${plano}`)}`);
       }
     }
 
@@ -290,7 +296,7 @@ async function principal() {
   for (const [pasta, situacao] of relatorio) console.log(`  • ${pasta}/ → ${situacao}`);
   if (process.env.GITHUB_STEP_SUMMARY) {
     fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY,
-      ["### Capturas", "", "| Pasta | Situação |", "|---|---|", ...relatorio.map(([p, s]) => `| \`${p}/\` | ${s} |`), "", ""].join("\n"));
+      ["### Capturas", "", "| Pasta | Situação |", "|---|---|", ...relatorio.map(([p, s]) => `| \`${celula(p)}/\` | ${celula(s)} |`), "", ""].join("\n"));
   }
 }
 

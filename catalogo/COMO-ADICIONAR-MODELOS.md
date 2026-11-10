@@ -6,6 +6,18 @@ Você **não** edita o `index.html` nem nenhum cadastro central.
 
 ---
 
+## 0. Configuração inicial (uma única vez)
+
+Antes da primeira publicação automática, no GitHub:
+
+1. **Settings → Pages → Build and deployment → Source:** troque *Deploy from a branch* por **GitHub Actions**.
+2. **Settings → Environments → github-pages:** em *Deployment branches and tags*, confira se a branch `main` está permitida.
+3. Aba **Actions → Publicar catálogo → Run workflow** para a primeira publicação.
+
+Enquanto o Source continuar em *Deploy from a branch*, o site é servido direto da branch (sem capturas automáticas), e o passo "Publicar" do workflow termina com ✗.
+
+---
+
 ## 1. Copie a pasta para a raiz do repositório
 
 ```
@@ -21,6 +33,7 @@ Portifolio-demos/
 - O **nome da pasta** vira o endereço do site: `…/Portifolio-demos/Nova-Marca/`.
   Maiúsculas e minúsculas contam, então escolha o nome definitivo antes do primeiro push.
 - Evite espaços e acentos no nome da pasta. Use hífens: `Nova-Marca`, e não `Nova Marca`.
+- Cada pasta precisa de um nome que continue único sem acentos e sem maiúsculas: `Nova-Marca` e `nova-marca` disputariam o mesmo identificador. Nesse caso, fica com ele a pasta que tem `modelo.json`, e o resumo da execução avisa.
 - Não use nomes reservados para pastas técnicas: `catalogo`, `assets`, `css`, `js`, `scripts`, `img`, `fonts`, `docs`, `build`, `tools`, `node_modules`, entre outros.
   Pastas que começam com `.` ou `_` também são ignoradas, e isso é útil para rascunhos (`_rascunho/`).
 
@@ -67,7 +80,7 @@ Crie `Nova-Marca/modelo.json` com os textos e as cores que aparecem no catálogo
 | `descricao` | Parágrafo curto, até 600 caracteres | O parágrafo não aparece |
 | `caracteristicas` | De 1 a 6 itens curtos | A lista não aparece |
 | `cores.fundo` | Cor da faixa do modelo, normalmente a principal da marca | Faixa azul-escura neutra |
-| `cores.texto` / `cores.textoSecundario` | Textos sobre a faixa (contraste mínimo 4,5:1) | Tons claros neutros |
+| `cores.texto` / `cores.textoSecundario` | Textos sobre a faixa. Precisam de contraste de pelo menos 4,5:1 com o fundo; abaixo disso, o catálogo usa as cores neutras e avisa no resumo | Tons claros neutros |
 | `ordem` | Posição: menor aparece antes | Vai para o fim, em ordem alfabética |
 | `publicar` | `false` esconde o modelo do catálogo, mas o site continua acessível pelo endereço | Aparece normalmente |
 
@@ -107,7 +120,9 @@ Sem `modelo.json`, o modelo aparece mesmo assim, com o nome da pasta e rótulos 
 | "Prévia em preparação" no lugar da captura | A captura falhou e não havia prévia anterior | No resumo, a tabela "Capturas" diz o motivo, por exemplo uma imagem ou fonte que não carregou. Corrija o site e faça novo push |
 | Captura antiga depois de mudar o site | A captura nova falhou, então o catálogo manteve a última válida | Mesmo procedimento: o motivo está na tabela "Capturas" |
 | Execução com ✗ vermelho | O passo "Gerar o catálogo" encontrou um erro grave (por exemplo, nenhum modelo) ou a publicação falhou | Abra o passo em vermelho e leia a mensagem. O site anterior continua no ar |
-| ✗ em "Publicar" com aviso sobre Pages | O Pages não está configurado para GitHub Actions | Settings → Pages → Source: **GitHub Actions** |
+| ✗ em "Publicar" com aviso sobre Pages | O Pages não está configurado para GitHub Actions | Veja a seção 0, "Configuração inicial" |
+| ✗ em "Publicar" citando *environment* ou *branch* | A branch `main` não está liberada no ambiente `github-pages` | Settings → Environments → github-pages → permita a `main` |
+| Capturas demoradas ou todas refeitas | Primeira execução, ou o cache expirou (o GitHub apaga caches sem uso por 7 dias) | Normal: cada modelo leva alguns segundos (cerca de 3 s nos testes). A partir da próxima execução, só os modelos alterados são fotografados |
 
 Para refazer a publicação sem mudar nada: aba **Actions** → **Publicar catálogo** → **Run workflow**.
 
