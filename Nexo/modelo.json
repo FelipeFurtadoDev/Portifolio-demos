@@ -1,0 +1,16 @@
+{
+  "marca": "NEXO / Estúdio Facial",
+  "segmento": "Estética facial",
+  "ordem": 70,
+  "descricao": "Estúdio de cuidados faciais não invasivos com linguagem gráfica suíça: retrato fatiado em faixas na capa, título que atravessa a foto, petróleo, lima e lavanda.",
+  "caracteristicas": [
+    "Capa-pôster com a foto em cinco faixas e o título cortando a imagem",
+    "Atlas de cuidados em faixas verticais que se expandem, com detalhes por cuidado",
+    "Contato direto pelo WhatsApp, sem formulário, com aviso em modo demonstração"
+  ],
+  "cores": {
+    "fundo": "#13282B",
+    "texto": "#F4F5EE",
+    "textoSecundario": "#AFB8F2"
+  }
+}
