@@ -39,10 +39,11 @@ window.PULSO_CONFIG = {
     practical: "Leve ou busque o carro no estúdio. Os valores são combinados depois da avaliação."
   },
 
-  /* Mensagem do WhatsApp. {cuidado} é trocado pelo cuidado escolhido. */
+  /* Mensagem do WhatsApp. {cuidado} é trocado pelo cuidado escolhido; {foco}, pela área do interior. */
   message: {
     base: "Olá! Vi o site do PULSO Auto Care e gostaria de conversar sobre o meu carro.",
-    withService: "Olá! Vi o site do PULSO Auto Care e gostaria de conversar sobre {cuidado} no meu carro."
+    withService: "Olá! Vi o site do PULSO Auto Care e gostaria de conversar sobre {cuidado} no meu carro.",
+    withFocus: "Olá! Vi o site do PULSO Auto Care e gostaria de conversar sobre {cuidado} no meu carro, principalmente {foco}."
   },
 
   /* Os quatro cuidados. `id` liga o serviço aos pontos do carro e ao contato. */
@@ -69,11 +70,14 @@ window.PULSO_CONFIG = {
     }
   ],
 
-  /* Duas visualizações do carro. `ratio` é largura/altura da imagem exibida. */
+  /* Duas visualizações do carro. Cada uma tem a sua própria lista:
+     por fora, três cuidados; por dentro, um serviço (higienização interna)
+     com quatro áreas de atenção. */
   views: [
     {
       id: "fora",
       label: "Por fora",
+      heading: "Três cuidados para a parte externa",
       alt: "Lateral de um carro laranja com retrovisor, porta, para-lama e roda em primeiro plano",
       src: "assets/img/fora-1200.webp",
       srcset: "assets/img/fora-720.webp 720w, assets/img/fora-1200.webp 1200w",
@@ -83,6 +87,7 @@ window.PULSO_CONFIG = {
     {
       id: "dentro",
       label: "Por dentro",
+      heading: "Higienização interna: quatro áreas de atenção",
       alt: "Interior de um carro com volante, câmbio e bancos de couro vermelho",
       src: "assets/img/dentro-854.webp",
       srcset: "assets/img/dentro-600.webp 600w, assets/img/dentro-854.webp 854w",
@@ -91,63 +96,60 @@ window.PULSO_CONFIG = {
     }
   ],
 
-  /* Pontos sobre as fotos. x e y são porcentagens da imagem exibida
-     (0 a 100), então acompanham a foto em qualquer largura. Só coloque
-     pontos em regiões que aparecem na foto. */
+  /* Pontos sobre as fotos: cada item da lista é um ponto. x e y são
+     porcentagens da imagem exibida (0 a 100). Só coloque pontos em regiões
+     que aparecem na foto. `edge: "baixo"` marca uma área que fica logo abaixo
+     do enquadramento (o ponto vira uma seta na borda da foto).
+     `service` liga o ponto ao contato; `focus` complementa a mensagem. */
   hotspots: [
     {
-      id: "porta", view: "fora", x: 30, y: 44, service: "polimento",
-      title: "Lateral e porta",
-      text: "É na lateral que os reflexos mostram marcas de lavagem e opacidade. Avaliamos a pintura antes de escolher produto e etapas.",
-      includes: ["Lavagem e descontaminação", "Avaliação sob luz direta", "Polimento em etapas"]
+      id: "polimento", view: "fora", x: 30, y: 44, service: "polimento",
+      title: "Polimento técnico",
+      where: "Lateral e porta",
+      text: "Na lateral, os reflexos mostram marcas de lavagem e opacidade. Avaliamos a pintura sob luz direta antes de escolher produto e etapas.",
+      includes: ["Lavagem e descontaminação", "Polimento em etapas", "Bordas e frisos protegidos"]
     },
     {
-      id: "paralama", view: "fora", x: 64, y: 24, service: "protecao",
-      title: "Para-lama e capô",
-      text: "Depois de preparada, a pintura recebe selante ou revestimento. A durabilidade depende do produto e da manutenção.",
-      includes: ["Preparação da pintura", "Produto indicado para o seu uso", "Orientação de manutenção"]
+      id: "protecao", view: "fora", x: 64, y: 24, service: "protecao",
+      title: "Proteção de pintura",
+      where: "Para-lama e capô",
+      text: "Com a pintura preparada, aplicamos selante ou revestimento indicado para o seu uso. A durabilidade depende do produto e da manutenção.",
+      includes: ["Preparação da pintura", "Produto indicado para o seu uso", "Orientação de lavagem"]
     },
     {
-      id: "roda", view: "fora", x: 66, y: 80, service: "externo",
-      title: "Roda e pneu",
-      text: "Aro, raios e miolo pedem escovas e produtos diferentes dos da pintura, de acordo com o acabamento da roda.",
-      includes: ["Limpeza de aro, raios e miolo", "Pneu limpo", "Produto compatível com o acabamento"]
+      id: "externo", view: "fora", x: 66, y: 80, service: "externo",
+      title: "Rodas e superfícies externas",
+      where: "Roda, pneu, vidros e frisos",
+      text: "Aro, raios e miolo pedem escovas e produtos diferentes dos da pintura. Vidros, retrovisores, frisos e plásticos recebem o produto certo para cada material.",
+      includes: ["Aro, raios e pneu", "Vidros e retrovisores", "Frisos e plásticos"]
     },
     {
-      id: "retrovisor", view: "fora", x: 14, y: 10, service: "externo",
-      title: "Retrovisor e vidros",
-      text: "Vidros e retrovisores são limpos sem deixar marcas de água, e as partes plásticas e emborrachadas recebem o produto adequado.",
-      includes: ["Vidros e retrovisores", "Plásticos e borrachas", "Acabamento final"]
+      id: "bancos", view: "dentro", x: 79, y: 42, service: "interior", focus: "os bancos e estofados",
+      title: "Bancos e estofados",
+      where: "Couro, tecido e costuras",
+      text: "Aspiramos costuras e frestas e limpamos conforme o material. O couro recebe produto próprio e hidratação.",
+      includes: ["Aspiração de costuras e frestas", "Limpeza conforme o material", "Hidratação do couro"]
     },
     {
-      id: "friso", view: "fora", x: 25, y: 76, service: "externo",
-      title: "Frisos e molduras",
-      text: "Frisos cromados e molduras acumulam resíduos nas bordas. A limpeza é feita com ferramentas pequenas e sem riscar o entorno.",
-      includes: ["Frisos e molduras", "Saídas de ar externas", "Bordas e frestas"]
+      id: "painel", view: "dentro", x: 38, y: 17, service: "interior", focus: "o painel e os comandos",
+      title: "Painel e comandos",
+      where: "Painel, saídas de ar e botões",
+      text: "Pincéis macios e pouco líquido perto da parte elétrica. O acabamento fica limpo, sem brilho excessivo.",
+      includes: ["Saídas de ar", "Botões e telas", "Acabamento fosco"]
     },
     {
-      id: "banco", view: "dentro", x: 80, y: 44, service: "interior",
-      title: "Bancos de couro",
-      text: "O couro é limpo e hidratado com produto próprio para o material. Antes, aspiramos costuras e frestas.",
-      includes: ["Aspiração completa", "Limpeza do couro", "Hidratação do couro"]
+      id: "console", view: "dentro", x: 56, y: 52, service: "interior", focus: "o console e as superfícies de contato",
+      title: "Console e superfícies de contato",
+      where: "Câmbio, volante e console",
+      text: "São as partes que você mais toca. Limpamos câmbio, volante, teclas e molduras chegando aos cantos, sem soltar peças.",
+      includes: ["Câmbio e volante", "Teclas e frestas", "Molduras"]
     },
     {
-      id: "volante", view: "dentro", x: 36, y: 66, service: "interior",
-      title: "Volante e painel",
-      text: "Volante, painel e comandos são limpos com cuidado para não ressecar nem deixar brilho excessivo.",
-      includes: ["Volante e comandos", "Painel e plásticos", "Acabamento fosco"]
-    },
-    {
-      id: "console", view: "dentro", x: 57, y: 54, service: "interior",
-      title: "Console e câmbio",
-      text: "Teclas, frestas e molduras do console acumulam poeira. A limpeza chega a esses cantos sem soltar peças.",
-      includes: ["Console e câmbio", "Teclas e frestas", "Molduras metálicas"]
-    },
-    {
-      id: "saidas", view: "dentro", x: 24, y: 14, service: "interior",
-      title: "Saídas de ar e comandos",
-      text: "Saídas de ar e botões são limpos com pincéis macios e sem excesso de líquido perto da parte elétrica.",
-      includes: ["Saídas de ar", "Botões e comandos", "Telas e acabamentos"]
+      id: "tapetes", view: "dentro", x: 16, y: 100, edge: "baixo", service: "interior", focus: "os tapetes e revestimentos",
+      title: "Tapetes e revestimentos",
+      where: "Abaixo do enquadramento",
+      text: "O assoalho não aparece nesta foto, mas faz parte da higienização: tapetes, carpete e revestimentos de porta são aspirados e limpos.",
+      includes: ["Tapetes e carpete", "Revestimentos de porta", "Porta-objetos"]
     }
   ],
 
@@ -167,6 +169,9 @@ window.PULSO_CONFIG = {
     { use: "Gotas", text: "Vitalii Abakumov / Unsplash" },
     { use: "Polimento", text: "Neelabh Raj / Unsplash" },
     { use: "Farol", text: "Kyle Winkle / Unsplash" },
-    { use: "Roda", text: "Ian Edokov / Unsplash" }
+    { use: "Roda", text: "Ian Edokov / Unsplash" },
+    { use: "Avaliar", text: "Zac Nielson / Unsplash" },
+    { use: "Cuidar", text: "Zulfahmi Khani / Unsplash" },
+    { use: "Entregar", text: "recorte da imagem da capa" }
   ]
 };

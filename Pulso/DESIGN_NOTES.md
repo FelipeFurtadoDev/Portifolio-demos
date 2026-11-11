@@ -1,46 +1,56 @@
 # PULSO Auto Care: notas de design e decisões técnicas
 
-Modelo 09 do catálogo. Segunda proposta comercial do nicho de estética automotiva, criada como alternativa estrutural ao VÉRTICE (04).
+Modelo 09 do catálogo, segunda proposta do nicho de estética automotiva e alternativa ao VÉRTICE (04).
 Assinatura: "Seu carro em outra frequência."
-Data: 11/11/2026.
 
-Skill Frontend Design da Anthropic: carregada e aplicada (plano de tokens e wireframes mentais antes do código, revisão do plano contra o briefing e contra o VÉRTICE).
+- **Versão 1:** 11/11/2026, de manhã.
+- **Revisão criativa e funcional (versão 2):** 11/11/2026. Esta versão ainda **não foi aprovada**; este documento descreve a versão 2.
 
-Documentos consultados:
-- `docs/01_NEGOCIO_E_PUBLICO.md`, `docs/02_NICHOS_E_OBJETIVOS.md`, `docs/acervo_design_landing_pages.md`, `docs/guia_componentes_diferenciacao.md`;
-- `DESIGN_NOTES.md` dos modelos 04 (VÉRTICE), 07 (NEXO) e 08 (AVELA), mais `index.html` e `js/config.js` do 04;
-- os `fontes-locais.css` dos modelos 03, 05, 06 e 07, para não repetir famílias tipográficas. Os `DESIGN_NOTES.md` dos modelos 01, 02, 03, 05 e 06 **não** foram lidos.
+**Skills.** Frontend Design da Anthropic foi carregada e aplicada nas duas versões. Na revisão, a skill `gsap-scrolltrigger` foi consultada; `gsap-core`, `gsap-timeline` e `gsap-plugins` não foram abertas (ver seção 6).
 
-A fotografia enviada junto com o briefing (sedã azul em três quartos, estúdio com luz laranja) foi usada como capa porque encaixou na paleta e na composição. O briefing a tratava como referência, não como obrigação.
+**Documentos consultados na revisão:**
+- `docs/guia_componentes_diferenciacao.md` (repertório, distribuição e teste de diferenciação);
+- `DESIGN_NOTES.md` do VÉRTICE (04) e do AVELA (08), que também usa o componente 15;
+- a configuração de créditos do VÉRTICE, para confirmar a origem das fotos reaproveitadas.
+
+Os `DESIGN_NOTES.md` dos modelos 01, 02, 03, 05 e 06 não foram relidos. O histórico de componentes abaixo vem do guia e dos registros do AVELA.
 
 ---
 
-## 1. Identidade e conceito
+## 1. Crítica que motivou a revisão
 
-**Performance visual, em claro.** O nome sugere batimento, e o grafismo da marca é a **linha de pulso**: um traço que sobe e desce, usado no símbolo, no sublinhado da capa e como marcador de seção. O contraste é entre áreas claras (gelo), uma grande área de azul elétrico e fotografias intensas. Os cortes são diagonais e os botões e abas são paralelogramos.
+Na versão 1, a macroestrutura era capa → serviços → galeria → contato, a mesma sequência do VÉRTICE. Os hotspots, a cor e as fotos trocavam a superfície, mas não a forma da página. Havia três problemas concretos:
 
-O que dá personalidade sem virar painel de carro:
-- botões, abas e marcadores inclinados (-12°), como o "tombo" de uma letra itálica;
-- **riscos direcionais** (três traços inclinados) na capa e no botão principal;
-- cantos recortados em 45° nas fotos e no cartão de contato;
-- título em fonte larga e pesada, levemente inclinado.
+1. **Capa estática.** O parallax deslocava poucos pixels e não criava nenhuma passagem para o conteúdo.
+2. **Lista inconsistente.** A lista mostrava sempre os quatro serviços. No interior, só um deles fazia sentido para vários pontos.
+3. **Blocos independentes.** As seções não se ligavam visualmente nem na narrativa.
 
-Evitado de propósito: instrumentos, velocímetro, bandeira quadriculada, números de corrida, fundo preto contínuo, "linha de luz" e lanterna de inspeção (VÉRTICE).
+## 2. O que foi preservado e o que foi reformulado
 
-## 2. Arquitetura implementada
+| | Preservado | Reformulado |
+|---|---|---|
+| Identidade | Paleta gelo, asfalto, azul elétrico e coral; Anybody e Instrument Sans; linha de pulso; paralelogramos e cortes diagonais | — |
+| A · Impacto | Fotografia do sedã azul, título, CTAs, riscos e faixas | Virou uma **cena de rolagem** (seção 6), com título maior e quebrado em três linhas |
+| B · Cuidados | Fotos fora e dentro, abas e pontos em % | Foto à esquerda e **lista que muda com a vista**, sincronizada com os pontos. O popover flutuante foi removido: o item da lista é o painel de informação (seção 5) |
+| C · Detalhes | Composição das quatro fotos sobre azul | Sem mudança |
+| D · Método | — | **Seção nova** com traçado SVG (seção 7) |
+| E · Contato | Cartão, WhatsApp demonstrativo e mensagem pronta | A mensagem inclui a área do interior escolhida. O texto agora liga a avaliação à conversa. O traçado do método termina no título do contato |
 
-Quatro momentos. Cada um responde a uma pergunta do visitante:
+**Ordem dos momentos:** foi mantida a do briefing. O método fica imediatamente antes do contato porque a primeira etapa, "Avaliar", começa justamente por uma conversa. A linha que sai de "Entregar" termina no título "Vamos conversar sobre o seu carro", e o contato passa a ser a continuação do método, não um bloco à parte.
 
-| | Pergunta | Fundo | Composição |
+## 3. Arquitetura (cinco momentos)
+
+| | Pergunta do visitante | Fundo | Composição |
 |---|---|---|---|
-| **A · Impacto** | "Que lugar é este?" | Foto em sangria total sobre azul-noite | Título e CTAs à esquerda, carro à direita; riscos e faixas como camadas; corte diagonal na base |
-| **B · Explore os cuidados** | "O que fazem no meu carro?" | Gelo, com bloco azul inclinado atrás da foto | Lista dos 4 cuidados à esquerda; foto do carro com pontos à direita; abas "Por fora" e "Por dentro" |
-| **C · Superfícies e detalhes** | "Como é o trabalho de perto?" | Azul elétrico, com cortes diagonais em cima e embaixo | Quatro fotos em escalas e proporções diferentes, deslocadas, com legendas curtas |
-| **D · Contato** | "Como falo com eles?" | Gelo, com cartão escuro inclinado | Frase, escolha opcional do cuidado, mensagem pronta, WhatsApp, endereço e horários |
+| **1 · Impacto** | "Que lugar é este?" | Azul-noite e foto em sangria | Cena presa por ~70% da altura da tela; o plano gelo sobe na diagonal e vira a seção 2 |
+| **2 · Explore os cuidados** | "O que fazem no meu carro?" | Gelo, com placa azul inclinada atrás da foto | Foto com pontos numerados à esquerda; título, abas e lista à direita |
+| **3 · Superfícies e detalhes** | "Como é de perto?" | Azul elétrico | Quatro fotos assimétricas |
+| **4 · Método PULSO** | "Como funciona?" | Gelo | Três etapas em zigue-zague, ligadas por um percurso que se desenha com a rolagem |
+| **5 · Contato** | "Como falo com eles?" | Gelo, contínuo ao método | Mensagem pronta e cartão escuro com WhatsApp |
 
-Topo fixo (marca, três destinos e "Conversar"; menu em painel abaixo de 900 px) e faixa de demonstração coral. O rodapé fica dentro do D: marca, aviso de demonstração e créditos. **Não há quinta seção de CTA.**
+O menu ganhou "Método".
 
-## 3. Tipografia e paleta
+## 4. Tipografia e paleta
 
 | Token | Hex | Uso | Contraste |
 |---|---|---|---|
@@ -49,7 +59,7 @@ Topo fixo (marca, três destinos e "Conversar"; menu em painel abaixo de 900 px)
 | Azul elétrico | `#1769E8` | Seção C, bloco atrás da foto, ponto ativo | Branco sobre azul: 5,0:1. Azul sobre gelo: só 4,4:1, por isso **não é usado em texto pequeno** |
 | Coral energético | `#FF6542` | Botões, faixa de demonstração, ponto, marcadores | Asfalto sobre coral: 5,6:1. Coral nunca é cor de texto sobre gelo |
 | Aço claro | `#B9C6D0` | Texto secundário sobre asfalto | 9,4:1 |
-| Azul profundo | `#0F52C2` (**criado**) | Foco e links sobre gelo | 6,2:1 sobre gelo |
+| Azul profundo | `#0F52C2` (**criado**) | Foco, links e verbos ativos do método sobre gelo | 6,2:1 sobre gelo |
 | Tinta secundária | `#4A5C69` (**criado**) | Texto secundário sobre gelo | 6,1:1 |
 | Noite | `#0C141B` (**criado**) | Fundo da capa, atrás da foto | |
 
@@ -61,147 +71,208 @@ A paleta do briefing foi mantida; só foram acrescentadas as variantes necessár
 - Sem caixa alta nos rótulos, sem palavra destacada nos títulos e sem monoespaçada.
 - Hoje carregadas pelo Google Fonts (conferido no navegador que `Anybody 500–900` e `Instrument Sans 400–700` carregaram). O script `tools/baixar-recursos.ps1` gera a versão local; **não foi executado**.
 
-## 4. Estratégia fotográfica
 
-| Papel | Foto | Origem | Como aparece |
+Os verbos do método ("Avaliar", "Cuidar", "Entregar") usam Anybody a 140% de largura, inclinada. Mudam de asfalto para azul profundo quando o traçado chega à etapa. A cor muda, mas o texto nunca depende da animação para ficar legível.
+
+## 5. Hotspots (componente 03, protagonista)
+
+**A inconsistência foi corrigida por dados.** Cada vista tem a sua lista, e **cada item é um ponto**: o mesmo objeto de `config.hotspots` gera o ponto na foto e o item na lista.
+
+| Vista | Título da lista | Itens (= pontos) |
+|---|---|---|
+| Por fora | "Três cuidados para a parte externa" | 1 Polimento técnico (lateral e porta) · 2 Proteção de pintura (para-lama e capô) · 3 Rodas e superfícies externas (roda, pneu, vidros e frisos) |
+| Por dentro | "Higienização interna: quatro áreas de atenção" | 1 Bancos e estofados · 2 Painel e comandos · 3 Console e superfícies de contato · 4 Tapetes e revestimentos |
+
+- No interior, os quatro itens são **áreas de um mesmo serviço**, e não serviços vendidos separadamente. O título da lista diz isso, e todos levam ao cuidado "Higienização interna" no contato.
+- **Tapetes:** o assoalho não aparece na foto. Em vez de colocar um ponto falso, o ponto 4 fica **na borda inferior da imagem, com uma seta para baixo**. O nome acessível e a lista dizem "abaixo do enquadramento", e o texto explica que o assoalho não aparece nesta foto.
+- Na versão 1, o externo tinha cinco pontos; os de retrovisor e friso foram incorporados ao item "Rodas e superfícies externas".
+- **Sincronização nos dois sentidos:**
+  - clicar ou tocar no ponto seleciona o item, que se abre com texto, três itens e "Conversar sobre isto";
+  - clicar no item seleciona o ponto;
+  - passar o mouse ou focar num deles realça o outro;
+  - o ponto ativo fica azul e mostra uma etiqueta com o nome;
+  - os pontos e os itens têm o mesmo número.
+- **Acessibilidade:**
+  - pontos com `aria-pressed` e `aria-controls`; itens com `aria-expanded`;
+  - abas com setas, Home e End;
+  - sem JS, um `<noscript>` lista as duas vistas.
+- **Contato:** escolher um ponto ou item preenche o cuidado e a área. Por exemplo: "…sobre higienização interna no meu carro, principalmente os tapetes e revestimentos". Trocar de aba abre o primeiro item sem alterar o contato.
+- **Celular:** a lista fica abaixo da foto. Ao tocar num ponto, a página rola até o item, se ele estiver fora da tela.
+
+## 6. Cena de abertura (componente 14, apoio)
+
+**Como funciona:** a capa fica em `position: sticky` dentro de um trilho mais alto que ela. São cerca de 70% da altura da janela de rolagem "presa", e o JS só calcula o progresso (0 a 1). Nada salta: não há espaçador inserido nem troca de `position` durante a rolagem.
+
+Coreografia, do fundo para a frente:
+
+| Camada | Movimento | Papel |
+|---|---|---|
+| Foto | Aproxima-se até 7% e sobe 4% | Fundo lento. O limite de 7% evita amolecer a imagem |
+| Riscos (topo) | Atravessam ~62% da largura da tela para a esquerda | Velocidade, sem passar sobre a carroceria |
+| Título | Cada linha escapa para a esquerda numa velocidade (10, 19 e 28 vw); o bloco sobe e some entre 30% e 66% do trajeto | Tipografia em primeiro plano |
+| Faixas coral e azul | Saem para a esquerda | Primeiro plano rápido |
+| Plano gelo com aresta coral | Sobe na diagonal até cobrir ~46% da capa | É a própria seção seguinte chegando: quando a cena termina, ele continua como fundo de "Explore os cuidados" |
+
+**Suavização:** um "scrub" com pequeno atraso (interpolação de 20% por quadro) evita trancos com a roda do mouse.
+
+**Quando a cena não roda:**
+- só funciona com tela de **900 px de largura e 640 px de altura ou mais**, e sem `prefers-reduced-motion`;
+- abaixo disso (celular, tablet vertical, notebook baixo como 1366×560), a página não fica presa. Fora do movimento reduzido há uma versão leve: a foto desce até 36 px e os riscos cruzam a tela. Com movimento reduzido, não há movimento algum.
+
+**Por que JS nativo e não GSAP:**
+- a skill `gsap-scrolltrigger` foi consultada. Dela vieram três ideias: animar os filhos e não o elemento preso, usar "scrub" com atraso e recalcular depois de fontes e redimensionamentos;
+- o ambiente de trabalho não tem internet para baixar uma cópia local do GSAP, e carregá-lo por CDN tornaria a abertura dependente de um serviço externo;
+- as duas animações só precisam de um valor de progresso, e `sticky` resolve o "pin" sem espaçador;
+- se a cena crescer no futuro, ScrollTrigger com `scrub` e `pin` seria a substituição natural.
+
+## 7. Método PULSO (componente 15, recurso da revisão)
+
+**Conteúdo real e verificável, sem números nem promessas:**
+- **Avaliar:** olhar o carro com o cliente, sob luz; você sai sabendo o que será feito, o valor e o prazo.
+- **Cuidar:** executar o combinado, com o produto certo e áreas sensíveis protegidas; se surgir algo fora do combinado, o estúdio fala antes.
+- **Entregar:** ver o carro na luz, entender o que foi feito e levar orientações de conservação.
+
+**Composição:**
+- `<ol>` com três etapas em zigue-zague: texto à esquerda e foto retrato à direita; foto larga à esquerda e texto à direita; texto à esquerda e foto do carro à direita;
+- verbos em escala de título;
+- nenhum cartão: cada etapa é texto e foto soltos sobre o gelo.
+
+**Traçado:**
+- o caminho é **calculado a partir da posição real dos marcos**, então funciona em qualquer largura;
+- ele corre em faixas livres: na margem esquerda, no vão entre foto e texto e nos espaços entre as etapas. Faz curvas arredondadas e **nunca cruza texto**. Isso foi corrigido na revisão: a primeira versão, com curvas livres, atravessava um parágrafo;
+- antes de cada marco, a linha faz o **pulso da marca** (sobe, desce, sobe) e entra no marco;
+- depois de "Entregar", desce e termina na margem do título do contato.
+
+**Animação:**
+- há uma trilha pontilhada em aço (o caminho inteiro, sempre visível) e uma linha coral que se desenha com a rolagem, por `stroke-dashoffset`;
+- quando a linha cruza um marco, ele fica coral, o verbo fica azul e a foto da etapa se revela por um corte diagonal (`clip-path`, 0,8 s);
+- tudo é reversível ao rolar para cima.
+
+**Sem animação:**
+- sem JS, não há SVG, e as etapas e fotos aparecem completas;
+- com movimento reduzido, o traçado aparece inteiro, as etapas ficam ativas e não há revelação.
+
+O SVG é `aria-hidden`; a informação está no texto da lista ordenada.
+
+**Diferença em relação ao AVELA (08), que também usa o 15:** lá, o SVG é um ornamento de marca (o "fio de calda") desenhado uma vez no logotipo e reaproveitado como marcador. Aqui, o SVG **explica uma sequência real**, liga fotos e etapas e acompanha a rolagem.
+
+## 8. Estratégia fotográfica
+
+| Papel | Foto | Origem | Uso |
 |---|---|---|---|
-| **A · Capa** | Sedã azul-elétrico em três quartos, piso brilhante, luz laranja | Arquivo enviado com o briefing. Apresenta marca de gerador de imagens no canto inferior direito e parece gerada por IA. **Origem e licença a confirmar** | Sangria total; recorte de 40 px na base para remover a marca; versões 900, 1276 (original) e 1914 px (ampliação por reamostragem, sem detalhe novo) |
-| **B · Por fora** | Lateral de carro laranja com retrovisor, porta, para-lama e roda | Unsplash, Bailey Mahon (a mesma foto usada na galeria do VÉRTICE) | Recorte 4:5; cinco pontos |
-| **B · Por dentro** | Interior com volante, câmbio e bancos de couro vermelho | Unsplash, Douglas Fehr (a mesma do VÉRTICE) | Recorte 4:5; quatro pontos |
-| **C · Gotas** | Gotas sobre pintura prateada | Unsplash, Vitalii Abakumov (VÉRTICE) | Retrato 3:4, escala grande |
-| **C · Polimento** | Politriz vermelha com fita de proteção | Unsplash, Neelabh Raj (VÉRTICE) | Retrato 4:5, deslocada para baixo |
-| **C · Farol** | Farol azul-marinho com feixe de luz | Unsplash, Kyle Winkle (VÉRTICE) | Paisagem 3:2, ao lado do título |
-| **C · Roda** | Raios de roda de liga com pinça vermelha | Unsplash, Ian Edokov (VÉRTICE) | Paisagem 3:2 |
+| Capa | Sedã azul em três quartos, estúdio com luz laranja | Enviada com o briefing; parece gerada por IA; **origem e licença a confirmar** | Sangria total, com recorte na base para remover a marca do gerador |
+| Por fora | Lateral, porta, para-lama e roda de carro laranja | Bailey Mahon / Unsplash (também no VÉRTICE) | 4:5, três pontos |
+| Por dentro | Volante, câmbio e bancos de couro vermelho | Douglas Fehr / Unsplash (também no VÉRTICE) | 4:5, quatro pontos (um na borda) |
+| Detalhes | Gotas, politriz, farol e roda | Vitalii Abakumov, Neelabh Raj, Kyle Winkle e Ian Edokov / Unsplash (também no VÉRTICE) | Sem mudança |
+| **Avaliar** (nova) | Profissional examina de perto a pintura escura | Zac Nielson / Unsplash (estava no VÉRTICE como "inspeção") | Retrato 3:4 |
+| **Cuidar** (nova) | Carro coberto de espuma num box iluminado | Zulfahmi Khani / Unsplash (estava no VÉRTICE como "detalhamento completo") | Paisagem 3:2, a maior foto da seção |
+| **Entregar** (nova) | Farol e capô do sedã azul refletindo a luz | **Recorte da capa** (666 × 444 px) | Paisagem: o carro da abertura volta na entrega e fecha a narrativa |
 
-**Limitação real e decisão:** o ambiente de trabalho não tem acesso à internet para baixar imagens, e eu só uso fotografias que consegui ver (para posicionar pontos em regiões que existem). Por isso **seis das sete fotos aparecem também no VÉRTICE**. Elas foram copiadas (o modelo 04 não foi alterado) e recortadas de outra forma. É o ponto mais fraco do modelo em relação ao briefing, que pedia um conjunto novo e mais colorido. Está nas pendências.
+- Uma foto do acervo do VÉRTICE ("verniz") foi descartada porque **não tem autor registrado**.
+- Nenhuma foto é apresentada como trabalho da marca: há aviso sob o método e no rodapé.
 
-Cuidados com as fotos:
-- nada é apresentado como trabalho da marca, e não há antes/depois nem comparador;
-- as legendas descrevem o que a foto mostra;
-- a capa e a seção B têm cor, mas as fotos de C são escuras. O azul elétrico de fundo é o que as destaca.
+**Limitação que continua:** o ambiente de trabalho não tem internet para baixar imagens. Por isso, todas as fotos novas também vêm do acervo do VÉRTICE, ou são um recorte da capa. Ver as pendências.
 
-## 5. Componentes escolhidos
+## 9. Componentes do portfólio
 
 ```text
-Componentes escolhidos: ID 03 (protagonista), ID 14 (apoio)
-Objetivos de cada componente:
-  03 Hotspots sobre imagens: o visitante entende o que o estúdio faz em cada região do carro, sem
-     ler uma grade de serviços. Reduz a dúvida "isso inclui o quê?" antes do primeiro contato.
-  14 Parallax em camadas: dá profundidade à capa e liga a fotografia aos grafismos da marca.
-Como influenciaram a arquitetura:
-  03 organiza o momento B inteiro: lista de cuidados + foto com pontos + abas fora/dentro; o
-     serviço escolhido ali alimenta o contato (D). Não existe seção de "serviços" em cartões.
-  14 define a composição da capa: foto em sangria com camadas gráficas independentes (riscos e
-     faixas), em vez de título num bloco e foto em outro.
-Componentes já usados nos modelos comparados:
-  VÉRTICE (04): 01 Antes/depois (planejado) e 14 Parallax (planejado). NEXO (07): 09 Lista de
-  serviços + painel estável e 05. AVELA (08): lookbook de carta. (Conforme o guia; os registros
-  completos dos modelos 01 a 06 não foram relidos.)
-O que foi deliberadamente evitado:
-  grade 2x2 de serviços, galeria com efeito de luz, formulário de orçamento, seção laranja
-  chapada, título sobre faixa de foto, logotipo gigante atravessando a foto, comparador antes/depois.
-Alternativas responsivas / reduzido movimento / sem JS:
-  Lista de cuidados sempre visível (no celular em 2x2). Abaixo de 1000 px o popover vira painel
-  fixo abaixo da foto, e a página rola até ele ao tocar num ponto. Sem JS, a foto aparece e há
-  uma lista estática dos quatro cuidados (<noscript>). Parallax só com ponteiro fino e 900 px ou
-  mais, e desligado com prefers-reduced-motion.
-Pendências e testes observados: ver seções 8 e 9.
+Componentes do PULSO: 03 Hotspots (protagonista), 14 Parallax em camadas (apoio),
+15 SVG animado (recurso adicional pedido na revisão).
+Função comercial:
+  03 mostrar onde cada cuidado atua e o que inclui, e levar o cuidado e a área ao contato.
+  14 dar uma abertura memorável e ligar a capa à seção de cuidados.
+  15 reduzir a insegurança de quem nunca contratou estética automotiva: explicar o que
+     acontece antes, durante e depois.
+Uso dos mesmos componentes em outros modelos (segundo o guia e os registros do AVELA):
+  03: ORLA (06), como apoio. 14: VÉRTICE (04), como apoio sutil. 15: AVELA (08), como ornamento.
+  Outros componentes já usados: 01 VÉRTICE; 02 BOLHA & BENTO; 04 TRAÇO e AVELA;
+  05 e 09 NEXO; 06 ORLA; 08 e 17 FORMA DOCE; 12 TRAÇO.
+O que é específico desta implementação:
+  03 lista e pontos como um único dado, lista por vista, ponto de borda para área fora da foto.
+  14 cena presa curta com o plano da seção seguinte como camada de transição (no VÉRTICE,
+     deslocamento sutil de foto).
+  15 percurso funcional calculado a partir do layout, com o pulso da marca em cada etapa.
+Evitado de propósito:
+  grade de serviços, comparador antes/depois, formulário de orçamento, seção de cor chapada,
+  logotipo gigante atravessando a foto, fluxograma de caixas e setas, três cartões iguais.
 ```
 
-## 6. Parallax da capa
+## 10. Diferenciação em relação ao VÉRTICE (avaliação com base nas capturas desta revisão)
 
-- Três camadas: **foto** (desloca-se 5% da altura da capa ao longo da rolagem, mais ±7 px com o ponteiro, escala fixa de 1,07 para não expor bordas), **faixas** (-7%) e **riscos** (-14%). Só `transform`, via `requestAnimationFrame`.
-- A foto não é recortada nem separada em planos: é uma camada única. Os planos de profundidade vêm dos grafismos, e o carro nunca é deformado.
-- Desligado abaixo de 900 px, sem ponteiro fino e com `prefers-reduced-motion: reduce`. O JS limpa os estilos ao desativar.
-- O único movimento sem ação do usuário é o traço de pulso que se desenha uma vez no carregamento e o anel pulsando nos pontos ainda não abertos. Ambos param com movimento reduzido.
-
-## 7. Hotspots
-
-- Pontos em **porcentagem da imagem exibida** (`x`, `y` em `config.js`). Como a moldura tem a mesma proporção da foto (4:5), os pontos acompanham a imagem em qualquer largura. Nada de `object-fit` que recorte diferente.
-- Cada ponto é um `<button>` de 48 px com nome acessível ("Roda e pneu. Cuidado: Rodas e superfícies externas"), `aria-expanded` e `aria-controls`.
-- **Nove pontos, todos sobre regiões visíveis:** por fora, lateral/porta, para-lama, roda, retrovisor e friso; por dentro, bancos de couro, volante, console/câmbio e saídas de ar.
-- Estado ativo: miolo azul maior com anel branco; os demais pulsam levemente.
-- **Popover:**
-  - a partir de 1000 px fica sobre a página, ao lado do ponto. A posição é calculada com limites da janela (nunca sai da tela) e escolhe lado, abaixo ou acima, evitando cobrir o ponto ativo;
-  - abaixo de 1000 px, encaixa-se logo abaixo da foto;
-  - Esc fecha, e o foco volta ao ponto; clicar no ponto ativo ou fora também fecha (só no modo flutuante).
-- Abas "Por fora" e "Por dentro" (`role=tablist`, setas, Home e End). Ao trocar de aba, o primeiro ponto daquela vista abre sozinho, **sem** escolher o cuidado no contato.
-- A lista de cuidados é a alternativa sempre visível: tocar num cuidado abre o primeiro ponto dele.
-- Clicar em "Conversar sobre este cuidado" ou escolher um ponto/cuidado preenche a mensagem do contato. Não há montador de orçamento.
-
-## 8. Diferenças em relação ao VÉRTICE (teste de diferenciação)
-
-Comparação feita com os arquivos e capturas deste projeto, contra o VÉRTICE (04, mesmo nicho), o AVELA (08, capa com logotipo gigante) e o NEXO (07, lista com painel estável):
-
-| | VÉRTICE | PULSO |
+| | VÉRTICE (04) | PULSO (09) v2 |
 |---|---|---|
-| Capa | Título em bloco claro, foto em faixa e barra laranja de serviços | Foto em sangria total, título e CTAs sobre ela, carro à direita, camadas gráficas e corte diagonal |
-| Geometria | Retângulos, faixas empilhadas | Paralelogramos, diagonais, cantos em 45° |
-| Fotografia | Carro laranja de frente; galeria escura | Carro azul; os detalhes ficam sobre um campo azul |
-| Serviços | Grade 2×2 de cartões com fotos e itens | **Dentro** de uma fotografia, por pontos; lista curta ao lado |
-| Segunda parte | Galeria com lanterna que acompanha o cursor | Composição assimétrica de quatro fotos, sem grade de cartões |
-| Conversão | Formulário de orçamento em seção laranja chapada | Frase, cuidado opcional, mensagem pronta e WhatsApp; sem formulário |
-| Tipografia e cor | Big Shoulders, carbono e laranja | Anybody larga, gelo, azul elétrico e coral |
-| Movimento | Luz de inspeção | Parallax discreto e pontos que abrem informação |
+| Abertura | Título em bloco claro, foto em faixa, barra de serviços | Cena de rolagem: foto em sangria, título que se desfaz em velocidades diferentes, plano diagonal que vira a seção seguinte |
+| Serviços | Grade 2×2 de cartões | Pontos na foto + lista que muda entre fora e dentro |
+| Processo | Três passos curtos no topo do formulário | Seção própria: percurso SVG, verbos em escala de título e fotos que se revelam |
+| Conversão | Formulário de orçamento em seção laranja | Mensagem pronta que reflete o cuidado e a área; o percurso termina no contato |
+| Ritmo | Blocos empilhados de cor alternada | Transições contínuas: diagonal da capa → gelo, azul dos detalhes, gelo do método contínuo ao contato |
+| Geometria e cor | Retângulos, carbono e laranja | Diagonais, paralelogramos, gelo, azul e coral |
 
-Em relação ao AVELA, o PULSO não atravessa a foto com o logotipo (isso foi testado e removido na revisão, ver seção 10). Em relação ao NEXO, a lista de cuidados não é o componente principal: ela acompanha a foto, que é onde a exploração acontece.
+**Avaliação honesta:**
+- **Arquitetura, movimento e conversão:** agora claramente distintos. Mesmo sem interagir, o visitante percebe a cena de abertura, a lista ao lado da foto e o percurso do método.
+- **Fotografia:** continua a parte menos diferenciada. Oito das dez fotos vêm do acervo do VÉRTICE, ainda que em outros recortes e funções; as outras duas são a capa e um recorte dela.
 
-**Avaliação crítica:** a estrutura, a interação e o contato são genuinamente diferentes do VÉRTICE. A fotografia ainda não: seis das sete imagens vêm do mesmo acervo do VÉRTICE, e só a capa e a composição das fotos mudam. Enquanto as fotos não forem trocadas, a diferença fotográfica é parcial.
+## 11. Testes realizados nesta revisão
 
-## 9. Funcionalidades
-- Topo fixo com faixa de demonstração configurável, menu móvel acessível (foco, Esc e fechamento ao navegar) e "pular para o conteúdo".
-- Hotspots e abas como na seção 7.
-- Contato:
-  - cuidado opcional em botões de rádio (sincronizado com a lista da seção B) e mensagem montada pelo `config.js`;
-  - **modo demonstrativo:** o botão mostra um aviso e oferece "Copiar mensagem". Nada é aberto nem enviado, e o link do mapa também mostra aviso;
-  - com `demo.enabled: false` e um número em `contact.whatsapp`, abre `wa.me` com a mensagem; com `contact.mapsUrl`, o link do mapa abre o endereço.
-- Imagens com `srcset`, dimensões declaradas e carregamento tardio fora da capa. `noindex` mantido.
-- `prefers-reduced-motion` respeitado (CSS e JS).
+Ambiente: Live Server e navegador integrado do Claude Desktop.
 
-## 10. Testes realizados (Live Server, navegador integrado do Claude Desktop)
+**Medidos por script**, com a página carregada em quadros nas larguras 360×740, 390×844, 600×900, 768×1024, 900×700, 1024×768, 1100×800, 1440×900, 1366×560 e 390×560:
+- sem rolagem horizontal;
+- todas as imagens carregadas;
+- pontos dentro da foto;
+- verbos do método sem sobrepor as fotos;
+- cena ligada só em 900×700, 1024×768, 1100×800 e 1440×900.
 
-- **Larguras e alturas** (a página carregada em quadros do tamanho exato, medida por script): 360×740, 390×844, 600×900, 768×1024, 900×700, 1024×768, 1100×800, 1440×900, 1366×560 e 390×560. Em todas:
-  - sem rolagem horizontal (`scrollWidth` = `clientWidth`);
-  - 7 de 7 imagens carregadas, sem distorção de proporção;
-  - texto e botões da capa dentro da capa;
-  - fotografia da capa visível na primeira tela, de 300 px (390×560) a 749 px (1440×900);
-  - os nove pontos dentro da imagem;
-  - popover dentro da tela, sem cobrir o ponto ativo nos modos flutuante (1024 a 1440).
-- **Capturas inspecionadas visualmente:** 1440 (capa, cuidados por fora e por dentro com popover, detalhes, contato); 390 (capa, cuidados com painel encaixado, detalhes, contato, menu aberto); 768 (capa, antes e depois do ajuste); 1366×560 (capa). **Só medidos, sem captura:** 360, 600, 900, 1024, 1100 e 390×560.
-- **Teclado:** seta direita na aba "Por fora" troca para "Por dentro" e abre o primeiro ponto; Tab leva ao ponto; Enter fecha/abre; Esc fecha e mantém o foco no ponto.
-- **Menu móvel (390):** abre em painel sob o topo e Esc fecha e devolve o foco ao botão.
-- **Contato demonstrativo:** escolher um cuidado altera chip e mensagem; clicar no WhatsApp mostra o aviso, não abre janela nem altera o endereço, e mostra "Copiar mensagem".
-- **Parallax:** foto, faixas e riscos foram medidos em rolagens de 0 a 600 px (foto desloca 10 px por 200 px; riscos, 28 px) e com um evento de ponteiro. **Não foi feita observação em vídeo** do movimento contínuo.
-- **Console e rede:** só a mensagem do Live Server; 13 recursos na aba de 1440, nenhum com status de erro.
-- **Não testados:** toque real em dispositivo (os cliques foram de mouse), preferência real de movimento reduzido do sistema, leitor de tela, Safari/iOS, GitHub Pages e o script `baixar-recursos.ps1`.
+**Capturas inspecionadas:**
+- **1440×900:** capa no início, a ~50% e no fim da cena; saída para os cuidados; cuidados por fora e por dentro (com o ponto de borda ativo); método em três posições de rolagem (desenho parcial, etapa "Cuidar" ativa, chegada ao contato).
+- **390×844:** capa; cuidados por dentro e por fora, com etiqueta; método na etapa "Cuidar".
+- **768×1024:** capa e etapa "Avaliar".
+- **1366×560:** capa sem cena.
+- 360, 600, 900, 1024 e 1100 foram **só medidos**.
 
-## 11. Problemas encontrados e corrigidos
-1. **Logotipo em contorno atravessando o carro** (primeira versão da capa) competia com a foto e se parecia com o AVELA → removido; a camada passou a ser de faixas.
-2. **Topo "invisível" no celular:** a capa começava abaixo do topo fixo e o fundo claro da página aparecia atrás de logotipo e menu claros → a capa agora tem espaço para o topo e fundo próprio.
-3. **Informação do ponto abaixo da tela no celular:** o painel encaixado ficava fora da primeira tela depois de tocar → a página rola até ele.
-4. **Capa em tablet vertical (768×1024):** carro pequeno e muito espaço vazio → foto maior e texto no topo.
-5. **Popover:** a primeira lógica dependia da largura da foto e cobria os pontos em 1440×900 → passou a usar a janela, com teste de sobreposição.
-6. Nenhum `overflow: hidden` foi usado para esconder problema. Há `overflow: clip` só na capa, que corta a foto ampliada pelo parallax.
+**Interação:**
+- **Hotspots:** em 1440, abas e cliques nos pontos e nos itens; os dois lados sincronizam e a mensagem do contato muda.
+- **Celular (390×844):** todos os sete pontos selecionados, com etiqueta dentro da foto e sem rolagem lateral.
+- **Teclado (1440):** seta para a direita na aba troca para "Por dentro"; Tab até o ponto 3 e Enter seleciona "Console" e atualiza a mensagem.
+- **Contato demonstrativo:** mostra o aviso e "Copiar mensagem", sem sair da página. As cinco âncoras do menu existem.
+- **Console e rede:** na versão final, sem erros nem recursos com falha. O histórico do console tinha erros de uma carga intermediária, com HTML novo e JS antigo durante a gravação; eles não se repetiram.
 
-## 12. Pendências
+**Não testados:**
+- preferência real de movimento reduzido do sistema (o navegador integrado não emula; o comportamento foi conferido só no código);
+- toque físico (os testes de toque foram cliques com emulação móvel);
+- leitor de tela, Safari/iOS e GitHub Pages;
+- observação contínua em vídeo da cena e do traçado (só posições estáticas da rolagem).
+
+## 12. Problemas encontrados e corrigidos na revisão
+
+1. Título maior encostava na carroceria em 1440 → o tamanho foi limitado a 3,5 vw (no máximo 4,4 rem). A foto deslocada para a direita também foi testada e descartada, porque ampliava o carro e cortava a frente.
+2. No fim da cena, sobrava uma faixa escura na esquerda e havia um degrau até a seção seguinte. O plano gelo começava em altura zero à esquerda → a aresta agora começa a 30% da altura.
+3. O traçado do método atravessava o parágrafo de "Avaliar" → o caminho passou a correr por faixas livres, com curvas arredondadas.
+4. O verbo "Entregar" passava por baixo da foto → o texto foi alargado para seis colunas e os verbos ficaram um pouco menores.
+5. As etiquetas dos pontos criavam 64 px de rolagem lateral no celular, mesmo invisíveis → agora só existem quando ativas, quebram linha e escolhem o lado pela posição do ponto.
+6. A placa azul cobria a lista no celular e tirava o contraste do texto → no celular ela fica só atrás da foto.
+7. Gravações no disco chegaram atrasadas em relação ao navegador → cada gravação passou a ser conferida pelo conteúdo servido antes de testar.
+
+## 13. Pendências
 
 ### BLOQUEANTES
-- Nenhuma.
+- Nenhuma conhecida para a demonstração.
 
 ### RECOMENDADAS
-1. **Trocar a foto da capa** por uma de 2400 px ou mais, com licença clara e sem marca de gerador. Hoje ela tem 1276 px (a versão de 1914 px é ampliação). Em telas grandes ou de alta densidade ficará levemente macia. Os emblemas de montadora visíveis no carro também merecem avaliação. Ao trocar, reveja o enquadramento e o escurecimento da esquerda.
-2. **Substituir as fotos reaproveitadas do VÉRTICE** por um conjunto novo e mais colorido (azul, vermelho, couro em tons quentes, gotas sobre pintura azul, polimento em carroceria vermelha), e **reposicionar os pontos** de acordo com cada foto.
-3. Rodar `tools/baixar-recursos.ps1`, trocar o link do Google Fonts por `css/fontes-locais.css` e conferir.
-4. Testar toque real, movimento reduzido real, leitor de tela e Safari/iOS; conferir no GitHub Pages.
-5. Inspecionar visualmente 360, 600, 900, 1024 e 1100 (hoje só medidos).
-6. Gerar uma versão menor de `gotas-1000.webp` (165 KB) e da capa de 1914 px (180 KB), se o desempenho importar.
+1. **Conjunto fotográfico próprio**, com licença clara, para substituir as fotos herdadas do VÉRTICE, inclusive as do método:
+   - capa com 2400 px ou mais e sem marca de gerador;
+   - foto de "Entregar" maior (hoje tem 666 px e fica macia em telas de alta densidade);
+   - interior que mostre o assoalho (o ponto de "Tapetes" pode então sair da borda).
+
+   Ao trocar, reposicione os pontos.
+2. Testar com movimento reduzido real, toque físico, leitor de tela, Safari/iOS e no GitHub Pages; gravar um vídeo da cena e do traçado.
+3. Inspecionar visualmente 360, 600, 900, 1024 e 1100.
+4. Rodar `tools/baixar-recursos.ps1` para usar fontes locais.
+5. Avaliar se a cena deve ficar presa por menos tempo (hoje são 70% da altura da tela), depois de uma rodada com usuários.
 
 ### PUBLICAÇÃO COMERCIAL
-- [ ] `contact.whatsapp` real e `demo.enabled: false`; testar o WhatsApp e o link do mapa.
-- [ ] Endereço, horários, atendimento e Instagram reais.
-- [ ] Textos dos cuidados e dos pontos revistos com o cliente, sem prazos nem garantias que ele não possa cumprir.
-- [ ] Fotos do cliente, com autorização; `Imagem ilustrativa` só deve sair para fotos de trabalhos reais.
-- [ ] Atualizar ou remover os créditos.
-- [ ] Remover `noindex`; revisar `<title>`, `description` e `og:image` (hoje não há imagem de compartilhamento).
-- [ ] Favicon e símbolo do cliente.
-- [ ] Domínio, hospedagem e repetir a auditoria nas larguras depois da troca de conteúdo.
+- [ ] WhatsApp real e `demo.enabled: false`; link do mapa.
+- [ ] Endereço, horários e textos do método revisados com o cliente (só manter o que ele realmente faz, como "falamos antes se surgir algo fora do combinado").
+- [ ] Fotos do cliente com autorização, e créditos atualizados.
+- [ ] Remover `noindex`; revisar título, descrição e `og:image`.
+- [ ] Favicon e símbolo do cliente; domínio e hospedagem; repetir a auditoria nas larguras.

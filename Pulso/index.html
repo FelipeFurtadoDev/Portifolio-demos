@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100..150,500..900&family=Instrument+Sans:wght@400..700&display=swap">
 
   <link rel="preload" as="image" href="assets/img/capa-1914.webp" imagesrcset="assets/img/capa-900.webp 900w, assets/img/capa-1276.webp 1276w, assets/img/capa-1914.webp 1914w" imagesizes="100vw" fetchpriority="high">
-  <link rel="stylesheet" href="css/styles.css?v=5">
+  <link rel="stylesheet" href="css/styles.css?v=14">
 </head>
 <body>
   <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -46,6 +46,7 @@
       <nav class="menu" id="menu" aria-label="Principal">
         <a href="#cuidados">Cuidados</a>
         <a href="#detalhes">Detalhes</a>
+        <a href="#metodo">Método</a>
         <a href="#contato">Contato</a>
         <a class="botao botao--coral botao--pequeno" href="#contato">Conversar</a>
       </nav>
@@ -55,6 +56,7 @@
   <main id="conteudo">
 
     <!-- ============ A · IMPACTO ============ -->
+    <div class="capa-trilho" id="capa-trilho">
     <section class="capa" id="capa" aria-labelledby="capa-titulo">
       <div class="capa__foto" id="capa-foto">
         <img
@@ -74,7 +76,7 @@
       </div>
 
       <div class="capa__texto">
-        <h1 id="capa-titulo" class="capa__titulo">Seu carro em outra frequência.</h1>
+        <h1 id="capa-titulo" class="capa__titulo"><span>Seu carro</span> <span>em outra</span> <span>frequência.</span></h1>
         <p class="capa__apoio">Estúdio de estética e detalhamento automotivo. Polimento, proteção de pintura, rodas e interior, com o cuidado combinado para o seu carro.</p>
         <div class="capa__acoes">
           <a class="botao botao--coral" href="#cuidados">Explorar os cuidados <span class="botao__riscos" aria-hidden="true"></span></a>
@@ -85,11 +87,12 @@
         </svg>
       </div>
 
-      <svg class="corte corte--gelo" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <polygon points="0,10 100,0 100,10" fill="#F3F1EA"/>
-        <polyline points="0,10 100,0" fill="none" stroke="#FF6542" stroke-width="5" vector-effect="non-scaling-stroke"/>
+      <svg class="corte corte--gelo" id="capa-corte" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <polygon points="0,7 100,0 100,10 0,10" fill="#F3F1EA"/>
+        <polyline points="0,7 100,0" fill="none" stroke="#FF6542" stroke-width="5" vector-effect="non-scaling-stroke"/>
       </svg>
     </section>
+    </div>
 
     <!-- ============ B · EXPLORE OS CUIDADOS ============ -->
     <section class="cuidados" id="cuidados" aria-labelledby="cuidados-titulo">
@@ -97,32 +100,31 @@
       <div class="cuidados__grade">
         <header class="cuidados__cab">
           <h2 id="cuidados-titulo" class="titulo-secao">Toque no carro. Veja o cuidado.</h2>
-          <p class="cuidados__intro">Cada ponto abre o que o estúdio faz naquela região. Troque entre a parte externa e o interior para ver os quatro cuidados.</p>
+          <p class="cuidados__intro">Cada ponto da foto corresponde a um item da lista ao lado. Escolha por onde quer começar: por fora ou por dentro.</p>
+          <div class="abas" id="abas" role="tablist" aria-label="Parte do carro"></div>
         </header>
 
-        <div class="servicos" id="servicos" role="group" aria-label="Cuidados oferecidos">
+        <div class="palco-area" id="palco-area">
+          <div class="palco" id="palco"></div>
+          <p class="palco__dica">Fotografias ilustrativas.</p>
+        </div>
+
+        <div class="legenda" id="legenda">
           <noscript>
-            <ul class="servicos__estatica">
+            <h3 class="legenda__titulo">Por fora</h3>
+            <ul class="legenda__estatica">
               <li><strong>Polimento técnico.</strong> Reduz marcas finas de lavagem e a opacidade da pintura.</li>
               <li><strong>Proteção de pintura.</strong> Selante ou revestimento que ajuda a repelir água e facilita a lavagem.</li>
               <li><strong>Rodas e superfícies externas.</strong> Aros, pneus, vidros, frisos e plásticos, cada um com o produto certo.</li>
-              <li><strong>Higienização interna.</strong> Bancos, painel e acabamentos limpos conforme o material.</li>
+            </ul>
+            <h3 class="legenda__titulo">Por dentro: higienização interna</h3>
+            <ul class="legenda__estatica">
+              <li><strong>Bancos e estofados.</strong> Limpeza conforme o material e hidratação do couro.</li>
+              <li><strong>Painel e comandos.</strong> Saídas de ar, botões e telas, sem brilho excessivo.</li>
+              <li><strong>Console e superfícies de contato.</strong> Câmbio, volante, teclas e molduras.</li>
+              <li><strong>Tapetes e revestimentos.</strong> Tapetes, carpete e revestimentos de porta.</li>
             </ul>
           </noscript>
-        </div>
-
-        <div class="palco-area" id="palco-area" data-modo="flutuante">
-          <div class="abas" id="abas" role="tablist" aria-label="Parte do carro"></div>
-          <div class="palco" id="palco"></div>
-          <div class="popover" id="popover" role="region" aria-labelledby="pop-titulo" hidden>
-            <button class="popover__fechar" id="pop-fechar" type="button" aria-label="Fechar informações">×</button>
-            <p class="popover__cuidado" id="pop-cuidado"></p>
-            <h3 class="popover__titulo" id="pop-titulo"></h3>
-            <p class="popover__texto" id="pop-texto"></p>
-            <ul class="popover__lista" id="pop-lista"></ul>
-            <a class="botao botao--coral botao--pequeno popover__acao" id="pop-acao" href="#contato">Conversar sobre este cuidado</a>
-          </div>
-          <p class="palco__dica" id="palco-dica">Toque nos pontos sobre a foto. Fotografias ilustrativas.</p>
         </div>
       </div>
     </section>
@@ -161,15 +163,62 @@
       </div>
     </section>
 
-    <!-- ============ D · CONTATO ============ -->
-    <section class="contato" id="contato" aria-labelledby="contato-titulo">
+    <!-- ============ D · MÉTODO PULSO ============ -->
+    <section class="metodo" id="metodo" aria-labelledby="metodo-titulo">
       <svg class="corte corte--azul-base" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <polygon points="0,0 100,0 0,10" fill="#1769E8"/>
       </svg>
+      <header class="metodo__cab">
+        <h2 id="metodo-titulo" class="titulo-secao">O método PULSO: um caminho só, do primeiro olhar à entrega.</h2>
+        <p>Nada começa sem que você saiba o que será feito. Cada etapa tem um propósito e termina com algo combinado ou explicado.</p>
+      </header>
+
+      <div class="percurso" id="percurso">
+        <ol class="etapas">
+          <li class="etapa etapa--avaliar">
+            <div class="etapa__texto">
+              <span class="etapa__marco" aria-hidden="true"></span>
+              <h3 class="etapa__verbo">Avaliar</h3>
+              <p>Olhamos o carro com você, de perto e sob luz direta: pintura, rodas, vidros e interior. Você conta como usa o carro e o que mais incomoda.</p>
+              <p class="etapa__saida">Você sai sabendo o que será feito, o valor e o prazo.</p>
+            </div>
+            <figure class="etapa__foto">
+              <img src="assets/img/avaliar-960.webp" srcset="assets/img/avaliar-600.webp 600w, assets/img/avaliar-960.webp 960w" sizes="(min-width: 1000px) 30vw, 70vw" width="960" height="1280" loading="lazy" decoding="async" alt="Profissional de boné e luvas pretas examina de perto a pintura escura de um carro">
+            </figure>
+          </li>
+          <li class="etapa etapa--cuidar">
+            <div class="etapa__texto">
+              <span class="etapa__marco" aria-hidden="true"></span>
+              <h3 class="etapa__verbo">Cuidar</h3>
+              <p>Executamos o que foi combinado, em etapas e com o produto indicado para cada superfície. Áreas sensíveis são protegidas antes de começar.</p>
+              <p class="etapa__saida">Se surgir algo fora do combinado, falamos com você antes.</p>
+            </div>
+            <figure class="etapa__foto">
+              <img src="assets/img/cuidar-1400.webp" srcset="assets/img/cuidar-800.webp 800w, assets/img/cuidar-1400.webp 1400w" sizes="(min-width: 1000px) 46vw, 92vw" width="1400" height="933" loading="lazy" decoding="async" alt="Carro coberto de espuma dentro de um box de lavagem iluminado, com os faróis acesos">
+            </figure>
+          </li>
+          <li class="etapa etapa--entregar">
+            <div class="etapa__texto">
+              <span class="etapa__marco" aria-hidden="true"></span>
+              <h3 class="etapa__verbo">Entregar</h3>
+              <p>Você vê o carro com a gente, na luz, antes de levar. Explicamos o que foi feito em cada parte.</p>
+              <p class="etapa__saida">Você leva orientações de lavagem e conservação para o cuidado durar mais.</p>
+            </div>
+            <figure class="etapa__foto">
+              <img src="assets/img/entregar-666.webp" width="666" height="444" loading="lazy" decoding="async" alt="Detalhe do farol e do capô de um sedã azul refletindo as luzes do estúdio">
+            </figure>
+          </li>
+        </ol>
+      </div>
+      <p class="metodo__nota">Fotografias ilustrativas: não mostram atendimentos da marca.</p>
+    </section>
+
+    <!-- ============ E · CONTATO ============ -->
+    <section class="contato" id="contato" aria-labelledby="contato-titulo">
       <div class="contato__grade">
         <div class="contato__texto">
           <h2 id="contato-titulo" class="titulo-secao">Vamos conversar sobre o seu carro.</h2>
-          <p class="contato__intro">Conte o que você quer cuidar. O estúdio avalia o carro e combina serviço, valor e data com você.</p>
+          <p class="contato__intro">A avaliação começa por uma conversa. Conte o que você quer cuidar; o estúdio vê o carro e combina serviço, valor e data com você.</p>
 
           <fieldset class="contexto">
             <legend>Sobre qual cuidado?</legend>
@@ -217,7 +266,7 @@
     </section>
   </main>
 
-  <script src="js/config.js?v=4"></script>
-  <script src="js/main.js?v=4"></script>
+  <script src="js/config.js?v=5"></script>
+  <script src="js/main.js?v=9"></script>
 </body>
 </html>
