@@ -1,0 +1,18 @@
+{
+  "marca": "LASTRO · Bancadas sob medida",
+  "segmento": "Marmoraria: bancadas, ilhas e lavatórios sob medida",
+  "ordem": 120,
+  "descricao": "Para quem não sabe o que informar ao pedir orçamento. A capa traz uma ilha em pedra sob uma faixa ultramarina; depois, o visitante escolhe a peça (reta, em L, ilha ou lavatório), vê o esboço mudar e leva a mensagem pronta, mesmo sem medidas.",
+  "caracteristicas": [
+    "Esboço SVG por peça: o desenho, os campos e o resumo mudam juntos, e todas as medidas são opcionais",
+    "Caminho direto “Já tenho planta ou fotos” para quem prefere ir à conversa",
+    "Ajuda contextual só onde o termo trava: “profundidade” e “recorte”",
+    "Duas fotos em composição editorial: plano aberto e detalhe do recorte da cuba",
+    "Mensagem pronta para copiar, com o WhatsApp vazio na demonstração"
+  ],
+  "cores": {
+    "fundo": "#1F2EB8",
+    "texto": "#FFFFFF",
+    "textoSecundario": "#DDE3FF"
+  }
+}
