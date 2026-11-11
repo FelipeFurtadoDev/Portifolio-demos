@@ -1,18 +1,18 @@
 {
-  "marca": "LASTRO · Bancadas sob medida",
-  "segmento": "Marmoraria: bancadas, ilhas e lavatórios sob medida",
+  "marca": "LASTRO · Pedra natural sob medida",
+  "segmento": "Marmoraria: vitrine de ambientes e acabamentos residenciais",
   "ordem": 120,
-  "descricao": "Para quem não sabe o que informar ao pedir orçamento. A capa traz uma ilha em pedra sob uma faixa ultramarina; depois, o visitante escolhe a peça (reta, em L, ilha ou lavatório), vê o esboço mudar e leva a mensagem pronta, mesmo sem medidas.",
+  "descricao": "Para quem quer ver a pedra aplicada antes de pedir orçamento. A capa abre com uma ilha em luz baixa; depois o visitante abre três ambientes (cozinha, banheiro, sala), amplia as fotos, guarda as referências de que gostou e leva tudo para a conversa em uma mensagem pronta.",
   "caracteristicas": [
-    "Esboço SVG por peça: o desenho, os campos e o resumo mudam juntos, e todas as medidas são opcionais",
-    "Caminho direto “Já tenho planta ou fotos” para quem prefere ir à conversa",
-    "Ajuda contextual só onde o termo trava: “profundidade” e “recorte”",
-    "Duas fotos em composição editorial: plano aberto e detalhe do recorte da cuba",
-    "Mensagem pronta para copiar, com o WhatsApp vazio na demonstração"
+    "Painéis de ambientes que se abrem: cozinha, banheiro e lavabo, sala e estar",
+    "Galeria em tela cheia com teclado, setas e deslize, com 14 fotografias",
+    "Botão “Guardar referência” em todas as fotos, com contador no cabeçalho",
+    "Mosaico de detalhes: polido, fosco, veio, recorte de cuba e borda",
+    "Conversa com as referências e peças escolhidas viradas em mensagem pronta (WhatsApp vazio na demonstração)"
   ],
   "cores": {
-    "fundo": "#1F2EB8",
-    "texto": "#FFFFFF",
-    "textoSecundario": "#DDE3FF"
+    "fundo": "#15110E",
+    "texto": "#F2EADF",
+    "textoSecundario": "#BFB09D"
   }
 }

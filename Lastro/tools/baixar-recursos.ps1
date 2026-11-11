@@ -5,9 +5,8 @@
 #    powershell -ExecutionPolicy Bypass -File tools\baixar-recursos.ps1
 #
 #  Gera:
-#    assets/img/capa-640|1200|1800.webp
-#    assets/img/plano-640|1000|1400.webp
-#    assets/img/detalhe-480|800|1200.webp                          -> 9 arquivos
+#    assets/img/<chave>-<largura>.webp para as 15 fotos (hero, coz1..3, ban1..3,
+#    est1..3, det1..5), 3 larguras cada -> 45 arquivos
 #    assets/fonts/instrument-serif-latin.woff2
 #    assets/fonts/geist-latin.woff2                                -> 2 fontes
 #
@@ -30,11 +29,23 @@ $imgDir  = Join-Path $root 'assets\img'
 $fontDir = Join-Path $root 'assets\fonts'
 New-Item -ItemType Directory -Force -Path $imgDir, $fontDir | Out-Null
 
-# nome (igual ao data-img do HTML), id da foto na Unsplash e larguras (igual a localWidths do config.js)
+# chave (igual ao data-foto do HTML), id da foto na Unsplash e larguras (igual a localWidths do config.js)
 $images = @(
-  @{ name = 'capa';    id = 'photo-1781249144389-4174c1164955'; widths = @(640, 1200, 1800) },
-  @{ name = 'plano';   id = 'photo-1792980191179-67e43ba8d5d4'; widths = @(640, 1000, 1400) },
-  @{ name = 'detalhe'; id = 'photo-1637665609537-26857a32f6cd'; widths = @(480, 800, 1200) }
+  @{ name = 'hero'; id = 'photo-1608635661512-52c656e0d4e5'; widths = @(640, 1200, 1920) },
+  @{ name = 'coz1'; id = 'photo-1723902500173-37fe42ceb22a'; widths = @(480, 960, 1600) },
+  @{ name = 'coz2'; id = 'photo-1627383837659-44f198098ab5'; widths = @(480, 960, 1600) },
+  @{ name = 'coz3'; id = 'photo-1776935359448-fb11f63c375d'; widths = @(480, 960, 1600) },
+  @{ name = 'ban1'; id = 'photo-1792270219154-4178b5ff648a'; widths = @(480, 960, 1600) },
+  @{ name = 'ban2'; id = 'photo-1661107259637-4e1c55462428'; widths = @(480, 960, 1600) },
+  @{ name = 'ban3'; id = 'photo-1564540579594-0930edb6de43'; widths = @(480, 960, 1600) },
+  @{ name = 'est1'; id = 'photo-1785535573662-417e82193598'; widths = @(480, 960, 1600) },
+  @{ name = 'est2'; id = 'photo-1772567732985-6fefa2dff56d'; widths = @(480, 960, 1600) },
+  @{ name = 'est3'; id = 'photo-1759238136854-a43787126db7'; widths = @(480, 960, 1600) },
+  @{ name = 'det1'; id = 'photo-1787539386309-450647434074'; widths = @(480, 800, 1200) },
+  @{ name = 'det2'; id = 'photo-1608635661553-4be8b3659ca3'; widths = @(480, 800, 1200) },
+  @{ name = 'det3'; id = 'photo-1608635661411-b8de70247ea5'; widths = @(480, 800, 1200) },
+  @{ name = 'det4'; id = 'photo-1637665609537-26857a32f6cd'; widths = @(480, 800, 1200) },
+  @{ name = 'det5'; id = 'photo-1627383838244-c475fb74b934'; widths = @(480, 800, 1200) }
 )
 
 $falhas = 0
@@ -63,6 +74,7 @@ try {
   foreach ($m in $blocos) {
     $b = $m.Groups['b'].Value
     $fam = [regex]::Match($b, "font-family:\s*'([^']+)'").Groups[1].Value.ToLower() -replace ' ', '-'
+    if ($b -match 'font-style:\s*italic') { $fam = "$fam-italic" }
     $url = [regex]::Match($b, 'url\(([^)]+)\)').Groups[1].Value
     $nome = "$fam-latin.woff2"
     $out = Join-Path $fontDir $nome
