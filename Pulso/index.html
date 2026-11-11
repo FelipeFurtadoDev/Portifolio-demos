@@ -20,7 +20,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100..150,500..900&family=Instrument+Sans:wght@400..700&display=swap">
 
   <link rel="preload" as="image" href="assets/img/capa-1914.webp" imagesrcset="assets/img/capa-900.webp 900w, assets/img/capa-1276.webp 1276w, assets/img/capa-1914.webp 1914w" imagesizes="100vw" fetchpriority="high">
-  <link rel="stylesheet" href="css/styles.css?v=14">
+  <link rel="stylesheet" href="css/styles.css?v=15">
 </head>
 <body>
   <a class="pular" href="#conteudo">Pular para o conteúdo</a>
@@ -87,10 +87,12 @@
         </svg>
       </div>
 
-      <svg class="corte corte--gelo" id="capa-corte" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-        <polygon points="0,7 100,0 100,10 0,10" fill="#F3F1EA"/>
-        <polyline points="0,7 100,0" fill="none" stroke="#FF6542" stroke-width="5" vector-effect="non-scaling-stroke"/>
-      </svg>
+      <!-- Diagonal da transição: duas camadas com clip-path (vetor puro, sem scale nem will-change).
+           A cena só muda a variável --c (altura da cunha), então a borda é redesenhada a cada quadro. -->
+      <div class="capa__transicao" id="capa-transicao" aria-hidden="true">
+        <span class="capa__aresta"></span>
+        <span class="capa__plano"></span>
+      </div>
     </section>
     </div>
 
@@ -168,49 +170,50 @@
       <svg class="corte corte--azul-base" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false">
         <polygon points="0,0 100,0 0,10" fill="#1769E8"/>
       </svg>
-      <header class="metodo__cab">
-        <h2 id="metodo-titulo" class="titulo-secao">O método PULSO: um caminho só, do primeiro olhar à entrega.</h2>
-        <p>Nada começa sem que você saiba o que será feito. Cada etapa tem um propósito e termina com algo combinado ou explicado.</p>
-      </header>
 
       <div class="percurso" id="percurso">
+        <header class="metodo__cab">
+          <h2 id="metodo-titulo" class="titulo-secao">O método PULSO: do primeiro olhar à entrega.</h2>
+          <p>Nada começa sem que você saiba o que será feito. Cada etapa tem um propósito e termina com algo combinado ou explicado.</p>
+        </header>
+
         <ol class="etapas">
           <li class="etapa etapa--avaliar">
+            <span class="etapa__marco" aria-hidden="true"></span>
             <div class="etapa__texto">
-              <span class="etapa__marco" aria-hidden="true"></span>
               <h3 class="etapa__verbo">Avaliar</h3>
               <p>Olhamos o carro com você, de perto e sob luz direta: pintura, rodas, vidros e interior. Você conta como usa o carro e o que mais incomoda.</p>
               <p class="etapa__saida">Você sai sabendo o que será feito, o valor e o prazo.</p>
             </div>
             <figure class="etapa__foto">
-              <img src="assets/img/avaliar-960.webp" srcset="assets/img/avaliar-600.webp 600w, assets/img/avaliar-960.webp 960w" sizes="(min-width: 1000px) 30vw, 70vw" width="960" height="1280" loading="lazy" decoding="async" alt="Profissional de boné e luvas pretas examina de perto a pintura escura de um carro">
+              <img src="assets/img/avaliar-960.webp" srcset="assets/img/avaliar-600.webp 600w, assets/img/avaliar-960.webp 960w" sizes="(min-width: 900px) 46vw, 88vw" width="960" height="1280" decoding="async" alt="Profissional de boné e luvas pretas examina de perto a pintura escura de um carro">
             </figure>
           </li>
           <li class="etapa etapa--cuidar">
+            <span class="etapa__marco" aria-hidden="true"></span>
             <div class="etapa__texto">
-              <span class="etapa__marco" aria-hidden="true"></span>
               <h3 class="etapa__verbo">Cuidar</h3>
               <p>Executamos o que foi combinado, em etapas e com o produto indicado para cada superfície. Áreas sensíveis são protegidas antes de começar.</p>
               <p class="etapa__saida">Se surgir algo fora do combinado, falamos com você antes.</p>
             </div>
             <figure class="etapa__foto">
-              <img src="assets/img/cuidar-1400.webp" srcset="assets/img/cuidar-800.webp 800w, assets/img/cuidar-1400.webp 1400w" sizes="(min-width: 1000px) 46vw, 92vw" width="1400" height="933" loading="lazy" decoding="async" alt="Carro coberto de espuma dentro de um box de lavagem iluminado, com os faróis acesos">
+              <img src="assets/img/cuidar-1400.webp" srcset="assets/img/cuidar-800.webp 800w, assets/img/cuidar-1400.webp 1400w" sizes="(min-width: 900px) 56vw, 88vw" width="1400" height="933" decoding="async" alt="Carro coberto de espuma dentro de um box de lavagem iluminado, com os faróis acesos">
             </figure>
           </li>
           <li class="etapa etapa--entregar">
+            <span class="etapa__marco" aria-hidden="true"></span>
             <div class="etapa__texto">
-              <span class="etapa__marco" aria-hidden="true"></span>
               <h3 class="etapa__verbo">Entregar</h3>
               <p>Você vê o carro com a gente, na luz, antes de levar. Explicamos o que foi feito em cada parte.</p>
               <p class="etapa__saida">Você leva orientações de lavagem e conservação para o cuidado durar mais.</p>
             </div>
             <figure class="etapa__foto">
-              <img src="assets/img/entregar-666.webp" width="666" height="444" loading="lazy" decoding="async" alt="Detalhe do farol e do capô de um sedã azul refletindo as luzes do estúdio">
+              <img src="assets/img/entregar-666.webp" width="666" height="444" decoding="async" alt="Detalhe do farol e do capô de um sedã azul refletindo as luzes do estúdio">
             </figure>
           </li>
         </ol>
+        <p class="metodo__nota">Fotografias ilustrativas: não mostram atendimentos da marca.</p>
       </div>
-      <p class="metodo__nota">Fotografias ilustrativas: não mostram atendimentos da marca.</p>
     </section>
 
     <!-- ============ E · CONTATO ============ -->
@@ -267,6 +270,6 @@
   </main>
 
   <script src="js/config.js?v=5"></script>
-  <script src="js/main.js?v=9"></script>
+  <script src="js/main.js?v=12"></script>
 </body>
 </html>

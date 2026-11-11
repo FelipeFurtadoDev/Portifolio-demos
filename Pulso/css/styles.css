@@ -176,7 +176,6 @@ button { font: inherit; color: inherit; }
    a capa fica presa enquanto o trilho, mais alto que ela, rola */
 .capa-trilho { position: relative; }
 .cena-ativa .capa { position: sticky; top: 0; }
-.cena-ativa .capa .corte--gelo { transform-origin: 50% 100%; will-change: transform; }
 
 .capa__texto { position: relative; z-index: 2; max-width: min(40vw, 640px); will-change: transform, opacity; }
 .capa__titulo {
@@ -191,6 +190,19 @@ button { font: inherit; color: inherit; }
 @media (prefers-reduced-motion: no-preference) {
   .capa__pulso path { stroke-dasharray: 700; stroke-dashoffset: 700; animation: desenhar 1.5s .35s cubic-bezier(.3, .6, .2, 1) forwards; }
   @keyframes desenhar { to { stroke-dashoffset: 0; } }
+}
+
+/* diagonal capa → cuidados: clip-path (vetor), sem scale e sem will-change.
+   --c é a altura da cunha na ponta direita; a esquerda mede 30% dela. */
+.capa__transicao { position: absolute; inset: 0 0 -1px 0; z-index: 4; pointer-events: none; --c: var(--corte-h); --esp: 5px; }
+.capa__aresta, .capa__plano { position: absolute; inset: 0; display: block; }
+.capa__aresta {
+  background: var(--coral);
+  clip-path: polygon(0 calc(100% - var(--c) * .3), 100% calc(100% - var(--c)), 100% 100%, 0 100%);
+}
+.capa__plano {
+  background: var(--gelo);
+  clip-path: polygon(0 calc(100% - var(--c) * .3 + var(--esp)), 100% calc(100% - var(--c) + var(--esp)), 100% 100%, 0 100%);
 }
 
 .corte { position: absolute; left: 0; width: 100%; height: var(--corte-h); display: block; z-index: 4; pointer-events: none; }
@@ -399,60 +411,65 @@ button { font: inherit; color: inherit; }
   .foto--roda { width: 94%; }
 }
 
-/* --------------------------------------------- D · MÉTODO PULSO */
+/* --------------------------------------------- D · MÉTODO PULSO
+   Um trilho à esquerda (o traçado SVG) acompanha cabeçalho e três etapas.
+   Cada etapa é texto + foto lado a lado, alinhados pelo topo: o marco do
+   trilho, o verbo e o topo da foto ficam na mesma linha. */
 .metodo {
+  --trilho: clamp(34px, 4.4vw, 68px);
+  --verbo: clamp(1.9rem, 3vw, 2.8rem);
   position: relative; background: var(--gelo);
-  padding: calc(var(--corte-h) + clamp(32px, 5vw, 80px)) var(--pad) clamp(56px, 7vw, 110px);
+  padding: calc(var(--corte-h) + clamp(28px, 4vw, 64px)) var(--pad) clamp(36px, 4vw, 64px);
 }
-.metodo__cab { max-width: 1320px; margin: 0 auto clamp(40px, 5vw, 80px); display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 24px 64px; align-items: end; }
-.metodo__cab p { color: var(--tinta-2); max-width: 40ch; }
-.percurso { position: relative; max-width: 1320px; margin: 0 auto; }
+.percurso { position: relative; max-width: 1320px; margin: 0 auto; padding-left: var(--trilho); }
 .percurso__svg { position: absolute; left: 0; top: 0; width: 100%; overflow: visible; pointer-events: none; z-index: 0; }
 .percurso__trilha { fill: none; stroke: var(--aco); stroke-width: 2; stroke-dasharray: 2 9; stroke-linecap: round; }
-.percurso__vivo { fill: none; stroke: var(--coral); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
-.etapas { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(64px, 7vw, 120px); position: relative; z-index: 1; }
-.etapa { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px clamp(16px, 2.4vw, 36px); align-items: center; }
-.etapa__texto { position: relative; padding-top: 4px; }
+.percurso__vivo { fill: none; stroke: var(--coral); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+
+.metodo__cab { max-width: 52ch; margin-bottom: clamp(30px, 3.6vw, 52px); }
+.metodo__cab .titulo-secao { font-size: clamp(1.8rem, 3.2vw, 3.1rem); max-width: 22ch; }
+.metodo__cab p { margin-top: 14px; max-width: 46ch; color: var(--tinta-2); }
+
+.etapas { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(40px, 5vw, 76px); position: relative; z-index: 1; }
+.etapa { position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 20px clamp(16px, 2.4vw, 36px); align-items: start; }
 .etapa__marco {
-  position: absolute; left: -6px; top: clamp(18px, 2.6vw, 40px); width: 20px; height: 20px; margin-top: -10px;
-  background: var(--gelo); border: 4px solid var(--aco); transform: skewX(-14deg); transition: background-color .3s, border-color .3s;
+  position: absolute; left: calc(-1 * var(--trilho)); top: calc(var(--verbo) * .5 - 10px); width: 20px; height: 20px;
+  background: var(--gelo); border: 4px solid var(--aco); transform: skewX(-14deg); transition: background-color .25s, border-color .25s;
 }
 .etapa__verbo {
-  font: 900 clamp(2.4rem, 5.2vw, 5.4rem)/1 var(--f-tit); font-stretch: 140%; letter-spacing: -.025em;
-  padding-left: clamp(34px, 3.4vw, 52px); transform: skewX(-6deg); transform-origin: left bottom; margin-bottom: 18px;
-  color: var(--asfalto); transition: color .3s;
+  font: 900 var(--verbo)/1 var(--f-tit); font-stretch: 140%; letter-spacing: -.02em;
+  transform: skewX(-6deg); transform-origin: left bottom; margin-bottom: 14px; color: var(--asfalto); transition: color .25s;
 }
-.etapa__texto p { max-width: 42ch; padding-left: clamp(34px, 3.4vw, 52px); }
-.etapa__saida { margin-top: 14px; font-weight: 700; }
-.etapa__foto img { width: 100%; height: auto; clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%); }
-.etapa--avaliar .etapa__texto { grid-column: 1 / span 6; }
-.etapa--avaliar .etapa__foto { grid-column: 8 / span 4; }
-.etapa--cuidar .etapa__foto { grid-column: 1 / span 6; grid-row: 1; }
-.etapa--cuidar .etapa__texto { grid-column: 7 / span 6; grid-row: 1; }
-.etapa--entregar .etapa__texto { grid-column: 1 / span 6; }
-.etapa--entregar .etapa__foto { grid-column: 7 / span 6; }
-.metodo__nota { max-width: 1320px; margin: clamp(40px, 5vw, 72px) auto 0; font-size: .82rem; color: var(--tinta-2); text-align: right; }
+.etapa__texto p { max-width: 40ch; }
+.etapa__saida { margin-top: 12px; font-weight: 700; }
+.etapa__foto { aspect-ratio: 5 / 4; overflow: hidden; clip-path: polygon(0 0, calc(100% - 28px) 0, 100% 28px, 100% 100%, 0 100%); }
+.etapa__foto img { width: 100%; height: 100%; object-fit: cover; }
+.etapa--avaliar .etapa__foto img { object-position: 50% 22%; }
+.etapa--avaliar .etapa__texto { grid-column: 1 / span 5; }
+.etapa--avaliar .etapa__foto { grid-column: 7 / span 6; }
+.etapa--cuidar .etapa__foto { grid-column: 1 / span 7; grid-row: 1; aspect-ratio: 3 / 2; }
+.etapa--cuidar .etapa__texto { grid-column: 9 / span 4; grid-row: 1; }
+.etapa--entregar .etapa__texto { grid-column: 1 / span 5; }
+.etapa--entregar .etapa__foto { grid-column: 7 / span 6; aspect-ratio: 3 / 2; }
+.metodo__nota { margin-top: clamp(28px, 3vw, 44px); font-size: .82rem; color: var(--tinta-2); text-align: right; }
 
 /* estados do traçado (só com JS) */
 .metodo--js .etapa.is-viva .etapa__marco { background: var(--coral); border-color: var(--asfalto); }
 .metodo--js .etapa.is-viva .etapa__verbo { color: var(--azul-prof); }
+/* a foto nasce junto com a etapa: o gatilho é o topo da etapa (o mesmo do marco),
+   e o estado padrão (sem JS ou movimento reduzido) é a foto inteira, visível */
 @media (prefers-reduced-motion: no-preference) {
-  .metodo--js .etapa__foto img { transition: clip-path .8s cubic-bezier(.3, .7, .2, 1); }
-  .metodo--js .etapa:not(.is-viva) .etapa__foto img { clip-path: polygon(0 0, 0 0, 0 0, 0 100%, 0 100%); }
+  .metodo--js .etapa__foto { transition: clip-path .7s cubic-bezier(.3, .7, .2, 1); }
+  .metodo--js .etapa:not(.is-viva) .etapa__foto { clip-path: polygon(0 0, 0 0, 0 0, 0 100%, 0 100%); }
 }
 
 @media (max-width: 899px) {
-  .metodo__cab { grid-template-columns: minmax(0, 1fr); }
-  .etapa--avaliar .etapa__texto, .etapa--cuidar .etapa__texto, .etapa--entregar .etapa__texto { grid-column: 1 / -1; grid-row: auto; }
-  .etapa--avaliar .etapa__foto { grid-column: 3 / span 8; }
-  .etapa--cuidar .etapa__foto { grid-column: 2 / -1; grid-row: auto; }
-  .etapa--entregar .etapa__foto { grid-column: 2 / -1; }
+  .etapa { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .etapa--avaliar .etapa__texto, .etapa--cuidar .etapa__texto, .etapa--entregar .etapa__texto,
+  .etapa--avaliar .etapa__foto, .etapa--cuidar .etapa__foto, .etapa--entregar .etapa__foto { grid-column: 1 / -1; grid-row: auto; }
+  .etapa__texto p { max-width: 52ch; }
 }
 @media (max-width: 599px) {
-  .etapa__texto p, .etapa__verbo { padding-left: 34px; }
-  .etapa__foto { padding-left: 34px; }
-  .etapa--avaliar .etapa__foto, .etapa--cuidar .etapa__foto, .etapa--entregar .etapa__foto { grid-column: 1 / -1; }
-  .etapa--avaliar .etapa__foto img { width: 82%; }
   .metodo__nota { text-align: left; }
 }
 

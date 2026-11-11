@@ -4,7 +4,8 @@ Modelo 09 do catálogo, segunda proposta do nicho de estética automotiva e alte
 Assinatura: "Seu carro em outra frequência."
 
 - **Versão 1:** 11/11/2026, de manhã.
-- **Revisão criativa e funcional (versão 2):** 11/11/2026. Esta versão ainda **não foi aprovada**; este documento descreve a versão 2.
+- **Revisão criativa e funcional (versão 2):** 11/11/2026.
+- **Correção direcionada (versão 3):** 11/11/2026. Recompõe o método e reconstrói a diagonal da capa (seção 3.1). Esta versão ainda **não foi aprovada**; este documento descreve a versão 3.
 
 **Skills.** Frontend Design da Anthropic foi carregada e aplicada nas duas versões. Na revisão, a skill `gsap-scrolltrigger` foi consultada; `gsap-core`, `gsap-timeline` e `gsap-plugins` não foram abertas (ver seção 6).
 
@@ -45,10 +46,39 @@ Na versão 1, a macroestrutura era capa → serviços → galeria → contato, a
 | **1 · Impacto** | "Que lugar é este?" | Azul-noite e foto em sangria | Cena presa por ~70% da altura da tela; o plano gelo sobe na diagonal e vira a seção 2 |
 | **2 · Explore os cuidados** | "O que fazem no meu carro?" | Gelo, com placa azul inclinada atrás da foto | Foto com pontos numerados à esquerda; título, abas e lista à direita |
 | **3 · Superfícies e detalhes** | "Como é de perto?" | Azul elétrico | Quatro fotos assimétricas |
-| **4 · Método PULSO** | "Como funciona?" | Gelo | Três etapas em zigue-zague, ligadas por um percurso que se desenha com a rolagem |
+| **4 · Método PULSO** | "Como funciona?" | Gelo | Três etapas ao lado de um trilho vertical que se desenha com a rolagem |
 | **5 · Contato** | "Como falo com eles?" | Gelo, contínuo ao método | Mensagem pronta e cartão escuro com WhatsApp |
 
 O menu ganhou "Método".
+
+## 3.1 Correção direcionada (versão 3)
+
+Dois problemas apontados pelo usuário em capturas da versão 2. Nada mais foi alterado.
+
+### A. Diagonal coral da capa borrada na versão publicada
+
+**Versão publicada x local.** Os quatro arquivos baixados de `https://felipefurtadodev.github.io/Portifolio-demos/Pulso/` (`index.html`, `css/styles.css`, `js/main.js`, `js/config.js`) têm **o mesmo SHA-256 e o mesmo tamanho** que a versão 2 local (`styles.css?v=14`, `main.js?v=9`). As três fotos do método e `fora-1200.webp` respondem 200. A publicação estava atualizada; a diferença não vem de cache nem de arquivo velho.
+
+**Causa (medida, não suposta).** A diagonal era um `<svg>` (polígono + traço coral com `vector-effect: non-scaling-stroke`) com `will-change: transform`, e a cena a **esticava com `scaleY`**: em 1440×900, `matrix(1, 0, 0, s, 0, 0)` com **s = 1,0 → 5,74** ao longo da rolagem. Um elemento com `will-change: transform` vira camada própria do compositor, rasterizada uma vez na escala inicial; ao ser esticada durante a animação, a GPU amplia a textura, e a borda perde nitidez. No Live Server dentro do app, o resultado era aceitável, e no Chromium sem GPU do ambiente de teste (Playwright) o quadro também saiu nítido; por isso **não consegui reproduzir o borrão visualmente**. O que está comprovado é o mecanismo (escala vertical de até 5,7× numa camada promovida), que coincide com o sintoma "borrado durante a animação, nítido em repouso". Não atribuí a causa à compressão do GitHub Pages.
+
+**Correção.** A diagonal agora são duas camadas `<span>` com `clip-path: polygon(...)` (uma coral, outra gelo deslocada 5 px), sem SVG, sem `scale`, sem `will-change`, sem `filter` e sem nenhum ancestral transformado. A cena só altera a variável CSS `--c` (altura da cunha) e o navegador redesenha o polígono em vetor a cada quadro. Nada é rasterizado em escala e a espessura é uma constante de CSS.
+
+**Verificação.** Em 1440×900 (escala 1× e 2×) e 1366×768, em 7 pontos da rolagem (0, 20, 35, 50, 65, 80 e 100%): `--c` cresce de 72 px para 414 px; nenhum ancestral tem `transform`, `will-change` ou `filter`; e a espessura da faixa coral, medida por pixels, fica em **4–5 px CSS em todos os pontos** (4,5–5 em 2×).
+
+### B. Fotos do método entrando tarde e composição da seção
+
+**Causa da entrada tardia.** A etapa "acendia" (marco, verbo e foto) quando o marco passava a 64% da altura da janela. O marco ficava no centro vertical da linha (texto e foto alinhados ao centro), então "Avaliar" mostrava o texto desde ~80% da janela e a foto só abria quando o topo da etapa chegava a ~35%: cerca de **400 px de rolagem depois**. (Medido em 1440×900.)
+
+**O que mudou:**
+- O marco, o verbo e o topo da foto agora ficam na mesma linha (`align-items: start`), e o gatilho é o topo da etapa a 88% da altura da janela. A foto abre **20–80 px de rolagem depois** do texto aparecer, nos cinco tamanhos testados.
+- Nenhuma foto usa `opacity: 0`. O estado padrão é a foto inteira, visível. Ela só é recolhida (`clip-path`) depois que o JS calculou o estado e só sem `prefers-reduced-motion`.
+- Cabeçalho: título menor (até 3,1 rem, "O método PULSO: do primeiro olhar à entrega."), em no máximo 22 caracteres por linha, com o parágrafo logo abaixo, na mesma coluna e com a mesma margem.
+- Cada verbo (até 2,8 rem) fica abaixo do título em hierarquia.
+- O traçado virou um **trilho vertical** na margem esquerda, que acompanha cabeçalho e etapas e passa pelos marcos. Antes ele fazia curvas pela página e deixava vãos grandes. O desenho é o mesmo conceito: linha pontilhada em aço, linha coral que se desenha com a rolagem, "pulso" da marca antes de cada marco, e uma seta ao fim apontando para o contato.
+- As fotos agora têm proporção fixa, mais baixa (5:4 em "Avaliar", 3:2 em "Cuidar" e "Entregar"), e o espaço entre etapas caiu para 40–76 px. A seção ficou bem mais curta.
+- Composição: "Avaliar" com texto à esquerda e foto à direita; "Cuidar" com foto larga à esquerda e texto à direita; "Entregar" com texto à esquerda e foto à direita. O ritmo alterna lado, sem cartões.
+
+**GSAP:** não foi usado nesta correção. As duas animações são CSS e JS nativos; ver seção 6.
 
 ## 4. Tipografia e paleta
 
@@ -111,7 +141,7 @@ Coreografia, do fundo para a frente:
 | Riscos (topo) | Atravessam ~62% da largura da tela para a esquerda | Velocidade, sem passar sobre a carroceria |
 | Título | Cada linha escapa para a esquerda numa velocidade (10, 19 e 28 vw); o bloco sobe e some entre 30% e 66% do trajeto | Tipografia em primeiro plano |
 | Faixas coral e azul | Saem para a esquerda | Primeiro plano rápido |
-| Plano gelo com aresta coral | Sobe na diagonal até cobrir ~46% da capa | É a própria seção seguinte chegando: quando a cena termina, ele continua como fundo de "Explore os cuidados" |
+| Plano gelo com aresta coral | A cunha cresce na diagonal até cobrir ~46% da capa, **só pela variável `--c` em duas camadas com `clip-path`** (sem `scale` nem `will-change`; seção 3.1) | É a própria seção seguinte chegando: quando a cena termina, ele continua como fundo de "Explore os cuidados" |
 
 **Suavização:** um "scrub" com pequeno atraso (interpolação de 20% por quadro) evita trancos com a roda do mouse.
 
@@ -132,25 +162,24 @@ Coreografia, do fundo para a frente:
 - **Cuidar:** executar o combinado, com o produto certo e áreas sensíveis protegidas; se surgir algo fora do combinado, o estúdio fala antes.
 - **Entregar:** ver o carro na luz, entender o que foi feito e levar orientações de conservação.
 
-**Composição:**
-- `<ol>` com três etapas em zigue-zague: texto à esquerda e foto retrato à direita; foto larga à esquerda e texto à direita; texto à esquerda e foto do carro à direita;
-- verbos em escala de título;
-- nenhum cartão: cada etapa é texto e foto soltos sobre o gelo.
+**Composição (versão 3):**
+- cabeçalho e três etapas numa lista ordenada, todos à direita de um trilho vertical de 34–68 px;
+- cada etapa tem marco, verbo, texto e foto alinhados pelo topo; sem cartões;
+- "Avaliar": texto à esquerda e foto 5:4 à direita; "Cuidar": foto 3:2 à esquerda e texto à direita; "Entregar": texto à esquerda e foto 3:2 à direita.
 
 **Traçado:**
-- o caminho é **calculado a partir da posição real dos marcos**, então funciona em qualquer largura;
-- ele corre em faixas livres: na margem esquerda, no vão entre foto e texto e nos espaços entre as etapas. Faz curvas arredondadas e **nunca cruza texto**. Isso foi corrigido na revisão: a primeira versão, com curvas livres, atravessava um parágrafo;
-- antes de cada marco, a linha faz o **pulso da marca** (sobe, desce, sobe) e entra no marco;
-- depois de "Entregar", desce e termina na margem do título do contato.
+- o caminho é **calculado a partir da posição real dos marcos**, então funciona em qualquer largura. Como o trilho é uma vertical, não cruza texto;
+- antes de cada marco, a linha faz o **pulso da marca** (um zigue-zague curto) e entra no marco;
+- depois de "Entregar", segue até o fim da seção e termina numa seta apontando para o contato.
 
 **Animação:**
-- há uma trilha pontilhada em aço (o caminho inteiro, sempre visível) e uma linha coral que se desenha com a rolagem, por `stroke-dashoffset`;
-- quando a linha cruza um marco, ele fica coral, o verbo fica azul e a foto da etapa se revela por um corte diagonal (`clip-path`, 0,8 s);
+- trilha pontilhada em aço (sempre visível) e linha coral que se desenha com a rolagem, por `stroke-dashoffset`, com suavização de 22% por quadro;
+- quando o topo de uma etapa passa de 88% da altura da janela, o marco fica coral, o verbo fica azul e a foto se revela por um corte (`clip-path`, 0,7 s);
 - tudo é reversível ao rolar para cima.
 
 **Sem animação:**
 - sem JS, não há SVG, e as etapas e fotos aparecem completas;
-- com movimento reduzido, o traçado aparece inteiro, as etapas ficam ativas e não há revelação.
+- com movimento reduzido, o traçado aparece inteiro, as etapas ficam ativas e as fotos ficam abertas (testado com `reducedMotion: 'reduce'`).
 
 O SVG é `aria-hidden`; a informação está no texto da lista ordenada.
 
@@ -212,46 +241,51 @@ Evitado de propósito:
 - **Arquitetura, movimento e conversão:** agora claramente distintos. Mesmo sem interagir, o visitante percebe a cena de abertura, a lista ao lado da foto e o percurso do método.
 - **Fotografia:** continua a parte menos diferenciada. Oito das dez fotos vêm do acervo do VÉRTICE, ainda que em outros recortes e funções; as outras duas são a capa e um recorte dela.
 
-## 11. Testes realizados nesta revisão
+## 11. Testes realizados
 
-Ambiente: Live Server e navegador integrado do Claude Desktop.
+### Versão 3 (correção direcionada)
 
-**Medidos por script**, com a página carregada em quadros nas larguras 360×740, 390×844, 600×900, 768×1024, 900×700, 1024×768, 1100×800, 1440×900, 1366×560 e 390×560:
-- sem rolagem horizontal;
-- todas as imagens carregadas;
-- pontos dentro da foto;
-- verbos do método sem sobrepor as fotos;
-- cena ligada só em 900×700, 1024×768, 1100×800 e 1440×900.
+**Ferramentas:** Playwright 1.63 com Chromium (no ambiente de trabalho, servindo a pasta por um servidor local) e o navegador integrado do Claude Desktop com Live Server (que tem as fontes reais). O Playwright não carrega o Google Fonts neste ambiente (sem internet), então ele serviu para medições; a avaliação visual da composição foi feita no navegador integrado.
 
-**Capturas inspecionadas:**
-- **1440×900:** capa no início, a ~50% e no fim da cena; saída para os cuidados; cuidados por fora e por dentro (com o ponto de borda ativo); método em três posições de rolagem (desenho parcial, etapa "Cuidar" ativa, chegada ao contato).
-- **390×844:** capa; cuidados por dentro e por fora, com etiqueta; método na etapa "Cuidar".
-- **768×1024:** capa e etapa "Avaliar".
-- **1366×560:** capa sem cena.
-- 360, 600, 900, 1024 e 1100 foram **só medidos**.
+**Playwright, em 1440×900, 1366×768, 768×1024, 390×844 e 360×740:**
+- sem rolagem horizontal, sem imagem quebrada, sem erro de página (só falha o Google Fonts, por falta de internet do ambiente);
+- método em 7 momentos (entrada, cabeçalho, início de "Avaliar", foto, "Cuidar", "Entregar" e saída): estados "viva" e fotos abertas progridem 000 → 100 → 110 → 111 e o traçado cresce de 0% a 100%;
+- rolagem progressiva em passos de 20 px: a foto abre **20–80 px depois do texto da etapa aparecer** (antes, ~400 px);
+- `prefers-reduced-motion: reduce`: as três fotos abertas e as três etapas ativas desde o carregamento.
 
-**Interação:**
-- **Hotspots:** em 1440, abas e cliques nos pontos e nos itens; os dois lados sincronizam e a mensagem do contato muda.
-- **Celular (390×844):** todos os sete pontos selecionados, com etiqueta dentro da foto e sem rolagem lateral.
-- **Teclado (1440):** seta para a direita na aba troca para "Por dentro"; Tab até o ponto 3 e Enter seleciona "Console" e atualiza a mensagem.
-- **Contato demonstrativo:** mostra o aviso e "Copiar mensagem", sem sair da página. As cinco âncoras do menu existem.
-- **Console e rede:** na versão final, sem erros nem recursos com falha. O histórico do console tinha erros de uma carga intermediária, com HTML novo e JS antigo durante a gravação; eles não se repetiram.
+**Diagonal da capa:** 7 pontos de rolagem em 1440×900 (1× e 2×) e 1366×768, com `--c`, transformações de ancestrais e espessura medida (seção 3.1).
 
-**Não testados:**
-- preferência real de movimento reduzido do sistema (o navegador integrado não emula; o comportamento foi conferido só no código);
-- toque físico (os testes de toque foram cliques com emulação móvel);
-- leitor de tela, Safari/iOS e GitHub Pages;
-- observação contínua em vídeo da cena e do traçado (só posições estáticas da rolagem).
+**Navegador integrado (Live Server, fontes reais):**
+- 1440×900: cabeçalho e "Avaliar", "Cuidar", "Entregar" com saída; diagonal em rolagem intermediária, com zoom na aresta;
+- 390×844: cabeçalho e "Avaliar", sem rolagem lateral.
 
-## 12. Problemas encontrados e corrigidos na revisão
+**Versão publicada:** comparada por SHA-256 e por tamanho com a local (seção 3.1).
 
-1. Título maior encostava na carroceria em 1440 → o tamanho foi limitado a 3,5 vw (no máximo 4,4 rem). A foto deslocada para a direita também foi testada e descartada, porque ampliava o carro e cortava a frente.
-2. No fim da cena, sobrava uma faixa escura na esquerda e havia um degrau até a seção seguinte. O plano gelo começava em altura zero à esquerda → a aresta agora começa a 30% da altura.
-3. O traçado do método atravessava o parágrafo de "Avaliar" → o caminho passou a correr por faixas livres, com curvas arredondadas.
-4. O verbo "Entregar" passava por baixo da foto → o texto foi alargado para seis colunas e os verbos ficaram um pouco menores.
-5. As etiquetas dos pontos criavam 64 px de rolagem lateral no celular, mesmo invisíveis → agora só existem quando ativas, quebram linha e escolhem o lado pela posição do ponto.
-6. A placa azul cobria a lista no celular e tirava o contraste do texto → no celular ela fica só atrás da foto.
-7. Gravações no disco chegaram atrasadas em relação ao navegador → cada gravação passou a ser conferida pelo conteúdo servido antes de testar.
+### Versão 2 (revisão anterior)
+Os testes da versão 2 (hotspots, contato, teclado, auditoria em dez tamanhos) continuam válidos para as partes não alteradas, mas **a auditoria em dez tamanhos e as capturas da cena não foram repetidos na versão 3**, exceto onde descrito acima.
+
+**Não testados (versão 3):**
+- GPU real em navegador de usuário (não consegui reproduzir o borrão; a correção elimina o mecanismo, mas a conferência final é abrir a página publicada);
+- preferência de movimento reduzido do sistema operacional (emulada pelo Playwright, não pelo sistema);
+- toque físico, leitor de tela, Safari/iOS;
+- vídeo contínuo da rolagem (as verificações são por posições e medições);
+- 360×740 e 1366×768 só foram medidos, sem inspeção visual no navegador integrado.
+
+## 12. Problemas encontrados e corrigidos
+
+### Versão 3
+1. Diagonal coral esticada por `scaleY` de até 5,7× numa camada com `will-change` → duas camadas `clip-path` com `--c` (seção 3.1).
+2. Foto do método abrindo ~400 px depois do texto → gatilho no topo da etapa, alinhamento pelo topo e fotos abertas por padrão (seção 3.1).
+3. Composição do método com título enorme, texto isolado e vãos grandes → cabeçalho contido, trilho vertical e fotos mais baixas.
+4. **Regressão minha durante a correção:** ao reescrever a cena apaguei a linha que dá altura ao trilho da capa, e a cena deixou de ficar presa. Foi encontrada ao medir a espessura da diagonal (a rolagem não avançava) e corrigida antes da entrega.
+5. Gravações no disco do usuário chegaram em atraso mais de uma vez (o servidor ainda mostrava arquivos antigos). Cada gravação foi conferida pelo conteúdo servido antes de validar.
+
+### Versão 2
+1. Título maior encostava na carroceria em 1440 → limitado a 3,5 vw (máx. 4,4 rem). A foto deslocada para a direita foi testada e descartada, porque ampliava o carro e cortava a frente.
+2. No fim da cena sobrava uma faixa escura à esquerda e havia um degrau até a seção seguinte → aresta passou a começar a 30% da altura (mantido na versão 3).
+3. O traçado do método atravessava um parágrafo → resolvido na versão 3 com o trilho vertical.
+4. As etiquetas dos pontos criavam 64 px de rolagem lateral no celular → só existem quando ativas, quebram linha e escolhem o lado pelo ponto.
+5. A placa azul cobria a lista no celular → no celular ela fica só atrás da foto.
 
 ## 13. Pendências
 
@@ -268,7 +302,8 @@ Ambiente: Live Server e navegador integrado do Claude Desktop.
 2. Testar com movimento reduzido real, toque físico, leitor de tela, Safari/iOS e no GitHub Pages; gravar um vídeo da cena e do traçado.
 3. Inspecionar visualmente 360, 600, 900, 1024 e 1100.
 4. Rodar `tools/baixar-recursos.ps1` para usar fontes locais.
-5. Avaliar se a cena deve ficar presa por menos tempo (hoje são 70% da altura da tela), depois de uma rodada com usuários.
+5. **Conferir a diagonal na página publicada depois da próxima publicação**, em tela de alta densidade e rolando devagar, para confirmar que o borrão sumiu.
+6. Avaliar se a cena deve ficar presa por menos tempo (hoje são 70% da altura da tela), depois de uma rodada com usuários.
 
 ### PUBLICAÇÃO COMERCIAL
 - [ ] WhatsApp real e `demo.enabled: false`; link do mapa.

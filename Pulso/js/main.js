@@ -328,12 +328,17 @@
   var apoio = [$(".capa__apoio", capa), $(".capa__acoes", capa), $(".capa__pulso", capa)];
   var riscos = $(".capa__riscos", capa);
   var faixaCapa = $(".capa__faixa", capa);
-  var corte = $("#capa-corte");
+  var transicao = $("#capa-transicao");
   var mqCena = window.matchMedia("(min-width: 900px) and (min-height: 640px)");
   var cena = { modo: "", alvo: 0, atual: 0, raf: 0, extra: 0 };
 
   function suave(p, a, b) { var t = Math.min(Math.max((p - a) / (b - a), 0), 1); return t * t * (3 - 2 * t); }
-  function limpar(lista) { lista.forEach(function (n) { if (n) { n.style.transform = ""; n.style.opacity = ""; } }); }
+  function limpar(lista) { lista.forEach(function (n) { if (n) { n.style.transform = ""; n.style.opacity = ""; } }); transicao.style.removeProperty("--c"); }
+  // altura-base da cunha (a variável --corte-h, em px), medida num elemento de prova
+  function alturaBase() {
+    var pr = el("div"); pr.style.cssText = "position:absolute;visibility:hidden;width:1px;height:var(--corte-h)";
+    capa.appendChild(pr); var h = pr.offsetHeight || 60; capa.removeChild(pr); return h;
+  }
 
   function modoCena() {
     if (mqMov.matches) return "parado";
@@ -345,14 +350,11 @@
     if (m !== cena.modo) {
       cena.modo = m;
       document.documentElement.classList.toggle("cena-ativa", m === "cena");
-      limpar([foto, texto, riscos, faixaCapa, corte].concat(linhas, apoio));
+      limpar([foto, texto, riscos, faixaCapa].concat(linhas, apoio));
     }
     if (m === "cena") {
       cena.extra = Math.round(window.innerHeight * 0.7);
-      var t = corte.style.transform;
-      corte.style.transform = "";
-      cena.corteH = corte.getBoundingClientRect().height || 60;
-      corte.style.transform = t;
+      cena.corteH = alturaBase();
       trilho.style.height = (capa.offsetHeight + cena.extra) + "px";
     } else {
       trilho.style.height = "";
@@ -399,9 +401,10 @@
     // riscos: atravessam o topo, mais rápidos que a foto
     riscos.style.transform = "translate3d(" + (-p * 62 * vw).toFixed(1) + "px," + (-p * 24).toFixed(1) + "px,0)";
     faixaCapa.style.transform = "translate3d(" + (-suave(p, 0, 0.7) * 46 * vw).toFixed(1) + "px,0,0)";
-    // plano gelo: sobe na diagonal até cobrir ~46% da capa
-    var s = 1 + suave(p, 0.22, 1) * Math.max(0, (h * 0.46) / cena.corteH - 1);
-    corte.style.transform = "scaleY(" + s.toFixed(4) + ")";
+    // plano gelo: a cunha cresce na diagonal até cobrir ~46% da capa. Só muda --c:
+    // o clip-path é redesenhado em vetor a cada quadro (nada é escalado nem rasterizado).
+    var c = cena.corteH + suave(p, 0.22, 1) * Math.max(0, h * 0.46 - cena.corteH);
+    transicao.style.setProperty("--c", c.toFixed(2) + "px");
   }
 
   window.addEventListener("scroll", lerCena, { passive: true });
@@ -410,11 +413,12 @@
   mqCena.addEventListener("change", medirCena);
 
   /* ------------------------------------------- D · método PULSO
-     Componente 15 (SVG animado). O traçado é calculado a partir da posição
-     real dos marcos das etapas, então acompanha qualquer largura. Ele se
-     desenha com a rolagem; ao passar por um marco, faz o "pulso" da marca
-     e revela a foto da etapa. Sem JS, as etapas e fotos aparecem normalmente;
-     com movimento reduzido, o traçado aparece inteiro. */
+     Componente 15 (SVG animado). Um trilho vertical à esquerda liga cabeçalho
+     e as três etapas. O caminho é calculado a partir da posição real dos
+     marcos (qualquer largura) e se desenha com a rolagem. Cada etapa fica
+     "viva" quando o seu topo chega a 84% da altura da janela: nesse instante
+     o marco acende, o verbo muda de cor e a foto se revela, junto com o texto.
+     Sem JS ou com movimento reduzido, tudo aparece inteiro e parado. */
   var metodo = $("#metodo");
   var percurso = $("#percurso");
   var etapas = $$(".etapa", percurso);
@@ -430,71 +434,35 @@
   svg.appendChild(trilha);
   svg.appendChild(vivo);
   percurso.insertBefore(svg, percurso.firstChild);
-  metodo.classList.add("metodo--js");
 
-  var rota = { total: 0, ys: [], passo: 6, marcos: [], alvo: 0, atual: 0, raf: 0 };
+  var rota = { total: 0, passo: 6, marcos: [], ys: [], alvo: 0, atual: 0, raf: 0, pronto: false };
 
   function centro(n, ref) {
     var a = n.getBoundingClientRect(), b = ref.getBoundingClientRect();
     return { x: a.left + a.width / 2 - b.left, y: a.top + a.height / 2 - b.top };
   }
 
-  // polilinha com cantos arredondados; pontos com `vivo: true` (o pulso) ficam retos
-  function caminho(pts, raio) {
-    var d = "M" + pts[0].x.toFixed(1) + " " + pts[0].y.toFixed(1);
-    for (var i = 1; i < pts.length; i++) {
-      var p = pts[i], a = pts[i - 1], n = pts[i + 1];
-      if (!n || p.vivo || a.vivo && false) { d += " L" + p.x.toFixed(1) + " " + p.y.toFixed(1); continue; }
-      var l1 = Math.hypot(p.x - a.x, p.y - a.y), l2 = Math.hypot(n.x - p.x, n.y - p.y);
-      var r = Math.min(raio, l1 / 2, l2 / 2);
-      if (r < 1 || n.vivo) { d += " L" + p.x.toFixed(1) + " " + p.y.toFixed(1); continue; }
-      var x1 = p.x - (p.x - a.x) / l1 * r, y1 = p.y - (p.y - a.y) / l1 * r;
-      var x2 = p.x + (n.x - p.x) / l2 * r, y2 = p.y + (n.y - p.y) / l2 * r;
-      d += " L" + x1.toFixed(1) + " " + y1.toFixed(1) + " Q" + p.x.toFixed(1) + " " + p.y.toFixed(1) + " " + x2.toFixed(1) + " " + y2.toFixed(1);
-    }
-    return d;
-  }
-
   function montarRota() {
-    var w = percurso.clientWidth;
     var pR = percurso.getBoundingClientRect();
-    var mR = metodo.getBoundingClientRect();
-    var fim = mR.bottom - pR.top + 2;
-    var largo = w >= 700;
-    var E = largo ? 34 : 26;            // distância da faixa vertical até o marco
-    var A = largo ? 1.5 : .9;           // amplitude do pulso
-    var pts = [];
+    var alto = percurso.offsetHeight;
+    var h2 = $(".metodo__cab .titulo-secao", percurso).getBoundingClientRect();
     rota.marcos = etapas.map(function (li) { return centro($(".etapa__marco", li), percurso); });
-    var caixas = etapas.map(function (li) {
-      var r = li.getBoundingClientRect();
-      return { top: r.top - pR.top, bottom: r.bottom - pR.top };
+    var x = rota.marcos[0].x;
+    var d = "M" + x.toFixed(1) + " " + (h2.top - pR.top + 12).toFixed(1);
+    rota.marcos.forEach(function (m) {
+      // reta até a etapa e o "pulso" da marca, na vertical, entrando no marco
+      d += " L" + x.toFixed(1) + " " + (m.y - 50).toFixed(1) +
+           " L" + (x + 10).toFixed(1) + " " + (m.y - 40).toFixed(1) +
+           " L" + (x - 12).toFixed(1) + " " + (m.y - 22).toFixed(1) +
+           " L" + (x + 8).toFixed(1) + " " + (m.y - 12).toFixed(1) +
+           " L" + x.toFixed(1) + " " + (m.y - 10).toFixed(1);
     });
-    rota.marcos.forEach(function (m, i) {
-      var faixa = m.x - E;
-      if (i === 0) pts.push({ x: faixa, y: -60 });
-      else {
-        // atravessa no vão entre a etapa anterior e esta
-        var vao = (caixas[i - 1].bottom + caixas[i].top) / 2;
-        pts.push({ x: rota.marcos[i - 1].x, y: vao });
-        pts.push({ x: faixa, y: vao });
-      }
-      pts.push({ x: faixa, y: m.y });
-      // o pulso da marca, entrando no marco
-      pts.push({ x: faixa + E * .22, y: m.y - 20 * A, vivo: true });
-      pts.push({ x: faixa + E * .5, y: m.y + 24 * A, vivo: true });
-      pts.push({ x: faixa + E * .74, y: m.y - 12 * A, vivo: true });
-      pts.push({ x: m.x, y: m.y, vivo: true });
-    });
-    // depois da entrega, segue até o título do contato
-    var ult = rota.marcos[rota.marcos.length - 1];
-    var xContato = Math.max(4, (parseFloat(getComputedStyle(metodo).paddingLeft) || 20) - (pR.left - mR.left) + 4);
-    var ultimo = caixas[caixas.length - 1].bottom;
-    pts.push({ x: ult.x, y: ultimo + (fim - ultimo) * .45 });
-    pts.push({ x: xContato, y: ultimo + (fim - ultimo) * .45 });
-    pts.push({ x: xContato, y: fim });
-    var d = caminho(pts, largo ? 34 : 22);
-    var alto = Math.max(fim, percurso.clientHeight);
-    svg.setAttribute("viewBox", "0 0 " + w + " " + alto);
+    // depois de "Entregar", desce até o fim da seção e aponta para o contato
+    var fim = alto + 24;
+    d += " M" + x.toFixed(1) + " " + (rota.marcos[rota.marcos.length - 1].y + 10).toFixed(1) +
+         " L" + x.toFixed(1) + " " + fim.toFixed(1) +
+         " M" + (x - 9).toFixed(1) + " " + (fim - 10).toFixed(1) + " L" + x.toFixed(1) + " " + fim.toFixed(1) + " L" + (x + 9).toFixed(1) + " " + (fim - 10).toFixed(1);
+    svg.setAttribute("viewBox", "0 0 " + percurso.clientWidth + " " + alto);
     svg.style.height = alto + "px";
     trilha.setAttribute("d", d);
     vivo.setAttribute("d", d);
@@ -507,11 +475,12 @@
     }
     vivo.style.strokeDasharray = rota.total + " " + rota.total;
     lerRota(true);
+    if (!rota.pronto) { rota.pronto = true; metodo.classList.add("metodo--js"); } // só esconde as fotos depois que o estado está calculado
   }
 
   function lerRota(imediato) {
     if (!rota.total) return;
-    var linha = window.innerHeight * 0.64 - percurso.getBoundingClientRect().top;
+    var linha = window.innerHeight * 0.88 - percurso.getBoundingClientRect().top;
     if (mqMov.matches) {
       rota.alvo = rota.total;
     } else {
@@ -520,7 +489,7 @@
       rota.alvo = Math.min(i * rota.passo, rota.total);
     }
     etapas.forEach(function (li, k) {
-      li.classList.toggle("is-viva", mqMov.matches || linha >= rota.marcos[k].y - 8);
+      li.classList.toggle("is-viva", mqMov.matches || linha >= rota.marcos[k].y - 30);
     });
     if (imediato === true) rota.atual = rota.alvo;
     if (!rota.raf) rota.raf = requestAnimationFrame(passoRota);
@@ -528,7 +497,7 @@
 
   function passoRota() {
     rota.raf = 0;
-    rota.atual += (rota.alvo - rota.atual) * 0.18;
+    rota.atual += (rota.alvo - rota.atual) * 0.22;
     if (Math.abs(rota.alvo - rota.atual) < 0.5) rota.atual = rota.alvo;
     vivo.style.strokeDashoffset = (rota.total - rota.atual).toFixed(1);
     if (rota.atual !== rota.alvo) rota.raf = requestAnimationFrame(passoRota);
