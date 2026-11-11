@@ -23,6 +23,38 @@ export const PASTAS_TECNICAS = new Set([
 
 export const PREVIAS_DIR = "catalogo/previas";
 
+// Arquivos de prévia de cada modelo gerado automaticamente: <slug>-<sufixo>.
+// Chave -> sufixo. Usado pela captura, pela recuperação e pela verificação.
+export const ARQUIVOS_PREVIA = { desktop: "desktop-1600.webp", desktopLeve: "desktop-800.webp", celular: "mobile-390.webp" };
+
+// Confere se o conteúdo é mesmo um WebP utilizável (cabeçalho RIFF/WEBP e tamanho mínimo).
+// Impede publicar arquivo vazio, truncado ou uma página de erro salva com extensão .webp.
+export function webpValido(buffer) {
+  return Buffer.isBuffer(buffer) && buffer.length > 2048
+    && buffer.toString("latin1", 0, 4) === "RIFF"
+    && buffer.toString("latin1", 8, 12) === "WEBP"
+    && buffer.readUInt32LE(4) + 8 === buffer.length;
+}
+
+// Prévias que faltam (ou estão inválidas) para um modelo. Lista vazia = completo.
+// Modelo com imagens próprias no modelo.json: só exige a imagem de computador.
+export function previasFaltantes(raiz, modelo) {
+  const ler = (rel) => { try { return fs.readFileSync(path.join(raiz, rel)); } catch { return null; } };
+  const ruim = [];
+  if (modelo.meta.imagens) {
+    const d = modelo.meta.imagens.desktop;
+    if (!d || !fs.existsSync(path.join(raiz, d))) ruim.push("imagens.desktop");
+    return ruim;
+  }
+  for (const [chave, sufixo] of Object.entries(ARQUIVOS_PREVIA)) {
+    const rel = `${PREVIAS_DIR}/${modelo.slug}-${sufixo}`;
+    const b = ler(rel);
+    if (!b) ruim.push(`${modelo.slug}-${sufixo} (ausente)`);
+    else if (!webpValido(b)) ruim.push(`${modelo.slug}-${sufixo} (inválido)`);
+  }
+  return ruim;
+}
+
 // Cores neutras para modelos sem cores no modelo.json (as do próprio catálogo).
 export const CORES_PADRAO = { fundo: "#151A26", texto: "#F3F4F6", textoSecundario: "#C3C8D2" };
 export const SEGMENTO_PADRAO = "Segmento não informado";

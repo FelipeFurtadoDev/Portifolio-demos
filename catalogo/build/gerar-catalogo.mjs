@@ -2,7 +2,7 @@
 // =====================================================================
 // Gera os blocos dos modelos e o índice do catálogo no index.html.
 //
-//   node catalogo/build/gerar-catalogo.mjs [--raiz <pasta>]
+//   node catalogo/build/gerar-catalogo.mjs [--raiz <pasta>] [--exigir-previas [--permitir-sem-previa]]
 //
 // Lê as pastas de modelos (descobrir.mjs), monta o HTML de cada modelo e
 // substitui o conteúdo entre os marcadores do index.html:
@@ -10,13 +10,18 @@
 //   <!-- catalogo:modelos --> ... <!-- /catalogo:modelos -->
 // Todo o resto do index.html (abertura, rodapé, estilos) fica intocado.
 //
+// --exigir-previas (usado pelo GitHub Actions): se algum modelo não tiver as três
+// prévias válidas (WebP de computador, computador leve e celular), NADA é gerado,
+// o comando termina com erro e a publicação é interrompida: o site que já está no ar
+// continua como estava. --permitir-sem-previa libera isso de propósito (aviso, não erro).
+//
 // Sem dependências: só Node.js 18 ou mais recente.
 // =====================================================================
 
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { descobrirModelos, previasDe, CORES_PADRAO, SEGMENTO_PADRAO } from "./descobrir.mjs";
+import { descobrirModelos, previasDe, previasFaltantes, CORES_PADRAO, SEGMENTO_PADRAO } from "./descobrir.mjs";
 
 const RAIZ_REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
@@ -121,6 +126,30 @@ function principal() {
   // Proteção: nunca publicar um catálogo vazio por engano.
   if (!modelos.length) {
     throw new Error("nenhum modelo encontrado. Uma pasta de modelo precisa ter um index.html na raiz dela.");
+  }
+
+  // Verificação das prévias ANTES de qualquer escrita: nunca publica catálogo incompleto em silêncio.
+  if (process.argv.includes("--exigir-previas")) {
+    const pendencias = modelos.map((m) => [m, previasFaltantes(raiz, m)]).filter(([, f]) => f.length);
+    if (pendencias.length) {
+      const liberado = process.argv.includes("--permitir-sem-previa");
+      const nivel = liberado ? "warning" : "error";
+      for (const [m, f] of pendencias) {
+        const msg = `prévia(s) ausente(s) ou inválida(s): ${f.join(", ")}`;
+        console.log(`${process.env.GITHUB_ACTIONS ? `::${nivel} title=${anotacaoTitulo(`Prévia de ${m.pasta}`)}::${anotacao(msg)}` : `  ${m.pasta}/ → ${msg}`}`);
+      }
+      if (process.env.GITHUB_STEP_SUMMARY) {
+        fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, [
+          liberado ? "### ⚠️ Publicação liberada SEM todas as prévias" : "### ⛔ Publicação interrompida: faltam prévias", "",
+          "| Pasta | Prévias ausentes ou inválidas |", "|---|---|",
+          ...pendencias.map(([m, f]) => `| \`${celula(m.pasta)}/\` | ${f.map(celula).join("<br>")} |`), "",
+          liberado ? "" : "O site que já está no ar **não foi alterado**. Corrija a causa (veja a etapa de capturas) e rode de novo, ou use *Run workflow* com “Publicar mesmo sem todas as prévias”.", "",
+        ].join("\n"));
+      }
+      if (!liberado) {
+        throw new Error(`${pendencias.length} modelo(s) sem prévia válida (${pendencias.map(([m]) => m.pasta).join(", ")}). Nada foi gerado nem publicado.`);
+      }
+    }
   }
 
   const linhas = [];

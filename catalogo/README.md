@@ -64,6 +64,22 @@ Se duas pastas resultarem no mesmo identificador (`Nova-Marca` e `nova-marca`), 
   2. a prévia commitada em `previas/`;
   3. a moldura "Prévia em preparação".
 
+## De onde vêm as prévias e o que acontece se faltar uma
+
+Para cada modelo, da fonte mais nova para a mais antiga:
+
+1. **Captura nova** (Playwright), quando o conteúdo da pasta mudou;
+2. **Cache** por conteúdo do Actions (temporário, até 7 dias sem uso);
+3. **`catalogo/previas/` no repositório**, durável e versionado;
+4. **Site já publicado** (`recuperar-previas.mjs`), que só preenche o que falta e nunca sobrescreve.
+
+Nenhuma etapa grava imagem substituta. O passo final roda
+`gerar-catalogo.mjs --exigir-previas`: se algum modelo não tiver as três prévias em
+WebP válido (cabeçalho RIFF/WEBP, tamanho coerente), **nada é gerado e a publicação é
+interrompida**, mantendo o site anterior. Em `workflow_dispatch`, a opção
+"Publicar mesmo sem todas as prévias" libera isso de propósito (vira aviso).
+As imagens de cada execução ficam no artefato `previas-catalogo` (90 dias).
+
 ## Publicação
 
 O GitHub Pages precisa estar com **Settings → Pages → Source = GitHub Actions**. Enquanto estiver em "Deploy from a branch", quem publica é a publicação automática da branch: o site é servido como está no repositório, sem as capturas e o catálogo gerados no build. O passo "Publicar" do workflow pode falhar ou concorrer com ela.

@@ -14,8 +14,10 @@
 //   e -mobile-390.webp.
 //
 // Com --cache (GitHub Actions): só recaptura o modelo cujos arquivos mudaram.
-// Se a captura falhar, usa a última prévia válida (cache ou a que já está no
-// repositório); sem nenhuma, o catálogo mostra "Prévia em preparação".
+// Se a captura falhar (ou o navegador nem abrir), usa a última prévia válida:
+// cache, ou a que já está em catalogo/previas/ (repositório ou recuperada do
+// site publicado). Nunca grava imagem substituta. Sem nenhuma prévia, o modelo
+// fica sem arquivos e gerar-catalogo.mjs --exigir-previas interrompe a publicação.
 // Sem --cache (uso local): captura só os modelos que ainda não têm prévias,
 // ou todos com --todas, ou um só com --modelo <Pasta>.
 //
@@ -27,7 +29,7 @@ import path from "node:path";
 import http from "node:http";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
-import { descobrirModelos, PREVIAS_DIR } from "./descobrir.mjs";
+import { descobrirModelos, PREVIAS_DIR, ARQUIVOS_PREVIA, webpValido } from "./descobrir.mjs";
 
 const RAIZ_REPO = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..", "..");
 
@@ -44,7 +46,7 @@ const TELAS = {
   desktop: { viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1600 / 1440, isMobile: false, hasTouch: false },
   celular: { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true },
 };
-const ARQUIVOS = { desktop: "desktop-1600.webp", desktopLeve: "desktop-800.webp", celular: "mobile-390.webp" };
+const ARQUIVOS = ARQUIVOS_PREVIA;
 const QUALIDADE_WEBP = 0.75;
 const TENTATIVAS = 2;
 const LIMITE_MODELO_MS = 120_000;
@@ -224,19 +226,29 @@ async function principal() {
 
   const { modelos } = descobrirModelos(raiz);
   const destino = (m, k) => path.join(destinoDir, `${m.slug}-${ARQUIVOS[k]}`);
-  const temPreviasNoDestino = (m) => Object.keys(ARQUIVOS).every((k) => fs.existsSync(destino(m, k)));
+  const arquivoValido = (f) => { try { return webpValido(fs.readFileSync(f)); } catch { return false; } };
+  const temPreviasNoDestino = (m) => Object.keys(ARQUIVOS).every((k) => arquivoValido(destino(m, k)));
 
-  let playwright;
-  try {
-    playwright = await import("playwright");
-  } catch {
-    throw new Error("Playwright não está instalado. Rode: cd catalogo/build && npm install && npx playwright install chromium");
+  // O navegador é aberto só quando algum modelo precisa de captura nova, e uma falha
+  // aqui (Playwright ausente, Chromium não instalado) NÃO impede o aproveitamento do
+  // cache e das prévias já existentes: cada modelo cai no plano de recuperação abaixo.
+  let navegador = null, conversora = null, erroNavegador = null;
+  async function abrirNavegador() {
+    if (navegador || erroNavegador) return;
+    try {
+      let playwright;
+      try { playwright = await import("playwright"); }
+      catch { throw new Error("Playwright não está instalado (cd catalogo/build && npm install && npx playwright install chromium)"); }
+      navegador = await playwright.chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
+      conversora = await navegador.newPage();
+    } catch (e) {
+      erroNavegador = new Error(`navegador indisponível: ${String(e.message).split("\n")[0]}`);
+    }
   }
-  const browser = await playwright.chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : {});
-  const conversora = await browser.newPage();
   const servidor = await iniciarServidor(raiz);
   const base = `http://127.0.0.1:${servidor.address().port}`;
   const relatorio = [];
+  let semPrevia = 0;
 
   try {
     for (const m of modelos) {
@@ -246,14 +258,14 @@ async function principal() {
       const hash = cacheDir ? hashDaPasta(path.join(raiz, m.pasta)) : null;
       const cacheModelo = cacheDir ? path.join(cacheDir, m.slug) : null;
       const cacheArquivo = (k) => path.join(cacheModelo, ARQUIVOS[k]);
-      const cacheCompleto = () => cacheModelo && Object.keys(ARQUIVOS).every((k) => fs.existsSync(cacheArquivo(k)));
+      const cacheCompleto = () => cacheModelo && Object.keys(ARQUIVOS).every((k) => arquivoValido(cacheArquivo(k)));
       const copiarDoCache = () => Object.keys(ARQUIVOS).forEach((k) => fs.copyFileSync(cacheArquivo(k), destino(m, k)));
 
       if (cacheDir) {
         const hashAnterior = fs.existsSync(path.join(cacheModelo, "hash.txt")) ? fs.readFileSync(path.join(cacheModelo, "hash.txt"), "utf8").trim() : "";
         if (hashAnterior === hash && cacheCompleto()) {
           copiarDoCache();
-          relatorio.push([m.pasta, "sem mudanças: prévia reaproveitada"]);
+          relatorio.push([m.pasta, "sem mudanças: prévia reaproveitada do cache"]);
           continue;
         }
       } else if (!todas && !soModelo && temPreviasNoDestino(m)) {
@@ -263,7 +275,9 @@ async function principal() {
 
       const inicio = Date.now();
       try {
-        const imgs = await limite(capturarModelo(browser, conversora, base, m), LIMITE_MODELO_MS, m.pasta);
+        await abrirNavegador();
+        if (erroNavegador) throw erroNavegador;
+        const imgs = await limite(capturarModelo(navegador, conversora, base, m), LIMITE_MODELO_MS, m.pasta);
         for (const [k, img] of Object.entries(imgs)) fs.writeFileSync(destino(m, k), img.buffer);
         if (cacheDir) {
           fs.mkdirSync(cacheModelo, { recursive: true });
@@ -273,12 +287,13 @@ async function principal() {
         const kb = Object.values(imgs).map((i) => `${i.largura}×${i.altura} ${Math.round(i.buffer.length / 1024)} KB`).join(", ");
         relatorio.push([m.pasta, `capturada em ${((Date.now() - inicio) / 1000).toFixed(1)}s (${kb})`]);
       } catch (erro) {
-        let plano;
-        if (cacheCompleto()) { copiarDoCache(); plano = "mantida a última prévia válida (cache)"; }
-        else if (temPreviasNoDestino(m)) plano = "mantida a prévia que já está no repositório";
-        else plano = "sem prévia: o catálogo mostrará “Prévia em preparação”";
+        // Plano de recuperação: nada é apagado e nenhuma imagem substituta é criada.
+        let plano, grave = false;
+        if (cacheCompleto()) { copiarDoCache(); plano = "mantida a última prévia válida do cache (pode estar desatualizada)"; }
+        else if (temPreviasNoDestino(m)) plano = "mantida a prévia que já está em catalogo/previas/ (repositório ou site publicado; pode estar desatualizada)";
+        else { plano = "SEM PRÉVIA VÁLIDA: a publicação será interrompida pela verificação, a menos que seja liberada de propósito"; grave = true; semPrevia++; }
         relatorio.push([m.pasta, `FALHOU: ${erro.message} → ${plano}`]);
-        if (process.env.GITHUB_ACTIONS) console.log(`::warning title=${anotacaoTitulo(`Captura de ${m.pasta}`)}::${anotacao(`${erro.message} → ${plano}`)}`);
+        if (process.env.GITHUB_ACTIONS) console.log(`::${grave ? "error" : "warning"} title=${anotacaoTitulo(`Captura de ${m.pasta}`)}::${anotacao(`${erro.message} → ${plano}`)}`);
       }
     }
 
@@ -289,7 +304,7 @@ async function principal() {
     }
   } finally {
     servidor.close();
-    await browser.close();
+    if (navegador) await navegador.close().catch(() => {});
   }
 
   console.log("Prévias:");
