@@ -6,7 +6,8 @@
 #
 #  Gera:
 #    assets/img/capa-800.webp e capa-1600.webp
-#    assets/img/<chegada|cuidado|retirada>-800.webp e -1200.webp  -> 8 fotos
+#    assets/img/<chegada|cuidado|retirada|banho|higienica|completa>-800.webp e -1200.webp
+#                                                                  -> 14 fotos
 #    assets/fonts/barlow-condensed-600|700-latin.woff2
 #    assets/fonts/instrument-sans-latin.woff2                     -> 3 fontes
 #
@@ -31,10 +32,13 @@ New-Item -ItemType Directory -Force -Path $imgDir, $fontDir | Out-Null
 
 # nome (igual ao data-img do HTML) e id da foto na Unsplash
 $images = @(
-  @{ name = 'capa';     id = 'photo-1609098245951-f1872318dd21'; widths = @(800, 1600) },
+  @{ name = 'capa';      id = 'photo-1638741280004-705bbded6ede'; widths = @(800, 1600) },
   @{ name = 'chegada';  id = 'photo-1530700131180-d43d9b8cc41f' },
   @{ name = 'cuidado';  id = 'photo-1632236705239-ac6f4908638d' },
-  @{ name = 'retirada'; id = 'photo-1579119134757-5c38803f34fc' }
+  @{ name = 'retirada'; id = 'photo-1579119134757-5c38803f34fc' },
+  @{ name = 'banho';     id = 'photo-1710848679472-5be2cffa688d' },
+  @{ name = 'higienica'; id = 'photo-1734777491553-aa413c4d025b' },
+  @{ name = 'completa';  id = 'photo-1601299583228-1a74f6152ba7' }
 )
 
 $falhas = 0

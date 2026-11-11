@@ -63,9 +63,12 @@ window.VAO_CONFIG = {
 
   /* Créditos exibidos no rodapé. Todas as fotos: Licença Unsplash. */
   credits: [
-    { role: "Capa", author: "Charlie Green", url: "https://unsplash.com/photos/4UP9eSHz8tQ" },
+    { role: "Capa", author: "Karthik Sridasyam", url: "https://unsplash.com/photos/Iujgc-QoLmo" },
     { role: "Chegada", author: "Andriyko Podilnyk", url: "https://unsplash.com/photos/VehdYPKnX8Y" },
-    { role: "Banho e tosa", author: "Ayla Verschueren", url: "https://unsplash.com/photos/DAhcXRQciY4" },
-    { role: "Retirada", author: "Tamas Pap", url: "https://unsplash.com/photos/Qdt8f7Tcle0" }
+    { role: "Banho e tosa (visita)", author: "Ayla Verschueren", url: "https://unsplash.com/photos/DAhcXRQciY4" },
+    { role: "Retirada", author: "Tamas Pap", url: "https://unsplash.com/photos/Qdt8f7Tcle0" },
+    { role: "Banho", author: "Vidak", url: "https://unsplash.com/photos/xI5VJYa0jmE" },
+    { role: "Tosa higiênica", author: "H Wonder", url: "https://unsplash.com/photos/NA2SJewfUTU" },
+    { role: "Tosa completa", author: "or edri", url: "https://unsplash.com/photos/FLft9hFQ6DM" }
   ]
 };

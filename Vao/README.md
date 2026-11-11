@@ -37,7 +37,7 @@ Landing page demonstrativa de uma marca fictícia de banho e tosa para cães, co
 
 **Importante:** o bloco "Consulte um horário" do `index.html` guarda uma cópia do endereço e dos horários para quem navega sem JavaScript (comentário `EDITAR`). Ao trocar esses dados no `config.js`, atualize também a cópia no HTML.
 
-Os textos da capa, das três etapas da visita e dos serviços ficam no `index.html`.
+Os textos da capa, das três etapas da visita e dos cartões de serviço ficam no `index.html` (comentários `EDITAR`). A galeria de serviços foi pensada para três cartões: abaixo de 1100 px ela rola na horizontal com qualquer quantidade, mas a partir de 1100 px mostra três colunas (`repeat(3, …)` em `.galeria__lista`, no CSS). Com mais cartões, ajuste esse número ou mantenha a rolagem também no desktop.
 
 ## Fotos e fontes locais
 

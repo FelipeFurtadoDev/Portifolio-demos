@@ -203,7 +203,7 @@
      ====================================================================== */
   function setupLocalImages() {
     if (!cfg.useLocalImages) return;
-    var widths = { capa: [800, 1600], chegada: [800, 1200], cuidado: [800, 1200], retirada: [800, 1200] };
+    var widths = { capa: [800, 1600], chegada: [800, 1200], cuidado: [800, 1200], retirada: [800, 1200], banho: [800, 1200], higienica: [800, 1200], completa: [800, 1200] };
     $$("img[data-img]").forEach(function (img) {
       var name = img.getAttribute("data-img");
       var w = widths[name];
@@ -221,8 +221,67 @@
     });
   }
 
+  /* ======================================================================
+     5. Serviços: galeria horizontal (ID 13)
+     A rolagem é nativa (toque, roda do mouse, setas do teclado com o trilho
+     focado) e o alinhamento vem do scroll-snap do CSS. O JS só acrescenta
+     os botões "Serviço anterior" e "Próximo serviço", que aparecem quando
+     os cartões não cabem lado a lado. Sem rotação automática.
+     ====================================================================== */
+  function setupGaleria() {
+    var trilho = $("[data-galeria-trilho]");
+    var controles = $("[data-galeria-controles]");
+    if (!trilho || !controles) return;
+    var anterior = $("[data-galeria-anterior]", controles);
+    var proximo = $("[data-galeria-proximo]", controles);
+    var cards = $$(".servico", trilho);
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    var pending = false;
+
+    function max() { return trilho.scrollWidth - trilho.clientWidth; }
+
+    function update() {
+      pending = false;
+      var rola = max() > 2;
+      controles.hidden = !rola;
+      var x = Math.round(trilho.scrollLeft);
+      anterior.setAttribute("aria-disabled", rola && x > 2 ? "false" : "true");
+      proximo.setAttribute("aria-disabled", rola && x < max() - 2 ? "false" : "true");
+    }
+    function schedule() {
+      if (pending) return;
+      pending = true;
+      window.requestAnimationFrame(update);
+    }
+
+    // Leva ao início do cartão seguinte (ou anterior) em relação à posição atual.
+    function go(dir) {
+      var start = trilho.getBoundingClientRect().left + parseFloat(getComputedStyle(trilho).scrollPaddingLeft || 0);
+      var alvo = null;
+      for (var i = 0; i < cards.length; i++) {
+        var d = cards[i].getBoundingClientRect().left - start;
+        if (dir > 0 && d > 4) { alvo = d; break; }
+        if (dir < 0 && d < -4) alvo = d;
+      }
+      if (alvo === null) return;
+      trilho.scrollBy({ left: alvo, behavior: reduce.matches ? "auto" : "smooth" });
+    }
+
+    anterior.addEventListener("click", function () {
+      if (anterior.getAttribute("aria-disabled") !== "true") go(-1);
+    });
+    proximo.addEventListener("click", function () {
+      if (proximo.getAttribute("aria-disabled") !== "true") go(1);
+    });
+    trilho.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    if (window.ResizeObserver) new ResizeObserver(schedule).observe(trilho);
+    update();
+  }
+
   applyConfig();
   setupEtapas();
+  setupGaleria();
   setupContato();
   setupLocalImages();
 })();
