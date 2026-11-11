@@ -1,0 +1,17 @@
+{
+  "marca": "AVELA / Atelier de Confeitaria",
+  "segmento": "Confeitaria sob encomenda",
+  "ordem": 80,
+  "descricao": "Atelier de confeitaria com linguagem editorial gastronômica: fotografia de corte e textura, logotipo gigante atravessando a foto de abertura e uma carta interativa no lugar de cartões de produto.",
+  "caracteristicas": [
+    "Abertura com fotografia em tela cheia e logotipo que atravessa a borda da foto",
+    "Carta interativa: trilho de coleções, palco fotográfico estável e seletor de peças",
+    "Fio de calda em SVG que se desenha na abertura e marca a coleção ativa",
+    "Consulta direta com mensagem montada pela peça vista, sem formulário extenso"
+  ],
+  "cores": {
+    "fundo": "#3E4A37",
+    "texto": "#F3E9D7",
+    "textoSecundario": "#D9CDB8"
+  }
+}
