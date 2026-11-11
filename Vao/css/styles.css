@@ -1,5 +1,5 @@
 /* ==========================================================================
-   VÃO · Banho e Tosa — estilos (v4: creme, café e lavanda)
+   VÃO · Banho e Tosa — estilos (v5: creme, café, lavanda viva e manteiga)
    Estrutura: tokens → base → topo → capa → visita → serviços (galeria) →
    contato → rodapé → movimento.
    Pontos de quebra: 600px (galeria em 2+ cartões, etapas lado a lado),
@@ -16,10 +16,13 @@
   --cafe: #4A3327;           /* texto principal (10:1 no creme) */
   --cafe-escuro: #2E1F17;    /* ação principal (15:1 com o creme claro) */
   --cafe-2: #6E5547;         /* texto secundário (6:1 no creme, 5,3:1 na lavanda) */
-  --lavanda-clara: #E5E0EC;  /* seção da visita, painel do contato, moldura do arco */
-  --lavanda: #C3BBD3;        /* filetes decorativos */
+  --lavanda-clara: #E5E0EC;  /* faixa de demonstração, blocos de dados, fundos de foto */
+  --lavanda-viva: #BCA2DC;   /* moldura do arco da capa */
+  --lavanda-visita: #D3BBEB; /* fundo da seção "Sua visita" */
+  --lavanda: #C3BBD3;        /* filetes decorativos sobre o creme */
   --lavanda-escura: #6A6282; /* contornos de controles (4,4–5:1) */
-  --manteiga: #F1DA8A;       /* com moderação: etapa ativa, "Inclui banho", retorno */
+  --manteiga: #F1D272;       /* painel do contato, "Inclui banho", número da etapa ativa */
+  --cafe-3: #5A4336;         /* texto secundário sobre lavanda viva (5,3:1) e manteiga (6,2:1) */
 
   --raio-p: .75rem;
   --raio-m: 1.25rem;
@@ -270,8 +273,8 @@ a { color: inherit; }
 }
 .capa__arco {
   --arco-v: 50%;
-  padding: .6rem .6rem 0;
-  background: var(--lavanda-clara);
+  padding: .75rem .75rem 0;
+  background: var(--lavanda-viva);
   border-radius: 50% 50% var(--raio-m) var(--raio-m) / var(--arco-v) var(--arco-v) var(--raio-m) var(--raio-m);
 }
 .capa__vao {
@@ -333,8 +336,12 @@ a { color: inherit; }
 
 /* ---------- Sua visita ---------- */
 .visita {
+  /* Sobre a lavanda viva, os tons secundários escurecem para manter o contraste. */
+  --cafe-2: var(--cafe-3);
+  --lavanda-escura: var(--cafe);
+  --lavanda: #9C80BE;
   padding-block: var(--secao);
-  background: var(--lavanda-clara);
+  background: var(--lavanda-visita);
 }
 .visita__topo {
   display: grid;
@@ -429,6 +436,12 @@ a { color: inherit; }
 
 /* Com JavaScript, celular e tablet: sanfona */
 .js .etapa__sinal { display: block; }
+.js .etapa__botao[aria-expanded="true"] {
+  padding-left: .85rem;
+  border-top-color: transparent;
+  background: var(--creme-claro);
+  border-radius: var(--raio-m);
+}
 .js .etapa__botao:hover .etapa__nome { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; }
 .js .etapa__botao[aria-expanded="true"] .etapa__num {
   background: var(--manteiga);
@@ -495,7 +508,7 @@ a { color: inherit; }
     border-radius: var(--raio-m);
   }
   .js .etapa__sinal { display: none; }
-  .js .etapa__botao:hover { background: rgba(252, 248, 241, .55); }
+  .js .etapa__botao:hover { background: rgba(252, 248, 241, .5); }
   .js .etapa__botao[aria-expanded="true"] { background: var(--creme-claro); cursor: default; }
   .js .etapa__botao[aria-expanded="false"] .etapa__nome { color: var(--cafe-2); }
   .js .etapa__botao[aria-expanded="true"]:hover .etapa__nome { text-decoration: none; }
@@ -545,7 +558,7 @@ a { color: inherit; }
   width: 3rem;
   height: 3rem;
   padding: 0;
-  border: 1.5px solid var(--lavanda-escura);
+  border: 2px solid var(--cafe);
   border-radius: 50%;
   background: var(--creme-claro);
   color: var(--cafe);
@@ -561,7 +574,7 @@ a { color: inherit; }
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.galeria__botao:hover { background: var(--lavanda-clara); }
+.galeria__botao:hover { background: var(--cafe); color: var(--creme-claro); }
 .galeria__botao[aria-disabled="true"] {
   opacity: .4;
   cursor: default;
@@ -627,9 +640,10 @@ a { color: inherit; }
   padding: .15rem .7rem;
   border-radius: var(--pilula);
   background: var(--manteiga);
+  box-shadow: inset 0 0 0 1px rgba(74, 51, 39, .35);
   color: var(--cafe-escuro);
   font-size: .875rem;
-  font-weight: 600;
+  font-weight: 700;
 }
 .servico__texto { color: var(--cafe-2); }
 
@@ -670,9 +684,12 @@ a { color: inherit; }
   background: var(--creme);
 }
 .contato__painel {
-  padding: clamp(1.75rem, 5vw, 4rem);
+  --cafe-2: var(--cafe-3);
+  --lavanda-escura: var(--cafe);
+  align-self: start;
+  padding: clamp(1.75rem, 5vw, 3.5rem);
   border-radius: var(--raio-g);
-  background: var(--lavanda-clara);
+  background: var(--manteiga);
 }
 .contato__grade {
   display: grid;
@@ -713,7 +730,7 @@ a { color: inherit; }
 .dado {
   padding: 1.25rem 1.35rem;
   border-radius: var(--raio-m);
-  background: var(--creme-claro);
+  background: var(--lavanda-clara);
 }
 .dado__titulo {
   font-family: var(--fonte-titulo);

@@ -27,9 +27,9 @@ Quatro blocos: capa → sua visita → serviços (galeria) → contato, mais o r
 3. **Abertura** (`#inicio`, creme):
    - **a partir de 760 px:** duas colunas. À esquerda, "Banho e tosa para cães", o título, a linha de apoio e as ações. À direita, a foto dentro de um **arco largo** com batente lavanda, com respiro em volta (não sangra mais até a borda);
    - **no celular:** identificação, título, apoio e as duas ações primeiro; a foto vem depois, também em arco (quadrada, com o topo em semicírculo).
-4. **Sua visita, do começo ao fim** (`#visita`, lavanda clara): mesma interação da v3 (seção 6), com a nova identidade.
+4. **Sua visita, do começo ao fim** (`#visita`, lavanda viva `#D3BBEB` na v5): mesma interação da v3 (seção 6), com a nova identidade.
 5. **O que você pode marcar** (`#servicos`, creme): **galeria horizontal de três cartões** (seção 7).
-6. **Consulte um horário** (`#contato`): painel lavanda claro com cantos arredondados sobre o creme, no lugar do bloco marinho de largura total. Dentro, a ação e o aviso à esquerda; endereço e horários em dois blocos creme à direita.
+6. **Consulte um horário** (`#contato`): painel arredondado sobre o creme, no lugar do bloco marinho de largura total (manteiga `#F1D272` na v5). Dentro, só o título, a ação e o aviso; endereço e horários ficam à direita, em dois blocos fora do painel.
 7. **Rodapé** (creme escuro): marca, aviso de marca fictícia, créditos das sete fotos (gerados do `config`) e "Voltar ao início".
 
 ## 3. Direção de arte (v4)
@@ -64,10 +64,13 @@ Quatro blocos: capa → sua visita → serviços (galeria) → contato, mais o r
 | Café | `#4A3327` | Texto principal | 10,2:1 no creme; 11,1:1 no creme claro; 9:1 na lavanda clara e no creme escuro |
 | Café escuro | `#2E1F17` | Fundo da ação principal | 15:1 com o creme claro |
 | Café 2 | `#6E5547` | Texto secundário | 6:1 no creme; 6,5:1 no creme claro; 5,3:1 na lavanda clara e no creme escuro |
-| Lavanda clara | `#E5E0EC` | Seção da visita, painel do contato, batente do arco, faixa de demonstração | — |
+| Lavanda clara | `#E5E0EC` | Faixa de demonstração, blocos de dados do contato, fundos de foto (v5: não é mais a seção da visita nem o batente) | — |
+| Lavanda viva | `#BCA2DC` | Batente do arco da capa (v5). Sem texto sobre ela | 5,2:1 com o café (só referência) |
+| Lavanda da visita | `#D3BBEB` | Fundo da seção "Sua visita" (v5) | 6,7:1 com o café; 9,1:1 com o café escuro |
+| Café 3 | `#5A4336` | Texto secundário sobre lavanda da visita e manteiga (v5) | 5,3:1 na lavanda da visita; 6,2:1 na manteiga |
 | Lavanda | `#C3BBD3` | Filetes decorativos (1,6:1, só decoração) | — |
 | Lavanda escura | `#6A6282` | Contornos de controles: botão secundário, botões da galeria, número das etapas | 4,95:1 no creme; 5,4:1 no creme claro; 4,4:1 na lavanda clara (mínimo para componentes: 3:1) |
-| Manteiga | `#F1DA8A` | Etapa ativa, "Inclui banho", retorno do contato | 11,4:1 com o café escuro; 8,4:1 com o café |
+| Manteiga | `#F1D272` (v5) | Painel do contato, "Inclui banho", número da etapa ativa | 10,7:1 com o café escuro; 7,9:1 com o café |
 
 Contrastes calculados pela fórmula da WCAG 2.2 (script em Python, nesta sessão). O foco visível é um contorno café de 3 px, que funciona em todos os fundos claros.
 
@@ -291,7 +294,27 @@ Problemas encontrados e corrigidos nesta revisão:
 | O recorte do cartão Banho cortava a cabeça do cão | Ponto focal 15% 40% |
 | Cópias para a pasta do projeto às vezes ficavam com a versão anterior | Envio por caminho novo e conferência de MD5 |
 
-## 12. Pendências
+## 12. Refinamento de cor (v5, 11/11/2026)
+
+Só cores e distribuição de superfícies. Arquitetura, textos, fotos, bordas arredondadas, galeria, painel da visita e contato demonstrativo ficaram iguais (exceto o agrupamento do contato, abaixo).
+
+| Área | v4 | v5 |
+|---|---|---|
+| Capa | Batente `#E5E0EC` (0,6 rem de espessura) | Batente `--lavanda-viva` `#BCA2DC`, espessura 0,75 rem. Fundo creme e texto café mantidos |
+| Sua visita | Fundo `#E5E0EC` | Fundo `--lavanda-visita` `#D3BBEB`. Etapa ativa: preenchimento creme claro com cantos arredondados (desktop e celular) + número manteiga. Contornos viram café e filetes `#9C80BE` dentro da seção |
+| Serviços | Base creme; controles com contorno lavanda escura; etiqueta `#F1DA8A` | Base creme; botões da galeria com contorno café de 2 px e hover café; etiqueta `#F1D272` em negrito com fio café a 35% |
+| Contato | Painel lavanda claro com título, botão e dados | Painel manteiga `#F1D272` reúne só título, texto, botão e aviso; endereço e horários ficam ao lado, em blocos lavanda clara sobre o creme. Texto e botão café |
+
+- **Variável nova de contraste:** dentro de `.visita` e `.contato__painel`, `--cafe-2` passa a `--cafe-3` (`#5A4336`), porque o `#6E5547` dava 3,96:1 na lavanda da visita. `--lavanda-escura` vira café nessas superfícies.
+- **Etapa ativa:** testei um contorno café de 2 px no botão ativo, mas ele se confundia com o anel de foco (3 px, café). Removi. A etapa ativa se identifica por preenchimento, número manteiga, título em café pleno (as outras ficam em café 3) e `aria-expanded`.
+- **Foco:** anel de 3 px em café, medido no botão de etapa e no botão do contato (Playwright). Sobre a manteiga o contraste é 7,9:1.
+- **Alteração de marcação:** em `index.html`, a classe `contato__painel` saiu do envoltório e foi para `.contato__acao`, para o painel manteiga reunir só título e botão. Os dados ficam fora dele.
+- **Contraste do texto (Playwright, DOM):** 44 combinações distintas de texto e fundo medidas, nenhuma abaixo de 4,5:1. Menor valor ao redor de 5,2:1.
+- **Capturas antes/depois:** 1440×900 e 390×844, capa, visita, serviços e contato (entregues na conversa).
+- **Não testado:** Safari/WebKit, Firefox, leitor de tela; as capturas do Playwright usam placeholders no lugar das fotos e fontes de reserva. A impressão do tom lavanda sobre as fotos reais foi conferida só na capa, no navegador do Claude Desktop.
+- **Publicação:** a versão publicada continua a v4. Quando a v5 for aprovada e publicada, conferir as duas prévias do VÃO no catálogo (ver pendências).
+
+## 13. Pendências
 
 ### BLOQUEANTES
 - Nenhuma identificada para a demonstração.
@@ -303,7 +326,8 @@ Problemas encontrados e corrigidos nesta revisão:
 4. **Leitor de tela:** anúncio do trilho ("Serviços", região), dos botões com `aria-disabled` e da sanfona.
 5. **Movimento reduzido:** testar com a preferência real do Windows.
 6. **Comparação no catálogo:** pôr a v4 e o Bolha & Bento lado a lado (seção 9, aproximação dos fundos claros).
-7. **Playwright no Windows:** instalar o Node.js (com `npx`) para o Playwright do Claude Desktop funcionar, inclusive com WebKit.
+7. **Prévias do catálogo (depois de publicar a v5):** conferir as duas imagens do VÃO dentro da ficha no catálogo. Se alguma mostrar a v4, abrir o passo "Gerar capturas dos modelos" no GitHub Actions e ver se usou captura nova, cache ou imagem de reserva.
+8. **Playwright no Windows:** instalar o Node.js (com `npx`) para o Playwright do Claude Desktop funcionar, inclusive com WebKit.
 
 ### PUBLICAÇÃO COMERCIAL
 - [ ] `contact.whatsapp` real e `demo.enabled: false`; testar se abre o WhatsApp certo.
