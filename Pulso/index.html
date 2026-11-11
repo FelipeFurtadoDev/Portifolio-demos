@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PULSO Auto Care | Estética e detalhamento automotivo</title>
+  <meta name="description" content="PULSO Auto Care: polimento técnico, proteção de pintura, cuidados com rodas e superfícies externas e higienização interna. Explore os cuidados no carro e fale com o estúdio.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#14212B">
+  <meta property="og:title" content="PULSO Auto Care | Seu carro em outra frequência.">
+  <meta property="og:description" content="Estúdio de estética e detalhamento automotivo. Site demonstrativo.">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Fontes: Anybody (títulos) e Instrument Sans (textos), SIL OFL. Para usar localmente:
+       rode tools/baixar-recursos.ps1 e troque este bloco por
+       <link rel="stylesheet" href="css/fontes-locais.css"> -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:wdth,wght@100..150,500..900&family=Instrument+Sans:wght@400..700&display=swap">
+
+  <link rel="preload" as="image" href="assets/img/capa-1914.webp" imagesrcset="assets/img/capa-900.webp 900w, assets/img/capa-1276.webp 1276w, assets/img/capa-1914.webp 1914w" imagesizes="100vw" fetchpriority="high">
+  <link rel="stylesheet" href="css/styles.css?v=5">
+</head>
+<body>
+  <a class="pular" href="#conteudo">Pular para o conteúdo</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="pulso" viewBox="0 0 120 24">
+      <path d="M0 12h38l6-9 9 18 8-14 5 5h54" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </svg>
+
+  <!-- ============ TOPO ============ -->
+  <header class="topo" id="topo-cab">
+    <p class="topo__demo" id="faixa-demo" hidden></p>
+    <div class="topo__barra">
+      <a class="marca" href="#capa" aria-label="PULSO Auto Care, ir ao início">
+        <svg class="marca__simbolo" viewBox="0 0 120 24" aria-hidden="true"><use href="#pulso"/></svg>
+        <span class="marca__nome">PULSO</span>
+      </a>
+      <button class="menu-botao" id="menu-botao" type="button" aria-expanded="false" aria-controls="menu">
+        <span class="menu-botao__txt">Menu</span>
+        <span class="menu-botao__ico" aria-hidden="true"></span>
+      </button>
+      <nav class="menu" id="menu" aria-label="Principal">
+        <a href="#cuidados">Cuidados</a>
+        <a href="#detalhes">Detalhes</a>
+        <a href="#contato">Contato</a>
+        <a class="botao botao--coral botao--pequeno" href="#contato">Conversar</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="conteudo">
+
+    <!-- ============ A · IMPACTO ============ -->
+    <section class="capa" id="capa" aria-labelledby="capa-titulo">
+      <div class="capa__foto" id="capa-foto">
+        <img
+          src="assets/img/capa-1914.webp"
+          srcset="assets/img/capa-900.webp 900w, assets/img/capa-1276.webp 1276w, assets/img/capa-1914.webp 1914w"
+          sizes="100vw"
+          width="1276" height="664"
+          alt="Sedã esportivo azul-elétrico em três quartos, parado sobre um piso brilhante em um estúdio com luzes alaranjadas"
+          fetchpriority="high" decoding="async">
+      </div>
+      <div class="capa__vinheta" aria-hidden="true"></div>
+
+      <!-- camadas gráficas do parallax: independentes da fotografia -->
+      <div class="capa__camada capa__faixa" aria-hidden="true" data-camada="-0.07"><span></span><span></span></div>
+      <div class="capa__camada capa__riscos" aria-hidden="true" data-camada="-0.14">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="capa__texto">
+        <h1 id="capa-titulo" class="capa__titulo">Seu carro em outra frequência.</h1>
+        <p class="capa__apoio">Estúdio de estética e detalhamento automotivo. Polimento, proteção de pintura, rodas e interior, com o cuidado combinado para o seu carro.</p>
+        <div class="capa__acoes">
+          <a class="botao botao--coral" href="#cuidados">Explorar os cuidados <span class="botao__riscos" aria-hidden="true"></span></a>
+          <a class="botao botao--vazado" href="#contato">Conversar</a>
+        </div>
+        <svg class="capa__pulso" viewBox="0 0 420 60" aria-hidden="true" focusable="false">
+          <path d="M0 30H178L196 30L212 6L234 54L256 16L272 30H420" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <svg class="corte corte--gelo" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <polygon points="0,10 100,0 100,10" fill="#F3F1EA"/>
+        <polyline points="0,10 100,0" fill="none" stroke="#FF6542" stroke-width="5" vector-effect="non-scaling-stroke"/>
+      </svg>
+    </section>
+
+    <!-- ============ B · EXPLORE OS CUIDADOS ============ -->
+    <section class="cuidados" id="cuidados" aria-labelledby="cuidados-titulo">
+      <div class="cuidados__bloco" aria-hidden="true"></div>
+      <div class="cuidados__grade">
+        <header class="cuidados__cab">
+          <h2 id="cuidados-titulo" class="titulo-secao">Toque no carro. Veja o cuidado.</h2>
+          <p class="cuidados__intro">Cada ponto abre o que o estúdio faz naquela região. Troque entre a parte externa e o interior para ver os quatro cuidados.</p>
+        </header>
+
+        <div class="servicos" id="servicos" role="group" aria-label="Cuidados oferecidos">
+          <noscript>
+            <ul class="servicos__estatica">
+              <li><strong>Polimento técnico.</strong> Reduz marcas finas de lavagem e a opacidade da pintura.</li>
+              <li><strong>Proteção de pintura.</strong> Selante ou revestimento que ajuda a repelir água e facilita a lavagem.</li>
+              <li><strong>Rodas e superfícies externas.</strong> Aros, pneus, vidros, frisos e plásticos, cada um com o produto certo.</li>
+              <li><strong>Higienização interna.</strong> Bancos, painel e acabamentos limpos conforme o material.</li>
+            </ul>
+          </noscript>
+        </div>
+
+        <div class="palco-area" id="palco-area" data-modo="flutuante">
+          <div class="abas" id="abas" role="tablist" aria-label="Parte do carro"></div>
+          <div class="palco" id="palco"></div>
+          <div class="popover" id="popover" role="region" aria-labelledby="pop-titulo" hidden>
+            <button class="popover__fechar" id="pop-fechar" type="button" aria-label="Fechar informações">×</button>
+            <p class="popover__cuidado" id="pop-cuidado"></p>
+            <h3 class="popover__titulo" id="pop-titulo"></h3>
+            <p class="popover__texto" id="pop-texto"></p>
+            <ul class="popover__lista" id="pop-lista"></ul>
+            <a class="botao botao--coral botao--pequeno popover__acao" id="pop-acao" href="#contato">Conversar sobre este cuidado</a>
+          </div>
+          <p class="palco__dica" id="palco-dica">Toque nos pontos sobre a foto. Fotografias ilustrativas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ C · SUPERFÍCIES E DETALHES ============ -->
+    <section class="detalhes" id="detalhes" aria-labelledby="detalhes-titulo">
+      <svg class="corte corte--azul" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <polygon points="0,10 100,0 100,10" fill="#1769E8"/>
+      </svg>
+      <div class="detalhes__grade">
+        <header class="detalhes__titulo">
+          <svg class="detalhes__pulso" viewBox="0 0 120 24" aria-hidden="true"><use href="#pulso"/></svg>
+          <h2 id="detalhes-titulo" class="titulo-secao titulo-secao--claro">O cuidado se vê de perto: pintura, vidro, aro e acabamento.</h2>
+          <p>O trabalho muda conforme a superfície. Estas imagens mostram o tipo de material e de procedimento com que o estúdio trabalha.</p>
+        </header>
+
+        <figure class="foto foto--farol">
+          <img src="assets/img/farol-1600.webp" srcset="assets/img/farol-900.webp 900w, assets/img/farol-1600.webp 1600w" sizes="(min-width: 1000px) 34vw, 92vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Farol de um carro azul-marinho com feixe de luz e reflexos na pintura">
+          <figcaption data-legenda="farol"></figcaption>
+        </figure>
+
+        <figure class="foto foto--gotas">
+          <img src="assets/img/gotas-1000.webp" srcset="assets/img/gotas-640.webp 640w, assets/img/gotas-1000.webp 1000w" sizes="(min-width: 1000px) 30vw, 80vw" width="1000" height="1333" loading="lazy" decoding="async" alt="Gotas de água sobre a pintura prateada de um carro, com uma linha de junção entre painéis">
+          <figcaption data-legenda="gotas"></figcaption>
+        </figure>
+
+        <figure class="foto foto--polimento">
+          <img src="assets/img/polimento-1200.webp" srcset="assets/img/polimento-700.webp 700w, assets/img/polimento-1200.webp 1200w" sizes="(min-width: 1000px) 30vw, 80vw" width="1200" height="1500" loading="lazy" decoding="async" alt="Politriz orbital vermelha sobre pintura preta com fita de proteção verde nas bordas">
+          <figcaption data-legenda="polimento"></figcaption>
+        </figure>
+
+        <figure class="foto foto--roda">
+          <img src="assets/img/roda-1600.webp" srcset="assets/img/roda-900.webp 900w, assets/img/roda-1600.webp 1600w" sizes="(min-width: 1000px) 28vw, 88vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Raios de uma roda de liga leve com pinça de freio vermelha ao fundo">
+          <figcaption data-legenda="roda"></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ D · CONTATO ============ -->
+    <section class="contato" id="contato" aria-labelledby="contato-titulo">
+      <svg class="corte corte--azul-base" viewBox="0 0 100 10" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <polygon points="0,0 100,0 0,10" fill="#1769E8"/>
+      </svg>
+      <div class="contato__grade">
+        <div class="contato__texto">
+          <h2 id="contato-titulo" class="titulo-secao">Vamos conversar sobre o seu carro.</h2>
+          <p class="contato__intro">Conte o que você quer cuidar. O estúdio avalia o carro e combina serviço, valor e data com você.</p>
+
+          <fieldset class="contexto">
+            <legend>Sobre qual cuidado?</legend>
+            <div class="contexto__opcoes" id="contexto-opcoes"></div>
+          </fieldset>
+
+          <p class="mensagem-previa"><span>Sua mensagem</span><q id="mensagem-previa"></q></p>
+        </div>
+
+        <aside class="cartao" aria-label="Informações de contato">
+          <a class="botao botao--coral botao--grande" id="botao-whats" href="#contato">Conversar no WhatsApp <span class="botao__riscos" aria-hidden="true"></span></a>
+          <p class="cartao__aviso" id="aviso-demo" role="status" hidden></p>
+          <button class="botao botao--vazado-escuro botao--pequeno" id="botao-copiar" type="button" hidden>Copiar mensagem</button>
+
+          <dl class="info">
+            <div>
+              <dt>WhatsApp</dt>
+              <dd id="info-whats"></dd>
+            </div>
+            <div>
+              <dt>Onde fica</dt>
+              <dd id="info-endereco"></dd>
+            </div>
+            <div>
+              <dt>Horários</dt>
+              <dd><ul class="horarios" id="info-horarios"></ul><span class="info__nota" id="info-horarios-nota"></span></dd>
+            </div>
+            <div>
+              <dt>Como funciona</dt>
+              <dd id="info-pratico"></dd>
+            </div>
+          </dl>
+          <a class="cartao__mapa" id="link-mapa" href="#contato">Abrir no mapa</a>
+        </aside>
+      </div>
+
+      <footer class="rodape">
+        <div class="rodape__marca">
+          <svg viewBox="0 0 120 24" aria-hidden="true"><use href="#pulso"/></svg>
+          <strong>PULSO Auto Care</strong>
+        </div>
+        <p class="rodape__aviso">Modelo demonstrativo de landing page. Marca, endereço, horários e contato são fictícios, e as fotografias são ilustrativas: não mostram serviços realizados pela marca.</p>
+        <p class="rodape__creditos" id="creditos"></p>
+      </footer>
+    </section>
+  </main>
+
+  <script src="js/config.js?v=4"></script>
+  <script src="js/main.js?v=4"></script>
+</body>
+</html>

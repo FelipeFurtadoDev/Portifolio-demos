@@ -1,0 +1,18 @@
+{
+  "marca": "PULSO Auto Care",
+  "segmento": "Estética e detalhamento automotivo",
+  "ordem": 90,
+  "descricao": "Estúdio de estética automotiva com linguagem esportiva e clara: capa em fotografia de tela cheia com parallax discreto, serviços explorados por pontos sobre a foto do carro (por fora e por dentro) e contato direto no WhatsApp, sem formulário de orçamento.",
+  "caracteristicas": [
+    "Capa em fotografia de tela cheia com camadas de parallax discretas",
+    "Hotspots sobre fotografia: toque ou teclado abrem o cuidado de cada região do carro",
+    "Troca entre parte externa e interior, com lista de cuidados sempre visível",
+    "Composição editorial de detalhes sem grade de cartões",
+    "Contato direto com a mensagem montada pelo cuidado escolhido"
+  ],
+  "cores": {
+    "fundo": "#14212B",
+    "texto": "#F3F1EA",
+    "textoSecundario": "#B9C6D0"
+  }
+}
