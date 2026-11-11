@@ -1,0 +1,18 @@
+{
+  "marca": "ENTRE. Atelier de Olhar & Mãos",
+  "segmento": "Manicure, cílios e sobrancelhas",
+  "ordem": 100,
+  "descricao": "Atelier de beleza com linguagem editorial e tátil: o nome se parte em EN e TRE. e a fotografia fica entre as duas metades, os três cuidados aparecem como capas de revista empilhadas na rolagem e o contato começa por uma pergunta simples, com a mensagem pronta para copiar.",
+  "caracteristicas": [
+    "Capa com o logotipo partido e a foto protagonista numa moldura em forma de unha amendoada",
+    "Tipografia cinética: as metades do nome se revelam a partir da foto",
+    "Três capas editoriais empilhadas na rolagem, com profundidade e trilho de progresso",
+    "Seção sobre o atendimento com o que esperar antes, durante e entre as visitas",
+    "Escolha do cuidado compartilhada entre as capas e o contato, com mensagem pronta"
+  ],
+  "cores": {
+    "fundo": "#4B293C",
+    "texto": "#F6F0E8",
+    "textoSecundario": "#D9C9D1"
+  }
+}
