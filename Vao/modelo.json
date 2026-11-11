@@ -1,0 +1,17 @@
+{
+  "marca": "VÃO · Banho e Tosa",
+  "segmento": "Estética pet: banho e tosa para cães",
+  "ordem": 110,
+  "descricao": "Banho e tosa para cães, com hora marcada e tudo combinado antes. Capa em duas colunas com o encontro entre cão e pessoa, a visita explicada em três etapas com foto e serviços em linhas tipográficas amplas.",
+  "caracteristicas": [
+    "Capa azul-marinho com título em Barlow Condensed e fotografia documental ao lado",
+    "“Sua visita, do começo ao fim”: lista lateral e painel estável no desktop, sanfona no celular",
+    "Três serviços em linhas separadas por filetes, com a diferença entre manutenção e corte",
+    "Contato direto com localização e horários configuráveis, sem formulário"
+  ],
+  "cores": {
+    "fundo": "#15264A",
+    "texto": "#FFFFFF",
+    "textoSecundario": "#C9D5E8"
+  }
+}
