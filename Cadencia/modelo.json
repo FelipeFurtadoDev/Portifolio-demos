@@ -1,0 +1,18 @@
+{
+  "marca": "CADÊNCIA · Estética facial",
+  "segmento": "Estética facial",
+  "ordem": 130,
+  "descricao": "Estúdio de estética facial com identidade em azul profundo, damasco e amarelo manteiga: abertura em faixas, menu de cuidados com comparação de até dois serviços, primeira visita em sequência fotográfica e consulta de horário com mensagem pronta.",
+  "caracteristicas": [
+    "Abertura em faixas: título grande, fotografia horizontal e chamadas sobre faixa damasco",
+    "Menu com três cuidados (limpeza, hidratação e massagem) legível sem interação",
+    "Comparador de até dois cuidados, com atributos alinhados e limite explicado",
+    "Primeira visita em sequência fotográfica com proporções diferentes e legendas",
+    "Consulta de horário com mensagem pronta para copiar, sem agenda fictícia"
+  ],
+  "cores": {
+    "fundo": "#243C78",
+    "texto": "#FAF8F2",
+    "textoSecundario": "#D9E0F2"
+  }
+}
