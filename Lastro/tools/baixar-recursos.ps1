@@ -5,8 +5,8 @@
 #    powershell -ExecutionPolicy Bypass -File tools\baixar-recursos.ps1
 #
 #  Gera:
-#    assets/img/<chave>-<largura>.webp para as 19 fotos (hero, coz1..3, ilha1, ban1..3,
-#    est1..3, vel1, vel2, det4, bord1, enc1, proc1..3), 3 larguras cada -> 57 arquivos
+#    assets/img/<chave>-<largura>.webp para as 18 fotos (hero, coz1..3, ilha1, ban1..3,
+#    est1..3, vel1, vel2, det4, bord1, enc1, proc1, proc2), 3 larguras cada -> 54 arquivos
 #    assets/fonts/instrument-serif-latin.woff2
 #    assets/fonts/geist-latin.woff2                                -> 2 fontes
 #
@@ -48,8 +48,7 @@ $images = @(
   @{ name = 'bord1'; id = 'photo-1721274505251-6ce98a2101e8'; widths = @(480, 800, 1200) },
   @{ name = 'enc1'; id = 'photo-1790156589905-3baa4c6e0fc7'; widths = @(480, 800, 1200) },
   @{ name = 'proc1'; id = 'photo-1676630656246-3047520adfdf'; widths = @(480, 960, 1600) },
-  @{ name = 'proc2'; id = 'photo-1749212387838-c4c4e6e58348'; widths = @(480, 960, 1600) },
-  @{ name = 'proc3'; id = 'photo-1505798577917-a65157d3320a'; widths = @(480, 960, 1600) }
+  @{ name = 'proc2'; id = 'photo-1749212387838-c4c4e6e58348'; widths = @(480, 960, 1600) }
 )
 
 $falhas = 0

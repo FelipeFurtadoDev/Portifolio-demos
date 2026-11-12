@@ -56,8 +56,7 @@ window.LASTRO_CONFIG = {
     bord1: { id: "1721274505251-6ce98a2101e8", grupo: "detalhes", titulo: "Quina e espessura do tampo", alt: "Canto de um tampo de pedra de grão fino sobre gabinete de madeira, com a quina e a espessura à mostra", autor: "Lisa Anna", url: "https://unsplash.com/photos/myIiHEv81jc", ratio: [2, 3] },
     enc1: { id: "1790156589905-3baa4c6e0fc7", grupo: "detalhes", titulo: "Encontro entre dois níveis do tampo", alt: "Encontro de dois níveis de um tampo branco sobre uma base de ripas de madeira", autor: "Ceba Solutions", url: "https://unsplash.com/photos/hlLXymONM5U", ratio: [3, 4] },
     proc1: { id: "1676630656246-3047520adfdf", grupo: "processo", titulo: "Medição no ambiente", alt: "Profissional usando um instrumento de medida junto a uma parede, em foto ilustrativa de medição", autor: "Bermix Studio", url: "https://unsplash.com/photos/bAGo7O4prtY", ratio: [3, 2], guardavel: false },
-    proc2: { id: "1749212387838-c4c4e6e58348", grupo: "processo", titulo: "Amostras de pedra", alt: "Amostras de mármore e pedras de cores e veios diferentes expostas lado a lado", autor: "Declan Sun", url: "https://unsplash.com/photos/RaTyAZrysv4", ratio: [3, 2], guardavel: false },
-    proc3: { id: "1505798577917-a65157d3320a", grupo: "processo", titulo: "Corte de bancada em obra", alt: "Profissional cortando uma bancada com serra de esquadria em uma cozinha, em foto ilustrativa", autor: "Annie Gray", url: "https://unsplash.com/photos/WEWTGkPUVT0", ratio: [3, 2], guardavel: false }
+    proc2: { id: "1749212387838-c4c4e6e58348", grupo: "processo", titulo: "Amostras de pedra", alt: "Amostras de mármore e pedras de cores e veios diferentes expostas lado a lado", autor: "Declan Sun", url: "https://unsplash.com/photos/RaTyAZrysv4", ratio: [3, 2], guardavel: false }
   },
 
   /* Rótulos dos grupos de fotos, usados na bandeja e na mensagem pronta. */

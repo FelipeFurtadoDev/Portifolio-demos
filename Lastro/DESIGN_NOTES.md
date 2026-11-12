@@ -10,7 +10,7 @@ mantidas. A página publicada em Portifolio-demos/Lastro não foi tocada.
 ## O que mudou na revisão
 1. **Capa**: nova foto (bancada de pedra clara com borda espessa em primeiro plano, painel de pedra com veios atrás do fogão e marcenaria em madeira). Composição dividida: texto sobre o fundo escuro, à esquerda; foto à direita **sem escurecimento geral**, só uma emenda suavizada entre as duas (máscara de 16 %). No celular a foto fica inteira no alto (corte `66% 68%`) e o texto abaixo. A capa continua com `loading="eager"` e `fetchpriority="high"`.
 2. **Detalhes**: as cinco fotos foram trocadas por close-ups nítidos (veios em fundo claro, veio branco em fundo escuro, recorte de cuba, quina e espessura, encontro entre dois níveis do tampo). As legendas saíram de cima da imagem (antes havia um degradê escuro cobrindo ~40 % da foto) e ficam abaixo dela. Legendas neutras: **não classificam acabamento** (polido, fosco, escovado etc.), porque nenhuma fonte confirma isso; também não citam nomes comerciais de pedra.
-3. **Quarta seção (Peças + processo)**: peças viraram lista compacta em duas colunas (sem a coluna repetida "onde"); o processo ficou em quatro etapas: Conversa e levantamento, Definição da pedra e da peça, Preparação e acabamento, Instalação. Três etapas têm foto ilustrativa legendada; a **Instalação não tem foto** (ver pendências). A seção caiu de ~2840 px para ~1790 px a 390 px de largura.
+3. **Quarta seção (Peças + processo)**: peças viraram lista compacta em duas colunas (sem a coluna repetida "onde"); o processo ficou em quatro etapas: Conversa e levantamento, Definição da pedra e da peça, Preparação e acabamento, Instalação. Ajuste final (12/11, tarde): só as etapas 1 e 2 têm foto ilustrativa legendada, em uma faixa de duas fotos acima das quatro etapas numeradas (todas com o mesmo formato, sem bloco vazio). A foto da serra de esquadria (`proc3`) foi retirada. Preparação/acabamento e Instalação ficam só em texto: as buscas por polimento/acabamento de pedra, fabricação de bancada e instalação não trouxeram foto cuja fonte confirme trabalho em pedra (as melhores, de roteador em tampo e de máquina CNC, descrevem só "construção" e "corte a laser", sem citar o material). A seção caiu de ~2840 px para ~1790 px a 390 px de largura.
 4. **Luminosidade**: o escurecimento deixou de ser uniforme. Capa sem véu; painéis com sombra lateral mais leve (0,82 → 0,55 → 0); detalhes e galeria ampliada sem nenhum filtro; no celular o texto dos painéis abertos passou para um bloco próprio abaixo da foto (antes cobria a bancada). Mistura de fotos claras (capa, veios claros, mármore, encontro) com escuras (ilha escura, veio escuro, cozinha quente).
 5. **Conteúdo**: "Ilhas e áreas gourmet" aparece no painel da Cozinha como destaque com foto própria (abre a galeria na foto da ilha); na Conversa entraram a opção "Tenho planta ou fotos para enviar" e a área recolhida "Adicionar medidas aproximadas" (unidade cm/m + campo de texto). Ambas só entram na mensagem pronta quando preenchidas; sem upload, sem cálculo de preço, e a conversa continua iniciável sem preencher nada.
 6. **Sessão antiga**: o estado agora fica em `lastro-v3`, lendo `lastro-v2` se existir. Chaves removidas são descartadas, duplicatas eliminadas, e só fotos "guardáveis" entram. As chaves das fotos trocadas são novas (`vel1`, `vel2`, `bord1`, `enc1`, `ilha1`); `det1`, `det2`, `det3` e `det5` foram aposentadas e **nunca reaproveitadas**, para não associar uma referência antiga a uma foto diferente.
@@ -42,7 +42,7 @@ Contrastes (WCAG, calculados na versão 2 e inalterados, pois as cores não muda
 Tipografia: **Instrument Serif** (títulos) e **Geist** (texto e controles).
 
 ## Direção fotográfica
-19 fotografias no catálogo (hero 1, cozinha 4, banheiro 3, estar 3, detalhes 5, processo 3). Licença conferida na página de cada foto nova ("Fotografia grátis", não Unsplash+). Todas são ilustrativas; a página diz que não são trabalhos da marca, e o processo traz a legenda "Ilustração: …" em cada foto e a nota "feitas em lugares diferentes. Não são obras da LASTRO".
+18 fotografias no catálogo (hero 1, cozinha 4, banheiro 3, estar 3, detalhes 5, processo 2). Licença conferida na página de cada foto nova ("Fotografia grátis", não Unsplash+). Todas são ilustrativas; a página diz que não são trabalhos da marca, e o processo traz a legenda "Ilustração: …" em cada foto e a nota "feitas em lugares diferentes. Não são obras da LASTRO".
 
 | Chave | Uso | Autor (Unsplash) | Página |
 |---|---|---|---|
@@ -57,7 +57,6 @@ Tipografia: **Instrument Serif** (títulos) e **Geist** (texto e controles).
 | enc1 | detalhes: encontro de níveis (nova) | Ceba Solutions | hlLXymONM5U |
 | proc1 | processo 1, medição (nova) | Bermix Studio | bAGo7O4prtY |
 | proc2 | processo 2, amostras de pedra (nova) | Declan Sun | RaTyAZrysv4 |
-| proc3 | processo 3, corte de bancada (nova) | Annie Gray | WEWTGkPUVT0 |
 
 Removidas nesta revisão: a capa anterior (laura adai, ilha escura com plantas e luminária, competia com a bancada) e `det1`, `det2`, `det3`, `det5` (Franco Debartolo; laura adai ×2; Sam Moghadam), por não demonstrarem o que a legenda prometia. Fotos analisadas e **rejeitadas** por enganarem sobre o serviço: uma máquina de corte de metal e um meio-fio de rua (buscas por "granite slab cutting") e fotos de assentamento de azulejo.
 Links, autores e textos alternativos: `js/config.js` (`fotos`) e rodapé da página.
@@ -81,8 +80,8 @@ Sem desenho técnico, cotas, amostras penduradas ou carimbo; a fotografia organi
 - Capa: grade de uma célula; a foto recebe `margin-left` e uma máscara na borda esquerda. Texto e foto têm a mesma largura de transição, para as letras não passarem sobre a imagem.
 - Dados centralizados em `js/config.js`; textos de seção no HTML (funcionam sem JavaScript).
 - WhatsApp vazio e modo demonstração ligado: o botão só explica que nada foi enviado. Em modo real, abre `wa.me`.
-- `noindex, nofollow` ativo. Cache: `?v=` nos CSS/JS (css 15, config 5, main 6).
-- Modo local de fotos (`useLocalImages`, `tools/baixar-recursos.ps1`, atualizado para as 19 fotos = 57 WebP + 2 fontes) pronto, mas **não executado**.
+- `noindex, nofollow` ativo. Cache: `?v=` nos CSS/JS (css 17, config 5, main 6).
+- Modo local de fotos (`useLocalImages`, `tools/baixar-recursos.ps1`, atualizado para as 18 fotos = 54 WebP + 2 fontes) pronto, mas **não executado**.
 
 ## Recursos externos e licenças
 Fotos: Unsplash (licença Unsplash). Fontes: Google Fonts, SIL Open Font License 1.1. Nenhum script de terceiros.
@@ -105,8 +104,8 @@ Fotos: Unsplash (licença Unsplash). Fontes: Google Fonts, SIL Open Font License
 **BLOQUEANTES:** nenhuma conhecida.
 
 **RECOMENDADAS**
-- **Instalação sem foto**: não achei foto gratuita adequada de instalação de bancada de pedra; a etapa usa só texto e o número. Substituir por foto real de obra do cliente.
-- **Fotos do processo são ilustrativas e imperfeitas**: a de medição (`proc1`) mostra uma pessoa medindo junto a uma parede, não uma bancada; a de corte (`proc3`) mostra uma serra de esquadria sobre uma bancada de cozinha, sem confirmar que o material é pedra. As legendas dizem só "ilustração".
+- **Preparação/acabamento e Instalação sem foto**: não achei foto gratuita com fonte que confirme trabalho em pedra; ficam em texto. Substituir por fotos reais de obra do cliente.
+- **Foto de medição (`proc1`)** mostra uma pessoa medindo junto a uma parede, não uma bancada; legenda diz só "ilustração".
 - Autenticidade das fotos: não consigo garantir se algumas (em especial as de Franco Debartolo: coz3, est1, est2, est3) são fotografias ou renders. Trocar por fotos do cliente na venda. Os materiais das fotos de detalhe são descritos só pelo que se vê ("pedra de grão fino", "mármore claro", "pedra marrom-escura"); nenhuma fonte confirma tipo ou acabamento.
 - Rodar `tools\baixar-recursos.ps1` e ativar `useLocalImages` e as fontes locais antes de apresentar.
 - Testar em celular real, Firefox e Safari, leitor de tela, Lighthouse; conferir 360 px com fotos reais.
