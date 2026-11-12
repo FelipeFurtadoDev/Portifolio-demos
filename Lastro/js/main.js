@@ -27,13 +27,25 @@
   }
 
   /* ---- Estado: referências e peças (guardado só nesta aba) ----------------- */
-  var CHAVE = "lastro-v2";
-  var estado = { refs: [], pecas: [] };
+  var CHAVE = "lastro-v3", CHAVE_ANTIGA = "lastro-v2";
+  var estado = { refs: [], pecas: [], extras: [] };
+  function referenciavel(k) {
+    return typeof k === "string" && Object.prototype.hasOwnProperty.call(C.fotos, k) && C.fotos[k].guardavel !== false;
+  }
+  function sanear(lista, valida) {
+    var vistos = [];
+    (Array.isArray(lista) ? lista : []).forEach(function (k) { if (valida(k) && vistos.indexOf(k) === -1) vistos.push(k); });
+    return vistos;
+  }
   try {
-    var salvo = JSON.parse(sessionStorage.getItem(CHAVE) || "null");
-    if (salvo) {
-      estado.refs = (salvo.refs || []).filter(function (k) { return C.fotos[k]; });
-      estado.pecas = (salvo.pecas || []).filter(function (k) { return C.pecas[k]; });
+    /* Lê a sessão atual e, se não houver, a da versão anterior. Referências que
+       foram removidas ou trocadas deixam de existir em C.fotos e são descartadas
+       em silêncio; chaves de fotos substituídas nunca foram reutilizadas. */
+    var salvo = JSON.parse(sessionStorage.getItem(CHAVE) || sessionStorage.getItem(CHAVE_ANTIGA) || "null");
+    if (salvo && typeof salvo === "object") {
+      estado.refs = sanear(salvo.refs, referenciavel);
+      estado.pecas = sanear(salvo.pecas, function (k) { return typeof k === "string" && Object.prototype.hasOwnProperty.call(C.pecas, k); });
+      estado.extras = sanear(salvo.extras, function (k) { return k === "material"; });
     }
   } catch (e) { /* sem armazenamento: o estado vive só na página */ }
   function persistir() { try { sessionStorage.setItem(CHAVE, JSON.stringify(estado)); } catch (e) { /* ignora */ } }
@@ -150,8 +162,19 @@
     });
   });
 
+  /* ---- Extras opcionais: material para enviar e medidas ----------------------- */
+  function temExtra(k) { return estado.extras.indexOf(k) !== -1; }
+  $$("[data-extra]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var k = b.getAttribute("data-extra"), i = estado.extras.indexOf(k);
+      if (i === -1) estado.extras.push(k); else estado.extras.splice(i, 1);
+      persistir(); atualizar();
+    });
+  });
+
   /* ---- Mensagem pronta ------------------------------------------------------- */
   var campoNome = $("#f-nome"), campoLocal = $("#f-local"), campoObs = $("#f-obs"), campoMsg = $("#f-msg");
+  var campoMed = $("#f-med"), campoUnid = $("#f-unid");
   var msgAviso = $("[data-aviso]");
   function aviso(txt) { msgAviso.textContent = txt; }
 
@@ -164,15 +187,19 @@
     linhas.push(abre);
     linhas.push("Quero conversar sobre um projeto em pedra natural sob medida para a minha casa.");
     if (estado.pecas.length) linhas.push("Peças de interesse: " + estado.pecas.map(function (k) { return C.pecas[k]; }).join(", ") + ".");
+    if (temExtra("material")) linhas.push("Tenho planta ou fotos do ambiente para enviar na conversa.");
     if (estado.refs.length) {
       linhas.push("Referências guardadas (fotos de inspiração do site):");
       estado.refs.forEach(function (k) { linhas.push("- " + C.grupos[C.fotos[k].grupo] + ": " + C.fotos[k].titulo); });
     }
+    var med = campoMed.value.trim();
+    if (med) linhas.push("Medidas aproximadas (em " + (campoUnid.value === "m" ? "metros" : "centímetros") + "): " + med + ".");
     if (obs) linhas.push("Observações: " + obs);
     linhas.push("Pode me orientar sobre os próximos passos?");
     return linhas.join("\n");
   }
-  [campoNome, campoLocal, campoObs].forEach(function (c) { c.addEventListener("input", function () { campoMsg.value = montarMensagem(); }); });
+  [campoNome, campoLocal, campoObs, campoMed].forEach(function (c) { c.addEventListener("input", function () { campoMsg.value = montarMensagem(); }); });
+  campoUnid.addEventListener("change", function () { campoMsg.value = montarMensagem(); });
 
   function copiar(txt) {
     if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(txt);
@@ -219,7 +246,7 @@
   }
   function abrirGaleria(grupo, chave, origem) {
     abridor = origem || null;
-    galeria.lista = Object.keys(C.fotos).filter(function (k) { return C.fotos[k].grupo === grupo; });
+    galeria.lista = Object.keys(C.fotos).filter(function (k) { return C.fotos[k].grupo === grupo && C.fotos[k].guardavel !== false; });
     galeria.i = Math.max(0, galeria.lista.indexOf(chave));
     mostrar();
     rolagemAntes = document.documentElement.style.overflow;
@@ -261,6 +288,7 @@
     var n = estado.refs.length;
     $$("[data-ref]").forEach(function (b) { b.setAttribute("aria-pressed", temRef(b.getAttribute("data-ref")) ? "true" : "false"); });
     $$("[data-peca]").forEach(function (b) { b.setAttribute("aria-pressed", temPeca(b.getAttribute("data-peca")) ? "true" : "false"); });
+    $$("[data-extra]").forEach(function (b) { b.setAttribute("aria-pressed", temExtra(b.getAttribute("data-extra")) ? "true" : "false"); });
     $$("[data-ref-count]").forEach(function (el) { el.textContent = n; });
     var topoRef = $(".topo__ref");
     topoRef.classList.toggle("tem", n > 0);

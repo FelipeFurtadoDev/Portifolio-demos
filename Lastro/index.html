@@ -11,16 +11,16 @@
   <meta property="og:title" content="LASTRO · Pedra natural sob medida">
   <meta property="og:description" content="Cozinhas, banheiros e salas com a pedra no centro. Guarde referências e comece a conversa.">
   <meta property="og:type" content="website">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1608635661512-52c656e0d4e5?auto=format&amp;fit=max&amp;q=70&amp;w=1200&amp;h=630&amp;fit=crop">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1783125126954-d9075ecff5ff?auto=format&amp;fit=max&amp;q=70&amp;w=1200&amp;h=630&amp;fit=crop">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&amp;family=Instrument+Serif&amp;display=swap">
   <link rel="preconnect" href="https://images.unsplash.com">
-  <link rel="preload" as="image" imagesrcset="https://images.unsplash.com/photo-1608635661512-52c656e0d4e5?auto=format&amp;fit=max&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1608635661512-52c656e0d4e5?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w, https://images.unsplash.com/photo-1608635661512-52c656e0d4e5?auto=format&amp;fit=max&amp;q=70&amp;w=1920 1920w" imagesizes="100vw" fetchpriority="high">
+  <link rel="preload" as="image" imagesrcset="https://images.unsplash.com/photo-1783125126954-d9075ecff5ff?auto=format&amp;fit=max&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1783125126954-d9075ecff5ff?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w, https://images.unsplash.com/photo-1783125126954-d9075ecff5ff?auto=format&amp;fit=max&amp;q=70&amp;w=1920 1920w" imagesizes="100vw" fetchpriority="high">
 
-  <link rel="stylesheet" href="css/styles.css?v=9">
+  <link rel="stylesheet" href="css/styles.css?v=15">
   <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -51,7 +51,7 @@
 
     <section class="abertura" id="inicio" aria-labelledby="ab-titulo">
       <figure class="abertura__foto">
-        <img class="abertura__img" src="https://images.unsplash.com/photo-1608635661512-52c656e0d4e5?auto=format&amp;fit=max&amp;q=70&amp;w=1200" srcset="https://images.unsplash.com/photo-1608635661512-52c656e0d4e5?auto=format&amp;fit=max&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1608635661512-52c656e0d4e5?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w, https://images.unsplash.com/photo-1608635661512-52c656e0d4e5?auto=format&amp;fit=max&amp;q=70&amp;w=1920 1920w" sizes="100vw" width="1200" height="800" alt="Ilha de cozinha com bancada de pedra escura, vaso com plantas e luminária de fibra pendente, em ambiente de luz baixa" data-foto="hero" loading="eager" decoding="async" fetchpriority="high">
+        <img class="abertura__img" src="https://images.unsplash.com/photo-1783125126954-d9075ecff5ff?auto=format&amp;fit=max&amp;q=70&amp;w=1200" srcset="https://images.unsplash.com/photo-1783125126954-d9075ecff5ff?auto=format&amp;fit=max&amp;q=70&amp;w=640 640w, https://images.unsplash.com/photo-1783125126954-d9075ecff5ff?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w, https://images.unsplash.com/photo-1783125126954-d9075ecff5ff?auto=format&amp;fit=max&amp;q=70&amp;w=1920 1920w" sizes="100vw" width="1200" height="800" alt="Cozinha com ilha de tampo em pedra clara de borda espessa em primeiro plano, armários de madeira e painel de pedra com veios atrás do fogão" data-foto="hero" loading="eager" decoding="async" fetchpriority="high">
       </figure>
       <div class="abertura__texto">
         <h1 class="abertura__titulo" id="ab-titulo">Pedra natural no centro da sua casa</h1>
@@ -60,15 +60,15 @@
           <a class="btn btn--marfim" href="#ambientes">Explorar ambientes</a>
           <a class="btn btn--linha" href="#conversa">Conversar sobre meu projeto</a>
         </div>
+        <nav class="abertura__atalhos" aria-label="Ir direto a um ambiente">
+          <p class="abertura__atalhos-t">Comece por</p>
+          <ul>
+            <li><a href="#ambientes" data-abrir="cozinha">Cozinha</a></li>
+            <li><a href="#ambientes" data-abrir="banheiro">Banheiro e lavabo</a></li>
+            <li><a href="#ambientes" data-abrir="estar">Sala e estar</a></li>
+          </ul>
+        </nav>
       </div>
-      <nav class="abertura__atalhos" aria-label="Ir direto a um ambiente">
-        <p class="abertura__atalhos-t">Comece por</p>
-        <ul>
-          <li><a href="#ambientes" data-abrir="cozinha">Cozinha</a></li>
-          <li><a href="#ambientes" data-abrir="banheiro">Banheiro e lavabo</a></li>
-          <li><a href="#ambientes" data-abrir="estar">Sala e estar</a></li>
-        </ul>
-      </nav>
     </section>
 
     <section class="ambientes" id="ambientes" aria-labelledby="amb-titulo">
@@ -78,14 +78,18 @@
       </div>
       <div class="paineis" data-paineis>
         <article class="painel is-aberto" id="amb-cozinha" data-amb="cozinha" style="--pos:50% 100%;--pos-m:50% 100%">
-          <h3 class="painel__titulo"><button type="button" class="painel__aba" aria-expanded="true" aria-controls="amb-cozinha-corpo"><span class="painel__nome">Cozinha</span><span class="painel__qtd">3 fotos</span></button></h3>
+          <h3 class="painel__titulo"><button type="button" class="painel__aba" aria-expanded="true" aria-controls="amb-cozinha-corpo"><span class="painel__nome">Cozinha</span><span class="painel__qtd">4 fotos</span></button></h3>
           <img class="painel__img" src="https://images.unsplash.com/photo-1723902500173-37fe42ceb22a?auto=format&amp;fit=max&amp;q=70&amp;w=960" srcset="https://images.unsplash.com/photo-1723902500173-37fe42ceb22a?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1723902500173-37fe42ceb22a?auto=format&amp;fit=max&amp;q=70&amp;w=960 960w, https://images.unsplash.com/photo-1723902500173-37fe42ceb22a?auto=format&amp;fit=max&amp;q=70&amp;w=1600 1600w" sizes="(max-width:820px) 100vw, 70vw" width="960" height="1440" alt="Cozinha em tons escuros com ilha de bancada clara, estantes com luz embutida e cooktop" data-foto="coz1" loading="lazy" decoding="async">
           <div class="painel__corpo" id="amb-cozinha-corpo">
             <p class="painel__chamada">A bancada que reúne a casa</p>
             <p class="painel__texto">Bancadas, ilhas e balcões gourmet em pedra natural. É onde a pedra recebe o uso diário e a luz da cozinha, e onde o desenho do veio aparece de verdade.</p>
             <ul class="painel__pecas"><li>Bancada reta ou em L</li><li>Ilha com borda reta ou em cascata</li><li>Balcão gourmet com apoio para banquetas</li><li>Frontão, espelho e recortes para cuba e cooktop</li></ul>
+            <button type="button" class="painel__destaque" data-galeria="cozinha" data-foto-abrir="ilha1" aria-label="Ampliar: Ilha com lateral em pedra até o piso">
+              <img class="painel__destaque-img" src="https://images.unsplash.com/photo-1781249144389-4174c1164955?auto=format&amp;fit=max&amp;q=70&amp;w=480" srcset="https://images.unsplash.com/photo-1781249144389-4174c1164955?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1781249144389-4174c1164955?auto=format&amp;fit=max&amp;q=70&amp;w=960 960w" sizes="(max-width:860px) 30vw, 22vw" width="480" height="320" alt="Ilha de cozinha com tampo e lateral em pedra de textura salpicada que desce até o piso, ao lado de armários de madeira escura e banquetas brancas" data-foto="ilha1" loading="lazy" decoding="async">
+              <span class="painel__destaque-t"><strong>Ilhas e áreas gourmet</strong><span>Tampos amplos, laterais em pedra e apoio para banquetas.</span></span>
+            </button>
             <div class="painel__acoes">
-              <button type="button" class="btn btn--marfim" data-galeria="cozinha">Ver as 3 fotos</button>
+              <button type="button" class="btn btn--marfim" data-galeria="cozinha">Ver as 4 fotos</button>
               <button type="button" class="ref ref--claro" data-ref="coz1" aria-pressed="false" aria-label="Guardar referência: Cozinha quente com bancada clara"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.6 6.5 20.5z"/></svg><span class="ref__t ref__t--off">Guardar referência</span><span class="ref__t ref__t--on">Guardada</span></button>
             </div>
           </div>
@@ -126,19 +130,23 @@
       </div>
       <div class="mosaico">
         <div class="mosaico__col">
-          <figure class="detalhe detalhe--det1">
-            <button type="button" class="detalhe__abrir" data-galeria="detalhes" data-foto-abrir="det1" aria-label="Ampliar: Polido">
-              <img class="detalhe__img" src="https://images.unsplash.com/photo-1787539386309-450647434074?auto=format&amp;fit=max&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1787539386309-450647434074?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1787539386309-450647434074?auto=format&amp;fit=max&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1787539386309-450647434074?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 45vw, 30vw" width="800" height="1200" alt="Superfície de pedra preta polida com veios dourados, com dois vasos metálicos sobre a bancada" data-foto="det1" loading="lazy" decoding="async">
+          <figure class="detalhe detalhe--vel1" style="--r:3/2">
+            <button type="button" class="detalhe__abrir" data-galeria="detalhes" data-foto-abrir="vel1" aria-label="Ampliar: Veios marcados">
+              <img class="detalhe__img" src="https://images.unsplash.com/photo-1694378061058-bb6532de3bba?auto=format&amp;fit=max&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1694378061058-bb6532de3bba?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1694378061058-bb6532de3bba?auto=format&amp;fit=max&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1694378061058-bb6532de3bba?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 45vw, 30vw" width="800" height="533" alt="Superfície de mármore claro vista de perto, com veios cinzentos de espessuras diferentes" data-foto="vel1" loading="lazy" decoding="async">
             </button>
-            <figcaption class="detalhe__legenda"><span class="detalhe__nome">Polido</span><span class="detalhe__txt">O brilho espelhado aprofunda os veios e devolve a luz do ambiente.</span></figcaption>
-            <button type="button" class="ref detalhe__ref" data-ref="det1" aria-pressed="false" aria-label="Guardar referência: Pedra polida com veios dourados"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.6 6.5 20.5z"/></svg><span class="ref__t ref__t--off">Guardar referência</span><span class="ref__t ref__t--on">Guardada</span></button>
+            <figcaption class="detalhe__legenda">
+              <span class="detalhe__nome">Veios marcados</span><span class="detalhe__txt">Linhas de espessuras diferentes cruzam a superfície clara. Cada chapa tem o seu desenho.</span>
+              <button type="button" class="ref detalhe__ref" data-ref="vel1" aria-pressed="false" aria-label="Guardar referência: Veios marcados em fundo claro"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.6 6.5 20.5z"/></svg><span class="ref__t ref__t--off">Guardar referência</span><span class="ref__t ref__t--on">Guardada</span></button>
+            </figcaption>
           </figure>
-          <figure class="detalhe detalhe--det3">
-            <button type="button" class="detalhe__abrir" data-galeria="detalhes" data-foto-abrir="det3" aria-label="Ampliar: Fosco e escovado">
-              <img class="detalhe__img" src="https://images.unsplash.com/photo-1608635661411-b8de70247ea5?auto=format&amp;fit=max&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1608635661411-b8de70247ea5?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1608635661411-b8de70247ea5?auto=format&amp;fit=max&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1608635661411-b8de70247ea5?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 45vw, 30vw" width="800" height="533" alt="Tampo de pedra em ambiente escuro, com colheres de madeira e uma tigela azul" data-foto="det3" loading="lazy" decoding="async">
+          <figure class="detalhe detalhe--bord1" style="--r:2/3">
+            <button type="button" class="detalhe__abrir" data-galeria="detalhes" data-foto-abrir="bord1" aria-label="Ampliar: Quina e espessura">
+              <img class="detalhe__img" src="https://images.unsplash.com/photo-1721274505251-6ce98a2101e8?auto=format&amp;fit=max&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1721274505251-6ce98a2101e8?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1721274505251-6ce98a2101e8?auto=format&amp;fit=max&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1721274505251-6ce98a2101e8?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 45vw, 30vw" width="800" height="1200" alt="Canto de um tampo de pedra de grão fino sobre gabinete de madeira, com a quina e a espessura à mostra" data-foto="bord1" loading="lazy" decoding="async">
             </button>
-            <figcaption class="detalhe__legenda"><span class="detalhe__nome">Fosco e escovado</span><span class="detalhe__txt">Menos reflexo e um toque mais suave, ideal para luz baixa.</span></figcaption>
-            <button type="button" class="ref detalhe__ref" data-ref="det3" aria-pressed="false" aria-label="Guardar referência: Tampo de pedra em luz baixa"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.6 6.5 20.5z"/></svg><span class="ref__t ref__t--off">Guardar referência</span><span class="ref__t ref__t--on">Guardada</span></button>
+            <figcaption class="detalhe__legenda">
+              <span class="detalhe__nome">Quina e espessura</span><span class="detalhe__txt">A espessura do tampo e o desenho da quina mudam o peso da peça.</span>
+              <button type="button" class="ref detalhe__ref" data-ref="bord1" aria-pressed="false" aria-label="Guardar referência: Quina e espessura do tampo"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.6 6.5 20.5z"/></svg><span class="ref__t ref__t--off">Guardar referência</span><span class="ref__t ref__t--on">Guardada</span></button>
+            </figcaption>
           </figure>
         </div>
         <div class="mosaico__col">
@@ -151,28 +159,34 @@
             </ul>
             <p class="nota__fecho">Responda o que souber. O resto a gente resolve na conversa.</p>
           </div>
-          <figure class="detalhe detalhe--det5">
-            <button type="button" class="detalhe__abrir" data-galeria="detalhes" data-foto-abrir="det5" aria-label="Ampliar: Borda e espessura">
-              <img class="detalhe__img" src="https://images.unsplash.com/photo-1627383838244-c475fb74b934?auto=format&amp;fit=max&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1627383838244-c475fb74b934?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1627383838244-c475fb74b934?auto=format&amp;fit=max&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1627383838244-c475fb74b934?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 45vw, 30vw" width="800" height="1200" alt="Borda de uma ilha de pedra escura com cuba embutida, banquetas e pendentes" data-foto="det5" loading="lazy" decoding="async">
+          <figure class="detalhe detalhe--enc1" style="--r:3/4">
+            <button type="button" class="detalhe__abrir" data-galeria="detalhes" data-foto-abrir="enc1" aria-label="Ampliar: Encontro entre dois níveis">
+              <img class="detalhe__img" src="https://images.unsplash.com/photo-1790156589905-3baa4c6e0fc7?auto=format&amp;fit=max&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1790156589905-3baa4c6e0fc7?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1790156589905-3baa4c6e0fc7?auto=format&amp;fit=max&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1790156589905-3baa4c6e0fc7?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 45vw, 30vw" width="800" height="1067" alt="Encontro de dois níveis de um tampo branco sobre uma base de ripas de madeira" data-foto="enc1" loading="lazy" decoding="async">
             </button>
-            <figcaption class="detalhe__legenda"><span class="detalhe__nome">Borda e espessura</span><span class="detalhe__txt">O corte da borda muda o peso visual de uma ilha.</span></figcaption>
-            <button type="button" class="ref detalhe__ref" data-ref="det5" aria-pressed="false" aria-label="Guardar referência: Borda e espessura da ilha"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.6 6.5 20.5z"/></svg><span class="ref__t ref__t--off">Guardar referência</span><span class="ref__t ref__t--on">Guardada</span></button>
+            <figcaption class="detalhe__legenda">
+              <span class="detalhe__nome">Encontro entre dois níveis</span><span class="detalhe__txt">Onde o tampo muda de nível, o encaixe das peças fica à vista.</span>
+              <button type="button" class="ref detalhe__ref" data-ref="enc1" aria-pressed="false" aria-label="Guardar referência: Encontro entre dois níveis do tampo"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.6 6.5 20.5z"/></svg><span class="ref__t ref__t--off">Guardar referência</span><span class="ref__t ref__t--on">Guardada</span></button>
+            </figcaption>
           </figure>
         </div>
         <div class="mosaico__col">
-          <figure class="detalhe detalhe--det2">
-            <button type="button" class="detalhe__abrir" data-galeria="detalhes" data-foto-abrir="det2" aria-label="Ampliar: Veio marcado">
-              <img class="detalhe__img" src="https://images.unsplash.com/photo-1608635661553-4be8b3659ca3?auto=format&amp;fit=max&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1608635661553-4be8b3659ca3?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1608635661553-4be8b3659ca3?auto=format&amp;fit=max&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1608635661553-4be8b3659ca3?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 45vw, 30vw" width="800" height="533" alt="Tampo de pedra com veios em uma cozinha de luz baixa, com utensílios sobre a bancada" data-foto="det2" loading="lazy" decoding="async">
+          <figure class="detalhe detalhe--vel2" style="--r:3/2">
+            <button type="button" class="detalhe__abrir" data-galeria="detalhes" data-foto-abrir="vel2" aria-label="Ampliar: Veio branco em fundo escuro">
+              <img class="detalhe__img" src="https://images.unsplash.com/photo-1694382224141-8368bf043717?auto=format&amp;fit=max&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1694382224141-8368bf043717?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1694382224141-8368bf043717?auto=format&amp;fit=max&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1694382224141-8368bf043717?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 45vw, 30vw" width="800" height="533" alt="Superfície de pedra marrom-escura vista de perto, cortada por um veio branco e por veios finos" data-foto="vel2" loading="lazy" decoding="async">
             </button>
-            <figcaption class="detalhe__legenda"><span class="detalhe__nome">Veio marcado</span><span class="detalhe__txt">O desenho natural da pedra passa a ser o assunto da bancada.</span></figcaption>
-            <button type="button" class="ref detalhe__ref" data-ref="det2" aria-pressed="false" aria-label="Guardar referência: Tampo com veios e utensílios"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.6 6.5 20.5z"/></svg><span class="ref__t ref__t--off">Guardar referência</span><span class="ref__t ref__t--on">Guardada</span></button>
+            <figcaption class="detalhe__legenda">
+              <span class="detalhe__nome">Veio branco em fundo escuro</span><span class="detalhe__txt">Um veio claro corta a superfície escura. O contraste muda conforme a luz do ambiente.</span>
+              <button type="button" class="ref detalhe__ref" data-ref="vel2" aria-pressed="false" aria-label="Guardar referência: Veio branco em fundo escuro"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.6 6.5 20.5z"/></svg><span class="ref__t ref__t--off">Guardar referência</span><span class="ref__t ref__t--on">Guardada</span></button>
+            </figcaption>
           </figure>
-          <figure class="detalhe detalhe--det4">
+          <figure class="detalhe detalhe--det4" style="--r:3/2">
             <button type="button" class="detalhe__abrir" data-galeria="detalhes" data-foto-abrir="det4" aria-label="Ampliar: Recorte da cuba">
               <img class="detalhe__img" src="https://images.unsplash.com/photo-1637665609537-26857a32f6cd?auto=format&amp;fit=max&amp;q=70&amp;w=800" srcset="https://images.unsplash.com/photo-1637665609537-26857a32f6cd?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1637665609537-26857a32f6cd?auto=format&amp;fit=max&amp;q=70&amp;w=800 800w, https://images.unsplash.com/photo-1637665609537-26857a32f6cd?auto=format&amp;fit=max&amp;q=70&amp;w=1200 1200w" sizes="(max-width:700px) 92vw, (max-width:1100px) 45vw, 30vw" width="800" height="533" alt="Detalhe do recorte de uma cuba em bancada de pedra" data-foto="det4" loading="lazy" decoding="async">
             </button>
-            <figcaption class="detalhe__legenda"><span class="detalhe__nome">Recorte da cuba</span><span class="detalhe__txt">A abertura com acabamento limpo na borda decide o visual do lavatório.</span></figcaption>
-            <button type="button" class="ref detalhe__ref" data-ref="det4" aria-pressed="false" aria-label="Guardar referência: Recorte da cuba"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.6 6.5 20.5z"/></svg><span class="ref__t ref__t--off">Guardar referência</span><span class="ref__t ref__t--on">Guardada</span></button>
+            <figcaption class="detalhe__legenda">
+              <span class="detalhe__nome">Recorte da cuba</span><span class="detalhe__txt">A abertura da cuba e o encontro com o tampo decidem o visual da peça.</span>
+              <button type="button" class="ref detalhe__ref" data-ref="det4" aria-pressed="false" aria-label="Guardar referência: Recorte da cuba"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6.5 3.5h11v17L12 16.6 6.5 20.5z"/></svg><span class="ref__t ref__t--off">Guardar referência</span><span class="ref__t ref__t--on">Guardada</span></button>
+            </figcaption>
           </figure>
         </div>
       </div>
@@ -187,48 +201,59 @@
           <li class="peca">
             <h3 class="peca__nome">Bancada de cozinha</h3>
             <p class="peca__desc">Reta ou em L, com frontão, espelho e recortes para cuba e cooktop.</p>
-            <p class="peca__onde">Cozinha</p>
             <button type="button" class="peca__falar" data-peca-ir="bancada">Falar sobre esta peça<span class="sr-only">: Bancada de cozinha</span></button>
           </li>
           <li class="peca">
             <h3 class="peca__nome">Ilha e balcão gourmet</h3>
             <p class="peca__desc">Borda reta ou em cascata, com espaço de apoio para banquetas.</p>
-            <p class="peca__onde">Cozinha</p>
             <button type="button" class="peca__falar" data-peca-ir="ilha">Falar sobre esta peça<span class="sr-only">: Ilha e balcão gourmet</span></button>
           </li>
           <li class="peca">
             <h3 class="peca__nome">Lavatório e bancada de banheiro</h3>
             <p class="peca__desc">Cuba de apoio, embutida ou esculpida, em bancada simples ou dupla.</p>
-            <p class="peca__onde">Banheiro e lavabo</p>
             <button type="button" class="peca__falar" data-peca-ir="lavatorio">Falar sobre esta peça<span class="sr-only">: Lavatório e bancada de banheiro</span></button>
           </li>
           <li class="peca">
             <h3 class="peca__nome">Painel e revestimento</h3>
             <p class="peca__desc">Lareira, fundo de TV, nichos e paredes inteiras em pedra.</p>
-            <p class="peca__onde">Sala e estar, banheiro</p>
             <button type="button" class="peca__falar" data-peca-ir="painel">Falar sobre esta peça<span class="sr-only">: Painel e revestimento</span></button>
           </li>
           <li class="peca">
             <h3 class="peca__nome">Mesa, aparador e tampo</h3>
             <p class="peca__desc">Peças de apoio para sala e jantar, com a espessura e a borda que você preferir.</p>
-            <p class="peca__onde">Sala e estar</p>
             <button type="button" class="peca__falar" data-peca-ir="mesa">Falar sobre esta peça<span class="sr-only">: Mesa, aparador e tampo</span></button>
           </li>
           <li class="peca">
             <h3 class="peca__nome">Soleira, peitoril e detalhes</h3>
             <p class="peca__desc">O acabamento discreto que fecha vãos, janelas e encontros.</p>
-            <p class="peca__onde">Toda a casa</p>
             <button type="button" class="peca__falar" data-peca-ir="soleira">Falar sobre esta peça<span class="sr-only">: Soleira, peitoril e detalhes</span></button>
           </li>
       </ul>
       <div class="caminho">
         <h3 class="caminho__titulo">Como o projeto acontece</h3>
         <ol class="caminho__lista">
-          <li><strong>Conversa.</strong> Você conta o que imagina, com referências, fotos do ambiente ou medidas aproximadas.</li>
-          <li><strong>Visita e medição.</strong> Conferimos o espaço no local, para o desenho encaixar de verdade.</li>
-          <li><strong>Pedra e projeto.</strong> Escolha da pedra e do acabamento, com amostras e o desenho das peças.</li>
-          <li><strong>Corte e instalação.</strong> A pedra é cortada, acabada e instalada na sua casa.</li>
+          <li class="passo">
+            <figure class="passo__foto"><img class="passo__img" src="https://images.unsplash.com/photo-1676630656246-3047520adfdf?auto=format&amp;fit=max&amp;q=70&amp;w=960" srcset="https://images.unsplash.com/photo-1676630656246-3047520adfdf?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1676630656246-3047520adfdf?auto=format&amp;fit=max&amp;q=70&amp;w=960 960w" sizes="(max-width:520px) 92vw, (max-width:960px) 45vw, 22vw" width="960" height="640" alt="Profissional usando um instrumento de medida junto a uma parede, em foto ilustrativa de medição" data-foto="proc1" loading="lazy" decoding="async"><figcaption>Ilustração: medição no ambiente</figcaption></figure>
+            <h4 class="passo__nome">Conversa e levantamento</h4>
+            <p class="passo__txt">Você conta o que imagina e envia referências. Depois conferimos o espaço e as medidas no local.</p>
+          </li>
+          <li class="passo">
+            <figure class="passo__foto"><img class="passo__img" src="https://images.unsplash.com/photo-1749212387838-c4c4e6e58348?auto=format&amp;fit=max&amp;q=70&amp;w=960" srcset="https://images.unsplash.com/photo-1749212387838-c4c4e6e58348?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1749212387838-c4c4e6e58348?auto=format&amp;fit=max&amp;q=70&amp;w=960 960w" sizes="(max-width:520px) 92vw, (max-width:960px) 45vw, 22vw" width="960" height="640" alt="Amostras de mármore e pedras de cores e veios diferentes expostas lado a lado" data-foto="proc2" loading="lazy" decoding="async"><figcaption>Ilustração: amostras de pedra</figcaption></figure>
+            <h4 class="passo__nome">Definição da pedra e da peça</h4>
+            <p class="passo__txt">Escolha da pedra e do acabamento, com amostras, e o desenho de cada peça.</p>
+          </li>
+          <li class="passo">
+            <figure class="passo__foto"><img class="passo__img" src="https://images.unsplash.com/photo-1505798577917-a65157d3320a?auto=format&amp;fit=max&amp;q=70&amp;w=960" srcset="https://images.unsplash.com/photo-1505798577917-a65157d3320a?auto=format&amp;fit=max&amp;q=70&amp;w=480 480w, https://images.unsplash.com/photo-1505798577917-a65157d3320a?auto=format&amp;fit=max&amp;q=70&amp;w=960 960w" sizes="(max-width:520px) 92vw, (max-width:960px) 45vw, 22vw" width="960" height="640" alt="Profissional cortando uma bancada com serra de esquadria em uma cozinha, em foto ilustrativa" data-foto="proc3" loading="lazy" decoding="async"><figcaption>Ilustração: corte de bancada em obra</figcaption></figure>
+            <h4 class="passo__nome">Preparação e acabamento</h4>
+            <p class="passo__txt">A pedra é cortada, recortada e acabada conforme o desenho aprovado.</p>
+          </li>
+          <li class="passo">
+            <div class="passo__foto passo__foto--texto" aria-hidden="true"><span>4</span></div>
+            <h4 class="passo__nome">Instalação</h4>
+            <p class="passo__txt">A peça é levada, nivelada e instalada na sua casa, com o acabamento final nas bordas e nas juntas.</p>
+          </li>
         </ol>
+        <p class="caminho__nota">Fotos ilustrativas de banco de imagens, feitas em lugares diferentes. Não são obras da LASTRO.</p>
       </div>
     </section>
 
@@ -247,6 +272,22 @@
         <fieldset class="bloco">
           <legend>Peças de interesse</legend>
           <div class="chips"><button type="button" class="chip" data-peca="bancada" aria-pressed="false">Bancada de cozinha</button><button type="button" class="chip" data-peca="ilha" aria-pressed="false">Ilha e balcão gourmet</button><button type="button" class="chip" data-peca="lavatorio" aria-pressed="false">Lavatório e bancada de banheiro</button><button type="button" class="chip" data-peca="painel" aria-pressed="false">Painel e revestimento</button><button type="button" class="chip" data-peca="mesa" aria-pressed="false">Mesa, aparador e tampo</button><button type="button" class="chip" data-peca="soleira" aria-pressed="false">Soleira, peitoril e detalhes</button><button type="button" class="chip" data-peca="outra" aria-pressed="false">Outra peça sob medida</button></div>
+        </fieldset>
+        <fieldset class="bloco bloco--extra">
+          <legend>Para agilizar a conversa <span class="bloco__qtd">(opcional)</span></legend>
+          <div class="chips"><button type="button" class="chip" data-extra="material" aria-pressed="false">Tenho planta ou fotos para enviar</button></div>
+          <details class="medidas" data-medidas>
+            <summary>Adicionar medidas aproximadas</summary>
+            <div class="medidas__corpo">
+              <p class="medidas__ajuda">Uma estimativa já ajuda. Informe comprimento e largura de cada peça na mesma unidade; a medição final é feita no local.</p>
+              <div class="medidas__linha">
+                <div class="campo"><label for="f-unid">Unidade</label>
+                  <select id="f-unid" name="unidade"><option value="cm">Centímetros (cm)</option><option value="m">Metros (m)</option></select></div>
+                <div class="campo campo--medidas"><label for="f-med">Medidas</label>
+                  <input id="f-med" name="medidas" type="text" maxlength="160" placeholder="Ex.: bancada 280 × 60; ilha 220 × 90" autocomplete="off"></div>
+              </div>
+            </div>
+          </details>
         </fieldset>
         <div class="campos">
           <div class="campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" type="text" autocomplete="given-name" maxlength="60"></div>
@@ -275,7 +316,7 @@
     </div>
     <details class="rodape__creditos">
       <summary>Créditos das fotografias</summary>
-      <p>Fotos de banco de imagens, licença Unsplash, nas páginas dos autores: laura adai (<a href="https://unsplash.com/photos/_U3YK4f7Lvs" target="_blank" rel="noopener">Ilha de pedra escura</a>, <a href="https://unsplash.com/photos/NOGTGs10RdY" target="_blank" rel="noopener">Tampo com veios e utensílios</a>, <a href="https://unsplash.com/photos/UnmCg_80FBY" target="_blank" rel="noopener">Tampo de pedra em luz baixa</a>) · Taylor Friehl (<a href="https://unsplash.com/photos/mlCCSG79tL4" target="_blank" rel="noopener">Cozinha quente com bancada clara</a>) · Sam Moghadam (<a href="https://unsplash.com/photos/gAL2Bw94wbI" target="_blank" rel="noopener">Ilha de pedra com veios e banquetas</a>, <a href="https://unsplash.com/photos/iO9EHF1mv2s" target="_blank" rel="noopener">Borda e espessura da ilha</a>) · Franco Debartolo (<a href="https://unsplash.com/photos/bkdcUE3x93g" target="_blank" rel="noopener">Bancada de mármore sob janela estreita</a>, <a href="https://unsplash.com/photos/09wQcnwCFaE" target="_blank" rel="noopener">Painel de pedra com veio contínuo</a>, <a href="https://unsplash.com/photos/G5jPfwxZRzQ" target="_blank" rel="noopener">Lareira em pedra entre nichos</a>, <a href="https://unsplash.com/photos/AEXgOReTzoM" target="_blank" rel="noopener">Painel de pedra e mesas de centro</a>, <a href="https://unsplash.com/photos/3x365ToKOK8" target="_blank" rel="noopener">Pedra polida com veios dourados</a>) · DP Singh Bhullar (<a href="https://unsplash.com/photos/OUBRXFjrZb8" target="_blank" rel="noopener">Penteadeira com duas cubas</a>) · serjan midili (<a href="https://unsplash.com/photos/mLx6oMw32PI" target="_blank" rel="noopener">Bancada dupla sobre madeira</a>) · Christian Mackie (<a href="https://unsplash.com/photos/yb9b2wbhxG4" target="_blank" rel="noopener">Mármore do piso ao teto</a>) · Craig Lovelidge (<a href="https://unsplash.com/photos/2v01Re71D6I" target="_blank" rel="noopener">Recorte da cuba</a>).</p>
+      <p>Fotos de banco de imagens, licença Unsplash, nas páginas dos autores: Salvo Media LLC (<a href="https://unsplash.com/photos/OATaOCo01UI" target="_blank" rel="noopener">Ilha de pedra clara com marcenaria em madeira</a>) · Taylor Friehl (<a href="https://unsplash.com/photos/mlCCSG79tL4" target="_blank" rel="noopener">Cozinha quente com bancada clara</a>) · Sam Moghadam (<a href="https://unsplash.com/photos/gAL2Bw94wbI" target="_blank" rel="noopener">Ilha de pedra com veios e banquetas</a>) · Irena Oze (<a href="https://unsplash.com/photos/Tf5QDU9xxMU" target="_blank" rel="noopener">Ilha com lateral em pedra até o piso</a>) · Franco Debartolo (<a href="https://unsplash.com/photos/bkdcUE3x93g" target="_blank" rel="noopener">Bancada de mármore sob janela estreita</a>, <a href="https://unsplash.com/photos/09wQcnwCFaE" target="_blank" rel="noopener">Painel de pedra com veio contínuo</a>, <a href="https://unsplash.com/photos/G5jPfwxZRzQ" target="_blank" rel="noopener">Lareira em pedra entre nichos</a>, <a href="https://unsplash.com/photos/AEXgOReTzoM" target="_blank" rel="noopener">Painel de pedra e mesas de centro</a>) · DP Singh Bhullar (<a href="https://unsplash.com/photos/OUBRXFjrZb8" target="_blank" rel="noopener">Penteadeira com duas cubas</a>) · serjan midili (<a href="https://unsplash.com/photos/mLx6oMw32PI" target="_blank" rel="noopener">Bancada dupla sobre madeira</a>) · Christian Mackie (<a href="https://unsplash.com/photos/yb9b2wbhxG4" target="_blank" rel="noopener">Mármore do piso ao teto</a>) · Akbar Nemati (<a href="https://unsplash.com/photos/2yp6ICVr2VM" target="_blank" rel="noopener">Veios marcados em fundo claro</a>, <a href="https://unsplash.com/photos/zpUjTXCjsCw" target="_blank" rel="noopener">Veio branco em fundo escuro</a>) · Craig Lovelidge (<a href="https://unsplash.com/photos/2v01Re71D6I" target="_blank" rel="noopener">Recorte da cuba</a>) · Lisa Anna (<a href="https://unsplash.com/photos/myIiHEv81jc" target="_blank" rel="noopener">Quina e espessura do tampo</a>) · Ceba Solutions (<a href="https://unsplash.com/photos/hlLXymONM5U" target="_blank" rel="noopener">Encontro entre dois níveis do tampo</a>) · Bermix Studio (<a href="https://unsplash.com/photos/bAGo7O4prtY" target="_blank" rel="noopener">Medição no ambiente</a>) · Declan Sun (<a href="https://unsplash.com/photos/RaTyAZrysv4" target="_blank" rel="noopener">Amostras de pedra</a>) · Annie Gray (<a href="https://unsplash.com/photos/WEWTGkPUVT0" target="_blank" rel="noopener">Corte de bancada em obra</a>).</p>
     </details>
   </footer>
 
@@ -297,7 +338,7 @@
     </div>
   </dialog>
 
-  <script src="js/config.js?v=4"></script>
-  <script src="js/main.js?v=5"></script>
+  <script src="js/config.js?v=5"></script>
+  <script src="js/main.js?v=6"></script>
 </body>
 </html>
