@@ -1,0 +1,18 @@
+{
+  "marca": "QUINA · Bolos sob encomenda",
+  "segmento": "Confeitaria sob encomenda",
+  "ordem": 140,
+  "descricao": "Confeitaria de bolos personalizados para comemorações pequenas e médias, em petróleo, verde vidro e laranja: abertura com foto vista de cima e um configurador da mesa que transforma data, convidados, formato, acabamento e sabor em um pedido de orçamento pronto.",
+  "caracteristicas": [
+    "Abertura com foto dominante de um bolo inteiro visto de cima e faixa lateral para o título",
+    "Configurador visual: data, convidados, formato redondo ou retangular, acabamento e sabor, com opção de deixar tudo em aberto",
+    "Esquema ilustrativo da mesa que muda com o formato e o número de convidados",
+    "Faixas de fotos de formatos, acabamentos, cortes e recheios, com botão para usar cada opção no pedido",
+    "Mensagem pronta com somente os dados informados, para copiar ou abrir no WhatsApp quando houver contato"
+  ],
+  "cores": {
+    "fundo": "#12484A",
+    "texto": "#F8FBF9",
+    "textoSecundario": "#B8DED4"
+  }
+}
