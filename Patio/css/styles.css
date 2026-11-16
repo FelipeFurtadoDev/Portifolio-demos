@@ -1,0 +1,409 @@
+/* ==========================================================================
+   PÁTIO · Estética automotiva móvel
+   Tokens, base, componentes e seções. Ordem: tokens > base > topo > botões >
+   1 abertura > 2 serviços > 3 acabamento > 4 atendimento > 5 contato > rodapé.
+   ========================================================================== */
+
+:root {
+  /* Paleta do briefing */
+  --vinho: #792B3D;       /* marca, ação principal e um bloco de destaque */
+  --prata: #DCE0E3;       /* fundo dos serviços e divisórias */
+  --perola: #F7F6F2;      /* fundo predominante e painel da capa */
+  --grafite: #232629;     /* texto, navegação e rodapé */
+  --caramelo: #C28E64;    /* higienização interna */
+
+  /* Variantes criadas para texto e estados (contrastes no DESIGN_NOTES.md) */
+  --vinho-escuro: #5E1F2E;   /* hover do botão principal */
+  --tinta-2: #565C61;        /* texto secundário sobre pérola (6,3:1) */
+  --linha: #BCC3C8;          /* divisória fina sobre prata */
+  --linha-perola: #D5D8DA;   /* divisória fina sobre pérola */
+
+  --f-titulo: "Barlow Semi Condensed", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
+  --f-texto: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --gutter: clamp(20px, 4.5vw, 72px);
+  --max: 1360px;
+  --raio: 4px;
+  --ease: cubic-bezier(.3, .7, .2, 1);
+}
+
+/* ---------- Base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--perola);
+  color: var(--grafite);
+  font-family: var(--f-texto);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+h1, h2, h3, h4, p, ul, figure, blockquote { margin: 0; }
+ul { padding: 0; list-style: none; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+
+h1, h2, h3 { font-family: var(--f-titulo); text-wrap: balance; }
+h1 { font-size: clamp(2.4rem, 1.5rem + 3.4vw, 4.2rem); line-height: .98; font-weight: 700; letter-spacing: -.012em; }
+h2 { font-size: clamp(2rem, 1.35rem + 2.1vw, 3.2rem); line-height: 1.02; font-weight: 600; letter-spacing: -.01em; }
+h3 { font-size: clamp(1.65rem, 1.25rem + 1.1vw, 2.3rem); line-height: 1.04; font-weight: 600; letter-spacing: -.005em; }
+h4 { font-family: var(--f-texto); font-size: .9375rem; line-height: 1.3; font-weight: 700; }
+p { text-wrap: pretty; }
+
+.wrap { width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
+
+.pular {
+  position: absolute; left: 12px; top: -64px; z-index: 100;
+  background: var(--vinho); color: var(--perola);
+  padding: 12px 18px; border-radius: var(--raio); text-decoration: none; font-weight: 600;
+}
+.pular:focus { top: 12px; }
+
+:focus-visible { outline: 3px solid var(--vinho); outline-offset: 3px; }
+.topo :focus-visible, .rodape :focus-visible, .bloco-vinho :focus-visible { outline-color: var(--perola); }
+
+/* ---------- Aviso de demonstração ---------- */
+.aviso-demo {
+  background: var(--prata); color: var(--grafite);
+  font-size: .8125rem; line-height: 1.4; text-align: center;
+  padding: 7px var(--gutter);
+}
+
+/* ---------- Topo ---------- */
+.topo { position: sticky; top: 0; z-index: 50; background: var(--grafite); color: var(--perola); }
+.topo__barra {
+  width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto;
+  display: flex; flex-wrap: wrap; align-items: center; gap: 0 20px;
+  min-height: 64px;
+}
+.marca { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; margin-right: auto; padding-block: 10px; }
+.marca__simbolo { width: 34px; height: 34px; border-radius: 7px; }
+.marca__nome { font-family: var(--f-titulo); font-weight: 700; font-size: 1.55rem; letter-spacing: .06em; line-height: 1; }
+
+.menu-botao {
+  display: none; align-items: center; gap: 10px;
+  min-height: 44px; padding: 0 14px;
+  background: transparent; color: var(--perola);
+  border: 1px solid rgba(247, 246, 242, .45); border-radius: var(--raio);
+  font: 600 .9375rem/1 var(--f-texto); cursor: pointer;
+}
+.menu-botao__icone { position: relative; width: 16px; height: 2px; background: currentColor; }
+.menu-botao__icone::before, .menu-botao__icone::after { content: ""; position: absolute; left: 0; width: 16px; height: 2px; background: currentColor; transition: transform .2s var(--ease); }
+.menu-botao__icone::before { top: -5px; }
+.menu-botao__icone::after { top: 5px; }
+.menu-botao[aria-expanded="true"] .menu-botao__icone { background: transparent; }
+.menu-botao[aria-expanded="true"] .menu-botao__icone::before { transform: translateY(5px) rotate(45deg); }
+.menu-botao[aria-expanded="true"] .menu-botao__icone::after { transform: translateY(-5px) rotate(-45deg); }
+
+.menu ul { display: flex; gap: 6px; }
+.menu a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
+  text-decoration: none; font-size: .9375rem; font-weight: 500; border-radius: var(--raio);
+}
+.menu a:hover { background: rgba(247, 246, 242, .1); }
+
+/* ---------- Botões e links ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; text-align: center;
+  min-height: 50px; padding: 12px 24px;
+  background: var(--vinho); color: var(--perola);
+  border: 2px solid var(--vinho); border-radius: var(--raio);
+  font: 600 1rem/1.2 var(--f-texto); text-decoration: none; cursor: pointer;
+  transition: background-color .18s ease, border-color .18s ease, color .18s ease;
+}
+.btn:hover { background: var(--vinho-escuro); border-color: var(--vinho-escuro); }
+.btn--contorno { background: transparent; color: var(--grafite); border-color: var(--grafite); }
+.btn--contorno:hover { background: var(--grafite); border-color: var(--grafite); color: var(--perola); }
+.btn--sobre-vinho { background: var(--perola); color: var(--vinho); border-color: var(--perola); }
+.btn--sobre-vinho:hover { background: var(--prata); border-color: var(--prata); color: var(--vinho-escuro); }
+.btn--topo { min-height: 44px; padding: 8px 18px; font-size: .9375rem; background: var(--vinho); border-color: var(--perola); }
+.btn--topo:hover { background: var(--perola); color: var(--vinho); border-color: var(--perola); }
+
+.link { color: var(--vinho); font-weight: 600; text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; }
+.link:hover { color: var(--vinho-escuro); }
+
+.legenda-foto { font-size: .8125rem; line-height: 1.4; color: var(--tinta-2); margin-top: 8px; }
+
+/* ==========================================================================
+   1 · Abertura
+   ========================================================================== */
+.abertura { display: grid; background: var(--perola); }
+.abertura__foto { grid-area: 1 / 1; display: grid; height: clamp(540px, 88svh, 860px); }
+.abertura__foto img { grid-area: 1 / 1; width: 100%; height: 100%; object-fit: cover; object-position: 50% 58%; }
+.abertura__foto .legenda-foto {
+  grid-area: 1 / 1; align-self: start; justify-self: start; margin: 16px;
+  padding: 5px 10px; border-radius: 3px;
+  background: rgba(35, 38, 41, .78); color: var(--perola);
+}
+.abertura__painel {
+  grid-area: 1 / 1; z-index: 1; align-self: end; justify-self: end;
+  margin-right: var(--gutter);
+  width: min(500px, calc(100% - 2 * var(--gutter)));
+  padding: 28px 34px 32px;
+  background: var(--perola);
+  display: grid; gap: 14px;
+}
+.abertura h1 { font-size: clamp(2.3rem, 1.3rem + 2.4vw, 3.4rem); }
+.abertura__painel p { color: var(--grafite); font-size: 1.0625rem; max-width: 42ch; }
+.acoes { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 6px; }
+
+/* ==========================================================================
+   2 · Serviços em ação
+   ========================================================================== */
+.servicos { background: var(--prata); padding-block: clamp(56px, 8vw, 112px); }
+.servicos__cab { display: grid; gap: 14px 48px; margin-bottom: clamp(40px, 6vw, 72px); }
+.servicos__cab h2 { max-width: 16ch; }
+.servicos__cab p { max-width: 46ch; color: var(--grafite); }
+
+.servico { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.servico__grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px; }
+.servico__foto img { width: 100%; height: auto; object-fit: cover; }
+.servico__texto { display: grid; gap: 14px; align-content: center; }
+.servico__texto p { max-width: 44ch; }
+.servico__texto .btn { justify-self: start; margin-top: 12px; }
+.servico__lista-titulo { margin-top: 10px; }
+
+.lista-inclui { border-top: 1px solid currentColor; border-top-color: color-mix(in srgb, currentColor 28%, transparent); }
+.lista-inclui li {
+  padding: 9px 0; font-size: 1rem; line-height: 1.4;
+  border-bottom: 1px solid color-mix(in srgb, currentColor 28%, transparent);
+}
+
+.servico--lavagem .servico__foto img { aspect-ratio: 16 / 9; object-position: 50% 56%; }
+.servico--interior .servico__foto img { aspect-ratio: 5 / 4; object-position: 22% 50%; }
+.servico--protecao .servico__foto img { aspect-ratio: 4 / 5; object-position: 58% 50%; }
+
+.servico--interior {
+  display: block; /* a grade fica no filho .servico__grade, dentro do .wrap */
+  background: var(--caramelo); color: var(--grafite);
+  margin-block: clamp(48px, 7vw, 96px);
+  padding-block: clamp(36px, 5.5vw, 72px);
+}
+.servico--interior .legenda-foto { color: var(--grafite); }
+.servico--interior .btn { border-color: var(--grafite); }
+.servico--interior :focus-visible { outline-color: var(--grafite); }
+
+.servico__foto { order: -1; }
+
+/* ==========================================================================
+   3 · Do gesto ao acabamento
+   ========================================================================== */
+.acabamento { background: var(--perola); padding-block: clamp(56px, 8vw, 112px); }
+.acabamento__cab { display: grid; gap: 14px 48px; margin-bottom: 18px; }
+.acabamento__cab h2 { max-width: 14ch; }
+.acabamento__cab p { max-width: 44ch; }
+.nota-ilustrativa {
+  display: inline-block; max-width: 70ch; margin-bottom: clamp(28px, 4vw, 52px);
+  padding: 8px 14px; background: var(--prata); font-size: .875rem; line-height: 1.45;
+}
+
+.par { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; padding-block: clamp(28px, 4.5vw, 56px); border-top: 1px solid var(--linha); }
+.par h3 { font-size: clamp(1.5rem, 1.2rem + .9vw, 2rem); }
+.par figure img { width: 100%; height: auto; object-fit: cover; }
+.par figcaption { margin-top: 10px; max-width: 46ch; font-size: .9375rem; line-height: 1.45; color: var(--grafite); }
+.par figcaption strong { font-weight: 700; }
+
+.par--rodas .par__a img { aspect-ratio: 4 / 5; object-position: 50% 45%; }
+.par--rodas .par__b img { aspect-ratio: 3 / 2; object-position: 50% 50%; }
+.par--interior .par__a img { aspect-ratio: 4 / 3; object-position: 60% 80%; }
+.par--interior .par__b img { aspect-ratio: 3 / 4; object-position: 50% 40%; }
+.par--pintura .par__a img { aspect-ratio: 1 / 1; object-position: 42% 50%; }
+.par--pintura .par__b img { aspect-ratio: 3 / 2; object-position: 50% 50%; }
+
+/* ==========================================================================
+   4 · O PÁTIO vai até você
+   ========================================================================== */
+.atendimento { background: var(--perola); padding-block: clamp(56px, 8vw, 112px); border-top: 1px solid var(--linha); }
+.atendimento__grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; margin-bottom: clamp(40px, 6vw, 72px); }
+.atendimento__foto img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 62%; }
+.atendimento__texto { display: grid; gap: 14px; align-content: start; }
+.atendimento__texto > p { max-width: 46ch; }
+.selo-demo { text-wrap: wrap; justify-self: start; padding: 4px 10px; background: var(--prata); font-size: .8125rem; line-height: 1.4; }
+.regioes { margin-top: 10px; border-top: 1px solid var(--grafite); }
+.regioes__sem-js { padding: 14px 0; }
+
+.regiao { border-bottom: 1px solid var(--linha); transition: background-color .2s ease; }
+.regiao.is-aberta { background: var(--prata); }
+.regiao__titulo { font: inherit; }
+.regiao__botao {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto auto 30px; align-items: center; gap: 4px 16px;
+  width: 100%; min-height: 66px; padding: 12px 10px 12px 16px;
+  background: transparent; color: inherit; border: 0; border-left: 4px solid transparent;
+  font: inherit; text-align: left; cursor: pointer;
+}
+.regiao__botao:hover { background: rgba(35, 38, 41, .05); }
+.regiao.is-aberta .regiao__botao { border-left-color: var(--vinho); }
+.regiao__nome { font-family: var(--f-titulo); font-size: 1.65rem; font-weight: 600; line-height: 1.05; }
+.regiao.is-aberta .regiao__nome { color: var(--vinho); }
+.regiao__qtd { font-size: .9375rem; color: var(--tinta-2); }
+.regiao__estado { min-width: 5.6em; text-align: right; font-size: .875rem; font-weight: 700; color: var(--tinta-2); }
+.regiao.is-aberta .regiao__estado { color: var(--vinho); }
+.regiao__icone { position: relative; width: 30px; height: 30px; border: 2px solid currentColor; border-radius: 50%; }
+.regiao__icone::before, .regiao__icone::after { content: ""; position: absolute; left: 50%; top: 50%; width: 12px; height: 2px; margin: -1px 0 0 -6px; background: currentColor; transition: transform .22s var(--ease); }
+.regiao__icone::after { transform: rotate(90deg); }
+.regiao.is-aberta .regiao__icone { color: var(--vinho); }
+.regiao.is-aberta .regiao__icone::after { transform: rotate(0deg); }
+
+.regiao__painel { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows .24s var(--ease), visibility 0s linear .24s; }
+.regiao.is-aberta .regiao__painel { grid-template-rows: 1fr; visibility: visible; transition-delay: 0s; }
+.regiao__miolo { min-height: 0; overflow: hidden; }
+.regiao__bairros { display: grid; grid-template-columns: minmax(0, 1fr); padding: 0 16px 14px 20px; column-gap: 28px; }
+.regiao__bairros li { padding: 9px 0; border-top: 1px solid var(--linha); font-size: 1rem; line-height: 1.3; }
+
+.bloco-vinho {
+  display: grid; grid-template-columns: minmax(0, 1fr); gap: 30px;
+  padding: clamp(28px, 4.5vw, 56px); background: var(--vinho); color: var(--perola);
+}
+.bloco-vinho__intro { display: grid; gap: 14px; align-content: start; justify-items: start; }
+.bloco-vinho__intro p { max-width: 38ch; }
+.condicoes { display: grid; grid-template-columns: minmax(0, 1fr); }
+.condicao { padding: 16px 0; border-top: 1px solid rgba(247, 246, 242, .32); }
+.condicao__titulo { font-size: 1.5rem; margin-bottom: 6px; }
+.condicao__texto { max-width: 40ch; font-size: 1rem; line-height: 1.5; }
+
+/* ==========================================================================
+   5 · Combine o atendimento
+   ========================================================================== */
+.contato { background: var(--prata); padding-block: clamp(56px, 8vw, 112px); }
+.contato__grade { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; }
+.contato__acao { display: grid; gap: 18px; align-content: start; justify-items: start; }
+.contato__acao > p { max-width: 46ch; }
+.btn--grande { min-height: 58px; padding: 14px 30px; font-size: 1.125rem; margin-top: 6px; }
+.contato__estado { font-size: .9375rem; color: var(--grafite); max-width: 46ch; padding-left: 14px; border-left: 3px solid var(--vinho); }
+.respostas { border-top: 1px solid var(--grafite); align-self: start; }
+.resposta { padding: 18px 0; border-bottom: 1px solid var(--linha); }
+.resposta dt { font-family: var(--f-titulo); font-size: 1.55rem; font-weight: 600; line-height: 1.1; margin-bottom: 6px; }
+.resposta dd { margin: 0; max-width: 46ch; }
+
+/* ==========================================================================
+   Rodapé
+   ========================================================================== */
+.rodape { background: var(--grafite); color: var(--perola); padding-block: clamp(40px, 6vw, 72px); font-size: .9375rem; }
+.rodape__grade { display: grid; gap: 32px; }
+.rodape__marca { font-family: var(--f-titulo); font-weight: 700; font-size: 2rem; letter-spacing: .06em; line-height: 1; margin-bottom: 10px; }
+.rodape__titulo { font-family: var(--f-texto); font-size: .9375rem; font-weight: 700; margin-bottom: 8px; }
+.rodape__texto { color: var(--prata); max-width: 46ch; }
+.rodape__creditos { margin-top: 12px; display: grid; gap: 4px 20px; font-size: .8125rem; color: var(--prata); }
+.rodape__creditos a { color: var(--perola); text-underline-offset: 3px; }
+
+/* ---------- Diálogo da demonstração ---------- */
+.demo-dialogo {
+  border: 0; padding: 0; border-radius: 6px;
+  width: min(540px, calc(100% - 32px));
+  background: var(--perola); color: var(--grafite);
+}
+.demo-dialogo::backdrop { background: rgba(35, 38, 41, .72); }
+.demo-dialogo__caixa { padding: 28px; display: grid; gap: 14px; }
+.demo-dialogo h2 { font-size: 1.9rem; }
+.demo-dialogo p { text-wrap: wrap; }
+.demo-dialogo__mensagem {
+  padding: 14px 16px; background: var(--prata); border-left: 4px solid var(--vinho);
+  font-size: 1rem; line-height: 1.5;
+}
+.demo-dialogo__estado { min-height: 1.4em; font-weight: 600; color: var(--vinho); }
+.demo-dialogo__acoes { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* ==========================================================================
+   Pontos de quebra
+   ========================================================================== */
+@media (max-width: 899.98px) {
+  .js .menu-botao { display: inline-flex; }
+  .btn--topo { order: 2; }
+  .menu-botao { order: 3; }
+  .menu { order: 4; flex-basis: 100%; }
+  .js .menu { display: none; }
+  .js .menu.is-open { display: block; padding-bottom: 12px; }
+  .menu ul { flex-direction: column; gap: 0; border-top: 1px solid rgba(247, 246, 242, .2); }
+  .menu li + li { border-top: 1px solid rgba(247, 246, 242, .12); }
+  .menu a { display: flex; min-height: 50px; padding-inline: 4px; }
+  .topo__barra { gap: 0 12px; }
+
+  /* Capa no celular: título e botão antes da foto */
+  .abertura { display: flex; flex-direction: column; }
+  .abertura__painel { order: -1; align-self: stretch; justify-self: auto; width: auto; margin: 0; padding: 28px var(--gutter) 26px; }
+  .abertura__foto { height: auto; display: block; }
+  .abertura__foto img { aspect-ratio: 4 / 3; object-position: 30% 58%; }
+  .abertura__foto .legenda-foto { margin: 0; padding: 8px var(--gutter) 14px; border-radius: 0; background: none; color: var(--tinta-2); }
+}
+
+@media (min-width: 900px) {
+  .servicos__cab { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; }
+  .servico, .servico__grade { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(24px, 3.4vw, 56px); align-items: center; }
+  .servico__foto { order: 0; }
+
+  .servico--lavagem .servico__foto { grid-column: 1 / 9; }
+  .servico--lavagem .servico__texto { grid-column: 9 / 13; }
+
+  .servico--interior .servico__texto { grid-column: 1 / 6; }
+  .servico--interior .servico__foto { grid-column: 6 / 13; }
+
+  .servico--protecao { padding-top: 0; }
+  .servico--protecao .servico__texto { grid-column: 1 / 8; }
+  .servico--protecao .servico__foto { grid-column: 9 / 13; }
+  .lista-inclui--duas { display: grid; grid-template-columns: 1fr 1fr; column-gap: 28px; }
+
+  .acabamento__cab { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: end; }
+  .par { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(24px, 3.4vw, 56px); row-gap: 14px; align-items: start; }
+  .par h3 { grid-column: 1 / -1; }
+  .par--rodas .par__a { grid-column: 1 / 5; }
+  .par--rodas .par__b { grid-column: 5 / 13; }
+  .par--interior .par__a { grid-column: 1 / 8; }
+  .par--interior .par__b { grid-column: 9 / 13; }
+  .par--pintura .par__a { grid-column: 1 / 6; }
+  .par--pintura .par__b { grid-column: 6 / 13; }
+
+  .atendimento__grade { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: clamp(24px, 3.4vw, 56px); align-items: start; }
+  .atendimento__foto { grid-column: 1 / 6; }
+  .atendimento__texto { grid-column: 7 / 13; padding-top: 6px; }
+  .regiao__bairros { grid-template-columns: 1fr 1fr; }
+
+  .bloco-vinho { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); column-gap: clamp(32px, 5vw, 80px); }
+  .condicoes { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 28px; }
+
+  .contato__grade { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); column-gap: clamp(40px, 7vw, 112px); align-items: start; }
+
+  .rodape__grade { grid-template-columns: 1.1fr 1.7fr 1fr; gap: 48px; }
+  .rodape__creditos { grid-template-columns: 1fr 1fr; }
+}
+
+/* Tablet: pares de fotos em duas colunas e molduras mais baixas */
+@media (min-width: 600px) and (max-width: 899.98px) {
+  .par { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 24px; align-items: start; }
+  .par h3 { grid-column: 1 / -1; }
+  .servico--interior .servico__foto img,
+  .servico--protecao .servico__foto img,
+  .atendimento__foto img { aspect-ratio: 16 / 10; }
+  .atendimento__foto img { object-position: 50% 72%; }
+  .condicoes { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 20px; }
+}
+
+/* Notebook de pouca altura: título e texto em faixa acima, foto abaixo */
+@media (min-width: 900px) and (max-height: 700px) {
+  .abertura { display: flex; flex-direction: column; }
+  .abertura__painel {
+    order: -1; align-self: stretch; justify-self: auto; width: auto; margin: 0;
+    padding: 22px var(--gutter);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; column-gap: clamp(32px, 5vw, 80px);
+  }
+  .abertura__painel h1 { grid-row: 1 / 3; }
+  .abertura__foto { height: clamp(360px, 44vw, 560px); }
+}
+
+@media (min-width: 900px) and (max-width: 1099.98px) {
+  .menu a { padding-inline: 8px; }
+}
+
+@media (max-width: 559.98px) {
+  .regiao__botao { grid-template-columns: minmax(0, 1fr) auto 30px; padding-left: 12px; }
+  .regiao__qtd { display: none; }
+  .regiao__estado { min-width: 0; }
+  .regiao__nome { font-size: 1.5rem; }
+}
+
+/* ---------- Movimento reduzido ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition-duration: .001ms !important; animation-duration: .001ms !important; }
+}

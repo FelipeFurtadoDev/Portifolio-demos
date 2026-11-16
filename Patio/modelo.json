@@ -1,0 +1,18 @@
+{
+  "marca": "PÁTIO · Estética automotiva móvel",
+  "segmento": "Lavagem detalhada, higienização interna e proteção de pintura no local",
+  "ordem": 160,
+  "descricao": "Estética automotiva que vai até a garagem do cliente: capa panorâmica com o carro sendo lavado e um painel claro no canto da foto, três serviços abertos para leitura com o que cada um inclui, pares de acabamento que mostram o gesto e o detalhe, bairros atendidos em lista que se abre por região e um pedido direto pelo WhatsApp, sem formulário nem calendário simulado.",
+  "caracteristicas": [
+    "Capa panorâmica com painel pérola no canto da foto, sem cobrir o trabalho",
+    "Três serviços em composições de larguras diferentes, com o que está incluído",
+    "Pares gesto e detalhe: rodas, higienização e proteção de pintura",
+    "Bairros atendidos por região, com requisitos de espaço, acesso, água e energia",
+    "Mensagem pronta no WhatsApp para cada serviço, com modo demonstrativo seguro"
+  ],
+  "cores": {
+    "fundo": "#792B3D",
+    "texto": "#F7F6F2",
+    "textoSecundario": "#DCE0E3"
+  }
+}
