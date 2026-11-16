@@ -1,0 +1,18 @@
+{
+  "marca": "MATIZ · Estúdio de beleza",
+  "segmento": "Unhas, cílios e sobrancelhas",
+  "ordem": 150,
+  "descricao": "Estúdio de bairro com luz de dia e foto em primeiro plano: a capa é um díptico com mãos esmaltadas e olhar, o menu de serviços fica aberto com o que cada atendimento inclui, fotos de acabamento aproximam um detalhe dentro do próprio quadro e a conversa no WhatsApp começa sem formulário, com a mensagem pronta.",
+  "caracteristicas": [
+    "Capa em díptico assimétrico com faixa amarela de título e ação",
+    "Menu de serviços aberto, com atalhos que acompanham a rolagem",
+    "Um pedido por serviço: a mensagem já leva o nome do serviço",
+    "Fotos de acabamento com Ver detalhe e Ver foto inteira no mesmo quadro",
+    "Visita e contato diretos, sem formulário nem calendário simulado"
+  ],
+  "cores": {
+    "fundo": "#35452D",
+    "texto": "#FBF8EF",
+    "textoSecundario": "#D7DFCB"
+  }
+}
