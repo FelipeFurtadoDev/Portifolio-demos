@@ -1,8 +1,8 @@
 /* ==========================================================================
-   PÁTIO · Estética automotiva móvel — configuração central
+   PÁTIO · Estética automotiva com hora marcada — configuração central
    Tudo o que muda de um cliente para outro fica aqui: modo demonstração,
-   WhatsApp e mensagens, bairros atendidos, condições do local e créditos das
-   fotos. Os textos editoriais (serviços, legendas, perguntas e respostas)
+   WhatsApp e mensagens, endereço e horários do estúdio, etapas de chegada e
+   entrega do carro e créditos das fotos. Os textos editoriais (serviços, legendas, perguntas e respostas)
    ficam no index.html, para a página continuar legível sem JavaScript.
    ========================================================================== */
 
@@ -27,12 +27,12 @@ window.PATIO_CONFIG = {
     /* Somente dígitos: DDI 55 + DDD + número. Ex.: "5511912345678".
        Deixe vazio enquanto o site for demonstrativo. */
     whatsapp: "",
-    /* Mensagem geral: abertura, cabeçalho, bairros e contato. */
-    greeting: "Olá, PÁTIO! Gostaria de consultar o atendimento na minha garagem.",
-    /* Mensagem de bairro fora da lista. */
-    neighborhoodMessage: "Olá, PÁTIO! Meu bairro não está na lista. Vocês atendem na minha região?",
+    /* Mensagem geral: capa, cabeçalho e agendamento. */
+    greeting: "Olá, PÁTIO! Gostaria de consultar os horários para levar meu carro ao estúdio.",
+    /* Mensagem de quem já tem horário e quer combinar a entrega do carro. */
+    deliveryMessage: "Olá, PÁTIO! Já tenho horário marcado e quero combinar a entrega do meu carro no estúdio.",
     /* Mensagem por serviço. {servico} recebe o nome do serviço. */
-    serviceMessage: "Olá, PÁTIO! Quero combinar {servico} no local onde o carro está. Como funciona o atendimento?"
+    serviceMessage: "Olá, PÁTIO! Quero agendar {servico} no estúdio. Quais horários vocês têm?"
   },
 
   /* Nome de cada serviço dentro da mensagem (chave = data-wa do index.html). */
@@ -42,23 +42,27 @@ window.PATIO_CONFIG = {
     protecao:     "a proteção de pintura"
   },
 
-  /* Cobertura e condições do local.
+  /* Estúdio: endereço, horários e etapas de chegada e entrega.
      demo: true mostra o selo "Dados demonstrativos" na página. Troque por
-     false quando os bairros e as exigências forem os do cliente.
-     Cada região vira um item da lista expansível. */
-  coverage: {
+     false quando os dados forem os do cliente. */
+  studio: {
     demo: true,
-    note: "Combinamos o dia e o horário na conversa. Se o seu bairro não aparece, chame no WhatsApp.",
-    regions: [
-      { name: "Região Norte",   areas: ["Jardim das Acácias", "Vila Primavera", "Parque Imperial", "Santa Luzia", "Alto da Colina"] },
-      { name: "Região Sul",     areas: ["Residencial Aurora", "Jardim Oriente", "Vila Horizonte", "Chácara Boa Esperança", "Bosque dos Ipês", "Recanto Verde"] },
-      { name: "Região Central", areas: ["Centro", "Vila Operária", "Jardim Europa Nova", "Bairro das Palmeiras"] },
-      { name: "Região Leste",   areas: ["Parque Industrial Leste", "Vila Esperança", "Jardim Santa Marta", "Residencial dos Lagos"] }
+    addressLines: [
+      "Rua das Oficinas, 240",
+      "Distrito Industrial, Cidade Exemplo",
+      "CEP 00000-000"
     ],
-    conditions: [
-      { title: "Espaço ao redor do carro", text: "Espaço para abrir as portas e circular em volta do veículo, de preferência coberto ou na sombra." },
-      { title: "Acesso", text: "Entrada liberada para levar os equipamentos até o carro: garagem, pátio ou vaga de condomínio com autorização." },
-      { title: "Água e energia", text: "Ponto de água e tomada por perto, quando o serviço precisar. Se não houver, combinamos antes da visita." }
+    reference: "Portão cinza ao lado da loja de autopeças. Vagas para clientes no pátio lateral.",
+    hours: [
+      { days: "Segunda a sexta",    time: "8h às 18h" },
+      { days: "Sábado",             time: "8h às 13h" },
+      { days: "Domingo e feriados", time: "Fechado" }
+    ],
+    note: "O estúdio atende somente com hora marcada. Chegue no horário combinado.",
+    steps: [
+      { title: "Chegada",         text: "Estacione no pátio lateral e fale com a equipe na entrada do box. Chegue no horário marcado para o serviço começar no tempo combinado." },
+      { title: "Entrega do carro", text: "Vistoriamos o carro com você, anotamos os detalhes da pintura e do interior e você deixa as chaves. Retire antes os objetos pessoais." },
+      { title: "Retirada",         text: "Avisamos pelo WhatsApp quando o carro estiver pronto. Você confere o resultado com a equipe antes de sair." }
     ]
   },
 
@@ -81,12 +85,12 @@ window.PATIO_CONFIG = {
     raios:    [600, 900, 1200, 1600],
     banco:    [480, 720, 1000],
     reflexo:  [600, 900, 1200, 1600],
-    patio:    [480, 720, 1000, 1400]
+    estudio:  [600, 900, 1200, 1600]
   },
 
   /* Créditos exibidos no rodapé. Todas as fotos: Licença Unsplash. */
   credits: [
-    { role: "Abertura",             author: "Brad Starkey",       id: "eP8h7YVhFHk" },
+    { role: "Abertura",             author: "Luay Barani",        id: "z6o7bOvvalU" },
     { role: "Lavagem detalhada",    author: "Willian Cittadin",   id: "DtrI63-Z46I" },
     { role: "Higienização interna", author: "Towfiqu barbhuiya",  id: "5m5418Ng6t8" },
     { role: "Proteção de pintura",  author: "Mohamed Gado",       id: "jZdOBQvDOXM" },
@@ -96,6 +100,6 @@ window.PATIO_CONFIG = {
     { role: "Raios da roda",        author: "Frankie Lopez",      id: "os_LwBZHi6E" },
     { role: "Textura do banco",     author: "Obi",                id: "iUkQ06FNOrU" },
     { role: "Reflexo na pintura",   author: "Sean Foster",        id: "0WwgdD5cfnQ" },
-    { role: "Garagem e pátio",      author: "Jonas Jaeken",       id: "1TmI9BTLmiU" }
+    { role: "Ambiente do estúdio",  author: "Deniz Demirci",      id: "cNQoYkRJmQk" }
   ]
 };

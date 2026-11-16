@@ -1,8 +1,8 @@
 /* ==========================================================================
-   PÁTIO · Estética automotiva móvel
+   PÁTIO · Estética automotiva com hora marcada
    JavaScript puro, sem dependências. Os dados vêm de js/config.js.
-   Módulos: menu · aviso de demonstração · WhatsApp · lista de bairros ·
-   créditos · fotos locais.
+   Módulos: menu · aviso de demonstração · WhatsApp · estúdio (endereço,
+   horários e etapas) · perguntas frequentes · créditos · fotos locais.
    ========================================================================== */
 (function () {
   "use strict";
@@ -65,7 +65,7 @@
   var whatsappAtivo = numeroValido && demo.enabled === false;
 
   function mensagemPara(tipo) {
-    if (tipo === "bairro") return contact.neighborhoodMessage || contact.greeting || "";
+    if (tipo === "entrega") return contact.deliveryMessage || contact.greeting || "";
     var nomes = cfg.services || {};
     if (nomes[tipo] && contact.serviceMessage) {
       return contact.serviceMessage.replace("{servico}", nomes[tipo]);
@@ -145,78 +145,68 @@
     n.hidden = whatsappAtivo;
   });
 
-  /* ----------------------------------------------- Bairros por região */
-  (function cobertura() {
-    var cob = cfg.coverage || {};
-    var raiz = $("[data-regioes]");
-    var regioes = cob.regions || [];
+  /* ------------------------------------------ Estúdio: dados e etapas */
+  (function estudio() {
+    var st = cfg.studio || {};
+    $$("[data-demo-dados]").forEach(function (n) { n.hidden = !st.demo; });
+    $$("[data-estudio-nota]").forEach(function (n) { if (st.note) n.textContent = st.note; });
 
-    $$("[data-demo-dados]").forEach(function (n) { n.hidden = !cob.demo; });
-    $$("[data-cobertura-nota]").forEach(function (n) { if (cob.note) n.textContent = cob.note; });
+    var raiz = $("[data-estudio]");
+    if (raiz) {
+      var cab = el("h3", "estudio__sub", "Endereço");
+      var end = el("address", "estudio__endereco");
+      (st.addressLines || []).forEach(function (linha, i) {
+        if (i) end.appendChild(document.createElement("br"));
+        end.appendChild(document.createTextNode(linha));
+      });
+      raiz.appendChild(cab);
+      raiz.appendChild(end);
+      if (st.reference) raiz.appendChild(el("p", "estudio__referencia", st.reference));
 
-    var lista = $("[data-condicoes]");
-    if (lista && cob.conditions) {
-      cob.conditions.forEach(function (c) {
-        var li = el("li", "condicao");
-        li.appendChild(el("h3", "condicao__titulo", c.title));
-        li.appendChild(el("p", "condicao__texto", c.text));
+      if (st.hours && st.hours.length) {
+        raiz.appendChild(el("h3", "estudio__sub", "Horários"));
+        var dl = el("dl", "horarios");
+        st.hours.forEach(function (h) {
+          var linha = el("div", "horarios__linha");
+          linha.appendChild(el("dt", null, h.days));
+          linha.appendChild(el("dd", null, h.time));
+          dl.appendChild(linha);
+        });
+        raiz.appendChild(dl);
+      }
+    }
+
+    var lista = $("[data-chegada]");
+    if (lista && st.steps) {
+      st.steps.forEach(function (p) {
+        var li = el("li", "chegada__item");
+        li.appendChild(el("h4", "chegada__titulo", p.title));
+        li.appendChild(el("p", "chegada__texto", p.text));
         lista.appendChild(li);
       });
     }
+  })();
 
-    if (!raiz || !regioes.length) return;
-    var itens = [];
+  /* ------------------------------------------- Perguntas frequentes */
+  (function perguntas() {
+    var raiz = $("[data-faq]");
+    if (!raiz) return;
+    var itens = $$(".faq__item", raiz).map(function (item) {
+      return { raiz: item, botao: $(".faq__botao", item) };
+    });
 
     function definir(item, aberto) {
       item.raiz.classList.toggle("is-aberta", aberto);
       item.botao.setAttribute("aria-expanded", aberto ? "true" : "false");
-      item.estado.textContent = aberto ? "Aberta" : "Ver bairros";
     }
-    function alternar(alvo) {
-      var abrir = !alvo.raiz.classList.contains("is-aberta");
-      itens.forEach(function (i) { definir(i, i === alvo ? abrir : false); });
-    }
-
-    regioes.forEach(function (r, n) {
-      var raizItem = el("div", "regiao");
-      var h = el("h3", "regiao__titulo");
-      var botao = el("button", "regiao__botao");
-      botao.type = "button";
-      botao.id = "regiao-botao-" + n;
-      botao.setAttribute("aria-controls", "regiao-painel-" + n);
-
-      var nome = el("span", "regiao__nome", r.name);
-      var qtd = el("span", "regiao__qtd", r.areas.length + (r.areas.length === 1 ? " bairro" : " bairros"));
-      var estado = el("span", "regiao__estado", "Ver bairros");
-      var icone = el("span", "regiao__icone");
-      icone.setAttribute("aria-hidden", "true");
-      botao.appendChild(nome);
-      botao.appendChild(qtd);
-      botao.appendChild(estado);
-      botao.appendChild(icone);
-      h.appendChild(botao);
-
-      var painel = el("div", "regiao__painel");
-      painel.id = "regiao-painel-" + n;
-      painel.setAttribute("role", "region");
-      painel.setAttribute("aria-labelledby", botao.id);
-      var miolo = el("div", "regiao__miolo");
-      var ul = el("ul", "regiao__bairros");
-      r.areas.forEach(function (b) { ul.appendChild(el("li", null, b)); });
-      miolo.appendChild(ul);
-      painel.appendChild(miolo);
-
-      raizItem.appendChild(h);
-      raizItem.appendChild(painel);
-      raiz.appendChild(raizItem);
-
-      var item = { raiz: raizItem, botao: botao, estado: estado };
-      itens.push(item);
+    itens.forEach(function (item, n) {
       definir(item, n === 0);
-      botao.addEventListener("click", function () { alternar(item); });
+      item.botao.addEventListener("click", function () {
+        definir(item, item.botao.getAttribute("aria-expanded") !== "true");
+      });
     });
 
-    /* Setas, Home e End percorrem os títulos (padrão de acordeão). */
+    /* Setas, Home e End percorrem as perguntas (padrão de acordeão). */
     raiz.addEventListener("keydown", function (e) {
       var botoes = itens.map(function (i) { return i.botao; });
       var pos = botoes.indexOf(document.activeElement);

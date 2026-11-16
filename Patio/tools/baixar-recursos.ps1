@@ -1,5 +1,5 @@
 # ===========================================================================
-#  PATIO - Estetica automotiva movel - baixa fotos e fontes para uso local
+#  PATIO - Estetica automotiva com hora marcada - baixa fotos e fontes para uso local
 #  ---------------------------------------------------------------------------
 #  Uso (PowerShell, dentro da pasta 16-estetica-automotiva-patio):
 #    powershell -ExecutionPolicy Bypass -File tools\baixar-recursos.ps1
@@ -39,7 +39,7 @@ $falhas = 0
 
 # --- 1. Fotos (nomes e larguras iguais aos de imageFiles em js/config.js) ---
 $fotos = @(
-  @{ nome = 'capa'; id = 'photo-1607860108855-64acf2078ed9'; larguras = 800, 1200, 1800, 2400 },
+  @{ nome = 'capa'; id = 'photo-1780558852671-e47265577239'; larguras = 800, 1200, 1800, 2400 },
   @{ nome = 'lavagem'; id = 'photo-1761312834165-c27d037b3a6b'; larguras = 700, 1000, 1400, 1800 },
   @{ nome = 'interior'; id = 'photo-1624884269715-70759892cd29'; larguras = 600, 900, 1200, 1600 },
   @{ nome = 'protecao'; id = 'photo-1733750200663-48af7bad1eab'; larguras = 600, 900, 1200 },
@@ -47,9 +47,9 @@ $fotos = @(
   @{ nome = 'raios'; id = 'photo-1573939843624-b22996c1a31c'; larguras = 600, 900, 1200, 1600 },
   @{ nome = 'banco'; id = 'photo-1781281209767-d5bcca177f79'; larguras = 480, 720, 1000 },
   @{ nome = 'reflexo'; id = 'photo-1633945385256-4f2dc1a9c9a6'; larguras = 600, 900, 1200, 1600 },
-  @{ nome = 'patio'; id = 'photo-1600727335606-1bb400010909'; larguras = 480, 720, 1000, 1400 },
   @{ nome = 'volante'; id = 'photo-1732357624591-f2137085659b'; larguras = 600, 900, 1200 },
-  @{ nome = 'aplicacao'; id = 'photo-1678383407772-317ee1ba9c5d'; larguras = 600, 900, 1200, 1600 }
+  @{ nome = 'aplicacao'; id = 'photo-1678383407772-317ee1ba9c5d'; larguras = 600, 900, 1200, 1600 },
+  @{ nome = 'estudio'; id = 'photo-1632823472829-5359d7455d53'; larguras = 600, 900, 1200, 1600 }
 )
 
 foreach ($f in $fotos) {
