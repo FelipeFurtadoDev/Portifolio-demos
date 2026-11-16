@@ -5,7 +5,7 @@
 #    powershell -ExecutionPolicy Bypass -File tools\baixar-recursos.ps1
 #
 #  O que faz:
-#    1. Baixa as 7 fotos da CDN da Unsplash ja em WebP, nas larguras usadas
+#    1. Baixa as 10 fotos da CDN da Unsplash ja em WebP, nas larguras usadas
 #       pelo srcset, e grava em assets/img/<nome>-<largura>.webp.
 #    2. Pede ao Google Fonts o CSS de Asul e Source Sans 3, baixa os arquivos
 #       woff2 do subconjunto "latin" (cobre o portugues), grava em
@@ -44,7 +44,10 @@ $fotos = @(
   @{ nome = 'cilios';       id = 'photo-1633346152343-5486573d3d50'; larguras = 800, 1200, 1800, 2400 },
   @{ nome = 'sobrancelha';  id = 'photo-1730226995154-efe9e13db300'; larguras = 800, 1200, 1800, 2400 },
   @{ nome = 'espaco';       id = 'photo-1738404643415-69a06d175f80'; larguras = 600, 900, 1200, 1600 },
-  @{ nome = 'atendimento';  id = 'photo-1632345031435-8727f6897d53'; larguras = 480, 800, 1200 }
+  @{ nome = 'atendimento';  id = 'photo-1632345031435-8727f6897d53'; larguras = 480, 800, 1200 },
+  @{ nome = 'menu-unhas';        id = 'photo-1753285310651-6974a839c992'; larguras = 480, 720, 1000, 1400 },
+  @{ nome = 'menu-cilios';       id = 'photo-1589710751893-f9a6770ad71b'; larguras = 480, 720, 1000, 1400 },
+  @{ nome = 'menu-sobrancelhas'; id = 'photo-1792679430669-caa0d70a9c52'; larguras = 480, 720, 1000, 1400 }
 )
 
 foreach ($f in $fotos) {

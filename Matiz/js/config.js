@@ -78,7 +78,10 @@ window.MATIZ_CONFIG = {
     { role: "Cílios, detalhe",   author: "Ali Shoaee",          url: "https://unsplash.com/photos/SdStLjkoWXM" },
     { role: "Sobrancelhas, detalhe", author: "Mary Borozdina",  url: "https://unsplash.com/photos/5CnuyRFJjp4" },
     { role: "Ambiente",          author: "Gayane Khachatryan",  url: "https://unsplash.com/photos/aMnH1OgFmwM" },
-    { role: "Atendimento",       author: "Giorgio Trovato",     url: "https://unsplash.com/photos/gb6gtiTZKB8" }
+    { role: "Atendimento",       author: "Giorgio Trovato",     url: "https://unsplash.com/photos/gb6gtiTZKB8" },
+    { role: "Menu, unhas",       author: "Ondrej Supitar",      url: "https://unsplash.com/photos/6omaRd0IG2w" },
+    { role: "Menu, cílios",      author: "Hayley Kim Studios",  url: "https://unsplash.com/photos/sRSRuxkOuzI" },
+    { role: "Menu, sobrancelhas", author: "Stefan Vibes",       url: "https://unsplash.com/photos/-k0_8bZ4L8c" }
   ],
 
   /* Imagens (usado por useLocalImages): nome do arquivo e larguras geradas. */
@@ -89,6 +92,9 @@ window.MATIZ_CONFIG = {
     cilios:      { nome: "cilios",      larguras: [800, 1200, 1800, 2400] },
     sobrancelha: { nome: "sobrancelha", larguras: [800, 1200, 1800, 2400] },
     espaco:      { nome: "espaco",      larguras: [600, 900, 1200, 1600] },
-    atendimento: { nome: "atendimento", larguras: [480, 800, 1200] }
+    atendimento: { nome: "atendimento", larguras: [480, 800, 1200] },
+    menuUnhas:        { nome: "menu-unhas",        larguras: [480, 720, 1000, 1400] },
+    menuCilios:       { nome: "menu-cilios",       larguras: [480, 720, 1000, 1400] },
+    menuSobrancelhas: { nome: "menu-sobrancelhas", larguras: [480, 720, 1000, 1400] }
   }
 };
