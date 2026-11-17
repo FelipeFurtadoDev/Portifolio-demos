@@ -1,0 +1,18 @@
+{
+  "marca": "PINGO · Banho & Tosa",
+  "segmento": "Estética pet: banho e tosa para cães com hora marcada",
+  "ordem": 170,
+  "descricao": "Banho e tosa de bairro para cães, com hora marcada pelo WhatsApp. A página usa a linguagem de um balcão de pet shop: capa em duas colunas com uma colagem de secagem e escovação sobre painel verde-piscina e, no centro, um menu de parede com três linhas que abrem para mostrar foto, o que está incluso e um botão de horário para aquele serviço.",
+  "caracteristicas": [
+    "Capa em duas colunas: título e ações de um lado, foto de secagem e detalhe de escovação do outro",
+    "Menu de parede com três linhas que abrem juntas ou separadas: banho, banho com tosa higiênica e banho com tosa completa",
+    "Cada serviço traz foto, o que está incluso e botão de WhatsApp com mensagem própria",
+    "Ficha de balcão: porte, pelagem e primeira visita, para contar na conversa",
+    "Endereço, horários e WhatsApp com modo demonstrativo seguro, sem formulário"
+  ],
+  "cores": {
+    "fundo": "#173F3A",
+    "texto": "#F8F5EC",
+    "textoSecundario": "#DCEAE4"
+  }
+}
