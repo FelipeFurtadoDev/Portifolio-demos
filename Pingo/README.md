@@ -30,12 +30,17 @@ Em `js/config.js` (`window.PINGO_CONFIG`):
 
 - `contact.whatsapp`: só dígitos, com `55` + DDD + número (ex.: `5511912345678`). Com número válido **e** `demo.enabled: false`, todos os botões abrem o WhatsApp com a mensagem pronta.
 - `contact.greeting` e `contact.serviceMessage`: texto das mensagens (`{servico}` recebe o nome do serviço, definido em `services`).
+- `contact.fichaMessage` (`intro` e `closing`): abertura e fechamento da mensagem montada pela ficha "Antes de trazer seu cão". Entre os dois entram as respostas, uma por linha (`Porte — …`, `Pelagem — …`, `Primeira visita — Sim/Não`).
 - `studio`: endereço, ponto de referência, horários e aviso de hora marcada. Enquanto `studio.demo` for `true`, aparece o selo de dado demonstrativo.
 - `credits`: créditos das fotos no rodapé.
 
 O `index.html` guarda uma cópia do endereço, dos horários, da mensagem geral e dos créditos (blocos marcados com `EDITAR`), para a página continuar legível sem JavaScript. Ao personalizar, altere o `config.js` e confira esses blocos. Os textos dos serviços, as legendas e a ficha ficam no `index.html`.
 
-Em modo demonstrativo nada é enviado: o botão abre uma janela com a mensagem de exemplo e a opção de copiá-la.
+Em modo demonstrativo nada é enviado: o botão abre uma janela com a mensagem de exemplo e a opção de copiá-la. Isso vale também para o botão "Enviar informações pelo WhatsApp" da ficha, que só abre o WhatsApp quando o número é válido e `demo.enabled` é `false`.
+
+### Ficha como formulário
+
+A seção `#antes` é um formulário só de front-end: três grupos de seleção única (rádios dentro de `fieldset`/`legend`), todos obrigatórios, sem campos de dados pessoais e sem envio a servidor. Faltando uma resposta, a orientação aparece junto do grupo e o foco vai ao primeiro grupo pendente. As opções e o rótulo de cada linha da mensagem (`data-rotulo-msg`) ficam no `index.html`; os valores dos rádios são o que entra na mensagem. Sem JavaScript, o envio leva ao bloco de contato (`#contato`).
 
 Para a versão comercial: remova o `noindex`, ajuste `<title>`, `description` e `og:image`, troque as fotos pelas do cliente (e remova os avisos de "foto ilustrativa") e revise o `modelo.json`.
 

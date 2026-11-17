@@ -218,42 +218,65 @@
       <div class="wrap">
         <header class="antes__cab">
           <h2 id="titulo-antes">Antes de trazer seu cão</h2>
-          <p>Para indicar o serviço e o tempo certos, o salão precisa de três informações. Conte na conversa pelo WhatsApp: não há formulário nesta página.</p>
+          <p>Para indicar o serviço e o tempo certos, o salão precisa de três informações. Escolha uma opção em cada linha da ficha e envie pelo WhatsApp.</p>
         </header>
-        <div class="antes__grade">
-          <div class="ficha" role="group" aria-label="Ficha do cão">
-            <div class="ficha__topo">Ficha do cão</div>
-            <div class="ficha__linha">
-              <div><p class="ficha__rotulo">Porte</p><p class="ficha__dica">Do tamanho do seu cão adulto.</p></div>
-              <ul class="opcoes">
-                <li>Mini</li><li>Pequeno</li><li>Médio</li><li>Grande</li>
-              </ul>
-            </div>
-            <div class="ficha__linha">
-              <div><p class="ficha__rotulo">Pelagem</p><p class="ficha__dica">Conte também se há nós ou pelos embaraçados.</p></div>
-              <ul class="opcoes">
-                <li>Curta</li><li>Longa</li><li>Cacheada</li><li>Dupla<small>pelo e subpelo</small></li>
-              </ul>
-            </div>
-            <div class="ficha__linha">
-              <div><p class="ficha__rotulo">Primeira visita?</p><p class="ficha__dica">Quem vem pela primeira vez recebe mais tempo de adaptação.</p></div>
-              <ul class="opcoes">
-                <li>É a primeira vez</li><li>Já veio ao PINGO</li>
-              </ul>
-            </div>
+        <!-- Formulário só no navegador: nada é enviado a um servidor. O botão monta a mensagem
+             e abre o WhatsApp (ou a prévia, no modo demonstração). Sem JavaScript, o envio
+             leva ao bloco de contato. -->
+        <form class="antes__grade" id="ficha-form" data-ficha action="#contato" method="get" aria-labelledby="ficha-titulo">
+          <div class="ficha">
+            <div class="ficha__topo" id="ficha-titulo">Ficha do cão</div>
+            <fieldset class="ficha__linha" data-grupo="porte" data-rotulo-msg="Porte" aria-describedby="dica-porte">
+              <legend class="ficha__rotulo">Porte</legend>
+              <p class="ficha__dica" id="dica-porte">Escolha o tamanho do seu cão adulto.</p>
+              <div class="ficha__campo">
+                <div class="opcoes">
+                  <label class="opcao"><input type="radio" name="porte" value="Mini" required><span>Mini</span></label>
+                  <label class="opcao"><input type="radio" name="porte" value="Pequeno"><span>Pequeno</span></label>
+                  <label class="opcao"><input type="radio" name="porte" value="Médio"><span>Médio</span></label>
+                  <label class="opcao"><input type="radio" name="porte" value="Grande"><span>Grande</span></label>
+                </div>
+                <p class="ficha__erro" id="erro-porte" data-erro hidden>Escolha o porte do seu cão.</p>
+              </div>
+            </fieldset>
+            <fieldset class="ficha__linha" data-grupo="pelagem" data-rotulo-msg="Pelagem" aria-describedby="dica-pelagem">
+              <legend class="ficha__rotulo">Pelagem</legend>
+              <p class="ficha__dica" id="dica-pelagem">Se houver nós ou pelos embaraçados, conte na conversa.</p>
+              <div class="ficha__campo">
+                <div class="opcoes">
+                  <label class="opcao"><input type="radio" name="pelagem" value="Curta" required><span>Curta</span></label>
+                  <label class="opcao"><input type="radio" name="pelagem" value="Longa"><span>Longa</span></label>
+                  <label class="opcao"><input type="radio" name="pelagem" value="Cacheada"><span>Cacheada</span></label>
+                  <label class="opcao"><input type="radio" name="pelagem" value="Dupla"><span>Dupla <small>pelo e subpelo</small></span></label>
+                </div>
+                <p class="ficha__erro" id="erro-pelagem" data-erro hidden>Escolha o tipo de pelagem.</p>
+              </div>
+            </fieldset>
+            <fieldset class="ficha__linha" data-grupo="primeira-visita" data-rotulo-msg="Primeira visita" aria-describedby="dica-primeira-visita">
+              <legend class="ficha__rotulo">Primeira visita?</legend>
+              <p class="ficha__dica" id="dica-primeira-visita">Quem vem pela primeira vez recebe mais tempo de adaptação.</p>
+              <div class="ficha__campo">
+                <div class="opcoes">
+                  <label class="opcao"><input type="radio" name="primeira-visita" value="Sim" required><span>É a primeira vez</span></label>
+                  <label class="opcao"><input type="radio" name="primeira-visita" value="Não"><span>Já veio ao PINGO</span></label>
+                </div>
+                <p class="ficha__erro" id="erro-primeira-visita" data-erro hidden>Diga se é a primeira visita ao PINGO.</p>
+              </div>
+            </fieldset>
           </div>
 
           <div class="talao">
-            <h3>É só contar na conversa</h3>
-            <p>Mande as três informações junto com o pedido de horário. O salão indica o serviço e confirma a hora.</p>
+            <h3>Conte um pouco sobre seu cão</h3>
+            <p>Selecione as três informações e envie pelo WhatsApp para consultar o serviço e os horários.</p>
             <ul>
-              <li>Escolha o que descreve seu cão em cada linha da ficha.</li>
-              <li>Diga se prefere banho, banho com tosa higiênica ou banho com tosa completa.</li>
-              <li>Se não tiver certeza, pergunte: o salão ajuda a escolher.</li>
+              <li>Escolha uma opção em cada linha da ficha.</li>
+              <li>O salão indica o serviço mais adequado e confirma o horário na conversa.</li>
+              <li>Em dúvida? Escolha o que mais se aproxima e converse com o salão.</li>
             </ul>
-            <a class="btn" href="#contato" data-wa="geral">Consultar horários</a>
+            <button class="btn" type="submit">Enviar informações pelo WhatsApp</button>
+            <p class="talao__estado" role="status" data-ficha-estado></p>
           </div>
-        </div>
+        </form>
       </div>
     </section>
 

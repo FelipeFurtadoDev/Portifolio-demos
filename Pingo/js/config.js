@@ -29,10 +29,17 @@ window.PINGO_CONFIG = {
     /* Somente dígitos: DDI 55 + DDD + número. Ex.: "5511912345678".
        Deixe vazio enquanto o site for demonstrativo. */
     whatsapp: "",
-    /* Mensagem geral: cabeçalho, capa, ficha e contato. */
+    /* Mensagem geral: cabeçalho, capa e contato. */
     greeting: "Olá, PINGO! Gostaria de consultar os horários de banho e tosa para meu cão.",
     /* Mensagem de cada serviço do menu. {servico} recebe o nome abaixo. */
-    serviceMessage: "Olá, PINGO! Gostaria de consultar os horários de {servico} para meu cão."
+    serviceMessage: "Olá, PINGO! Gostaria de consultar os horários de {servico} para meu cão.",
+    /* Mensagem da ficha "Antes de trazer seu cão". Entre a abertura e o
+       fechamento entram, uma por linha, as respostas escolhidas
+       (Porte, Pelagem e Primeira visita). */
+    fichaMessage: {
+      intro: "Olá, PINGO! Gostaria de consultar os serviços e horários para meu cão.",
+      closing: "Podem me orientar sobre o serviço mais adequado e a disponibilidade?"
+    }
   },
 
   /* Nome de cada serviço dentro da mensagem (chave = data-wa do index.html). */

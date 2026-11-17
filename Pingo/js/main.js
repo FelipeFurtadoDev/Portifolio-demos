@@ -2,8 +2,8 @@
    PINGO · Banho & Tosa
    JavaScript puro, sem dependências. Os dados vêm de js/config.js.
    Módulos: aviso de demonstração · WhatsApp · menu de serviços (itens que
-   abrem e fecham de forma independente) · endereço e horários · créditos ·
-   fotos locais.
+   abrem e fecham de forma independente) · ficha do cão (formulário que monta
+   a mensagem) · endereço e horários · créditos · fotos locais.
    ========================================================================== */
 (function () {
   "use strict";
@@ -152,6 +152,73 @@
         var alvo = document.getElementById(a.getAttribute("href").slice(1));
         itens.forEach(function (item) { if (item.raiz === alvo) definir(item, true); });
       });
+    });
+  })();
+
+  /* -------------------------------- Ficha do cão: formulário que monta a mensagem */
+  (function ficha() {
+    var form = $("[data-ficha]");
+    if (!form) return;
+    form.noValidate = true; /* a validação é nossa; sem JS valem os campos required do navegador */
+
+    var estado = $("[data-ficha-estado]", form);
+    var grupos = $$("[data-grupo]", form).map(function (campo) {
+      return {
+        campo: campo,
+        rotulo: campo.getAttribute("data-rotulo-msg"),
+        radios: $$('input[type="radio"]', campo),
+        erro: $("[data-erro]", campo),
+        descricao: campo.getAttribute("aria-describedby") || ""
+      };
+    });
+
+    function resposta(g) {
+      for (var i = 0; i < g.radios.length; i++) if (g.radios[i].checked) return g.radios[i].value;
+      return "";
+    }
+    function marcar(g, invalido) {
+      g.campo.classList.toggle("is-invalido", invalido);
+      g.erro.hidden = !invalido;
+      /* a orientação só entra na descrição do grupo enquanto estiver visível */
+      g.campo.setAttribute("aria-describedby", invalido ? (g.descricao + " " + g.erro.id).trim() : g.descricao);
+    }
+    function mensagem() {
+      var m = contact.fichaMessage || {};
+      var linhas = [m.intro || "Olá, PINGO! Gostaria de consultar os serviços e horários para meu cão."];
+      grupos.forEach(function (g) { linhas.push(g.rotulo + " — " + resposta(g)); });
+      linhas.push(m.closing || "Podem me orientar sobre o serviço mais adequado e a disponibilidade?");
+      return linhas.join("\n");
+    }
+
+    /* Escolher uma opção limpa a orientação daquele grupo. */
+    form.addEventListener("change", function () {
+      grupos.forEach(function (g) { if (resposta(g)) marcar(g, false); });
+      estado.textContent = "";
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var faltando = grupos.filter(function (g) { return !resposta(g); });
+      grupos.forEach(function (g) { marcar(g, faltando.indexOf(g) >= 0); });
+      if (faltando.length) {
+        estado.textContent = "";
+        faltando[0].radios[0].focus();
+        return;
+      }
+      var msg = mensagem();
+      if (whatsappAtivo) {
+        var a = document.createElement("a");
+        a.href = urlWhatsapp(msg);
+        a.target = "_blank";
+        a.rel = "noopener noreferrer";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        estado.textContent = "Abrindo o WhatsApp com as informações escolhidas.";
+      } else {
+        estado.textContent = "";
+        abrirDemonstracao(msg);
+      }
     });
   })();
 

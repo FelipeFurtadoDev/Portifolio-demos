@@ -7,8 +7,8 @@
     "Capa em duas colunas: título e ações de um lado, foto de secagem e detalhe de escovação do outro",
     "Menu de parede com três linhas que abrem juntas ou separadas: banho, banho com tosa higiênica e banho com tosa completa",
     "Cada serviço traz foto, o que está incluso e botão de WhatsApp com mensagem própria",
-    "Ficha de balcão: porte, pelagem e primeira visita, para contar na conversa",
-    "Endereço, horários e WhatsApp com modo demonstrativo seguro, sem formulário"
+    "Ficha de balcão que vira formulário: porte, pelagem e primeira visita em cápsulas selecionáveis, com validação e foco guiado",
+    "O botão da ficha monta a mensagem com as respostas e abre o WhatsApp; endereço, horários e modo demonstrativo seguro, sem cadastro nem campos pessoais"
   ],
   "cores": {
     "fundo": "#173F3A",
