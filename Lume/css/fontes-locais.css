@@ -1,0 +1,18 @@
+/* Fontes locais da LUME (geradas por tools/baixar-recursos.ps1).
+   Para usar: troque o <link> do Google Fonts do index.html por
+   <link rel="stylesheet" href="css/fontes-locais.css">.
+   Licença das duas fontes: SIL Open Font License 1.1. */
+@font-face {
+  font-family: "Archivo Narrow";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/archivo-narrow-latin.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Instrument Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("../assets/fonts/instrument-sans-latin.woff2") format("woff2");
+}
