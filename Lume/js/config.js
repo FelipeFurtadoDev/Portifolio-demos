@@ -18,7 +18,7 @@ window.LUME_CONFIG = {
                          contact.whatsapp seja válido. */
   demo: {
     enabled: true,
-    notice: "Demonstração: LUME é uma marca fictícia. Fotos ilustrativas, de banco de imagens.",
+    notice: "Demonstração: marca fictícia e fotos ilustrativas.",
     contactNotice: "Contato real ainda não configurado: nada foi enviado e nenhum link externo foi aberto. Copie a mensagem para usá-la depois."
   },
 
@@ -47,8 +47,8 @@ window.LUME_CONFIG = {
       "capa": {
           "id": "1771371854543-bb274762389e",
           "grupo": "capa",
-          "nome": "Cozinha clara com ilha e revestimento em pedra",
-          "alt": "Cozinha clara com ilha de tampo em pedra de tom claro em primeiro plano, revestimento de parede com veios acinzentados, armários brancos e janela grande com vista para árvores",
+          "nome": "Cozinha clara com ilha e revestimento de parede com veios",
+          "alt": "Cozinha clara com ilha de tampo de tom claro em primeiro plano, revestimento de parede com veios acinzentados, armários brancos e janela grande com vista para árvores",
           "autor": "GoodLifeConstruction",
           "url": "https://unsplash.com/photos/pQVP5QmskxM",
           width: 1200,
@@ -57,8 +57,8 @@ window.LUME_CONFIG = {
       "coz1": {
           "id": "1609347744403-2306e8a9ae27",
           "grupo": "cozinha",
-          "nome": "Ilha com tampo claro e lateral em queda",
-          "alt": "Ilha de cozinha com tampo branco de veios cinzentos finos que desce pela lateral até o piso, duas banquetas de palha e armários claros ao fundo",
+          "nome": "Ilha com tampo claro e lateral até o piso",
+          "alt": "Ilha de cozinha com tampo branco de veios cinzentos finos que continua pela lateral até o piso, duas banquetas de palha e armários claros ao fundo",
           "autor": "Jakob Owens",
           "url": "https://unsplash.com/photos/XKLZia7hPYI",
           width: 1200,
@@ -66,7 +66,7 @@ window.LUME_CONFIG = {
           "ambiente": "Cozinha",
           "aparencia": "Tampo branco com veios cinzentos finos e irregulares.",
           "composicao": "Ilha em primeiro plano, banquetas de palha à esquerda e armários claros ao fundo, com luz natural.",
-          "aplicacao": "Tampo de ilha cuja pedra continua pela lateral até o piso."
+          "aplicacao": "Tampo de ilha que continua pela lateral até o piso."
       },
       "coz2": {
           "id": "1617228069096-4638a7ffc906",
@@ -78,37 +78,37 @@ window.LUME_CONFIG = {
           width: 1200,
           height: 800,
           "ambiente": "Cozinha",
-          "aparencia": "Tampos em tom claro e liso, sem veios marcados.",
+          "aparencia": "Tampos em tom claro, de aparência lisa.",
           "composicao": "Janela larga ao centro, bancada em linha, fogão à direita e piso de madeira clara.",
           "aplicacao": "Bancada de apoio sob a janela e ilha em primeiro plano."
       },
       "coz3": {
           "id": "1556911220-bff31c812dba",
           "grupo": "cozinha",
-          "nome": "Bancada de pedra cinza ao lado do fogão",
-          "alt": "Bancada de pedra cinza-clara com veios em primeiro plano, fogão a gás ao fundo, armários brancos acima e frutas sobre o tampo",
+          "nome": "Bancada cinza-clara ao lado do fogão",
+          "alt": "Bancada cinza-clara com veios em primeiro plano, fogão a gás ao fundo, armários brancos acima e frutas sobre o tampo",
           "autor": "Jason Briscoe",
           "url": "https://unsplash.com/photos/GliaHAJ3_5A",
           width: 1200,
           height: 719,
           "ambiente": "Cozinha",
-          "aparencia": "Pedra cinza-clara com veios e manchas em tom mais escuro.",
+          "aparencia": "Tampo cinza-claro com veios e manchas em tom mais escuro.",
           "composicao": "Tampo em primeiro plano, fogão a gás ao fundo e armários brancos acima.",
           "aplicacao": "Bancada contínua ao lado do fogão, com área de apoio."
       },
       "ban1": {
           "id": "1763485956164-73506432b990",
           "grupo": "banheiro",
-          "nome": "Bancada de banheiro com cuba rebaixada",
-          "alt": "Bancada de banheiro em pedra clara com cuba retangular rebaixada na própria peça, torneira de parede preta, espelho em arco e pendente preto",
+          "nome": "Bancada de banheiro com cuba integrada",
+          "alt": "Bancada de banheiro clara, de tom acinzentado, com cuba retangular integrada, torneira de parede preta, espelho em arco e pendente preto",
           "autor": "Peter Muniz",
           "url": "https://unsplash.com/photos/wfMM98Vggn0",
           width: 1200,
           height: 1800,
           "ambiente": "Banheiro",
-          "aparencia": "Pedra clara de tom acinzentado, com veios suaves e superfície contínua.",
+          "aparencia": "Tampo claro de tom acinzentado, com veios suaves.",
           "composicao": "Bancada em diagonal, torneira de parede preta, espelho em arco e pendente preto acima.",
-          "aplicacao": "Bancada com a cuba rebaixada na própria peça e parede em tom parecido."
+          "aplicacao": "Bancada com a cuba integrada e a torneira fixada na parede."
       },
       "ban2": {
           "id": "1763485956310-55f3c0e822d5",
@@ -120,7 +120,7 @@ window.LUME_CONFIG = {
           width: 1200,
           height: 1800,
           "ambiente": "Banheiro",
-          "aparencia": "Tampo cinza-claro, espesso, de textura uniforme.",
+          "aparencia": "Tampo cinza-claro, de textura uniforme.",
           "composicao": "Espelho em arco à esquerda, parede de revestimento amadeirado e chuveiro ao fundo.",
           "aplicacao": "Bancada longa que acompanha a parede, sobre gabinete de madeira."
       },
@@ -128,7 +128,7 @@ window.LUME_CONFIG = {
           "id": "1771681278446-6f8eb0c7323f",
           "grupo": "banheiro",
           "nome": "Duas bancadas com espelhos ovais",
-          "alt": "Dois gabinetes de madeira com tampo de pedra clara, espelhos ovais e luminárias douradas em parede clara",
+          "alt": "Dois gabinetes de madeira com tampo claro, espelhos ovais e luminárias douradas em parede clara",
           "autor": "Clay Banks",
           "url": "https://unsplash.com/photos/7Z2OTozIY_0",
           width: 1200,

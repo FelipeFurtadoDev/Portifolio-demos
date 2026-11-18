@@ -132,6 +132,7 @@
   /* ---- Comparação ------------------------------------------------------------------------- */
   var estadoBox = $("[data-estado]"), estadoTxt = $("[data-estado-txt]");
   var guia = $("[data-guia]");
+  var secaoComp = $("[data-comparar-secao]"), corpoComp = $("[data-corpo]"), vazioGeral = $("[data-vazio-geral]");
   var slots = $$("[data-slot]");
   var btnLimpar = $("[data-limpar]");
   var btnConversarRefs = $('[data-contato="refs"]');
@@ -173,15 +174,22 @@
       estado.refs.splice(idx, 1);
       persistir(); atualizar();
       anunciar("Referência " + (idx + 1) + " removida: " + nomeCurto(k) + ". " + resumoSelecao());
-      slots[Math.min(idx, slots.length - 1)].focus();
+      focarComparacao(idx);
     });
   });
   btnLimpar.addEventListener("click", function () {
+    var tinha = estado.refs.length;
     estado.refs = [];
     persistir(); atualizar();
-    anunciar("As duas referências foram removidas.");
-    slots[0].focus();
+    anunciar(tinha === 2 ? "As duas referências foram removidas." : "A referência foi removida.");
+    focarComparacao(0);
   });
+  /* Depois de remover, o foco fica na comparação: no quadro que sobrou ou, sem escolhas, no aviso. */
+  function focarComparacao(idx) {
+    var n = estado.refs.length;
+    var alvo = n === 0 ? vazioGeral : slots[Math.min(idx, n - 1)];
+    try { alvo.focus({ preventScroll: true }); } catch (e) { alvo.focus(); }
+  }
 
   function preencherSlot(slot, k) {
     var f = C.photos[k], img = $("[data-slot-img]", slot);
@@ -198,6 +206,7 @@
     cred.textContent = f.ambiente + ". Foto de " + f.autor + ", via Unsplash. Referência ilustrativa.";
   }
 
+  var ultimoN = -1;
   function atualizar() {
     var n = estado.refs.length;
     tiles.forEach(function (t) {
@@ -225,11 +234,18 @@
       else { vazio.hidden = false; cheio.hidden = true; }
     });
 
-    guia.textContent = n === 0 ? "Escolha duas imagens no mural com “Comparar referência”. Elas aparecem aqui, uma ao lado da outra."
-      : n === 1 ? "Falta uma: volte ao mural e escolha outra imagem para completar a comparação."
-      : "As duas referências estão lado a lado. Para trocar uma, use “Remover” e escolha outra no mural.";
+    guia.textContent = n === 2 ? "As duas referências estão lado a lado. Para trocar uma, use “Remover” e escolha outra no mural." : "";
+    secaoComp.setAttribute("data-n", n);
+    if (n !== ultimoN) {
+      corpoComp.classList.remove("anima");
+      void corpoComp.offsetWidth;
+      corpoComp.classList.add("anima");
+      ultimoN = n;
+    }
     btnLimpar.disabled = n === 0;
+    btnLimpar.textContent = n === 2 ? "Limpar as duas" : "Limpar escolha";
     btnConversarRefs.disabled = n === 0;
+    btnConversarRefs.textContent = n === 1 ? "Conversar sobre esta referência" : "Conversar sobre estas referências";
   }
 
   /* ---- Contato -------------------------------------------------------------------------------- */

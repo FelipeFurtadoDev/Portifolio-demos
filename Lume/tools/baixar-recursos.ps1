@@ -7,8 +7,8 @@
 #  Gera:
 #    assets/img/<chave>-<largura>.webp para as 10 fotos (capa, coz1..3, ban1..3,
 #    gou1..3), 4 larguras cada -> 40 arquivos
-#    assets/fonts/archivo-narrow-latin.woff2
-#    assets/fonts/instrument-sans-latin.woff2                      -> 2 fontes
+#    assets/fonts/asul-400-latin.woff2
+#    assets/fonts/instrument-sans-latin.woff2                      -> 2 arquivos de fonte
 #
 #  Depois:
 #    - fotos: em js/config.js, mude useLocalImages para true
@@ -65,7 +65,7 @@ foreach ($i in $images) {
 # Fontes: le o CSS do Google Fonts (com agente de navegador moderno, para vir
 # woff2) e baixa apenas os blocos "latin".
 $ua  = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Safari/537.36'
-$css = 'https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400..700&family=Instrument+Sans:wght@400..700&display=swap'
+$css = 'https://fonts.googleapis.com/css2?family=Asul&family=Instrument+Sans:wght@400..700&display=swap'
 try {
   $texto = (Invoke-WebRequest -Uri $css -UserAgent $ua -UseBasicParsing).Content
   $blocos = [regex]::Matches($texto, '/\* latin \*/\s*@font-face\s*\{(?<b>[^}]+)\}')
@@ -73,6 +73,8 @@ try {
     $b = $m.Groups['b'].Value
     $fam = [regex]::Match($b, "font-family:\s*'([^']+)'").Groups[1].Value.ToLower() -replace ' ', '-'
     if ($b -match 'font-style:\s*italic') { $fam = "$fam-italic" }
+    $peso = [regex]::Match($b, 'font-weight:\s*(\d+)\s*;').Groups[1].Value   # peso unico (Asul): entra no nome
+    if ($peso) { $fam = "$fam-$peso" }
     $url = [regex]::Match($b, 'url\(([^)]+)\)').Groups[1].Value
     $nome = "$fam-latin.woff2"
     $out = Join-Path $fontDir $nome
@@ -80,7 +82,7 @@ try {
     $kb = [math]::Round((Get-Item $out).Length / 1KB)
     Write-Host "ok   $nome ($kb KB)"
   }
-  if ($blocos.Count -lt 2) { $falhas++; Write-Warning "Esperava 2 fontes, encontrei $($blocos.Count)." }
+  if ($blocos.Count -lt 2) { $falhas++; Write-Warning "Esperava 2 arquivos de fonte, encontrei $($blocos.Count)." }
 } catch {
   $falhas++
   Write-Warning "falhou: fontes -> $($_.Exception.Message)"

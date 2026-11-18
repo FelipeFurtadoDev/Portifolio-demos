@@ -2,18 +2,18 @@
   "marca": "LUME · Marmoraria",
   "segmento": "Marmoraria: mural por ambiente e comparação de referências",
   "ordem": 180,
-  "descricao": "Para quem quer ver a pedra instalada antes de pedir orçamento. A capa abre com a marca em azul-cobalto e uma cozinha em tela larga; o visitante filtra um mural fotográfico por ambiente, escolhe até duas fotos para observar lado a lado e leva os nomes delas para a mensagem do WhatsApp, além de ver bordas, recortes e encontros de perto e pedir cada peça sob medida.",
+  "descricao": "Para quem quer ver a pedra instalada antes de pedir orçamento. A abertura traz a marca em ameixa e uma cozinha em tela larga; o visitante filtra um mural fotográfico por ambiente, escolhe até duas fotos para observar lado a lado e leva os nomes delas para a mensagem do WhatsApp, além de ver detalhes de acabamento e pedir cada peça sob medida.",
   "caracteristicas": [
     "Mural fotográfico com filtros por ambiente: cozinha, banheiro e área gourmet",
     "Comparação de até duas referências lado a lado, mantida ao trocar de filtro",
     "Mensagem de WhatsApp com os nomes das referências escolhidas (modo demonstração sem número)",
-    "Acabamento visto de perto: borda, recorte da cuba e encontro entre peças, com o que conversar antes",
+    "Acabamento visto de perto: borda, cuba e bancada, e lateral até o piso, com o que conversar antes",
     "Lista de peças sob medida (bancadas, lavatórios, soleiras e peitoris), cada uma com sua mensagem",
-    "Fechamento em azul-cobalto com contato, localização e horários demonstrativos"
+    "Paleta suave em ameixa, rosa mineral e azul-névoa, com fechamento em ameixa e contato demonstrativo"
   ],
   "cores": {
-    "fundo": "#F5F5F0",
-    "texto": "#252729",
-    "textoSecundario": "#4A4D50"
+    "fundo": "#FAF7FA",
+    "texto": "#302B34",
+    "textoSecundario": "#4F4755"
   }
 }
